@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mocca Cafetería</title>
+<link rel="icon" type="image/png" href="img/logo.png"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A1887F", // A warm brown, like coffee
+                        "background-light": "#F5F5F5", // Light grey
+                        "background-dark": "#212121", // Dark grey
+                        "accent-light": "#FFFFFF",
+                        "accent-dark": "#37474F",
+                        "text-light": "#263238",
+                        "text-dark": "#ECEFF1",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .hero-bg {
+            background-image: url('img/local.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-light dark:text-text-dark transition-colors duration-300">
+<header class="bg-accent-light dark:bg-accent-dark shadow-md sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center space-x-2">
+<span class="material-icons text-primary text-3xl">coffee</span>
+<a class="text-2xl font-display font-bold text-primary" href="#">Mocca</a>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="hover:text-primary transition-colors" href="#menu">Menú</a>
+<a class="hover:text-primary transition-colors" href="#about">Nosotros</a>
+<a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
+</div>
+<button class="md:hidden" id="mobile-menu-button">
+<span class="material-icons">menu</span>
+</button>
+</nav>
+<div class="hidden md:hidden px-6 pb-4" id="mobile-menu">
+<a class="block py-2 hover:text-primary transition-colors" href="#menu">Menú</a>
+<a class="block py-2 hover:text-primary transition-colors" href="#about">Nosotros</a>
+<a class="block py-2 hover:text-primary transition-colors" href="#contact">Contacto</a>
+</div>
+</header>
+<section class="hero-bg text-white">
+<div class="bg-black bg-opacity-50 min-h-[60vh] flex items-center">
+<div class="container mx-auto px-6 text-center">
+<h1 class="text-4xl md:text-6xl font-display font-bold mb-4">El arte de un buen café</h1>
+<p class="text-lg md:text-xl mb-8 font-body">Tu pausa perfecta en el corazón de la ciudad.</p>
+<a class="bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors font-body text-lg" href="#menu">Ver el menú</a>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24" id="about">
+<div class="container mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="rounded-lg overflow-hidden shadow-xl">
+<img alt="Interior of the Mocca cafeteria with tables and chairs." class="w-full h-full object-cover" src="img/local.png"/>
+</div>
+<div>
+<h2 class="text-3xl md:text-4xl font-display font-bold text-primary mb-4">Bienvenidos a Mocca</h2>
+<p class="mb-4">En Mocca, cada taza de café cuenta una historia. Desde nuestra fundación, nos hemos dedicado a seleccionar los mejores granos y a perfeccionar el arte de la preparación para ofrecerte una experiencia inolvidable.</p>
+<p>Nuestro espacio está diseñado para ser tu refugio, un lugar donde puedes relajarte, trabajar o simplemente disfrutar de un buen momento. ¡Te esperamos!</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark" id="menu">
+<div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Nuestro Menú</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- CAFÉS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Cafés</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Espresso</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Espresso doble</span><span>1,90</span></li>
+                <li class="flex justify-between"><span>Americano</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Cortado</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Colacao</span><span>1,50</span></li>
+                <li class="flex justify-between text-xs text-primary font-semibold mt-2"><span>Personaliza con sirope (+0,40)</span></li>
+                <li class="flex justify-between"><span>Café con leche (M/G/XL)</span><span>1,60/1,90/2,10</span></li>
+                <li class="flex justify-between"><span>Descafeinado</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Capuccino</span><span>2,10</span></li>
+                <li class="flex justify-between"><span>Capuccino con panna</span><span>2,30</span></li>
+                <li class="flex justify-between"><span>Chocolate con leche</span><span>2,10</span></li>
+                <li class="flex justify-between"><span>Latte</span><span>2,10</span></li>
+                <li class="flex justify-between"><span>Latte con hielo</span><span>2,10</span></li>
+                <li class="flex justify-between"><span>Ked Mocca</span><span>2,30</span></li>
+                <li class="flex justify-between"><span>Ked Mocca Latte</span><span>2,30</span></li>
+                <li class="flex justify-between"><span>Ked Choco Latte</span><span>2,30</span></li>
+            </ul>
+        </div>
+        <!-- INFUSIONES Y TÉS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Infusiones y Tés</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Té negro</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Té verde</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Manzanilla</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Rooibos</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Menta</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Frutas del bosque</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Melocotón</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Jengibre y limón</span><span>1,70</span></li>
+                <li class="flex justify-between"><span>Infusión especial</span><span>1,70</span></li>
+            </ul>
+        </div>
+        <!-- BEBIDAS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Bebidas</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Zumo de naranja natural</span><span>2,30</span></li>
+                <li class="flex justify-between"><span>Zumo de piña</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Zumo de melocotón</span><span>1,40</span></li>
+                <li class="flex justify-between"><span>Coca-Cola</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Coca-Cola Zero</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Fanta naranja/limón</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Sprite</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Agua</span><span>1,20</span></li>
+                <li class="flex justify-between"><span>Agua con gas</span><span>1,70</span></li>
+            </ul>
+        </div>
+        <!-- CERVEZAS Y VINOS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Cervezas y Vinos</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Caña Estrella Galicia</span><span>1,50</span></li>
+                <li class="flex justify-between"><span>Botella Estrella Galicia 33cl</span><span>2,10</span></li>
+                <li class="flex justify-between"><span>Vino (copa)</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Vino (botella)</span><span>9,00</span></li>
+            </ul>
+        </div>
+        <!-- ENTRANTES -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Entrantes</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Tequeños</span><span>7,50</span></li>
+                <li class="flex justify-between"><span>Rollito Kentucky</span><span>7,90</span></li>
+                <li class="flex justify-between"><span>Alitas BBQ</span><span>7,90</span></li>
+                <li class="flex justify-between"><span>Nachos con guacamole</span><span>7,00</span></li>
+                <li class="flex justify-between"><span>Quesadillas de guacamole</span><span>7,00</span></li>
+                <li class="flex justify-between"><span>Ensalada de quinoa</span><span>7,00</span></li>
+                <li class="flex justify-between"><span>Ensalada de feta</span><span>7,00</span></li>
+                <li class="flex justify-between"><span>Ensalada de pollo</span><span>7,00</span></li>
+            </ul>
+        </div>
+        <!-- TOSTAS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Tostas</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Tosta pan con mermelada y mantequilla</span><span>2,50</span></li>
+                <li class="flex justify-between"><span>Tosta pan con queso crema, aguacate y huevo</span><span>4,00</span></li>
+                <li class="flex justify-between"><span>Tosta francesa pan brioche con huevo y bacon</span><span>4,50</span></li>
+            </ul>
+        </div>
+        <!-- SCHIACCIATA -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Schiacciata</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Schiacciata queso, jamón y tomate</span><span>6,90</span></li>
+                <li class="flex justify-between"><span>Schiacciata vegetal</span><span>6,90</span></li>
+                <li class="flex justify-between"><span>Schiacciata pollo y pesto</span><span>7,50</span></li>
+            </ul>
+        </div>
+        <!-- WAFFLES -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Waffles</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Waffle relleno de gusto americano</span><span>7,10</span></li>
+                <li class="flex justify-between"><span>Waffle bacon, guacamole y huevo</span><span>7,10</span></li>
+                <li class="flex justify-between"><span>Waffle pollo estilo Kentucky</span><span>7,90</span></li>
+            </ul>
+        </div>
+        <!-- HAMBURGUESAS CON PATATAS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Hamburguesas con Patatas</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Hamburguesa smash queso y bacon</span><span>8,90</span></li>
+                <li class="flex justify-between"><span>Hamburguesa smash doble carne</span><span>10,90</span></li>
+                <li class="flex justify-between"><span>Hamburguesa vegetal</span><span>8,90</span></li>
+            </ul>
+        </div>
+        <!-- BOWLS -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Bowls</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Bowl quinoa, aguacate, pollo y mango</span><span>8,50</span></li>
+                <li class="flex justify-between"><span>Bowl veggie</span><span>8,50</span></li>
+            </ul>
+        </div>
+        <!-- DULCES -->
+        <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
+            <h3 class="font-display text-xl font-bold text-primary mb-4">Dulces</h3>
+            <ul class="space-y-2">
+                <li class="flex justify-between"><span>Nutella</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Plátano</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Fresas</span><span>1,80</span></li>
+                <li class="flex justify-between"><span>Tarta casera del día</span><span>3,50</span></li>
+                <li class="flex justify-between"><span>Donut relleno</span><span>2,00</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
+<section class="py-16 md:py-24" id="contact">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Visítanos</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<h3 class="font-display text-2xl font-bold text-primary mb-4">Horario</h3>
+<ul class="mb-4">
+    <li class="flex justify-between mb-1"><span class="font-semibold">lunes</span> <span>9:30–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">martes</span> <span>9:30–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">miércoles</span> <span>9:30–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">jueves</span> <span>9:30–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">viernes</span> <span>9:30–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">sábado</span> <span>10:00–23:00</span></li>
+    <li class="flex justify-between mb-1"><span class="font-semibold">domingo</span> <span>10:00–16:00</span></li>
+</ul>
+<h3 class="font-display text-2xl font-bold text-primary mb-4">Contacto</h3>
+<p class="mb-2 flex items-center"><span class="material-icons text-primary mr-2">place</span> R. de Nicaragua, 23, Santiago de Vigo, 36203 Vigo, Pontevedra</p>
+<p class="mb-4 flex items-center"><span class="material-icons text-primary mr-2">phone</span> (+34) 600 391 345</p>
+<a class="bg-primary text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors inline-block" href="tel:600391345">Haz tu reserva</a>
+</div>
+<div class="rounded-lg overflow-hidden shadow-xl h-64 md:h-auto">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5908.435656394837!2d-8.7200965!3d42.2311591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f630040e1c6ab%3A0x34e1c1ce76509b96!2smocca!5e0!3m2!1ses!2ses!4v1758643828101!5m2!1ses!2ses"
+    class="w-full h-full"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-accent-light dark:bg-accent-dark py-8">
+<div class="container mx-auto px-6 text-center">
+    <p>© 2025 Mocca Cafetería. Todos los derechos reservados.</p>
+    <div class="mt-4 flex justify-center items-center gap-2">
+        <span class="font-semibold mr-2">Síguenos:</span>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex items-center">
+            <!-- Instagram SVG icon -->
+            <svg class="w-6 h-6 text-primary hover:text-pink-600 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.13.62a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+</footer>
+<script>
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const mobileMenu = document.getElementById('mobile-menu');
+                mobileMenuButton.addEventListener('click', () => {
+                        mobileMenu.classList.toggle('hidden');
+                });
+                // Scroll suave para navegadores antiguos
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            e.preventDefault();
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
+                });
+    </script>
+
+</body></html>
