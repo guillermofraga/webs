@@ -4,7 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Mocca Cafetería</title>
+    <title>Mocca Coffee & Brunch</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Mocca Coffee & Brunch en Vigo: el lugar ideal para disfrutar de café de calidad, brunch delicioso y un ambiente acogedor. Ven a relajarte, trabajar o disfrutar de un buen momento en el corazón de la ciudad." />
+    <meta name="keywords"
+        content="Mocca Coffee & Brunch, Vigo, café, brunch, restaurante, bar, bebidas, comida, brunch en Vigo, café de calidad, brunch delicioso, cafetería en Vigo, ambiente acogedor, café artesanal" />
+    <meta name="author" content="Mocca Coffee & Brunch" />
+    <meta property="og:title" content="Mocca Coffee & Brunch - El mejor café y brunch en Vigo" />
+    <meta property="og:description"
+        content="Disfruta de una experiencia única en Mocca Coffee & Brunch: café de calidad, brunch delicioso y un ambiente único en el centro de Vigo." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dominio/" />
+    <meta property="og:image"
+        content="https://dominio/img/logo.png" />
+    <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png" href="img/logo.png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <style>
@@ -85,39 +99,6 @@
             </div>
         </div>
     </section>
-   
-    <section id="login" class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Iniciar sesión</h2>
-        <form id="login-form" class="space-y-4">
-            <div>
-                <label for="username" class="block text-primary font-semibold mb-2">Usuario</label>
-                <input type="text" id="username" name="username" class="w-full p-2 border rounded-md" placeholder="Ingrese su nombre de usuario" required />
-            </div>
-            <div>
-                <label for="password" class="block text-primary font-semibold mb-2">Contraseña</label>
-                <input type="password" id="password" name="password" class="w-full p-2 border rounded-md" placeholder="Ingrese su contraseña" required />
-            </div>
-            <button type="submit" class="bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors">Iniciar sesión</button>
-        </form>
-    </div>
-</section>
-
-<section id="upload-section" class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark hidden">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Galería - Subir Foto</h2>
-        <form id="upload-form" class="mb-8">
-            <label for="file-upload" class="text-primary font-semibold mb-2 block">Sube una nueva foto</label>
-            <input type="file" id="file-upload" accept="image/*" class="mb-4 p-2 border rounded-md">
-            <button type="submit" class="bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors">
-                Subir foto
-            </button>
-        </form>
-    </div>
-</section>
-
-
-
     <section class="py-16 md:py-24" id="about">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -147,8 +128,8 @@
                 <img src="img/plato_fondo.png" alt="Schiacciata" class="mb-4 rounded-lg shadow-md">
 
                 <img src="img/plato_gofre.png" alt="gofre" class="mb-4 rounded-lg shadow-md">
-                
-        </div>
+
+            </div>
     </section>
     <section class="py-16 md:py-24" id="contact">
         <div class="container mx-auto px-6">
@@ -230,66 +211,6 @@
             });
         });
     </script>
-
-<script>
-    // Credenciales predefinidas
-    const validUsername = "local"; // Usuario predefinido
-    const validPassword = "1234"; // Contraseña predefinida
-
-    const loginForm = document.getElementById("login-form");
-    const uploadSection = document.getElementById("upload-section");
-    const loginSection = document.getElementById("login");
-
-    loginForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        // Verificación simple de las credenciales
-        if (username === validUsername && password === validPassword) {
-            // Si el usuario y la contraseña son correctos, ocultamos el formulario de login
-            loginSection.classList.add("hidden");
-            // Mostramos la sección de subida de fotos
-            uploadSection.classList.remove("hidden");
-        } else {
-            alert("Usuario o contraseña incorrectos. Intente de nuevo.");
-        }
-    });
-
-    // Funcionalidad para subir fotos (ya proporcionada previamente)
-    const uploadForm = document.getElementById("upload-form");
-    const fileUpload = document.getElementById("file-upload");
-    const galleryImages = document.getElementById("gallery");
-
-    uploadForm.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevenir que la página se recargue
-
-        const file = fileUpload.files[0]; // Obtener el primer archivo seleccionado
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                // Crear un nuevo elemento de imagen
-                const newImage = document.createElement("img");
-                newImage.src = e.target.result; // Establecer la imagen cargada como fuente
-                newImage.alt = "Nueva foto cargada";
-                newImage.classList.add("mb-4", "rounded-lg", "shadow-md", "w-full", "h-auto");
-
-                // Añadir la imagen al contenedor de la galería
-                galleryImages.appendChild(newImage);
-            };
-
-            reader.readAsDataURL(file); // Leer el archivo como una URL de datos (base64)
-        } else {
-            alert("Por favor, selecciona una imagen.");
-        }
-
-        // Limpiar el input después de la carga
-        fileUpload.value = "";
-    });
-</script>
 
 
 </body>
