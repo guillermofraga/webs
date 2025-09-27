@@ -60,6 +60,7 @@
             </div>
             <div class="hidden md:flex items-center space-x-8">
                 <a class="hover:text-primary transition-colors" href="menu.html">Menú</a>
+                <a class="hover:text-primary transition-colors" href="#gallery">Galeria</a>
                 <a class="hover:text-primary transition-colors" href="#about">Nosotros</a>
                 <a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
             </div>
@@ -69,6 +70,7 @@
         </nav>
         <div class="hidden md:hidden px-6 pb-4" id="mobile-menu">
             <a class="block py-2 hover:text-primary transition-colors" href="menu.html">Menú</a>
+            <a class="hover:text-primary transition-colors" href="#gallery">Galeria</a>
             <a class="block py-2 hover:text-primary transition-colors" href="#about">Nosotros</a>
             <a class="block py-2 hover:text-primary transition-colors" href="#contact">Contacto</a>
         </div>
@@ -83,6 +85,39 @@
             </div>
         </div>
     </section>
+   
+    <section id="login" class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Iniciar sesión</h2>
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="username" class="block text-primary font-semibold mb-2">Usuario</label>
+                <input type="text" id="username" name="username" class="w-full p-2 border rounded-md" placeholder="Ingrese su nombre de usuario" required />
+            </div>
+            <div>
+                <label for="password" class="block text-primary font-semibold mb-2">Contraseña</label>
+                <input type="password" id="password" name="password" class="w-full p-2 border rounded-md" placeholder="Ingrese su contraseña" required />
+            </div>
+            <button type="submit" class="bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors">Iniciar sesión</button>
+        </form>
+    </div>
+</section>
+
+<section id="upload-section" class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark hidden">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Galería - Subir Foto</h2>
+        <form id="upload-form" class="mb-8">
+            <label for="file-upload" class="text-primary font-semibold mb-2 block">Sube una nueva foto</label>
+            <input type="file" id="file-upload" accept="image/*" class="mb-4 p-2 border rounded-md">
+            <button type="submit" class="bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors">
+                Subir foto
+            </button>
+        </form>
+    </div>
+</section>
+
+
+
     <section class="py-16 md:py-24" id="about">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -101,154 +136,18 @@
             </div>
         </div>
     </section>
-    <section class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark" id="menu">
+    <section class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Nuestro Menú</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- CAFÉS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Cafés</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Espresso</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Espresso doble</span><span>1,90</span></li>
-                        <li class="flex justify-between"><span>Americano</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Cortado</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Colacao</span><span>1,50</span></li>
-                        <li class="flex justify-between text-xs text-primary font-semibold mt-2"><span>Personaliza con
-                                sirope (+0,40)</span></li>
-                        <li class="flex justify-between"><span>Café con leche (M/G/XL)</span><span>1,60/1,90/2,10</span>
-                        </li>
-                        <li class="flex justify-between"><span>Descafeinado</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Capuccino</span><span>2,10</span></li>
-                        <li class="flex justify-between"><span>Capuccino con panna</span><span>2,30</span></li>
-                        <li class="flex justify-between"><span>Chocolate con leche</span><span>2,10</span></li>
-                        <li class="flex justify-between"><span>Latte</span><span>2,10</span></li>
-                        <li class="flex justify-between"><span>Latte con hielo</span><span>2,10</span></li>
-                        <li class="flex justify-between"><span>ICED Mocca</span><span>2,30</span></li>
-                        <li class="flex justify-between"><span>ICED Mocca Latte</span><span>2,30</span></li>
-                        <li class="flex justify-between"><span>ICED Choco Latte</span><span>2,30</span></li>
-                    </ul>
-                </div>
-                <!-- INFUSIONES Y TÉS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Infusiones y Tés</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Té negro</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Té verde</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Manzanilla</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Rooibos</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Menta</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Frutas del bosque</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Melocotón</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Jengibre y limón</span><span>1,70</span></li>
-                        <li class="flex justify-between"><span>Infusión especial</span><span>1,70</span></li>
-                    </ul>
-                </div>
-                <!-- BEBIDAS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Bebidas</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Zumo de naranja natural</span><span>2,30</span></li>
-                        <li class="flex justify-between"><span>Zumo de piña</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Zumo de melocotón</span><span>1,40</span></li>
-                        <li class="flex justify-between"><span>Coca-Cola</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Coca-Cola Zero</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Fanta naranja/limón</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Sprite</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Agua</span><span>1,20</span></li>
-                        <li class="flex justify-between"><span>Agua con gas</span><span>1,70</span></li>
-                    </ul>
-                </div>
-                <!-- CERVEZAS Y VINOS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Cervezas y Vinos</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Caña Estrella Galicia</span><span>1,50</span></li>
-                        <li class="flex justify-between"><span>Botella Estrella Galicia 33cl</span><span>2,10</span>
-                        </li>
-                        <li class="flex justify-between"><span>Vino (copa)</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Vino (botella)</span><span>9,00</span></li>
-                    </ul>
-                </div>
-                <!-- ENTRANTES -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Entrantes</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Tequeños</span><span>7,50</span></li>
-                        <li class="flex justify-between"><span>Rollito Kentucky</span><span>7,90</span></li>
-                        <li class="flex justify-between"><span>Alitas BBQ</span><span>7,90</span></li>
-                        <li class="flex justify-between"><span>Nachos con guacamole</span><span>7,00</span></li>
-                        <li class="flex justify-between"><span>Quesadillas de guacamole</span><span>7,00</span></li>
-                        <li class="flex justify-between"><span>Ensalada de quinoa</span><span>7,00</span></li>
-                        <li class="flex justify-between"><span>Ensalada de feta</span><span>7,00</span></li>
-                        <li class="flex justify-between"><span>Ensalada de pollo</span><span>7,00</span></li>
-                    </ul>
-                </div>
-                <!-- TOSTAS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Tostas</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Tosta pan con mermelada y
-                                mantequilla</span><span>2,50</span></li>
-                        <li class="flex justify-between"><span>Tosta pan con queso crema, aguacate y
-                                huevo</span><span>4,00</span></li>
-                        <li class="flex justify-between"><span>Tosta francesa pan brioche con huevo y
-                                bacon</span><span>4,50</span></li>
-                    </ul>
-                </div>
-                <!-- SCHIACCIATA -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Schiacciata</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Schiacciata queso, jamón y tomate</span><span>6,90</span>
-                        </li>
-                        <li class="flex justify-between"><span>Schiacciata vegetal</span><span>6,90</span></li>
-                        <li class="flex justify-between"><span>Schiacciata pollo y pesto</span><span>7,50</span></li>
-                    </ul>
-                </div>
-                <!-- WAFFLES -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Waffles</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Waffle relleno de gusto americano</span><span>7,10</span>
-                        </li>
-                        <li class="flex justify-between"><span>Waffle bacon, guacamole y huevo</span><span>7,10</span>
-                        </li>
-                        <li class="flex justify-between"><span>Waffle pollo estilo Kentucky</span><span>7,90</span></li>
-                    </ul>
-                </div>
-                <!-- HAMBURGUESAS CON PATATAS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Hamburguesas con Patatas</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Hamburguesa smash queso y bacon</span><span>8,90</span>
-                        </li>
-                        <li class="flex justify-between"><span>Hamburguesa smash doble carne</span><span>10,90</span>
-                        </li>
-                        <li class="flex justify-between"><span>Hamburguesa vegetal</span><span>8,90</span></li>
-                    </ul>
-                </div>
-                <!-- BOWLS -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Bowls</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Bowl quinoa, aguacate, pollo y
-                                mango</span><span>8,50</span></li>
-                        <li class="flex justify-between"><span>Bowl veggie</span><span>8,50</span></li>
-                    </ul>
-                </div>
-                <!-- DULCES -->
-                <div class="col-span-1 bg-background-light dark:bg-background-dark p-6 rounded-lg shadow-lg">
-                    <h3 class="font-display text-xl font-bold text-primary mb-4">Dulces</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between"><span>Nutella</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Plátano</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Fresas</span><span>1,80</span></li>
-                        <li class="flex justify-between"><span>Tarta casera del día</span><span>3,50</span></li>
-                        <li class="flex justify-between"><span>Donut relleno</span><span>2,00</span></li>
-                    </ul>
-                </div>
-            </div>
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Galería</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery">
+                <img src="img/fresas.png" alt="plato de fresas" class="mb-4 rounded-lg shadow-md">
+
+                <img src="img/tostada.png" alt="tostada" class="mb-4 rounded-lg shadow-md">
+
+                <img src="img/plato_fondo.png" alt="Schiacciata" class="mb-4 rounded-lg shadow-md">
+
+                <img src="img/plato_gofre.png" alt="gofre" class="mb-4 rounded-lg shadow-md">
+                
         </div>
     </section>
     <section class="py-16 md:py-24" id="contact">
@@ -259,19 +158,26 @@
                     <h3 class="font-display text-2xl font-bold text-primary mb-4">Horario</h3>
                     <ul class="mb-4">
                         <li class="flex justify-between mb-1"><span class="font-semibold">lunes</span>
-                            <span>9:30–23:00</span></li>
+                            <span>9:30–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">martes</span>
-                            <span>9:30–23:00</span></li>
+                            <span>9:30–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">miércoles</span>
-                            <span>9:30–23:00</span></li>
+                            <span>9:30–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">jueves</span>
-                            <span>9:30–23:00</span></li>
+                            <span>9:30–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">viernes</span>
-                            <span>9:30–23:00</span></li>
+                            <span>9:30–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">sábado</span>
-                            <span>10:00–23:00</span></li>
+                            <span>10:00–23:00</span>
+                        </li>
                         <li class="flex justify-between mb-1"><span class="font-semibold">domingo</span>
-                            <span>10:00–16:00</span></li>
+                            <span>10:00–16:00</span>
+                        </li>
                     </ul>
                     <h3 class="font-display text-2xl font-bold text-primary mb-4">Contacto</h3>
                     <p class="mb-2 flex items-center"><span class="material-icons text-primary mr-2">place</span> R. de
@@ -324,6 +230,67 @@
             });
         });
     </script>
+
+<script>
+    // Credenciales predefinidas
+    const validUsername = "local"; // Usuario predefinido
+    const validPassword = "1234"; // Contraseña predefinida
+
+    const loginForm = document.getElementById("login-form");
+    const uploadSection = document.getElementById("upload-section");
+    const loginSection = document.getElementById("login");
+
+    loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Verificación simple de las credenciales
+        if (username === validUsername && password === validPassword) {
+            // Si el usuario y la contraseña son correctos, ocultamos el formulario de login
+            loginSection.classList.add("hidden");
+            // Mostramos la sección de subida de fotos
+            uploadSection.classList.remove("hidden");
+        } else {
+            alert("Usuario o contraseña incorrectos. Intente de nuevo.");
+        }
+    });
+
+    // Funcionalidad para subir fotos (ya proporcionada previamente)
+    const uploadForm = document.getElementById("upload-form");
+    const fileUpload = document.getElementById("file-upload");
+    const galleryImages = document.getElementById("gallery");
+
+    uploadForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevenir que la página se recargue
+
+        const file = fileUpload.files[0]; // Obtener el primer archivo seleccionado
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                // Crear un nuevo elemento de imagen
+                const newImage = document.createElement("img");
+                newImage.src = e.target.result; // Establecer la imagen cargada como fuente
+                newImage.alt = "Nueva foto cargada";
+                newImage.classList.add("mb-4", "rounded-lg", "shadow-md", "w-full", "h-auto");
+
+                // Añadir la imagen al contenedor de la galería
+                galleryImages.appendChild(newImage);
+            };
+
+            reader.readAsDataURL(file); // Leer el archivo como una URL de datos (base64)
+        } else {
+            alert("Por favor, selecciona una imagen.");
+        }
+
+        // Limpiar el input después de la carga
+        fileUpload.value = "";
+    });
+</script>
+
 
 </body>
 
