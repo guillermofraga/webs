@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Matbah - Restaurante Halal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Roboto:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c09a6b",
+                        "background-light": "#fdfaf6",
+                        "background-dark": "#1a1a1a",
+                        "text-light": "#333333",
+                        "text-dark": "#f0f0f0",
+                        "card-light": "#ffffff",
+                        "card-dark": "#252525",
+                        "accent-light": "#e9e2d9",
+                        "accent-dark": "#303030",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Roboto", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .hero-bg {
+            background-image: url('image-placeholder.webp');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-text-light dark:text-text-dark transition-colors duration-300">
+<header class="bg-card-light dark:bg-card-dark shadow-md sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a class="font-display text-3xl font-bold text-primary" href="#">The Matbah</a>
+<div class="hidden md:flex items-center space-x-8" id="nav-links">
+<a class="hover:text-primary transition-colors" href="#menu">Menú</a>
+<a class="hover:text-primary transition-colors" href="#about">Sobre Nosotros</a>
+<a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
+<a class="hover:text-primary transition-colors" href="#gallery">Galería</a>
+</div>
+<button class="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary" id="dark-mode-toggle">
+<span class="material-icons dark:hidden">light_mode</span>
+<span class="material-icons hidden dark:inline">dark_mode</span>
+</button>
+<button class="md:hidden flex items-center" id="mobile-menu-toggle" aria-label="Abrir menú">
+<span class="material-icons">menu</span>
+</button>
+</nav>
+<!-- Menú móvil -->
+<div id="mobile-menu" class="md:hidden fixed inset-0 bg-black bg-opacity-70 z-50 hidden">
+    <div class="absolute top-0 right-0 w-3/4 max-w-xs h-full bg-card-light dark:bg-card-dark shadow-lg p-8 flex flex-col space-y-6">
+        <button id="mobile-menu-close" class="self-end mb-8">
+            <span class="material-icons text-3xl">close</span>
+        </button>
+        <a class="hover:text-primary transition-colors text-lg" href="#menu">Menú</a>
+        <a class="hover:text-primary transition-colors text-lg" href="#about">Sobre Nosotros</a>
+        <a class="hover:text-primary transition-colors text-lg" href="#contact">Contacto</a>
+        <a class="hover:text-primary transition-colors text-lg" href="#gallery">Galería</a>
+    </div>
+</div>
+</header>
+<main>
+<section class="hero-bg h-[60vh] text-white flex items-center justify-center">
+<div class="text-center bg-black bg-opacity-50 p-10 rounded-lg">
+<h1 class="text-5xl md:text-7xl font-display font-bold">Bienvenido a The Matbah</h1>
+<p class="mt-4 text-xl md:text-2xl font-body">Auténtica comida Halal con sabor tradicional</p>
+<a class="mt-8 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105" href="#menu">Ver Menú</a>
+</div>
+</section>
+<section class="py-20 bg-background-light dark:bg-background-dark" id="about">
+<div class="container mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-4xl font-display text-primary mb-4">Nuestra Historia</h2>
+<p class="mb-4">En The Matbah, nos dedicamos a ofrecer una experiencia culinaria inolvidable. Nuestro compromiso es con la calidad, utilizando solo ingredientes frescos y halal para preparar platos que deleitan el paladar y nutren el alma.</p>
+<p>Inspirados en las ricas tradiciones de la cocina de Oriente Medio y el Mediterráneo, cada receta es una celebración de sabor y cultura. Ven y descubre el verdadero gusto de la comida hecha con pasión.</p>
+</div>
+<div class="rounded-lg overflow-hidden shadow-xl">
+<img alt="Interior del restaurante The Matbah" class="w-full h-full object-cover" src="img/local.png"/>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-accent-light dark:bg-accent-dark" id="menu">
+<div class="container mx-auto px-6 text-center">
+<h2 class="text-4xl font-display text-primary mb-12">Nuestro Menú Destacado</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<img alt="Shawarma de ternera" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXc3j_7P6HjE9qhWv_g8QFApVRCEqpk6w-LYmp2oO9V8jWcijsGrvR4F8VGgqYXs1M5IBuoFyc5SaV2x9427kYgBK-9EKPPmj8BUROrGbu8Hve-hu4kkF9C8IOCO2hrb3JQGdghUqO0y6Wj337qUBvSN3jPvm36L5qVEl5VZIKgVLZcoIL_qA9DJayG2a9AvZ3dJhl1_3ypXoqPCU0b91FT4TY1nGExjEyJ9GqPrQpC6Z6JXQMka6xYzBnaFc9VR92eXbKU84OBisr"/>
+<div class="p-6">
+<h3 class="text-2xl font-display font-bold mb-2">Shawarma de Ternera</h3>
+<p class="mb-4">Tiernas láminas de ternera marinada, asadas a la perfección y servidas en pan de pita con verduras frescas y nuestra salsa especial.</p>
+<span class="text-xl font-bold text-primary">10,90€</span>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<img alt="Shawarma de pollo" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLRB7eNZjlRnuOajTt289lUovBcIgNldOxLZDC_ZF7JaLvDRob_Hj5XyOUu5QnGuLyaUtyqce0Dyj4HVz1aDXTHsJHWbwoRs5tD7W8hyQ48KZWVFiJYpStkh0-TiZWHchyMorx2uIiFCSY5ysLIJd2PE0NKL2dw3KGNJ4wucnyRtcFF8KqxooVb6fsSfTsXUn93B1UYie3ynqGaIvO87A8IPAvcfWPPpuU82S0JIencgAe0p94xeZSZPRW71U_JYBQFakXgJNJSsDQ"/>
+<div class="p-6">
+<h3 class="text-2xl font-display font-bold mb-2">Shawarma de Pollo</h3>
+<p class="mb-4">Jugoso pollo a la parrilla con nuestra mezcla de especias secretas, acompañado de arroz y ensalada.</p>
+<span class="text-xl font-bold text-primary">9,40€</span>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+<img alt="Plato de Falafel" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmPyiHl693INq0rX0nnwnPHMcPgHQ9K4l_iQW1Y2AO81EmrUdiXe72d1OIGhV6yON-3xOdII3M9TOUrCzbZoVvwggtG2zGTo4x6aBcH2CIoEIuzlexTXpqKI297Iuv2BCIjb9oSk0Svdty-PJki8Gxz-8JKGzf2nppPU2-uOz9qlF30nbrnmQ9ZAKhrH-bjESf753OQ8eo1uuFjQoim0QL7tDRHe3rEq4De5udj57CJUFapec4K7cL_5fzFQtEFKnKZnstTajyNJ59"/>
+<div class="p-6">
+<h3 class="text-2xl font-display font-bold mb-2">Plato de Falafel</h3>
+<p class="mb-4">Crujientes bolas de garbanzo y hierbas, servidas con hummus, ensalada tabulé y pan de pita caliente.</p>
+<span class="text-xl font-bold text-primary">14,90€</span>
+</div>
+</div>
+</div>
+<a class="mt-12 inline-block border-2 border-primary text-primary font-bold py-3 px-8 rounded-full hover:bg-primary hover:text-white transition-all duration-300" href="#">Ver Menú Completo</a>
+</div>
+</section>
+<section class="py-20 bg-background-light dark:bg-background-dark" id="gallery">
+<div class="container mx-auto px-6">
+<h2 class="text-4xl font-display text-primary mb-12 text-center">Galería de Sabores</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid gap-4">
+<div><img alt="Plato de comida halal servido en el restaurante" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN347Ba9olOUl44lWReimo2Gu3YuJC4f4HHVj4yWd7_zkfBaCWLQXBzb9OTDgOM8KAjs995jcqR_IaSlReZeHGIDu0KDpZoFdb63gnjrI_jTwZFKONsHIN_ePA2TNH2-s3b1yFLqGjX217obBnHVYUqzSchp_PkmeBhv7rGusj25pG7GJwOjVMuwBmR5xyXNkgxQ8HZyyWlv8eBnAANjTfbDoGXdzrzObU_NhlurFhx_BxrR22-Bn6TMBph-jmCgVzChMUhRNSiHoy"/></div>
+<div><img alt="Primer plano de un kebab" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Fnk7Ks5Zb8T-OpyvLzQlNBcllLyzGcKsHxn-IcGVQk1zbYB9cnUV-95yz43V7EkeX-2Ndr7ON3svyAIbj5EH43hIbvYxLuD9AI4wdeviBGHIX7wTX-2DE2RTfzjcSS1fccGiYlZQXgRzlk-vYxA07K5nZhnG78c4AWJuXjSvsEfgMipjfFJPqajEZm61xRNZ6JS5lU7x2JcJRVX9--YeR2QPX-J1yEeDMpAY7FNCutYw_nvuhLL9-ghgArsgrYDPZDjJN7pNRtko"/></div>
+</div>
+<div class="grid gap-4">
+<div><img alt="Mostrador de ensaladas del restaurante" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcejc1u7ohJYX6fkTE5-5lw6WP-zze7kuLSif1qvuNpqC4HXz5Yg0O8MYR6TKrS1pxVVdIVR-H6Ylj4d6ygTlU3RceliDlnJez01LRlRs2wjQoWRXhnTeRxtZYWmG3YgNBg7-nEF-kyKZ3H_gMRSZgza5DPJZ5B7wIx00mYkYeQsmypaEnJV6Q3byzuEsVyatbSydVBnBMRaA8wm2k6XdFhRxNe6_11TVXHraSV_NDGeB1ZIn4YrGzbtFcF5hWFCaZubicQA9muF6f"/></div>
+<div><img alt="Postres tradicionales" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZWLheiRhZa_g2Ce2YdXrHn5--Ad2uYlUVMparGP6MnEDRo8nqEh2ZF1Gzpfg2aKQ3sPbHFl70w-0c4cmVswYuT408FMh-nYZuf8BhWVspbSFFweDymlgrd9KkoMK8Xg4I8JsoEHe3Bn-9ZpujLQQkkfrk83bWzvvCknCy6fsETuE11CFsQo2rk8AKSZya1B_U4KSarTgBEtP5oL9DH9ZrlsCsljIIhvkHgQ4fUz9iVwBdBLvxRCzEQ3cqHFcW85CjuMxIm-mxRmpg"/></div>
+</div>
+<div class="grid gap-4">
+<div><img alt="Asador vertical de shawarma" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAgbbUg3_1V5NafTp3p_KE1TUeOZF3jGJTSUsU1KNZ6Y8Dmdd254gvDs1GoJtn7cZdTUaQXSRcc9B7KL8zQZJ3QMMxXTflpXV_sheopa4ViXccTjTKtSi-O8g4fWxhlEph81czkYL4XS8QT0pzil6TfwwsngbOTNw6vhcto1sg4k1mt0GYCSaztUjTtUB4ebgOxZvVvy8TcuDXoFpoMNG_97XeGkkZPxUOzL-jZs0O-5nByf7m0Zm6Whztt3w-gwztG-OhqDNDg1J7"/></div>
+<div><img alt="Detalle de un plato con hummus" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBiZ8ppZvWbeCZhOZXSTEjvFvQHmfnTmhRHPgIb6JsdOjzrjM7othD8mbfhwJxgWbfKMGmYeSOIOsC-cFsdcmNF45UbuCcArsZ8bSlVITiCLhC5CKdLSydKgDASVym9p14DX5eXKoO9vegJVzLBdEuHJ2VRpWBCMtFekMXaIVQNOGcGXgVEBHIC4NmTByHTgF9HTrJ0hZNal_xF3H3k4ZhevLdi0bHm877iqWAQ9EHDgWPJxZcXcWJxlgcyNS5YOVIrA_S5kXiKrQt"/></div>
+</div>
+<div class="grid gap-4">
+<div><img alt="Bebidas refrescantes" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQR_3gh5Hsiawlm9WjioVPpsuHCvGwXCjQ6-DpgMoc6Ib7HN3ZohyFnrufaOmMa9von0SwI5utn3Fmbxa0oG6m6sOu_h48B2DIERPsdusGPuAP582mIZFaoNKQFwxsL1zXxmYk0a6jayXUgkuV4dn2CqLLZ-kFu4CbpOMk8ScEAIBwcfkkHDMBpO78j-3O7wij-kekL3qDhLIh59l4Q0aQCUUKDPqpTs-I6sQhwAn3trG1aIxlkq_0_odBO5KBQ1syUvtaOejp3Vc3"/></div>
+<div><img alt="Equipo de cocina de The Matbah" class="h-auto max-w-full rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWNLwifa_JXIX22_sKPpA2Y-2YYWH3p3523GNhmfagNkevPd8i96oVN5YjFgKIZjvfj6Q7T2-RvY-Bdj7OwU4P93sPRvS-o1GjTHNUO8RxjmpY2NlKaImiq_5DOPNgphQlNKk9vdD2icqP99_fa7X-cf_EHoTRaP7jODjkzskyHrd_G5SpBIucXLJYImLqsEdPxPEfZmDJLoTWTfgQ-wBUhU3iZcSBBWdbx1nR3c49x4aNg6hEBHTzOD1khEsjyr2FclK7smR8rIqI"/></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-accent-light dark:bg-accent-dark" id="contact">
+<div class="container mx-auto px-6">
+<div class="text-center">
+<h2 class="text-4xl font-display text-primary mb-4">Visítanos</h2>
+<p class="max-w-2xl mx-auto mb-8">Estamos deseando recibirte. Encuéntranos en el corazón de la ciudad para disfrutar de una auténtica comida Halal.</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-12">
+<div class="space-y-8">
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-lg shadow-md flex items-start space-x-4">
+<span class="material-icons text-primary text-4xl mt-1">location_on</span>
+<div>
+<h3 class="text-xl font-bold mb-1">Dirección</h3>
+<p>C. de Tetuán, 26, Centro, 28013 Madrid</p>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-lg shadow-md flex items-start space-x-4">
+<span class="material-icons text-primary text-4xl mt-1">phone</span>
+<div>
+<h3 class="text-xl font-bold mb-1">Teléfono</h3>
+<p>655 432 494</p>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-6 rounded-lg shadow-md flex items-start space-x-4">
+<span class="material-icons text-primary text-4xl mt-1">schedule</span>
+<div>
+<h3 class="text-xl font-bold mb-1">Horario</h3>
+<p>Viernes: 15:00 - 02:00</p>
+<p>Sábado a Jueves: 12:00 - 02:00</p>
+</div>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden shadow-xl h-96">
+<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.5906714791918!2d-3.7058319243036046!3d40.417917855567566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4229d81f1b5a11%3A0xbd4320f2d2e33c7b!2sThe%20Matbah!5e0!3m2!1ses!2ses!4v1758904817532!5m2!1ses!2ses" style="border:0;" width="100%"></iframe>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-card-dark text-gray-300 py-8">
+<div class="container mx-auto px-6 text-center">
+<p>© 2024 The Matbah. Todos los derechos reservados.</p>
+</div>
+</footer>
+<script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        // Set initial mode based on system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Scroll suave al hacer click en enlaces del nav
+        document.querySelectorAll('a[href^="#"], #mobile-menu a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Cierra el menú móvil si está abierto
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Menú móvil
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+
+        // Cerrar menú móvil al hacer click fuera del panel
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body></html>

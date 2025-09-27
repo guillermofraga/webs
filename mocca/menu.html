@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menú Mocca</title>
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A1887F",
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#212121",
+                        "accent-light": "#FFFFFF",
+                        "accent-dark": "#37474F",
+                        "text-light": "#263238",
+                        "text-dark": "#ECEFF1",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-body text-text-light dark:text-text-dark transition-colors duration-300">
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="bg-accent-light dark:bg-accent-dark shadow-md sticky top-0 z-50">
+                <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <!-- Sustituye el icono coffee por el logo -->
+                        <span class="material-icons text-primary text-3xl">coffee</span>
+                        <a class="text-2xl font-display font-bold text-primary" href="index.html">Mocca</a>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a class="hover:text-primary transition-colors" href="index.html">Inicio</a>
+                        <a class="hover:text-primary transition-colors" href="index.html#about">Nosotros</a>
+                        <a class="hover:text-primary transition-colors" href="index.html#contact">Contacto</a>
+                    </div>
+                    <button class="md:hidden" id="mobile-menu-button">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </nav>
+                <div class="hidden md:hidden px-6 pb-4" id="mobile-menu">
+                    <a class="block py-2 hover:text-primary transition-colors" href="index.html">Inicio</a>
+                    <a class="block py-2 hover:text-primary transition-colors" href="index.html#about">Nosotros</a>
+                    <a class="block py-2 hover:text-primary transition-colors" href="index.html#contact">Contacto</a>
+                </div>
+            </header>
+            <div class="px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <div class="flex flex-wrap justify-between gap-3 p-4">
+                        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-2 mx-auto">
+                            Menú</h2>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Cafés
+                    </h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-[#181411] text-base leading-tight">Expreso</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Americano</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Capuchino</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Latte</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Moca</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Café Helado</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Infusiones y Tés</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Té Negro</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Té Verde</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Té Blanco</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Infusión de Frutas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Infusión de Hierbas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Chai Latte</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.50€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Bebidas</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Zumos Naturales</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Refrescos</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Agua</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">1.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Batidos</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Smoothies</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Limonada</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.50€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Cervezas y Vinos</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Cerveza Artesanal</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Vino Tinto</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Vino Blanco</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Vino Rosado</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Copa de Vino</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Botella de Vino</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">20.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Entrantes</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bruschetta</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Aceitunas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tabla de Quesos</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">12.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hummus con Pan de Pita</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Patatas Fritas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Ensalada Mixta</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">7.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Tostas
+                    </h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Aguacate</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">7.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Salmón</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Jamón y Queso</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Tomate y
+                                    Mozzarella</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Setas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">7.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tosta de Sobrasada y Miel
+                                </h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">7.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Schiacciata</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata Clásica</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata de Pollo</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata Vegetariana
+                                </h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata de Atún</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata de Pesto</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Schiacciata de Queso y
+                                    Tomate</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Waffles</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Frutas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Chocolate</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Nata</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Helado</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Caramelo</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Waffle con Nutella</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">
+                        Hamburguesas con Patatas</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa Clásica</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">10.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa de Pollo</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa Vegetariana
+                                </h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa Doble</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">12.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa con Queso</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">11.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Hamburguesa Especial</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">13.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Bowls
+                    </h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Quinoa</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">9.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Arroz</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Lentejas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Garbanzos</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">8.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Frutas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">7.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Bowl de Yogur</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">6.50€</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-primary mb-4">Dulces
+                    </h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tarta de Chocolate</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tarta de Zanahoria</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Tarta de Queso</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">5.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Brownie</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">4.00€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Galletas</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">2.50€</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 gap-3 rounded-lg border border-[#e6e0db] bg-white p-4 flex-col">
+                            <div class="flex flex-col gap-1">
+                                <h2 class="text-[#181411] text-base leading-tight">Muffin</h2>
+                                <p class="text-[#897261] text-sm font-normal leading-normal">3.00€</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Scroll suave para navegadores antiguos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
