@@ -1,3 +1,10 @@
+<?php
+require_once 'db.php';
+
+$stmt = $pdo->query("SELECT filename FROM gallery_images ORDER BY uploaded_at DESC");
+$images = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -117,17 +124,19 @@
             </div>
         </div>
     </section>
+    <!-- Galería dinámica desde base de datos -->
     <section class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Galería</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery">
-                <img src="img/fresas.png" alt="plato de fresas" class="mb-4 rounded-lg shadow-md">
 
-                <img src="img/tostada.png" alt="tostada" class="mb-4 rounded-lg shadow-md">
-
-                <img src="img/plato_fondo.png" alt="Schiacciata" class="mb-4 rounded-lg shadow-md">
-
-                <img src="img/plato_gofre.png" alt="gofre" class="mb-4 rounded-lg shadow-md">
+                <?php if (count($images) > 0): ?>
+                    <?php foreach ($images as $img): ?>
+                        <img src="uploads/<?php echo htmlspecialchars($img['filename']); ?>" alt="Imagen de galería" class="mb-4 rounded-lg shadow-md">
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-center col-span-3 text-gray-600 dark:text-gray-400">No hay imágenes en la galería aún.</p>
+                <?php endif; ?>
 
             </div>
         </div>
