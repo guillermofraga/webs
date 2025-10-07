@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Duna Mar Apartamentos</title>
+<link rel="icon" href="/img/favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13a4ec",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+<header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center gap-2" href="#">
+<img src="img/favicon.png" alt="Duna Mar Logo" class="w-8 h-8"/>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Apartamentos</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Sobre Nosotros</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="md:hidden text-gray-800 dark:text-gray-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow">
+<section class="relative h-[500px] flex items-center justify-center text-white">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByflkvicAqMBsi5cj0CZz1rTr247qFTwI5nTRiEIGZa-faW3c468q3pUHpYW_Vnq62lsBq8wNp7wqyQUH2C-dHtuK5F4ATR7hGZd0d732Vs_W3fUrSsG1r3UsfrdtGEd44P5MWA71SSWV_LKvvgV_oHsBQfMMjlEAQhleck6MmEs_SjmuT6bKfuMznjQz1sT89kYA4FIDy8eiLm8DOAUFD_0xwAv-qWhH2Uhx2dSIsJSCnLooxR3v9WKsjoyZYvBXM5U7Hm_M54zo");'></div>
+<div class="absolute inset-0 bg-black/50"></div>
+<div class="relative z-10 text-center px-6 flex flex-col items-center">
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Tu Hogar Junto al Mar</h1>
+<p class="text-lg md:text-xl max-w-3xl mb-8">Descubre apartamentos de lujo con impresionantes vistas al mar para una estancia inolvidable.</p>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos Destacados</h2>
+<p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y reservadas.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+<div class="relative">
+<img alt="Apartamento Vista Mar" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5oEbVOWlyF9E7nP0R6g6MJ3QlFutZ1VzASDucwKBNv-5pWvIMlqzK_ZF2EQQWXOC_pvuy_LmX_EH2K8MSmkdE8IN9MsSImFbDaPI7KwhIWEC05mFGIbIzMP4tURFzQVQAMgpLriAc-ylKoOaPVJmV-un3m3HVkIwGjchfbb68BJ0dce0swgogy9hazgs1Yl3KB8p0RUgIHpWsOChnslPAwt4kAGi6O10kbRLpke634XhAT1C2M-k2D9Tpe5JPriVGMkKZ-qsuIYE"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Apartamento Vista Mar</h3>
+<p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">150€</span>/noche</p>
+<a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors" href="#">Ver detalles</a>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+<div class="relative">
+<img alt="Apartamento Playa Dorada" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW-3s_HLb4QHz8nRXzT4xmZ5X_kmMdZLkH666em5MqPLi1NltD6MnJ55oHbd1LnnUZjoM8WtioQkLB5g0zGdj6zL_tfkh4y6RW_UMOdFw_8usAKWX4sQUa__0b7cyc6oayv-3enlJQtPe2aG2EUMeYKhHpFVPiRoNWy087_iiZ5uKJ682P5MqGvjVLb_S2jt8Mo0of2yODB_GJmklXxoNY2L1eMhbwa_PRJjKiiWjmXsC7Ti60PSO7UyApW8Rn_7a_8oVhv1Kcd_g"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Apartamento Playa Dorada</h3>
+<p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">120€</span>/noche</p>
+<a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors" href="#">Ver detalles</a>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+<div class="relative">
+<img alt="Apartamento Brisa Marina" class="w-full h-56 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_UEK-TWlOWWD46suEwcUUBPRlifVr8Zm4dH1hIHre7TrR5KoyMVa9_VMemEI_IZjivOvcK_5c1bp3MD7AOIp02ZECM7zLXRakO8QXkXQScZCP8PmJiKT0MBGFrDEJH_LYyQExbJarVwnZyJtHDo_TWzJdLKZjsCNNZ1jwWwn9IYdO502X_SUbeCKKfxyl82MG4A_tbEiYDUkyNDuAcy2xjxyFP2iOlXvi4Zw1AE6ByOx9O8We_SeLDKC5rPQBxi31Yz_9XPkVErY"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Apartamento Brisa Marina</h3>
+<p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">180€</span>/noche</p>
+<a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors" href="#">Ver detalles</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-gray-900 py-16 sm:py-24">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4">Sobre Nosotros</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 mb-4">En Apartamentos Duna Mar, nos dedicamos a ofrecer experiencias vacacionales excepcionales. Nuestra pasión es crear un ambiente acogedor y lujoso donde nuestros huéspedes puedan relajarse y crear recuerdos inolvidables.</p>
+<p class="text-gray-600 dark:text-gray-400">Nuestros valores se centran en la calidad, el confort y un servicio al cliente personalizado. Creemos que cada detalle cuenta para hacer de su estancia algo verdaderamente especial.</p>
+</div>
+<div class="flex justify-center">
+<img alt="Vista del resort Duna Mar" class="rounded-xl shadow-lg w-full max-w-md h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByflkvicAqMBsi5cj0CZz1rTr247qFTwI5nTRiEIGZa-faW3c468q3pUHpYW_Vnq62lsBq8wNp7wqyQUH2C-dHtuK5F4ATR7hGZd0d732Vs_W3fUrSsG1r3UsfrdtGEd44P5MWA71SSWV_LKvvgV_oHsBQfMMjlEAQhleck6MmEs_SjmuT6bKfuMznjQz1sT89kYA4FIDy8eiLm8DOAUFD_0xwAv-qWhH2Uhx2dSIsJSCnLooxR3v9WKsjoyZYvBXM5U7Hm_M54zo"/>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Testimonios de Clientes</h2>
+<p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Descubre lo que nuestros huéspedes dicen de su estancia.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+<p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos estupendos, muy luminosos, tranquilos, zonas comunes maravillosas. Hacen una estancia muy agradable. Todo reformado. Por poner una pega quizá el baño se nota algo más antiguo pero funciona perfectamente. La dueña agradable, comprensiva...tuvimos un problema familiar y  ella actuó de manera muy humana. De agradecer el trato. Volveremos el año que viene seguro."</p>
+<div class="flex items-center">
+<img alt="Foto de Sara Garcia" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc4Nm8af_XpTQA5ZwMqoP_gTfYyeO74DqC-D4lyvhWm9vgR7z_iFHTi5q0MNz2sGcnhjczNxcgs68UVuBUOpUi4RpyQhNTVSM42KMNki1lrddiOb_wJXF-y65xNBUN9jgn-RK_AKUuQn7ktPBKumZJdf8GatLgXbIzsg8Ycp74SJOkZq4it6qMlrDRUL8vbamny-nLeIUtSIgy888ZSw5Xq_ChC0fp0a6lhPpUhf_JPvcEZPVjdICTKrH1_EcPK7nJ2-graLF4CwA"/>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Sara Garcia</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+<p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos en buen estado. Personal amable y eficaz. Cerca de la playa de la lanzada. Cuenta con piscina con jacuzzi. Sitio muy limpio."</p>
+<div class="flex items-center">
+<img alt="Foto de Miguel Angel Alonso Manchado" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuM-7B2qpXzK-F60qZoGRwqW_hyCLcvE36ueL7N46A6cAybZj7S_ERfxfrB7MIGlGFOc7hKQeROz9PCLUBVXRhanSksO86bH1Z4fRbfeFNW2sGElLj5hXpGS-2hUmwbtbPHgql02wUepuT4N1yalkr2mT_Rvs2WFc6o_DGKTeD-2T1OMi46IrK4ikATidbkR8D61g0HxCrsxw7IEVQoXoj4MhBH3rhtE-2tpFKPJggk8kppvR3_SAxnKO4QY45qAyM5Ek0RnCf8RA"/>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Miguel Angel Alonso Manchado</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecho</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+<p class="text-gray-600 dark:text-gray-400 italic mb-4">"Buen lugar, limpio, adecuados y buena piscina. Atención fenomenal y apartamentos bien equipados."</p>
+<div class="flex items-center">
+<img alt="Foto de Agustín Monteagudo Hernández" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS2Cw-wkmkJ6CKLat_AkO8DOseMIvP0sYD9KjGMU-xenudkjOKsZz0zqNfXpfUMguTufKYZqx4r09Sd1PQ9Dc9DGvuiyb-xN0YBYGSy2bkPAabVpIlzwdjfeu9h3Wsxp14SXAbxbB_6e__pip1m7GwyuwHG6w9dfuMCkK-d7h7eiYJJsY00noNYwZhrjlymJbZK5XxQhClxVO6CejQuY8i5keZz2Gcepe6lgZJucnxjTHIIdW1uxK-nHwh6GK60-7jvBm02ATut3o"/>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Agustín Monteagudo Hernández</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-100 dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
+<div class="container mx-auto px-6 py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="md:col-span-1">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Contacto</h3>
+<ul class="space-y-2 text-gray-600 dark:text-gray-400">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Noalla, Sanxenxo, 36990
+Fonte de Ons, 47A
+PO-550, 47A</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>+34 629 85 15 31</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">email</span>
+<span>apartamentosdunamar47a@gmail.com</span>
+</li>
+</ul>
+</div>
+<div class="md:col-span-1">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Horario</h3>
+<ul class="space-y-2 text-gray-600 dark:text-gray-400">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">login</span>
+<span>Entrada: 16:00 a 22:00</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">logout</span>
+<span>Salida: 8:30 a 10:00</span>
+</li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Ubicación</h3>
+<div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+<iframe allowfullscreen="" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.22425218050125!2d-8.865516700764177!3d42.44685999751286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f418930ddeed3%3A0xbb4e57292bf5a4ac!2sApartamentos%20Duna%20Mar!5e0!3m2!1ses!2ses!4v1759736260250!5m2!1ses!2ses" style="border:0;" width="100%"></iframe>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400 text-sm">
+<p>© 2024 Apartamentos Duna Mar. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
