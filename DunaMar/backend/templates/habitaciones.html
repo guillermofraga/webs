@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Habitaciones{% endblock %}
+
+{% block content %}
+   
+    <h1>Gestión de Habitaciones</h1>
+    <ul>
+        {% for habitacion in habitaciones %}
+            <li>{{ habitacion.mostrar_info() }} <a href="/eliminar_habitacion/{{ loop.index0 }}">Eliminar</a></li>
+        {% endfor %}
+    </ul>
+
+    <form action="/agregar_habitacion" method="post">
+        <select name="hotel">
+            {% for hotel in hoteles %}
+                <option value="{{ hotel.nombre }}">{{ hotel.nombre }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="numero" placeholder="Número de Habitación">
+        <input type="text" name="tipo" placeholder="Tipo de Habitación">
+        <input type="number" name="precio" placeholder="Precio por Noche">
+        <button type="submit">Agregar</button>
+    </form>
+
+{% endblock %}
