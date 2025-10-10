@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Reservar Habitación{% endblock %}
+
+{% block content %}
+<section class="py-16 sm:py-24">
+  <div class="container mx-auto px-6 max-w-xl">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+        Reserva: {{ habitacion.nombre }}
+      </h2>
+      <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+        Tipo: {{ habitacion.tipo }} · Precio: <span class="font-bold text-primary">{{ habitacion.precio }}€</span>/noche
+      </p>
+    </div>
+
+    <form action="{{ url_for('agregar_reserva') }}" method="POST" class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+      <input type="hidden" name="habitacion_id" value="{{ habitacion.id }}">
+
+      <div>
+        <label for="fecha_entrada" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de entrada</label>
+        <input type="date" name="fecha_entrada" id="fecha_entrada" required
+               class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
+      </div>
+
+      <div>
+        <label for="fecha_salida" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de salida</label>
+        <input type="date" name="fecha_salida" id="fecha_salida" required
+               class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white">
+      </div>
+
+      <button type="submit"
+              class="w-full px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+        Confirmar reserva
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

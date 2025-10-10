@@ -130,103 +130,32 @@
             estancia inolvidable.</p>
         </div>
       </section>
-      <!--
       <section id="apartamentos" class="py-16 sm:py-24">
-        <div class="container mx-auto px-6 pb-16">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold tracking-tight">Apartamentos</h2>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {% for hotel in hoteles %}
-            {% for habitacion in hotel.habitaciones %}
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden group">
-              <div class="p-6">
-                <h3 class="text-xl font-bold">{{ habitacion.tipo }}</h3>
-                <p class="text-gray-500 text-sm mb-2">Nº {{ habitacion.numero }}</p>
-                <p class="text-gray-600 mb-4">Desde <span class="font-bold text-primary">{{ habitacion.precio
-                    }}€</span>/noche</p>
-                <form action="{{ url_for('agregar_reserva') }}" method="POST">
-                  <input type="hidden" name="habitacion" value="{{ habitacion.numero }}">
-                  <input type="text" name="cliente" placeholder="Nombre cliente" required>
-                  <input type="date" name="fecha_entrada" required>
-                  <input type="date" name="fecha_salida" required>
-                  <button type="submit" class="px-5 py-2.5 bg-primary text-white rounded-lg">Reservar</button>
-                </form>
-              </div>
-            </div>
-            {% endfor %}
-            {% endfor %}
-          </div>
+  <div class="container mx-auto px-6 pb-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos Destacados</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y reservadas.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for habitacion in habitaciones %}
+      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+        <div class="relative">
+          <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
+               src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
         </div>
-      </section>
-    -->
-      <section id="apartamentos" class="py-16 sm:py-24">
-        <div class="container mx-auto px-6 pb-16">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos
-              Destacados</h2>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y
-              reservadas.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-              <div class="relative">
-                <img alt="Nido Acogedor" class="w-full h-56 object-cover" src="../static/img/nidoacogedor.jpg" />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Nido Acogedor</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">Estudio</p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span
-                    class="font-bold text-primary">90€</span>/noche</p>
-                <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  href="">Reservar</a>
-              </div>
-            </div>
-            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-              <div class="relative">
-                <img alt="Escape Romántico" class="w-full h-56 object-cover" src="../static/img/escaperomantico.jpg" />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Escape Romántico</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">Una habitación</p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span
-                    class="font-bold text-primary">120€</span>/noche</p>
-                <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  href="">Reservar</a>
-              </div>
-            </div>
-            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-              <div class="relative">
-                <img alt="Paraíso Familiar" class="w-full h-56 object-cover" src="../static/img/paraisofamiliar.jpg" />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Paraíso Familiar</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">Dos habitaciones</p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span
-                    class="font-bold text-primary">180€</span>/noche</p>
-                <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  href="">Reservar</a>
-              </div>
-            </div>
-            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-              <div class="relative">
-                <img alt="Ático de Lujo con Vistas" class="w-full h-56 object-cover" src="../static/img/atico21.jpg" />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Ático 21</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">Ático</p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span
-                    class="font-bold text-primary">250€</span>/noche</p>
-                <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  href="">Reservar</a>
-              </div>
-            </div>
-          </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ habitacion.nombre }}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{{ habitacion.tipo }}</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">{{ habitacion.precio }}€</span>/noche</p>
+          <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+             href="{{ url_for('agregar_reserva', habitacion_id=habitacion.id) }}">Reservar</a>
         </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
         <section id="nosotros" class="bg-white dark:bg-gray-900 py-16 sm:py-24">
           <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

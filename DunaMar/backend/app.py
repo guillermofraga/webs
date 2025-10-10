@@ -105,5 +105,12 @@ def cancelar_reserva(reserva_id):
     db.session.commit()
     return redirect(url_for('reservas'))
 
+@app.route('/formulario_reserva/<int:habitacion_id>')
+@login_required
+def formulario_reserva(habitacion_id):
+    habitacion = Habitacion.query.get_or_404(habitacion_id)
+    return render_template('formulario_reserva.html', habitacion=habitacion)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
