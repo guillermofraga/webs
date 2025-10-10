@@ -113,6 +113,8 @@ class SistemaReservas:
                 print(f"Reserva: {reserva.id_reserva} para el cliente: {cliente.nombre}, Habitación Reservada: {reserva.habitacion.numero}, para las fechas desde: {reserva.fecha_entrada}, hasta: {reserva.fecha_salida} y Estado: {reserva.estado}.")
 
 
+
+"""
 # Main
 
 # Crear una instanca de SistemaReservas
@@ -181,3 +183,5 @@ for hotel in sistema.hoteles:
     for habitacion in hotel.habitaciones:
         disponibilidad = "Disponible" if habitacion.disponible else "No Disponible"
         print(f"  - {habitacion.mostrar_info()} - {disponibilidad}")
+
+"""
