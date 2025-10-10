@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from config import Config
-from models import db, Usuario, Hotel, Habitacion, Cliente, Reserva
+from models import db, Usuario, Hotel, Habitacion, Reserva
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -64,27 +64,29 @@ def logout():
 def configuracion():
     return render_template('configuracion.html')
 
-
 @app.route('/reservas')
 @login_required
 def reservas():
-    reservas = Reserva.query.all()
+    reservas = Reserva.query.filter_by(usuario_id=current_user.id).all()
     habitaciones = Habitacion.query.all()
-    clientes = Cliente.query.all()
-    return render_template('reservas.html', reservas=reservas, habitaciones=habitaciones, clientes=clientes)
+    return render_template('reservas.html', reservas=reservas, habitaciones=habitaciones)
 
 @app.route('/agregar_reserva', methods=['POST'])
 @login_required
 def agregar_reserva():
     habitacion_id = int(request.form['habitacion_id'])
-    cliente_id = int(request.form['cliente_id'])
     fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
     fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
     habitacion = Habitacion.query.get(habitacion_id)
-    cliente = Cliente.query.get(cliente_id)
-    if habitacion and cliente and habitacion.disponible:
-        nueva_reserva = Reserva(fecha_entrada=fecha_entrada, fecha_salida=fecha_salida,
-                                estado='confirmada', habitacion_id=habitacion_id, cliente_id=cliente_id)
+
+    if habitacion and habitacion.disponible:
+        nueva_reserva = Reserva(
+            fecha_entrada=fecha_entrada,
+            fecha_salida=fecha_salida,
+            estado='confirmada',
+            habitacion_id=habitacion_id,
+            usuario_id=current_user.id
+        )
         habitacion.disponible = False
         db.session.add(nueva_reserva)
         db.session.commit()
@@ -94,6 +96,8 @@ def agregar_reserva():
 @login_required
 def cancelar_reserva(reserva_id):
     reserva = Reserva.query.get_or_404(reserva_id)
+    if reserva.usuario_id != current_user.id:
+        return "No tienes permiso para cancelar esta reserva"
     reserva.estado = 'cancelada'
     habitacion = Habitacion.query.get(reserva.habitacion_id)
     if habitacion:

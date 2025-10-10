@@ -50,10 +50,15 @@
   <div class="flex flex-col min-h-screen">
     <header
       class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a class="flex items-center gap-2" href="#">
-          <img src="../static/img/favicon.png" alt="Duna Mar Logo" class="w-8 h-8" />
-        </a>
+      <nav class="relative container mx-auto px-6 py-4 flex items-center justify-center">
+        <!-- Logo a la izquierda -->
+        <div class="absolute left-0 pl-6 flex items-center gap-2">
+          <a href="#">
+            <img src="../static/img/favicon.png" alt="Duna Mar Logo" class="w-8 h-8" />
+          </a>
+        </div>
+
+        <!-- Menú centrado -->
         <div class="hidden md:flex items-center gap-8">
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
@@ -61,33 +66,29 @@
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
         </div>
-        <div class="flex items-center gap-4">
-          <button class="md:hidden text-gray-800 dark:text-gray-200">
-            <span class="material-symbols-outlined">menu</span>
-          </button>
-        </div>
-        {% if current_user.is_authenticated %}
-        <div class="relative">
-          <button id="userMenuButton"
-            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
-            {{ current_user.nombre }}
-            <span class="material-symbols-outlined">expand_more</span>
-          </button>
-          <div id="userMenu"
-            class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
-            <a href="{{ url_for('configuracion') }}"
-              class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-              Configuración
-            </a>
-            <a href="{{ url_for('logout') }}"
-              class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-              Cerrar sesión
-            </a>
+
+        <!-- Botones a la derecha -->
+        <div class="absolute right-0 pr-6 flex items-center gap-4">
+          {% if current_user.is_authenticated %}
+          <div class="relative">
+            <button id="userMenuButton"
+              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
+              {{ current_user.nombre }}
+              <span class="material-symbols-outlined">expand_more</span>
+            </button>
+            <div id="userMenu"
+              class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
+              <a href="{{ url_for('configuracion') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                Configuración
+              </a>
+              <a href="{{ url_for('logout') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                Cerrar sesión
+              </a>
+            </div>
           </div>
-        </div>
-        {% else %}
-        <!-- Botones de login y registro aquí -->
-        <div class="hidden md:flex items-center gap-4">
+          {% else %}
           <a href="{{ url_for('login') }}"
             class="text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">
             Iniciar sesión
@@ -96,8 +97,8 @@
             class="text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">
             Registrarse
           </a>
+          {% endif %}
         </div>
-        {% endif %}
       </nav>
       <div id="mobile-menu"
         class="md:hidden hidden flex flex-col gap-4 px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 rounded-xl shadow-lg">
@@ -105,6 +106,9 @@
         <a class="hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
         <a class="hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
         <a class="hover:text-primary transition-colors" href="#contacto">Contacto</a>
+        {% if current_user.is_authenticated %}
+        {% else %}
+
         <a href="{{ url_for('login') }}"
           class="px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md hover:bg-blue-600 transition-colors">
           Iniciar sesión
@@ -113,7 +117,7 @@
           class="px-4 py-2 rounded-lg border-2 border-primary text-primary font-semibold shadow-md hover:bg-primary hover:text-white transition-colors">
           Registrarse
         </a>
-
+        {% endif %}
       </div>
     </header>
     <main class="flex-grow">
@@ -370,7 +374,11 @@
       </div>
     </footer>
   </div>
-</body>
+
+
+  <!-- Zona de Scripts -->
+
+
 <script>
   const menuButton = document.querySelector('button.md\\:hidden');
   const menuIcon = menuButton.querySelector('span.material-symbols-outlined');
@@ -407,5 +415,5 @@
     });
   });
 </script>
-
+</body>
 </html>

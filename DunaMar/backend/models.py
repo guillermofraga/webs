@@ -27,13 +27,6 @@ class Habitacion(db.Model):
     hotel_id = db.Column(db.Integer, db.ForeignKey('hoteles.id'), nullable=False)
     reservas = db.relationship('Reserva', backref='habitacion', lazy=True, cascade="all, delete-orphan")
 
-class Cliente(db.Model):
-    __tablename__ = 'clientes'
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    reservas = db.relationship('Reserva', backref='cliente', lazy=True, cascade="all, delete-orphan")
-
 class Reserva(db.Model):
     __tablename__ = 'reservas'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,4 +34,5 @@ class Reserva(db.Model):
     fecha_salida = db.Column(db.Date, nullable=False)
     estado = db.Column(db.String(20), default='pendiente', nullable=False)
     habitacion_id = db.Column(db.Integer, db.ForeignKey('habitaciones.id'), nullable=False)
-    cliente_id = db.Column(db.Integer, db.ForeignKey('clientes.id'), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'))
+    usuario = db.relationship('Usuario', backref='reservas')
