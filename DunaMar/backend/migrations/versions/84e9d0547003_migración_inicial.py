@@ -1,8 +1,8 @@
-"""Migración inicial sin modelo Hotel
+"""Migración inicial
 
-Revision ID: b06e666747fa
+Revision ID: 84e9d0547003
 Revises: 
-Create Date: 2025-10-10 14:04:30.063096
+Create Date: 2025-10-10 18:01:57.916727
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b06e666747fa'
+revision = '84e9d0547003'
 down_revision = None
 branch_labels = None
 depends_on = None

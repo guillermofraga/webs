@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import pymysql
+from sqlalchemy import and_, or_
 from datetime import datetime
 
 pymysql.install_as_MySQLdb()
@@ -67,7 +68,7 @@ def configuracion():
 @app.route('/reservas')
 @login_required
 def reservas():
-    reservas = Reserva.query.filter_by(usuario_id=current_user.id).all()
+    reservas = Reserva.query.filter_by(usuario_id=current_user.id, estado='confirmada').all()
     habitaciones = Habitacion.query.all()
     return render_template('reservas.html', reservas=reservas, habitaciones=habitaciones)
 
