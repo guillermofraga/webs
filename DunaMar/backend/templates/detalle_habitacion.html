@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ habitacion.nombre }}{% endblock %}
+{% block content %}
+
+<section class="py-16 sm:py-24">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <div class="mb-8">
+      <img src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}"
+           alt="{{ habitacion.nombre }}" class="w-full h-96 object-cover rounded-xl shadow-lg">
+    </div>
+
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ habitacion.nombre }}</h2>
+    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Tipo:</strong> {{ habitacion.tipo }}</p>
+    <p class="text-gray-600 dark:text-gray-400 mb-2"><strong>Precio:</strong> {{ habitacion.precio }}€/noche</p>
+
+    {% if habitacion.descripcion %}
+    <p class="text-gray-700 dark:text-gray-300 mt-4">{{ habitacion.descripcion }}</p>
+    {% endif %}
+
+    {% if habitacion.servicios %}
+    <p class="text-gray-700 dark:text-gray-300 mt-4"><strong>Servicios:</strong> {{ habitacion.servicios }}</p>
+    {% endif %}
+
+    <a href="{{ url_for('formulario_reserva', habitacion_id=habitacion.id) }}"
+       class="inline-block mt-6 px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+      Reservar esta habitación
+    </a>
+  </div>
+</section>
+
+{% endblock %}

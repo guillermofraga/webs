@@ -48,7 +48,8 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
   <div class="flex flex-col min-h-screen">
-    <header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+    <header
+      class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
       <nav class="relative container mx-auto px-6 py-4 flex items-center justify-center">
         <!-- Logo a la izquierda -->
         <div class="absolute left-0 pl-6 flex items-center gap-2">
@@ -80,6 +81,10 @@
               <a href="{{ url_for('configuracion') }}"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                 Configuración
+              </a>
+              <a href="{{ url_for('mis_reservas') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                Mis Reservas
               </a>
               <a href="{{ url_for('logout') }}"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -131,116 +136,120 @@
         </div>
       </section>
       <section id="apartamentos" class="py-16 sm:py-24">
-  <div class="container mx-auto px-6 pb-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos Destacados</h2>
-      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y reservadas.</p>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      {% for habitacion in habitaciones %}
-      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-        <div class="relative">
-          <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
-               src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ habitacion.nombre }}</h3>
-          <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{{ habitacion.tipo }}</p>
-          <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">{{ habitacion.precio }}€</span>/noche</p>
-          <a class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-             href="{{ url_for('agregar_reserva', habitacion_id=habitacion.id) }}">Reservar</a>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-        <section id="nosotros" class="bg-white dark:bg-gray-900 py-16 sm:py-24">
-          <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4">Sobre
-                  Nosotros</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                  En <strong>Apartamentos Duna Mar</strong> no solo alquilamos espacios, <em>creamos recuerdos</em>.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  Todo comenzó con una idea sencilla: ofrecer un refugio junto al mar donde las personas pudieran
-                  <strong>desconectar del ruido</strong>, reconectar con lo esencial y sentirse como en casa.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  Cada rincón de nuestros apartamentos ha sido pensado con cariño. Desde las <em>sábanas suaves</em> que
-                  invitan al descanso, hasta las <em>terrazas que miran al horizonte</em>, donde los atardeceres parecen
-                  detener el tiempo.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  Hemos recibido familias que celebran su primer verano juntos, parejas que brindan por nuevos
-                  comienzos, y viajeros solitarios que encuentran paz en la brisa marina.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  Nuestro equipo no solo atiende, <strong>escucha</strong>. Porque sabemos que una sonrisa, un gesto
-                  amable o una solución rápida pueden marcar la diferencia.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">
-                  En Duna Mar, creemos que el <strong>lujo está en los detalles</strong>, y que la verdadera
-                  hospitalidad nace del corazón.
-                </p>
-                <p class="text-lg font-semibold text-primary dark:text-white">
-                  Bienvenido a tu hogar junto al mar.
-                </p>
+        <div class="container mx-auto px-6 pb-16">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos</h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y
+              reservadas.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {% for habitacion in habitaciones %}
+            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+              <div class="relative">
+                <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
+                  src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
               </div>
-              <div class="flex justify-center">
-                <img alt="Vista del resort Duna Mar" class="rounded-xl shadow-lg w-full max-w-md h-auto object-cover"
-                  src="../static/img/edificio.jpg" />
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ habitacion.nombre }}</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{{ habitacion.tipo }}</p>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">{{
+                    habitacion.precio }}€</span>/noche</p>
+                <a href="{{ url_for('detalle_habitacion', habitacion_id=habitacion.id) }}"
+                  class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+                  Ver detalles
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section id="nosotros" class="bg-white dark:bg-gray-900 py-16 sm:py-24">
+        <div class="container mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4">Sobre
+                Nosotros</h2>
+              <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                En <strong>Apartamentos Duna Mar</strong> no solo alquilamos espacios, <em>creamos recuerdos</em>.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Todo comenzó con una idea sencilla: ofrecer un refugio junto al mar donde las personas pudieran
+                <strong>desconectar del ruido</strong>, reconectar con lo esencial y sentirse como en casa.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Cada rincón de nuestros apartamentos ha sido pensado con cariño. Desde las <em>sábanas suaves</em> que
+                invitan al descanso, hasta las <em>terrazas que miran al horizonte</em>, donde los atardeceres parecen
+                detener el tiempo.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Hemos recibido familias que celebran su primer verano juntos, parejas que brindan por nuevos
+                comienzos, y viajeros solitarios que encuentran paz en la brisa marina.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                Nuestro equipo no solo atiende, <strong>escucha</strong>. Porque sabemos que una sonrisa, un gesto
+                amable o una solución rápida pueden marcar la diferencia.
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4">
+                En Duna Mar, creemos que el <strong>lujo está en los detalles</strong>, y que la verdadera
+                hospitalidad nace del corazón.
+              </p>
+              <p class="text-lg font-semibold text-primary dark:text-white">
+                Bienvenido a tu hogar junto al mar.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <img alt="Vista del resort Duna Mar" class="rounded-xl shadow-lg w-full max-w-md h-auto object-cover"
+                src="../static/img/edificio.jpg" />
+            </div>
+          </div>
+        </div>
+        <section id="testimonios" class="py-16 sm:py-24">
+          <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Testimonios de
+                Clientes</h2>
+              <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Descubre lo que nuestros huéspedes dicen de su
+                estancia.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos estupendos, muy luminosos,
+                  tranquilos, zonas comunes maravillosas. Hacen una estancia muy agradable. Todo reformado. Por poner
+                  una pega quizá el baño se nota algo más antiguo pero funciona perfectamente. La dueña agradable,
+                  comprensiva...tuvimos un problema familiar y ella actuó de manera muy humana. De agradecer el trato.
+                  Volveremos el año que viene seguro."</p>
+                <div class="flex items-center">
+                  <div>
+                    <p class="font-bold text-gray-900 dark:text-white">Sara Garcia</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos en buen estado. Personal amable
+                  y eficaz. Cerca de la playa de la lanzada. Cuenta con piscina con jacuzzi. Sitio muy limpio."</p>
+                <div class="flex items-center">
+                  <div>
+                    <p class="font-bold text-gray-900 dark:text-white">Miguel Angel Alonso Manchado</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecho</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Buen lugar, limpio, adecuados y buena
+                  piscina. Atención fenomenal y apartamentos bien equipados."</p>
+                <div class="flex items-center">
+                  <div>
+                    <p class="font-bold text-gray-900 dark:text-white">Agustín Monteagudo Hernández</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <section id="testimonios" class="py-16 sm:py-24">
-            <div class="container mx-auto px-6">
-              <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Testimonios de
-                  Clientes</h2>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Descubre lo que nuestros huéspedes dicen de su
-                  estancia.</p>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                  <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos estupendos, muy luminosos,
-                    tranquilos, zonas comunes maravillosas. Hacen una estancia muy agradable. Todo reformado. Por poner
-                    una pega quizá el baño se nota algo más antiguo pero funciona perfectamente. La dueña agradable,
-                    comprensiva...tuvimos un problema familiar y ella actuó de manera muy humana. De agradecer el trato.
-                    Volveremos el año que viene seguro."</p>
-                  <div class="flex items-center">
-                    <div>
-                      <p class="font-bold text-gray-900 dark:text-white">Sara Garcia</p>
-                      <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                  <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos en buen estado. Personal amable
-                    y eficaz. Cerca de la playa de la lanzada. Cuenta con piscina con jacuzzi. Sitio muy limpio."</p>
-                  <div class="flex items-center">
-                    <div>
-                      <p class="font-bold text-gray-900 dark:text-white">Miguel Angel Alonso Manchado</p>
-                      <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecho</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                  <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Buen lugar, limpio, adecuados y buena
-                    piscina. Atención fenomenal y apartamentos bien equipados."</p>
-                  <div class="flex items-center">
-                    <div>
-                      <p class="font-bold text-gray-900 dark:text-white">Agustín Monteagudo Hernández</p>
-                      <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        </section>
     </main>
     <footer id="contacto" class="bg-gray-100 dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
       <div class="container mx-auto px-6 py-12">

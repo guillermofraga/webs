@@ -21,6 +21,8 @@ class Habitacion(db.Model):
     precio = db.Column(db.Float, nullable=False)
     disponible = db.Column(db.Boolean, default=True, nullable=False)
     reservas = db.relationship('Reserva', backref='habitacion', lazy=True, cascade="all, delete-orphan")
+    descripcion = db.Column(db.Text)
+    servicios = db.Column(db.Text)
 
 
 class Reserva(db.Model):
