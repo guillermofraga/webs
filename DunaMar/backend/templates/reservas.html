@@ -4,27 +4,35 @@
 
 {% block content %}
 
-  <h1>Gestión de Reservas</h1>
-    <ul>
-        {% for reserva in reservas %}
-        <li>{{ reserva.id_reserva }} - {{ reserva.cliente.nombre }} - {{ reserva.habitacion.numero }} - {{ reserva.fecha_entrada }} a {{ reserva.fecha_salida }} <a href="/eliminar_reserva/{{ loop.index0 }}">Eliminar</a></li>
-        {% endfor %}
-    </ul>
+<h1>Gestión de Reservas</h1>
+<ul>
+    {% for reserva in reservas %}
+    <li>{{ reserva.id_reserva }} - {{ reserva.cliente.nombre }} - {{ reserva.habitacion.numero }} - {{
+        reserva.fecha_entrada }} a {{ reserva.fecha_salida }} <a href="/eliminar_reserva/{{ loop.index0 }}">Eliminar</a>
+    </li>
+    {% endfor %}
+</ul>
 
-    <form action="/agregar_reserva" method="post">
-        <select name="habitacion">
+<form action="{{ url_for('agregar_reserva') }}" method="POST" class="space-y-4">
+    <label>
+        Habitación:
+        <select name="habitacion_id" required>
             {% for habitacion in habitaciones %}
-                <option value="{{ habitacion.numero }}">{{ habitacion.numero }} - {{ habitacion.tipo }} - {{ habitacion.precio }}</option>
+            {% if habitacion.disponible %}
+            <option value="{{ habitacion.id }}">Habitación {{ habitacion.numero }}</option>
+            {% endif %}
             {% endfor %}
         </select>
-        <select name="cliente">
-            {% for cliente in clientes %}
-            <option value="{{ cliente.nombre }}">{{ cliente.nombre }}</option>
-            {% endfor %}
-        </select>
-        <input type="date" name="fecha_entrada" placeholder="Fecha de Entrada">
-        <input type="date" name="fecha_salida" placeholder="Fecha de Salida">
-        <button type="submit">Agregar</button>
-    </form>
+    </label>
+    <label>
+        Fecha entrada:
+        <input type="date" name="fecha_entrada" required>
+    </label>
+    <label>
+        Fecha salida:
+        <input type="date" name="fecha_salida" required>
+    </label>
+    <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg">Reservar</button>
+</form>
 
 {% endblock %}

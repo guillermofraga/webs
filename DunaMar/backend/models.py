@@ -10,13 +10,6 @@ class Usuario(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     contraseña = db.Column(db.String(256), nullable=False)
 
-class Hotel(db.Model):
-    __tablename__ = 'hoteles'
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    ubicacion = db.Column(db.String(100), nullable=False)
-    habitaciones = db.relationship('Habitacion', backref='hotel', lazy=True, cascade="all, delete-orphan")
-
 class Habitacion(db.Model):
     __tablename__ = 'habitaciones'
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +17,6 @@ class Habitacion(db.Model):
     tipo = db.Column(db.String(50), nullable=False)
     precio = db.Column(db.Float, nullable=False)
     disponible = db.Column(db.Boolean, default=True, nullable=False)
-    hotel_id = db.Column(db.Integer, db.ForeignKey('hoteles.id'), nullable=False)
     reservas = db.relationship('Reserva', backref='habitacion', lazy=True, cascade="all, delete-orphan")
 
 class Reserva(db.Model):

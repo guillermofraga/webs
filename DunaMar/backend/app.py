@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from config import Config
-from models import db, Usuario, Hotel, Habitacion, Reserva
+from models import db, Usuario, Habitacion, Reserva  # Hotel eliminado
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -24,8 +24,8 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    hoteles = Hotel.query.all()
-    return render_template('index.html', hoteles=hoteles)
+    habitaciones = Habitacion.query.all()
+    return render_template('index.html', habitaciones=habitaciones)
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():

@@ -12,11 +12,6 @@
     </ul>
 
     <form action="/agregar_habitacion" method="post">
-        <select name="hotel">
-            {% for hotel in hoteles %}
-                <option value="{{ hotel.nombre }}">{{ hotel.nombre }}</option>
-            {% endfor %}
-        </select>
         <input type="text" name="numero" placeholder="Número de Habitación">
         <input type="text" name="tipo" placeholder="Tipo de Habitación">
         <input type="number" name="precio" placeholder="Precio por Noche">

@@ -48,8 +48,7 @@
 
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
   <div class="flex flex-col min-h-screen">
-    <header
-      class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+    <header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
       <nav class="relative container mx-auto px-6 py-4 flex items-center justify-center">
         <!-- Logo a la izquierda -->
         <div class="absolute left-0 pl-6 flex items-center gap-2">
@@ -101,7 +100,7 @@
         </div>
       </nav>
       <div id="mobile-menu"
-        class="md:hidden hidden flex flex-col gap-4 px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 rounded-xl shadow-lg">
+        class="md:hidden hidden flex flex-col gap-4 px-6 py-6 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg transition-all duration-300">
         <a class="hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
         <a class="hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
         <a class="hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
@@ -379,41 +378,42 @@
   <!-- Zona de Scripts -->
 
 
-<script>
-  const menuButton = document.querySelector('button.md\\:hidden');
-  const menuIcon = menuButton.querySelector('span.material-symbols-outlined');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = mobileMenu.querySelectorAll('a');
+  <script>
+    const menuButton = document.querySelector('button.md\\:hidden');
+    const menuIcon = menuButton.querySelector('span.material-symbols-outlined');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
 
-  menuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    menuIcon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
-  });
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      menuIcon.textContent = 'menu';
-    });
-  });
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const userMenuButton = document.getElementById('userMenuButton');
-    const userMenu = document.getElementById('userMenu');
-
-    userMenuButton.addEventListener('click', function (e) {
-      e.stopPropagation(); // evita que el clic se propague
-      userMenu.classList.toggle('hidden');
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
     });
 
-    // Cierra el menú si haces clic fuera
-    document.addEventListener('click', function (e) {
-      if (!userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
-        userMenu.classList.add('hidden');
-      }
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.textContent = 'menu';
+      });
     });
-  });
-</script>
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const userMenuButton = document.getElementById('userMenuButton');
+      const userMenu = document.getElementById('userMenu');
+
+      userMenuButton.addEventListener('click', function (e) {
+        e.stopPropagation(); // evita que el clic se propague
+        userMenu.classList.toggle('hidden');
+      });
+
+      // Cierra el menú si haces clic fuera
+      document.addEventListener('click', function (e) {
+        if (!userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
+          userMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
