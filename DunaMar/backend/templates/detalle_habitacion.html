@@ -64,6 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let diasOcupados = [];
   let diasEntrada = [];
 
+  function formatLocalDate(d) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
   fetch(`/fechas_ocupadas/${habitacionId}`)
     .then(res => res.json())
     .then(data => {
@@ -87,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
           inputSalida.value = "";
 
           if (selectedDates.length === 1) {
-            const posibleInicio = selectedDates[0].toISOString().split('T')[0];
+            const posibleInicio = formatLocalDate(selectedDates[0]);
             // regla de negocio: no permitir iniciar en fecha que ya sea entrada de otra reserva
             if (diasEntrada.includes(posibleInicio)) {
               mensaje.textContent = "⚠️ No puedes iniciar la reserva en este día (entrada de otra reserva).";
@@ -112,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let conflicto = false;
             while (actual <= ultimaNoche) {
-              const fechaStr = actual.toISOString().split('T')[0];
+              const fechaStr = formatLocalDate(actual);
               if (diasOcupados.includes(fechaStr) || diasEntrada.includes(fechaStr)) {
                 conflicto = true;
                 break;
@@ -126,9 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               mensaje.textContent = "✅ Esta habitación está disponible en esas fechas.";
               mensaje.className = "text-sm font-medium mb-4 text-green-600";
-              // rellenar inputs ocultos para el POST
-              inputEntrada.value = selectedDates[0].toISOString().split('T')[0];
-              inputSalida.value = selectedDates[1].toISOString().split('T')[0];
+              // rellenar inputs ocultos para el POST usando formato local
+              inputEntrada.value = formatLocalDate(selectedDates[0]);
+              inputSalida.value = formatLocalDate(selectedDates[1]);
               botonReserva.disabled = false;
               botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
             }
@@ -140,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const hoy = new Date();
           fecha.setHours(0,0,0,0);
           hoy.setHours(0,0,0,0);
-          const fechaStr = fecha.toISOString().split('T')[0];
+          const fechaStr = formatLocalDate(fecha);
 
           if (diasEntrada.includes(fechaStr)) {
             dayElem.style.backgroundColor = "#000";
@@ -167,6 +174,71 @@ document.addEventListener('DOMContentLoaded', () => {
       mensaje.className = "text-sm font-medium mb-4 text-red-600";
       console.error(err);
     });
+    
+
+    // --- Añade esto dentro del mismo DOMContentLoaded, tras inicializar flatpickr ---
+const form = document.getElementById('form-reserva');
+
+if (form) {
+  form.addEventListener('submit', async (e) => {
+    // Si el botón está deshabilitado, permitir comportamiento por defecto (o evitar envío)
+    if (botonReserva.disabled) {
+      e.preventDefault();
+      return;
+    }
+
+    // Interceptamos para enviar por AJAX
+    e.preventDefault();
+    botonReserva.disabled = true;
+    botonReserva.classList.add('opacity-50','cursor-not-allowed');
+
+    // Mensaje temporal
+    mensaje.textContent = 'Enviando reserva...';
+    mensaje.className = 'text-sm font-medium mb-4 text-gray-700';
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        body: formData
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        if (res.status === 409) {
+          mensaje.textContent = data?.error || 'Conflicto de fechas. Elige otro rango.';
+        } else if (res.status === 400) {
+          mensaje.textContent = data?.error || 'Datos inválidos.';
+        } else {
+          mensaje.textContent = data?.error || 'Error del servidor. Inténtalo de nuevo más tarde.';
+        }
+        mensaje.className = 'text-sm font-medium mb-4 text-red-600';
+        botonReserva.disabled = false;
+        botonReserva.classList.remove('opacity-50','cursor-not-allowed');
+        return;
+      }
+
+      // Éxito
+      mensaje.textContent = data?.message || 'Reserva confirmada.';
+      mensaje.className = 'text-sm font-medium mb-4 text-green-600';
+
+      // Redirigir o actualizar UI tras breve espera
+      setTimeout(() => { window.location.href = '/mis_reservas'; }, 900);
+
+    } catch (err) {
+      console.error(err);
+      mensaje.textContent = 'Error de red. Comprueba tu conexión e inténtalo de nuevo.';
+      mensaje.className = 'text-sm font-medium mb-4 text-red-600';
+      botonReserva.disabled = false;
+      botonReserva.classList.remove('opacity-50','cursor-not-allowed');
+    }
+  });
+}
+
+
 });
 </script>
 

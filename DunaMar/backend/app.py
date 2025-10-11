@@ -137,7 +137,10 @@ def detalle_habitacion(habitacion_id):
 @app.route('/mis_reservas')
 @login_required
 def mis_reservas():
-    reservas = Reserva.query.filter_by(usuario_id=current_user.id).order_by(Reserva.fecha_entrada.desc()).all()
+    reservas = Reserva.query.filter(
+        Reserva.usuario_id == current_user.id,
+        Reserva.estado != 'cancelada'
+    ).order_by(Reserva.fecha_entrada.desc()).all()
     return render_template('mis_reservas.html', reservas=reservas)
 
 @app.route('/cancelar_reserva/<int:reserva_id>')
@@ -164,23 +167,44 @@ def formulario_reserva(habitacion_id):
     habitacion = Habitacion.query.get_or_404(habitacion_id)
 
     if request.method == 'POST':
-        # recibimos fechas separadas desde inputs ocultos rellenados por Flatpickr
+        # Leer campos
+        fecha_entrada_str = request.form.get('fecha_entrada')
+        fecha_salida_str = request.form.get('fecha_salida')
+
+        # Validaciones básicas
+        if not fecha_entrada_str or not fecha_salida_str:
+            msg = "Selecciona un rango de fechas válido."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'ok': False, 'error': msg}), 400
+            flash(msg, 'error')
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
+
         try:
-            fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
-            fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
+            fecha_entrada = datetime.strptime(fecha_entrada_str, '%Y-%m-%d').date()
+            fecha_salida = datetime.strptime(fecha_salida_str, '%Y-%m-%d').date()
         except Exception:
-            flash("Formato de fechas inválido.", "error")
+            msg = "Formato de fechas inválido."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'ok': False, 'error': msg}), 400
+            flash(msg, 'error')
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
         if fecha_entrada >= fecha_salida:
-            flash("El rango de fechas no es válido.", "error")
+            msg = "El rango de fechas no es válido."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'ok': False, 'error': msg}), 400
+            flash(msg, 'error')
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
-        # valida solapamiento usando semiclosed intervals
+        # comprobar solapamiento
         if Reserva.overlaps(habitacion_id, fecha_entrada, fecha_salida):
-            flash("La habitación ya está reservada en esas fechas.", "error")
+            msg = "La habitación ya está reservada en esas fechas."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'ok': False, 'error': msg, 'conflict': True}), 409
+            flash(msg, 'error')
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
+        # crear reserva con manejo de errores y rollback
         nueva_reserva = Reserva(
             fecha_entrada=fecha_entrada,
             fecha_salida=fecha_salida,
@@ -188,12 +212,26 @@ def formulario_reserva(habitacion_id):
             habitacion_id=habitacion_id,
             usuario_id=current_user.id
         )
-        db.session.add(nueva_reserva)
-        db.session.commit()
-        flash("Reserva confirmada con éxito.", "success")
+        try:
+            db.session.add(nueva_reserva)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            app.logger.exception("Error creando reserva")
+            msg = "Error al guardar la reserva. Inténtalo de nuevo más tarde."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({'ok': False, 'error': msg}), 500
+            flash(msg, 'error')
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
+
+        # éxito
+        msg = "Reserva confirmada con éxito."
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return jsonify({'ok': True, 'message': msg, 'reserva_id': nueva_reserva.id}), 201
+        flash(msg, 'success')
         return redirect(url_for('mis_reservas'))
 
-    # GET muestra la misma plantilla de detalle con el calendario
+    # GET -> mostrar plantilla
     return render_template('detalle_habitacion.html', habitacion=habitacion)
 
 @app.route('/fechas_ocupadas/<int:habitacion_id>')
