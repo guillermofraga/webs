@@ -21,11 +21,80 @@
     <p class="text-gray-700 dark:text-gray-300 mt-4"><strong>Servicios:</strong> {{ habitacion.servicios }}</p>
     {% endif %}
 
-    <a href="{{ url_for('formulario_reserva', habitacion_id=habitacion.id) }}"
-       class="inline-block mt-6 px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
-      Reservar esta habitación
-    </a>
+    <hr class="my-8">
+
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Reservar esta habitación</h3>
+
+    <form action="{{ url_for('formulario_reserva', habitacion_id=habitacion.id) }}" method="POST" class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+      <div>
+        <label for="fecha_entrada" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de entrada</label>
+        <input type="date" name="fecha_entrada" id="fecha_entrada" required class="w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800">
+      </div>
+
+      <div>
+        <label for="fecha_salida" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de salida</label>
+        <input type="date" name="fecha_salida" id="fecha_salida" required class="w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800">
+      </div>
+
+      <p id="mensaje-disponibilidad" class="text-sm font-medium mb-4"></p>
+      <button type="submit" class="w-full px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+        Confirmar reserva
+      </button>
+    </form>
   </div>
 </section>
+
+<script>
+const habitacionId = "{{ habitacion.id }}";
+const entradaInput = document.getElementById('fecha_entrada');
+const salidaInput = document.getElementById('fecha_salida');
+const botonReserva = document.querySelector('button[type="submit"]');
+const mensaje = document.getElementById('mensaje-disponibilidad');
+
+let fechasOcupadas = [];
+
+fetch(`/fechas_ocupadas/${habitacionId}`)
+  .then(res => res.json())
+  .then(data => {
+    fechasOcupadas = data;
+  });
+
+function verificarDisponibilidad() {
+  const entrada = entradaInput.value;
+  const salida = salidaInput.value;
+
+  if (!entrada || !salida) {
+    mensaje.textContent = "";
+    botonReserva.disabled = true;
+    return;
+  }
+
+  const entradaDate = new Date(entrada);
+  const salidaDate = new Date(salida);
+
+  const conflicto = fechasOcupadas.some(r => {
+    const inicio = new Date(r.inicio);
+    const fin = new Date(r.fin);
+    return entradaDate < fin && salidaDate > inicio;
+  });
+
+  if (conflicto) {
+    mensaje.textContent = "⚠️ Esta habitación está ocupada en ese rango de fechas.";
+    mensaje.classList.remove('text-green-600');
+    mensaje.classList.add('text-red-600');
+    botonReserva.disabled = true;
+    botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+  } else {
+    mensaje.textContent = "✅ Esta habitación está disponible en esas fechas.";
+    mensaje.classList.remove('text-red-600');
+    mensaje.classList.add('text-green-600');
+    botonReserva.disabled = false;
+    botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
+  }
+}
+
+entradaInput.addEventListener('change', verificarDisponibilidad);
+salidaInput.addEventListener('change', verificarDisponibilidad);
+</script>
 
 {% endblock %}

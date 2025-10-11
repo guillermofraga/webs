@@ -70,7 +70,7 @@ def configuracion():
 def reservas():
     reservas = Reserva.query.filter_by(usuario_id=current_user.id, estado='confirmada').all()
     habitaciones = Habitacion.query.all()
-    return render_template('reservas.html', reservas=reservas, habitaciones=habitaciones)
+    return render_template('formulario_reserva.html', reservas=reservas, habitaciones=habitaciones)
 
 @app.route('/agregar_reserva', methods=['POST'])
 @login_required
@@ -154,11 +154,57 @@ def cancelar_reserva(reserva_id):
     flash("Reserva cancelada correctamente.", "success")
     return redirect(url_for('mis_reservas'))
 
-@app.route('/formulario_reserva/<int:habitacion_id>')
+@app.route('/formulario_reserva/<int:habitacion_id>', methods=['GET', 'POST'])
 @login_required
 def formulario_reserva(habitacion_id):
     habitacion = Habitacion.query.get_or_404(habitacion_id)
-    return render_template('formulario_reserva.html', habitacion=habitacion)
+
+    if request.method == 'POST':
+        fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
+        fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
+
+        # Verificar disponibilidad
+        reservas_existentes = Reserva.query.filter(
+            Reserva.habitacion_id == habitacion_id,
+            Reserva.estado == 'confirmada',
+            or_(
+                and_(Reserva.fecha_entrada <= fecha_entrada, Reserva.fecha_salida > fecha_entrada),
+                and_(Reserva.fecha_entrada < fecha_salida, Reserva.fecha_salida >= fecha_salida),
+                and_(Reserva.fecha_entrada >= fecha_entrada, Reserva.fecha_salida <= fecha_salida)
+            )
+        ).all()
+
+        if reservas_existentes:
+            flash("La habitación ya está reservada en esas fechas.", "error")
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
+
+        nueva_reserva = Reserva(
+            fecha_entrada=fecha_entrada,
+            fecha_salida=fecha_salida,
+            estado='confirmada',
+            habitacion_id=habitacion_id,
+            usuario_id=current_user.id
+        )
+        db.session.add(nueva_reserva)
+        db.session.commit()
+        flash("Reserva confirmada con éxito.", "success")
+        return redirect(url_for('mis_reservas'))
+
+    return render_template('detalle_habitacion.html', habitacion=habitacion)
+
+@app.route('/fechas_ocupadas/<int:habitacion_id>')
+def fechas_ocupadas(habitacion_id):
+    reservas = Reserva.query.filter_by(habitacion_id=habitacion_id, estado='confirmada').all()
+    fechas = []
+
+    for r in reservas:
+        rango = (r.fecha_entrada, r.fecha_salida)
+        fechas.append({
+            'inicio': rango[0].isoformat(),
+            'fin': rango[1].isoformat()
+        })
+
+    return jsonify(fechas)
 
 if __name__ == '__main__':
     app.run(debug=True)
