@@ -6,7 +6,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from werkzeug.security import generate_password_hash, check_password_hash
 import pymysql
 from sqlalchemy import and_, or_
-from datetime import datetime
+from datetime import datetime, timedelta
 
 pymysql.install_as_MySQLdb()
 
@@ -154,14 +154,28 @@ def cancelar_reserva(reserva_id):
     flash("Reserva cancelada correctamente.", "success")
     return redirect(url_for('mis_reservas'))
 
+from flask import request, redirect, url_for, flash, render_template
+from datetime import datetime
+from sqlalchemy import and_, or_
+
 @app.route('/formulario_reserva/<int:habitacion_id>', methods=['GET', 'POST'])
 @login_required
 def formulario_reserva(habitacion_id):
     habitacion = Habitacion.query.get_or_404(habitacion_id)
 
     if request.method == 'POST':
-        fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
-        fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
+        rango = request.form.get('rango_fechas', '')
+        if ' to ' not in rango:
+            flash("Selecciona un rango de fechas válido.", "error")
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
+
+        try:
+            fecha_entrada_str, fecha_salida_str = rango.split(' to ')
+            fecha_entrada = datetime.strptime(fecha_entrada_str.strip(), '%Y-%m-%d').date()
+            fecha_salida = datetime.strptime(fecha_salida_str.strip(), '%Y-%m-%d').date()
+        except ValueError:
+            flash("Formato de fechas inválido.", "error")
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
         # Verificar disponibilidad
         reservas_existentes = Reserva.query.filter(
@@ -195,16 +209,15 @@ def formulario_reserva(habitacion_id):
 @app.route('/fechas_ocupadas/<int:habitacion_id>')
 def fechas_ocupadas(habitacion_id):
     reservas = Reserva.query.filter_by(habitacion_id=habitacion_id, estado='confirmada').all()
-    fechas = []
+    fechas_ocupadas = set()
 
-    for r in reservas:
-        rango = (r.fecha_entrada, r.fecha_salida)
-        fechas.append({
-            'inicio': rango[0].isoformat(),
-            'fin': rango[1].isoformat()
-        })
+    for reserva in reservas:
+        fecha_actual = reserva.fecha_entrada
+        while fecha_actual < reserva.fecha_salida:
+            fechas_ocupadas.add(fecha_actual.isoformat())
+            fecha_actual += timedelta(days=1)
 
-    return jsonify(fechas)
+    return jsonify(sorted(fechas_ocupadas))
 
 if __name__ == '__main__':
     app.run(debug=True)
