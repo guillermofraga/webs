@@ -164,31 +164,20 @@ def formulario_reserva(habitacion_id):
     habitacion = Habitacion.query.get_or_404(habitacion_id)
 
     if request.method == 'POST':
-        rango = request.form.get('rango_fechas', '')
-        if ' to ' not in rango:
-            flash("Selecciona un rango de fechas válido.", "error")
-            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
-
+        # recibimos fechas separadas desde inputs ocultos rellenados por Flatpickr
         try:
-            fecha_entrada_str, fecha_salida_str = rango.split(' to ')
-            fecha_entrada = datetime.strptime(fecha_entrada_str.strip(), '%Y-%m-%d').date()
-            fecha_salida = datetime.strptime(fecha_salida_str.strip(), '%Y-%m-%d').date()
-        except ValueError:
+            fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
+            fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
+        except Exception:
             flash("Formato de fechas inválido.", "error")
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
-        # Verificar disponibilidad
-        reservas_existentes = Reserva.query.filter(
-            Reserva.habitacion_id == habitacion_id,
-            Reserva.estado == 'confirmada',
-            or_(
-                and_(Reserva.fecha_entrada <= fecha_entrada, Reserva.fecha_salida > fecha_entrada),
-                and_(Reserva.fecha_entrada < fecha_salida, Reserva.fecha_salida >= fecha_salida),
-                and_(Reserva.fecha_entrada >= fecha_entrada, Reserva.fecha_salida <= fecha_salida)
-            )
-        ).all()
+        if fecha_entrada >= fecha_salida:
+            flash("El rango de fechas no es válido.", "error")
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
-        if reservas_existentes:
+        # valida solapamiento usando semiclosed intervals
+        if Reserva.overlaps(habitacion_id, fecha_entrada, fecha_salida):
             flash("La habitación ya está reservada en esas fechas.", "error")
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
@@ -204,6 +193,7 @@ def formulario_reserva(habitacion_id):
         flash("Reserva confirmada con éxito.", "success")
         return redirect(url_for('mis_reservas'))
 
+    # GET muestra la misma plantilla de detalle con el calendario
     return render_template('detalle_habitacion.html', habitacion=habitacion)
 
 @app.route('/fechas_ocupadas/<int:habitacion_id>')
@@ -213,20 +203,17 @@ def fechas_ocupadas(habitacion_id):
     fechas_entrada = set()
 
     for reserva in reservas:
-        fechas_entrada.add(reserva.fecha_entrada.isoformat())  # marcar entrada
+        fechas_entrada.add(reserva.fecha_entrada.isoformat())
+        # marcar noches ocupadas desde entrada hasta fecha_salida - 1
+        fecha = reserva.fecha_entrada
+        while fecha < reserva.fecha_salida:
+            fechas_ocupadas.add(fecha.isoformat())
+            fecha += timedelta(days=1)
 
-        # Empezar desde la noche siguiente a la entrada para NO incluir la fecha de entrada
-        fecha_actual = reserva.fecha_entrada + timedelta(days=1)
+    return jsonify({"ocupadas": sorted(fechas_ocupadas), "entradas": sorted(fechas_entrada)})
 
-        # Añadir todas las noches ocupadas hasta (pero sin incluir) la fecha de salida
-        while fecha_actual < reserva.fecha_salida:
-            fechas_ocupadas.add(fecha_actual.isoformat())
-            fecha_actual += timedelta(days=1)
 
-    return jsonify({
-        "ocupadas": sorted(fechas_ocupadas),
-        "entradas": sorted(fechas_entrada)
-    })
+
 
 if __name__ == '__main__':
     app.run(debug=True)

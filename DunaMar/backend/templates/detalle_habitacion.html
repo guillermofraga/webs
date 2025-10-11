@@ -31,18 +31,21 @@
 
     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Reservar esta habitación</h3>
 
-    <form action="{{ url_for('formulario_reserva', habitacion_id=habitacion.id) }}" method="POST"
+    <form id="form-reserva" action="{{ url_for('formulario_reserva', habitacion_id=habitacion.id) }}" method="POST"
       class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
       <div>
         <label for="rango_fechas" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Selecciona tu
           estancia</label>
         <input type="text" id="rango_fechas" name="rango_fechas" required
-          class="w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800">
+          class="w-full px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" autocomplete="off" readonly>
+        <input type="hidden" id="fecha_entrada" name="fecha_entrada">
+        <input type="hidden" id="fecha_salida" name="fecha_salida">
       </div>
 
       <p id="mensaje-disponibilidad" class="text-sm font-medium mb-4"></p>
-      <button type="submit"
-        class="w-full px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+      <button type="submit" id="btn-confirmar"
+        class="w-full px-5 py-3 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+        disabled>
         Confirmar reserva
       </button>
     </form>
@@ -50,116 +53,121 @@
 </section>
 
 <script>
-const habitacionId = "{{ habitacion.id }}";
-const botonReserva = document.querySelector('button[type="submit"]');
-const mensaje = document.getElementById('mensaje-disponibilidad');
-const rangoInput = document.getElementById('rango_fechas');
+document.addEventListener('DOMContentLoaded', () => {
+  const habitacionId = "{{ habitacion.id }}";
+  const botonReserva = document.getElementById('btn-confirmar');
+  const mensaje = document.getElementById('mensaje-disponibilidad');
+  const rangoInput = document.getElementById('rango_fechas');
+  const inputEntrada = document.getElementById('fecha_entrada');
+  const inputSalida = document.getElementById('fecha_salida');
 
-let diasOcupados = []; // noches intermedias bloqueadas
-let diasEntrada = [];  // primer día de cada reserva
+  let diasOcupados = [];
+  let diasEntrada = [];
 
-fetch(`/fechas_ocupadas/${habitacionId}`)
-  .then(res => res.json())
-  .then(data => {
-    diasOcupados = data.ocupadas || [];
-    diasEntrada = data.entradas || [];
+  fetch(`/fechas_ocupadas/${habitacionId}`)
+    .then(res => res.json())
+    .then(data => {
+      diasOcupados = data.ocupadas || [];
+      diasEntrada = data.entradas || [];
 
-    flatpickr(rangoInput, {
-      mode: "range",
-      inline: true,
-      locale: "es",
-      // Sólo deshabilitamos las noches completamente ocupadas; las "entradas" NO se ponen en disable
-      disable: diasOcupados,
-      minDate: "today",
-      dateFormat: "Y-m-d",
-      showMonths: 2,
+      flatpickr(rangoInput, {
+        mode: "range",
+        inline: true,
+        locale: "es",
+        disable: diasOcupados,     // solo noches que realmente bloquean
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        showMonths: 2,
 
-      onChange: function (selectedDates, dateStr, instance) {
-        botonReserva.disabled = true;
-        botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
-        mensaje.textContent = "";
+        onChange: function (selectedDates, dateStr, instance) {
+          botonReserva.disabled = true;
+          botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+          mensaje.textContent = "";
+          inputEntrada.value = "";
+          inputSalida.value = "";
 
-        // Si sólo han seleccionado el primer día, impedir iniciar en una fecha que ya sea entrada de otra reserva
-        if (selectedDates.length === 1) {
-          const posibleEntrada = selectedDates[0].toISOString().split('T')[0];
-          if (diasEntrada.includes(posibleEntrada)) {
-            mensaje.textContent = "⚠️ No puedes iniciar la reserva en este día (ya es día de entrada de otra reserva).";
-            mensaje.classList.remove('text-green-600');
-            mensaje.classList.add('text-red-600');
-            // limpiar selección para forzar elegir otra fecha de inicio
-            instance.clear();
-            return;
-          }
-        }
-
-        // Cuando se ha seleccionado rango completo
-        if (selectedDates.length === 2) {
-          const entrada = selectedDates[0];
-          const salida = selectedDates[1];
-
-          // Verificación: recorrer desde entrada hasta el día ANTERIOR a salida
-          const salidaReal = new Date(salida);
-          salidaReal.setDate(salidaReal.getDate() - 1);
-
-          let actual = new Date(entrada);
-          actual.setHours(0,0,0,0);
-          salidaReal.setHours(0,0,0,0);
-
-          let conflicto = false;
-          while (actual <= salidaReal) {
-            const fechaStr = actual.toISOString().split('T')[0];
-            if (diasOcupados.includes(fechaStr) || diasEntrada.includes(fechaStr)) {
-              // Si alguna noche intermedia está ocupada o coincide con una entrada existente -> conflicto
-              conflicto = true;
-              break;
+          if (selectedDates.length === 1) {
+            const posibleInicio = selectedDates[0].toISOString().split('T')[0];
+            // regla de negocio: no permitir iniciar en fecha que ya sea entrada de otra reserva
+            if (diasEntrada.includes(posibleInicio)) {
+              mensaje.textContent = "⚠️ No puedes iniciar la reserva en este día (entrada de otra reserva).";
+              mensaje.className = "text-sm font-medium mb-4 text-red-600";
+              // limpiar selección visual
+              setTimeout(() => instance.clear(), 250);
+              return;
             }
-            actual.setDate(actual.getDate() + 1);
           }
 
-          if (conflicto) {
-            mensaje.textContent = "⚠️ Esta habitación está ocupada en ese rango de fechas.";
-            mensaje.classList.remove('text-green-600');
-            mensaje.classList.add('text-red-600');
-            botonReserva.disabled = true;
-            botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+          if (selectedDates.length === 2) {
+            const entrada = selectedDates[0];
+            const salida = selectedDates[1];
+
+            // recorrer desde entrada hasta salida - 1
+            const ultimaNoche = new Date(salida);
+            ultimaNoche.setDate(ultimaNoche.getDate() - 1);
+
+            let actual = new Date(entrada);
+            actual.setHours(0,0,0,0);
+            ultimaNoche.setHours(0,0,0,0);
+
+            let conflicto = false;
+            while (actual <= ultimaNoche) {
+              const fechaStr = actual.toISOString().split('T')[0];
+              if (diasOcupados.includes(fechaStr) || diasEntrada.includes(fechaStr)) {
+                conflicto = true;
+                break;
+              }
+              actual.setDate(actual.getDate() + 1);
+            }
+
+            if (conflicto) {
+              mensaje.textContent = "⚠️ Esta habitación está ocupada en ese rango de fechas.";
+              mensaje.className = "text-sm font-medium mb-4 text-red-600";
+            } else {
+              mensaje.textContent = "✅ Esta habitación está disponible en esas fechas.";
+              mensaje.className = "text-sm font-medium mb-4 text-green-600";
+              // rellenar inputs ocultos para el POST
+              inputEntrada.value = selectedDates[0].toISOString().split('T')[0];
+              inputSalida.value = selectedDates[1].toISOString().split('T')[0];
+              botonReserva.disabled = false;
+              botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+          }
+        },
+
+        onDayCreate: function (_, __, ___, dayElem) {
+          const fecha = new Date(dayElem.dateObj);
+          const hoy = new Date();
+          fecha.setHours(0,0,0,0);
+          hoy.setHours(0,0,0,0);
+          const fechaStr = fecha.toISOString().split('T')[0];
+
+          if (diasEntrada.includes(fechaStr)) {
+            dayElem.style.backgroundColor = "#000";
+            dayElem.style.color = "#fff";
+            dayElem.style.borderRadius = "50%";
+          } else if (diasOcupados.includes(fechaStr)) {
+            dayElem.style.backgroundColor = "#1f2937";
+            dayElem.style.color = "#fff";
+            dayElem.style.borderRadius = "50%";
+          } else if (fecha < hoy) {
+            dayElem.style.backgroundColor = "#e5e7eb";
+            dayElem.style.color = "#888";
+            dayElem.style.borderRadius = "50%";
           } else {
-            mensaje.textContent = "✅ Esta habitación está disponible en esas fechas.";
-            mensaje.classList.remove('text-red-600');
-            mensaje.classList.add('text-green-600');
-            botonReserva.disabled = false;
-            botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
+            dayElem.style.backgroundColor = "#d1fae5";
+            dayElem.style.color = "#000";
+            dayElem.style.borderRadius = "50%";
           }
         }
-      },
-
-      onDayCreate: function (_, __, ___, dayElem) {
-        const fecha = new Date(dayElem.dateObj);
-        const hoy = new Date();
-        fecha.setHours(0,0,0,0);
-        hoy.setHours(0,0,0,0);
-        const fechaStr = fecha.toISOString().split('T')[0];
-
-        // Marca entrada (negro), noches ocupadas (gris oscuro), pasados (gris claro), disponibles (verde)
-        if (diasEntrada.includes(fechaStr)) {
-          dayElem.style.backgroundColor = "#000";
-          dayElem.style.color = "#fff";
-          dayElem.style.borderRadius = "50%";
-        } else if (diasOcupados.includes(fechaStr)) {
-          dayElem.style.backgroundColor = "#1f2937";
-          dayElem.style.color = "#fff";
-          dayElem.style.borderRadius = "50%";
-        } else if (fecha < hoy) {
-          dayElem.style.backgroundColor = "#e5e7eb";
-          dayElem.style.color = "#888";
-          dayElem.style.borderRadius = "50%";
-        } else {
-          dayElem.style.backgroundColor = "#d1fae5";
-          dayElem.style.color = "#000";
-          dayElem.style.borderRadius = "50%";
-        }
-      }
+      });
+    })
+    .catch(err => {
+      mensaje.textContent = "Error cargando disponibilidad.";
+      mensaje.className = "text-sm font-medium mb-4 text-red-600";
+      console.error(err);
     });
-  });
+});
 </script>
 
 {% endblock %}
