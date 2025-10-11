@@ -55,32 +55,61 @@ const botonReserva = document.querySelector('button[type="submit"]');
 const mensaje = document.getElementById('mensaje-disponibilidad');
 const rangoInput = document.getElementById('rango_fechas');
 
-let diasBloqueados = [];
+let diasOcupados = []; // noches intermedias bloqueadas
+let diasEntrada = [];  // primer día de cada reserva
 
 fetch(`/fechas_ocupadas/${habitacionId}`)
   .then(res => res.json())
   .then(data => {
-    diasBloqueados = data; // ← ahora es una lista de fechas individuales tipo "2025-10-15"
+    diasOcupados = data.ocupadas || [];
+    diasEntrada = data.entradas || [];
 
     flatpickr(rangoInput, {
       mode: "range",
       inline: true,
       locale: "es",
-      disable: diasBloqueados,
+      // Sólo deshabilitamos las noches completamente ocupadas; las "entradas" NO se ponen en disable
+      disable: diasOcupados,
       minDate: "today",
       dateFormat: "Y-m-d",
       showMonths: 2,
 
-      onChange: function(selectedDates) {
+      onChange: function (selectedDates, dateStr, instance) {
+        botonReserva.disabled = true;
+        botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+        mensaje.textContent = "";
+
+        // Si sólo han seleccionado el primer día, impedir iniciar en una fecha que ya sea entrada de otra reserva
+        if (selectedDates.length === 1) {
+          const posibleEntrada = selectedDates[0].toISOString().split('T')[0];
+          if (diasEntrada.includes(posibleEntrada)) {
+            mensaje.textContent = "⚠️ No puedes iniciar la reserva en este día (ya es día de entrada de otra reserva).";
+            mensaje.classList.remove('text-green-600');
+            mensaje.classList.add('text-red-600');
+            // limpiar selección para forzar elegir otra fecha de inicio
+            instance.clear();
+            return;
+          }
+        }
+
+        // Cuando se ha seleccionado rango completo
         if (selectedDates.length === 2) {
           const entrada = selectedDates[0];
           const salida = selectedDates[1];
-          let actual = new Date(entrada);
-          let conflicto = false;
 
-          while (actual < salida) {
+          // Verificación: recorrer desde entrada hasta el día ANTERIOR a salida
+          const salidaReal = new Date(salida);
+          salidaReal.setDate(salidaReal.getDate() - 1);
+
+          let actual = new Date(entrada);
+          actual.setHours(0,0,0,0);
+          salidaReal.setHours(0,0,0,0);
+
+          let conflicto = false;
+          while (actual <= salidaReal) {
             const fechaStr = actual.toISOString().split('T')[0];
-            if (diasBloqueados.includes(fechaStr)) {
+            if (diasOcupados.includes(fechaStr) || diasEntrada.includes(fechaStr)) {
+              // Si alguna noche intermedia está ocupada o coincide con una entrada existente -> conflicto
               conflicto = true;
               break;
             }
@@ -103,14 +132,28 @@ fetch(`/fechas_ocupadas/${habitacionId}`)
         }
       },
 
-      onDayCreate: function(_, __, ___, dayElem) {
-        const fecha = dayElem.dateObj.toISOString().split('T')[0];
-        if (diasBloqueados.includes(fecha)) {
-          dayElem.style.backgroundColor = "#1f2937"; // gris oscuro
+      onDayCreate: function (_, __, ___, dayElem) {
+        const fecha = new Date(dayElem.dateObj);
+        const hoy = new Date();
+        fecha.setHours(0,0,0,0);
+        hoy.setHours(0,0,0,0);
+        const fechaStr = fecha.toISOString().split('T')[0];
+
+        // Marca entrada (negro), noches ocupadas (gris oscuro), pasados (gris claro), disponibles (verde)
+        if (diasEntrada.includes(fechaStr)) {
+          dayElem.style.backgroundColor = "#000";
           dayElem.style.color = "#fff";
           dayElem.style.borderRadius = "50%";
+        } else if (diasOcupados.includes(fechaStr)) {
+          dayElem.style.backgroundColor = "#1f2937";
+          dayElem.style.color = "#fff";
+          dayElem.style.borderRadius = "50%";
+        } else if (fecha < hoy) {
+          dayElem.style.backgroundColor = "#e5e7eb";
+          dayElem.style.color = "#888";
+          dayElem.style.borderRadius = "50%";
         } else {
-          dayElem.style.backgroundColor = "#d1fae5"; // verde claro
+          dayElem.style.backgroundColor = "#d1fae5";
           dayElem.style.color = "#000";
           dayElem.style.borderRadius = "50%";
         }

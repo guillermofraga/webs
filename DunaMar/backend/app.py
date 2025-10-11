@@ -210,14 +210,23 @@ def formulario_reserva(habitacion_id):
 def fechas_ocupadas(habitacion_id):
     reservas = Reserva.query.filter_by(habitacion_id=habitacion_id, estado='confirmada').all()
     fechas_ocupadas = set()
+    fechas_entrada = set()
 
     for reserva in reservas:
-        fecha_actual = reserva.fecha_entrada
+        fechas_entrada.add(reserva.fecha_entrada.isoformat())  # marcar entrada
+
+        # Empezar desde la noche siguiente a la entrada para NO incluir la fecha de entrada
+        fecha_actual = reserva.fecha_entrada + timedelta(days=1)
+
+        # Añadir todas las noches ocupadas hasta (pero sin incluir) la fecha de salida
         while fecha_actual < reserva.fecha_salida:
             fechas_ocupadas.add(fecha_actual.isoformat())
             fecha_actual += timedelta(days=1)
 
-    return jsonify(sorted(fechas_ocupadas))
+    return jsonify({
+        "ocupadas": sorted(fechas_ocupadas),
+        "entradas": sorted(fechas_entrada)
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
