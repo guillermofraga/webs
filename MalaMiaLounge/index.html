@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mala Mia Lounge</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Mala Mia Lounge — Shisha, billar y noches inolvidables en Vigo. Ambiente vibrante, cócteles y música hasta la madrugada." />
+    <meta name="keywords" content="Mala Mia Lounge, shisha, billar, bar, lounge, Vigo, noche, cócteles" />
+    <link rel="canonical" href="https://malamialounge.com/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Mala Mia Lounge" />
+    <meta name="theme-color" content="#161118" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Mala Mia Lounge" />
+    <meta property="og:title" content="Mala Mia Lounge — Shisha y Noches en Vigo" />
+    <meta property="og:description" content="Shisha premium, mesas de billar y ambiente único. Visítanos en Vigo para disfrutar de la mejor noche." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://malamialounge.com/" />
+    <meta property="og:image" content="https://malamialounge.com/img/MalaMiaLounge.png" />
+    <meta property="og:image:alt" content="Mala Mia Lounge" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="icon" href="img/MalaMiaLounge.png" type="image/png" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9311d4",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#161118",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="sticky top-0 z-50 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-3 bg-background-dark/90 backdrop-blur-sm">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <div class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#332839] px-4 py-3 sm:px-10">
+                        <div class="flex items-center gap-4 text-white">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12">
+                                <img class="object-cover rounded-full w-full h-full" src="img/MalaMiaLounge.png" alt="Mala Mia Lounge Logo" />
+                            </div>
+                            <h2 class="text-white text-lg sm:text-xl font-bold leading-tight tracking-[-0.015em]">Mala Mia Lounge</h2>
+                        </div>
+
+                        <!-- Desktop nav -->
+                        <nav class="hidden sm:flex flex-1 justify-end gap-6">
+                            <div class="flex items-center gap-6">
+                                <a class="text-white text-base font-medium leading-normal" href="#shisha">Shisha</a>
+                                <a class="text-white text-base font-medium leading-normal" href="#billar">Billar</a>
+                                <a class="text-white text-base font-medium leading-normal" href="#galeria">Galería</a>
+                                <a class="text-white text-base font-medium leading-normal" href="#contacto">Contacto</a>
+                            </div>
+                        </nav>
+
+                        <!-- Mobile menu button -->
+                        <div class="sm:hidden flex items-center">
+                            <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" class="inline-flex items-center justify-center p-2 rounded-md text-white bg-transparent hover:bg-white/5 focus:outline-none">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile menu (hidden by default) -->
+                    <div id="mobile-menu" class="sm:hidden hidden bg-background-dark/95 border-b border-[#332839] px-4 py-3">
+                        <div class="flex flex-col gap-3">
+                            <a class="text-white text-base font-medium" href="#shisha">Shisha</a>
+                            <a class="text-white text-base font-medium" href="#billar">Billar</a>
+                            <a class="text-white text-base font-medium" href="#galeria">Galería</a>
+                            <a class="text-white text-base font-medium" href="#contacto">Contacto</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex flex-col items-center">
+                <section class="w-full" id="hero">
+                    <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                            <div class="@container">
+                                <div class="@[480px]:p-4">
+                                    <div class="flex min-h-[420px] sm:min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                                        data-alt="People dancing in a nightclub with vibrant lights"
+                                        style='background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBSGE1fXYRTOwAtamYnkbWWmp_Xoy0sbpXm0iNszmCpplWidDq68DebChlLR7Dc5H8MYjs--qDO4lb8I97EZLSlEYkWybBlo1qOQW5-xJZcxPhwzx6qhnh-HlBvX-ITuzWAKaobA-FIeZWDspMAGtwORZpLslPwbGVFF4SgneTlg8iA9u-TarUVfggLZDOYY68VVCCsdflbr2hnTzNgYD77_LlmT9rcFX0KbPsr8jZCmqen8N96wksghX918dL6vTBOUU77FScQhs");'>
+                                        <div class="flex flex-col gap-4 text-center px-2">
+                                            <h1 class="text-white text-3xl sm:text-5xl font-black leading-tight tracking-[-0.033em] sm:[480px]:text-7xl">
+                                                La Noche es Nuestra
+                                            </h1>
+                                            <h2 class="text-white text-sm sm:text-lg font-normal leading-normal sm:[480px]:text-xl">
+                                                Donde la Fiesta Nunca Termina
+                                            </h2>
+                                        </div>
+                                        <a class="mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-primary text-white text-sm sm:text-base font-bold leading-normal tracking-[0.015em]"
+                                            href="#contacto">
+                                            <span class="truncate">Contacta ahora</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="w-full pt-16 sm:pt-20" id="shisha">
+                    <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6 sm:gap-8">
+                            <div class="flex flex-wrap justify-between gap-3 p-4">
+                                <p class="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">
+                                    Shisha
+                                </p>
+                            </div>
+
+                            <!-- Aquí: vertical en móvil, horizontal con scroll en sm+ -->
+                            <div class="flex flex-col sm:flex-row sm:overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
+                                <div class="flex flex-col sm:flex-row items-stretch p-4 gap-4">
+                                    <div class="w-full sm:flex-1 flex flex-col gap-4 rounded-xl bg-[#231c27] shadow-[0_0_4px_rgba(0,0,0,0.1)] sm:min-w-72">
+                                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl flex flex-col" data-alt="Shisha clásica" style='background-image: url("/img/shishaClasica.png");'></div>
+                                        <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+                                            <div>
+                                                <p class="text-white text-base sm:text-lg font-medium leading-normal">Shisha Clásica</p>
+                                                <p class="text-[#b09db9] text-sm sm:text-base font-normal leading-normal">Tabaco tradicional, manguera simple.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full sm:flex-1 flex flex-col gap-4 rounded-xl bg-[#231c27] shadow-[0_0_4px_rgba(0,0,0,0.1)] sm:min-w-72">
+                                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl flex flex-col" data-alt="Shisha premium" style='background-image: url("/img/shishaPremium.png");'></div>
+                                        <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+                                            <div>
+                                                <p class="text-white text-base sm:text-lg font-medium leading-normal">Shisha Premium</p>
+                                                <p class="text-[#b09db9] text-sm sm:text-base font-normal leading-normal">Mezclas exclusivas y carbón de larga duración.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-full sm:flex-1 flex flex-col gap-4 rounded-xl bg-[#231c27] shadow-[0_0_4px_rgba(0,0,0,0.1)] sm:min-w-72">
+                                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-xl flex flex-col" data-alt="Shisha de frutas" style='background-image: url("/img/shishaFrutas.png");'></div>
+                                        <div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+                                            <div>
+                                                <p class="text-white text-base sm:text-lg font-medium leading-normal">Shisha de Frutas</p>
+                                                <p class="text-[#b09db9] text-sm sm:text-base font-normal leading-normal">Sabores frutales frescos y presentación especial.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section class="w-full pt-16 sm:pt-20" id="billar">
+                    <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                        <div class="layout-content-container flex max-w-[960px] flex-1 flex-col gap-6 sm:gap-8">
+                            <div class="flex flex-wrap items-center justify-between gap-3 p-4">
+                                <p class="min-w-72 text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] text-white">Noches de Billar</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-6 p-4 md:grid-cols-2">
+                                <div class="flex flex-col justify-center gap-4">
+                                    <p class="text-xl sm:text-2xl font-bold leading-tight text-white">Desafía a tus amigos</p>
+                                    <p class="text-sm sm:text-base font-normal leading-normal text-[#b09db9]">Contamos con mesas de billar profesionales para que disfrutes de una partida mientras te tomas algo. El ambiente perfecto para una noche diferente, llena de competencia amistosa y buena música.</p>
+                                    <p class="text-sm sm:text-base font-normal leading-normal text-[#b09db9]">Disponibilidad por orden de llegada. ¡No te quedes sin jugar!</p>
+                                    <a class="mt-4 flex h-10 sm:h-12 max-w-[480px] cursor-pointer items-center justify-center self-start overflow-hidden rounded-xl bg-primary px-4 sm:px-5 text-sm sm:text-base font-bold leading-normal tracking-[0.015em] text-white" href="#contacto">
+                                        <span class="truncate">Ven a Jugar</span>
+                                    </a>
+                                </div>
+                                <div class="h-56 sm:h-80 w-full overflow-hidden rounded-xl">
+                                    <img class="h-full w-full object-cover" data-alt="People playing pool in a stylish bar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtFKh_EZl2hj1v0noN6_4q4e150iApvjYeHbHUNKKoc1vWJ7J24h8uyedydTmzectZu2BpfN3-XJjKBOLkJLvQJjLKm56c9YZIgF91v3556pva_c7qHWpG7ZJIYJmVBEY0M8oV5DMb_H59qRZMeDAY1rTg1WXraeJnMGa3jTAaYy8V6G_SmcU3_wOhTgd7zNQ6wgqwMBCQC9b5pXGVL-2gy3HsSrYo81E-jFRJykgSobINOHuMpCTj0Ce7TxA4DoprrHLVnuxc8Fs" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="w-full pt-16 sm:pt-20" id="galeria">
+                    <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6 sm:gap-8">
+                            <div class="flex flex-wrap justify-between gap-3 p-4">
+                                <p class="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Nuestras Mejores Noches</p>
+                            </div>
+                            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 p-4 space-y-4">
+                                <img class="rounded-xl" data-alt="Vibrant cocktail on a bar counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAVYXOY1r6GRxWPMMtCCnbp9MEcgDkhz0wVFykXsUV1yx3IuPfUuOmSJjmZSnqHGSu1y2FHBAK1NndRZw3jl6Tt1UA3ERU-HBko3nGEyhOshl3QNbybhJsqlODM4GIzfNimRICNIAnR6ir201AyzjE_dPGDle0mP8gVSVSeWl8rQmiFo5483tTK7dKI2re5uSzXn1EOzZIr1M_C112m1jkBq5DeEpiKS1dNExZBxUy9qUpnXVUlSBOxf-CJfgPzBs7L1LiNpD0lnI" />
+                                <img class="rounded-xl" data-alt="DJ mixing music on a turntable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFCoKHEpV1_3epjLUIrSvW4-RI8739IwrhYByMEjfUcMMWBJvhVe_5GRqHEFywokh6cs7Yo3AEOY3Hi3n9ay8aL6tVP_kb7tZJsFv8Zmd4PfiD9MAeUc6cW4CU1wx4xp6bOJUSyZXSiLWmO0O7dcbiRS_xsA764MyyRtqgzMyfdacDF-vRiPWdMGXsYopy9DtEbouJOfdh3cGvDwO6OxB-OdO56pHZtqzxkk4Bj6TjQo5MZERPwAWoFJryUuFDYHsQT1Uha3dGKdI" />
+                                <img class="rounded-xl" data-alt="Group of friends toasting with drinks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG12r8K-VzT_OcrgLBFMKrv4tTST9H4dwS-NPIpSc03cEJ8mlEt4HaJijYyXeVFElQ19rC6_yPh51tbFGUL_Ug-UkS6IUzPz3hvekeP8TyaUOVcBJPKRKHYQfDlGKxPjFoRI0bdayh4kvTb76oBUMR0RG6LbxK7KosKcEWpOMEKsouIdC_czJkVpb87kbkvRBqleWUk9nIXeQZZwn-y2I4IUHzUDGIgR8aNW4cSEdzao9Im5tV55AnbiOMGF_BJvKSmtOvbC-YvuM" />
+                                <img class="rounded-xl" data-alt="Stylish interior of the Mala Mia Lounge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW-ypAkB-xGVbjRMhTRAhZiiclVZnuiEkLbcXScjGe-wTeNHeZeopkvGRJz4gm0CdoW5JUNeYF1c2stIccSn1kaVkE-wVymJ2JofX6NcGfnk7Ut0TTTNHSHcX86e64dKCfjztZMBak_mVitd8v4Hohh3p8jr4MLU73n_mFOasCw1lq8LAUMYBxh7pFsU7Js00CU9A4bw12UwrdGrqlfSR_eMY6fIbCshmy91NSQbr2KmldbpURReJEblApE4KgcNlz0urwB-IXPSo" />
+                                <img class="rounded-xl" data-alt="People dancing and enjoying the night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzqSFU9T1k7BQWK674nVqtnB2hxJFRwyswLTvnCygaEZUNEE6Oc2X_usim705DtAx-ASDMFoi1D6PqELlpE29AzuUGvdNIok3T5kVdqh7FrKxH1EokMpNnAkVNYGLBL9nlkDWRMGFwOBpYhA70eX81R220WHcm4X9JBw07zVgbQehLYQ2FyqYV-mBDGIm9kNmLQ7JQMrbpTO15nM5BD5FF2rhPqNaV18ql2UMx9FKGTjAk0k_MXOhP1sClt2qstDQ0vSW3Z43_vwY" />
+                                <img class="rounded-xl" data-alt="Close-up of a neon sign" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWdvCnlch_udWAKF4ecVIB5UQjmP1Ujh3hJ6F0lrNbq5a_vy17SPmz8KgfF9_o4JHd0bDJRHqd9lG-zZw5p29mmNjXMiSZRH0bl5-IfTLB9niFtITgwX7CRQL3QxV4N0d9WR6MBPEJbbxvFuRBhF2dptMG0I1WgYTQC1VU9dpIE0QVHB5iDpQUlD8WHh8LM3eEo0JdmcgVddET9deDv_g0wy6fItwaxF4_nm5DKFj8AFLt52e_BIRWk-_WOhLs6QfDjI3Qk0_E7OU" />
+                                <img class="rounded-xl" data-alt="A live performance at the club" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChOjVU35E9QpPlmJCwYUeQfg7UkrVfN1p8VJy5ezpA-DQq8kgYy0NJXMICQ9GTfTXwF8VFXBmMXSSuGbyBYi31YijetrUm2mMdJ9j5BR5mWbbrE_STRECHMdqJDYhm1A_PQpU6NiUCGp1bZ6xHYtpCDbqPH4Tq3xE8razocgGbh6tkkqEoD61SYB18nWZelnn5BSJ9y7Qx98PlQ7KsHLXa7nJYjXKOlAPEnQQa_yWXkYf5BQ4tW8njIrZaZyZLSVs-VLTSvmQaCQk" />
+                                <img class="rounded-xl" data-alt="Bartender preparing a drink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhUjWiYnPJVx8y1QTuvQ-MoA5pdAtDwadtdVkt-IdE2X_K-pfLpZxlr9ITCMa5wS2Jm1776KOscMExyohVwF1g-wVAQMqObJn6W78juNEgM0mtl_ZZgH_iGxrAA4GN-CIttK38SfO8ZGuyXdBTJQSBAnXvV8THWQv3EEFd9F4C9SdUBDNx6MQ48T0tjjEXczu7ItriKYqRkgSrSWUrYMWhZCjsBdhhXnjaTcegyc-I2RYMh8VszL6MQ1fjbTUaNNlaF8tTPn_wcB4" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="w-full pt-16 sm:pt-20" id="contacto">
+                    <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6 sm:gap-8">
+                            <div class="flex flex-wrap justify-between gap-3 p-4">
+                                <p class="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">Encuéntranos</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+                                <div class="flex flex-col gap-4 text-white">
+                                    <div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-primary">Dirección</h3>
+                                        <p class="text-sm sm:text-lg text-[#b09db9]">Rúa do Areal, 42, Santiago de Vigo, 36201 Vigo, Pontevedra</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-primary">Teléfono</h3>
+                                        <p class="text-sm sm:text-lg text-[#b09db9]"><a href="tel:674484390">674 484 390</a></p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-primary">Horario</h3>
+                                        <p class="text-sm sm:text-lg text-[#b09db9]">Lunes - Miercoles: Cerrado </p>
+                                        <p class="text-sm sm:text-lg text-[#b09db9]">Jueves - Sábado: 23:00 - 4:30 </p>
+                                        <p class="text-sm sm:text-lg text-[#b09db9]">Domingo: 22:00 - 4:30 </p>
+                                    </div>
+                                </div>
+                                <div class="w-full h-64 sm:h-96 rounded-xl overflow-hidden">
+                                    <iframe allowfullscreen="" class="w-full h-full" data-location="Bogota" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d369.2306097596003!2d-8.716642681226814!3d42.23912689239356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f634fb91eaca7%3A0x47a498332a345d4b!2sMala%20Mia%20Lounge%20Vigo!5e0!3m2!1ses!2ses!4v1760880545389!5m2!1ses!2ses" style="border:0;"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="w-full mt-16 sm:mt-20 border-t border-solid border-t-[#332839]">
+                <div class="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-8 sm:py-10">
+                    <div class="layout-content-container flex flex-col items-center max-w-[960px] flex-1 gap-6 text-center">
+                        <div class="flex items-center gap-6">
+                            <a class="text-white hover:text-primary transition-colors" href="https://www.instagram.com/malamia_lounge/">
+                                <svg class="feather feather-instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                        <p class="text-[#b09db9] text-sm">© 2024 Mala Mia Lounge. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Toggle mobile menu
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn?.addEventListener('click', function () {
+                if (!menu) return;
+                menu.classList.toggle('hidden');
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', (!expanded).toString());
+            });
+        });
+    </script>
+</body>
+
+</html>
