@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Busca Tu La Vida Podcast</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background-dark font-display text-white">
+    <div
+        class="relative flex h-auto min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <header
+                        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#283339] px-4 sm:px-10 py-3">
+                        <div class="flex items-center gap-4 text-white">
+                            <div class="size-4">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Busca Tu La Vida
+                            </h2>
+                        </div>
+                        <div class="hidden md:flex flex-1 justify-end gap-8">
+                            <div class="flex items-center gap-9">
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="#">Episodes</a>
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="#">About Us</a>
+                                <a class="text-white text-sm font-medium leading-normal hover:text-primary transition-colors"
+                                    href="#">Contact</a>
+                            </div>
+                            <button
+                                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/80 transition-colors">
+                                <span class="truncate">Listen Now</span>
+                            </button>
+                        </div>
+                        <button
+                            class="md:hidden flex items-center justify-center size-8 rounded-lg bg-primary text-white">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                    </header>
+                    <main>
+                        <div class="@container pt-5">
+                            <div class="@[480px]:p-4">
+                                <div class="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
+                                    data-alt="Abstract background image with podcast logo overlay."
+                                    style='background-image: linear-gradient(rgba(16, 28, 34, 0.6) 0%, rgba(16, 28, 34, 0.9) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBB5sIOtTTQSXenwdU-h6DcNvZ7CiCpEAYoD1C_a_ZiYH1UM6BHplH5H2Q7_yFL6j_sajNuxHA_KXDaNgwg1M7D7ZU9qc2D3DnPsWLtq4JAYX4NmKqs_DpNpwBqVpLulsyLGPvHY2vq5c7lAZ5yA9b122Ow5W5_VNFTvMXyEVOy5dpzKuuJrOtXRMc7J7XZfGViybyzM6CzUOdwt7HfuYE-IAV7lqhDvw6BRIMRIiKzXjBF88CPvSnPoVkIGntndCxy5dKpq_6jU7mm");'>
+                                    <div class="flex flex-col gap-2 text-center">
+                                        <h1
+                                            class="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                            Busca Tu La Vida
+                                        </h1>
+                                        <h2
+                                            class="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                                            The podcast that helps you find your way.
+                                        </h2>
+                                    </div>
+                                    <button
+                                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em] hover:bg-primary/80 transition-colors">
+                                        <span class="truncate">Explore Episodes</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="flex flex-col gap-10 px-4 py-16 sm:px-6 lg:px-8">
+                            <div class="flex flex-col items-center gap-2 text-center">
+                                <h2 class="text-white text-3xl font-bold leading-tight tracking-[-0.015em]">About Us
+                                </h2>
+                                <p class="text-[#9db0b9] text-lg font-normal leading-normal">Meet the hosts of Busca Tu
+                                    La Vida.</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-8">
+                                <div
+                                    class="flex flex-col items-center gap-6 rounded-xl bg-[#1a2830] p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/20">
+                                    <img alt="A portrait of Jose Elias Navarro"
+                                        class="h-40 w-40 rounded-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCav_YogIn3M1CTefT0riU1KRsDYcIOwWUYaULeuecGm7fK5vK4PDCJYugJUizVIGgzrgyB2_o98iPz0GWq_n6ASfwnKK56IJhyuhpXtsvWEr3kuC_pVlcLYOWgykdOf1xBry4kepO6NJCId4yWF3ZArhovfsjypHGLkpu6-SpoTMrFrJhxDx-T4-oBaYmaVT9jOGtVtBIJYqR7gjvHWTFE3LTvJHuW5IJQMaBKBHUZfeQqkAU7QWL_thpo-JdjKoli582ocdEG6hQx" />
+                                    <div class="flex flex-col items-center gap-4 text-center">
+                                        <div class="flex flex-col gap-1">
+                                            <h3 class="text-white text-xl font-bold leading-tight">Jose Elias Navarro
+                                            </h3>
+                                            <p class="text-primary text-base font-medium leading-normal">Co-Host</p>
+                                        </div>
+                                        <p class="text-[#9db0b9] text-sm font-normal leading-normal">Jose is a serial
+                                            entrepreneur and investor with a passion for helping others achieve
+                                            financial freedom. He brings a wealth of business knowledge and a
+                                            no-nonsense approach to the podcast.</p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex flex-col items-center gap-6 rounded-xl bg-[#1a2830] p-8 transition-shadow duration-300 hover:shadow-lg hover:shadow-primary/20">
+                                    <img alt="A portrait of Eric Ponce" class="h-40 w-40 rounded-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1L46UA0L4T2IDVyfSc_SbgPdkSwGOmhvH2Pu-eGV-62tkLCatppz7RDIC1LZhansZQ2TAsm1xCvM1lQr_7farkaLXO3_UbolWpqIRIfXo8xOSZzymlk3fPrRwqw4zDBklsqTWYhiDd-FIZYjdWGciPlQP8NK2KgqrbWS4K4V0mFT7uWFCmLumN_JPx0Uc1sePep6WQLYXsUd_PAC3X5v_ozWc-RyTrT4Z_COIMbYVJuX31S-RM8ds8a0MUKWotvcgrEL1Ut_tuTRF" />
+                                    <div class="flex flex-col items-center gap-4 text-center">
+                                        <div class="flex flex-col gap-1">
+                                            <h3 class="text-white text-xl font-bold leading-tight">Eric Ponce</h3>
+                                            <p class="text-primary text-base font-medium leading-normal">Co-Host</p>
+                                        </div>
+                                        <p class="text-[#9db0b9] text-sm font-normal leading-normal">Eric is a content
+                                            creator and communicator who thrives on connecting with people. He adds a
+                                            creative and insightful perspective to the conversations, making complex
+                                            topics accessible and engaging.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-10">
+                            Latest Episodes</h2>
+                        <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4 p-4">
+                            <div class="flex flex-col gap-3 pb-3 group">
+                                <div class="relative w-full aspect-square">
+                                    <div class="absolute inset-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                                        data-alt="Cover art for Episode 1: The Beginning"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIdD0od5Y5lTP2pzXYlEGK14pGRI8itmO9u8B2vG3PfCHPfn1UKXJyAGPYXj_g73DVl_e6TkHI1xT3TsMDQfIMKLLl3hqVLQBah5Xzs2ZZQ621MlTBY6WZqcbhyLm7Z5wqo51oJG4F9DM6wzIOi4qLjgNI4fHZZeEDnJPznnXFPWinkr_teQJBSLODRdseRmV6SgvA2XrWbai9AAXE8ZfcetbbY5ZqQuJekakvLq8deeSQz25mzlN7E6fgdb1IkMC6Qol7thYCFAxO");'>
+                                    </div>
+                                    <button
+                                        class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-white text-base font-medium leading-normal">Episode 1: The Beginning
+                                    </p>
+                                    <p class="text-[#9db0b9] text-sm font-normal leading-normal">A short description of
+                                        the first episode.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 pb-3 group">
+                                <div class="relative w-full aspect-square">
+                                    <div class="absolute inset-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                                        data-alt="Cover art for Episode 2: The Journey"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3VPXNnlixWxNejnTMDufuqOwGm6jcN9K621Gp4-sUPBwG-B9g0AzmVKKY_bEVkleBeKblkm_CgP_75W0YUIqqY2IH0NNzrAQXv61CmEwsV6RqvzcCOY18fPdC5n04WkCIRwdI7lgsHV6T3QncbKAYQZs8nB8YsNErrR7cBXK-cXGq2Gwt8i1_eRRnRtPvQ2dcoBuSWDXNpZeTDMheiLJWypvyL4pnbcwOOn1DXTNNAzVSFdoIW9C3dIlHgPvxKssFiamgYOiEJvok");'>
+                                    </div>
+                                    <button
+                                        class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-white text-base font-medium leading-normal">Episode 2: The Journey
+                                    </p>
+                                    <p class="text-[#9db0b9] text-sm font-normal leading-normal">A short description of
+                                        the second episode.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 pb-3 group">
+                                <div class="relative w-full aspect-square">
+                                    <div class="absolute inset-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                                        data-alt="Cover art for Episode 3: The Destination"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUzFwebFStyw_AoaxpXKBHfjSS2p9uwLKH43MM7aOgd67x1-iifjlxA1bvBgeFWg7pggSQLE8RPOerL27hgBDrujXnaGDcMimrfVNco4U0BPGFBITfRQYTCgCa1pCrmktsji2_DD1KqejiDjrRVGU1id7Qe498FgiOa6f7I_1Dhv9wQfE4wjWAkWlFvKRzRHflRCkdzAzypxlA-fgEJUaCUY4JENg0tdT9mg5aNfEhmWAsVrXVs7QQHfqlFRQ2zCnoAfWVIfV2inC8");'>
+                                    </div>
+                                    <button
+                                        class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-white text-base font-medium leading-normal">Episode 3: The
+                                        Destination</p>
+                                    <p class="text-[#9db0b9] text-sm font-normal leading-normal">A short description of
+                                        the third episode.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 pb-3 group">
+                                <div class="relative w-full aspect-square">
+                                    <div class="absolute inset-0 bg-center bg-no-repeat aspect-square bg-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                                        data-alt="Cover art for Episode 4: The Future"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqo6OUCg0fY50obH--vBjS5e1wJG8t5ASaAWX7IhpqWbif3AQQ9JcQQXNBPdsy91Fi8J-snHt6xQyLAo6cLd1WPbhagJ4lV36FEmV3WhStOBvKTenqPYTU2FDZ0Rfn3VqBLMranIz_ixZBPQp6Tien99OvPQNRCbGPV5oiMeJpzN49M70D_8n5Og3wR6GxyjUkWINHuwPnmVML3qGQIZTNG95EiTNY5jAHmdvMb-Dt1BMCTVPAOdsVNkY5HxVxnp_FhEZbjlb3KoqB");'>
+                                    </div>
+                                    <button
+                                        class="absolute inset-0 flex items-center justify-center bg-black/40 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="material-symbols-outlined text-white text-5xl">play_circle</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-white text-base font-medium leading-normal">Episode 4: The Future</p>
+                                    <p class="text-[#9db0b9] text-sm font-normal leading-normal">A short description of
+                                        the fourth episode.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer
+                        class="flex flex-col gap-6 px-5 py-10 text-center @container mt-10 border-t border-solid border-t-[#283339]">
+                        <div
+                            class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                            <a class="text-[#9db0b9] text-base font-normal leading-normal min-w-40 hover:text-primary transition-colors"
+                                href="#">Episodes</a>
+                            <a class="text-[#9db0b9] text-base font-normal leading-normal min-w-40 hover:text-primary transition-colors"
+                                href="#">About Us</a>
+                            <a class="text-[#9db0b9] text-base font-normal leading-normal min-w-40 hover:text-primary transition-colors"
+                                href="#">Contact</a>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a class="text-[#9db0b9] hover:text-primary transition-colors" href="#"><span
+                                    class="material-symbols-outlined">play_circle</span></a>
+                            <a class="text-[#9db0b9] hover:text-primary transition-colors" href="#"><span
+                                    class="material-symbols-outlined">photo_camera</span></a>
+                        </div>
+                        <p class="text-[#9db0b9] text-sm font-normal leading-normal">© 2024 Busca Tu La Vida</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
