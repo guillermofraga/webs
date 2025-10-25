@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>La Aldeana Restaurante</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link rel="icon" href="img/laAldeana.png" type="img/png">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8B0000",
+                        "secondary": "#F5F5DC",
+                        "accent": "#A0522D",
+                        "background-light": "#F5F5DC",
+                        "background-dark": "#221810",
+                    },
+                    fontFamily: {
+                        "display": ["Playfair Display", "serif"],
+                        "sans": ["Lato", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#333333] dark:text-gray-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm" id="home">
+<div class="px-4 md:px-10 lg:px-20 flex justify-center">
+<div class="w-full max-w-7xl flex items-center justify-between whitespace-nowrap border-b border-solid border-accent/20 dark:border-accent/30 py-3">
+<div class="flex items-center gap-4 text-primary dark:text-primary">
+<div class="size-6">
+<img src="img/laAldeana.png" alt="La Aldeana Logo">
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em] font-display text-primary dark:text-primary">La Aldeana</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-8">
+<a class="text-accent dark:text-secondary text-sm font-bold leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#home">Inicio</a>
+<a class="text-accent dark:text-secondary text-sm font-bold leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#menu">Menú</a>
+<a class="text-accent dark:text-secondary text-sm font-bold leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#gallery">Galería</a>
+<a class="text-accent dark:text-secondary text-sm font-bold leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#contact">Contacto</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-accent text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary transition-colors" href="#contact">
+<span class="truncate">Reservar mesa</span>
+</a>
+<button class="md:hidden p-2 rounded-lg text-accent dark:text-secondary hover:bg-accent/10 dark:hover:bg-secondary/10">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<section class="relative">
+<div class="absolute inset-0 bg-black/50 z-10"></div>
+<div class="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat" style="background-image: url('/img/laAldeanaInterior.png');">
+<div class="relative z-20 flex flex-col gap-4 text-center p-4">
+<h1 class="text-white text-5xl md:text-7xl font-bold leading-tight tracking-[-0.033em] font-display">
+                                La Aldeana
+                            </h1>
+<h2 class="text-white text-lg md:text-xl font-normal leading-normal font-sans">Sirviendo tradición con pasión desde 1950.</h2>
+<a class="mt-4 mx-auto flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-accent text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary transition-colors" href="#menu">
+<span class="truncate">Explorar nuestro menú</span>
+</a>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24 px-4 md:px-10 lg:px-20 bg-background-light dark:bg-background-dark" id="menu">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-bold font-display text-primary dark:text-primary">Nuestro Menú</h2>
+<p class="mt-2 text-lg text-gray-600 dark:text-gray-400 font-sans">El sabor de la tradición española en cada bocado.</p>
+</div>
+<div class="w-full max-w-4xl mx-auto">
+<div class="border-b border-accent/20 dark:border-accent/30 flex justify-center gap-4 md:gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-3 pt-4" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em] font-sans">Entrantes</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent dark:text-secondary pb-3 pt-4" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em] font-sans">Platos Principales</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent dark:text-secondary pb-3 pt-4" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em] font-sans">Postres</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-accent dark:text-secondary pb-3 pt-4" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em] font-sans">Bebidas</p>
+</a>
+</div>
+<div class="pt-8 grid grid-cols-1 md:grid-cols-[25%_1fr] gap-x-6">
+<div class="col-span-1 md:col-span-2 grid grid-cols-subgrid border-t border-t-accent/20 dark:border-t-accent/30 py-5">
+<p class="text-accent dark:text-secondary text-base font-bold font-sans">Gazpacho Andaluz</p>
+<p class="text-[#333333] dark:text-gray-300 text-sm font-normal leading-normal font-sans">8€ - Una sopa fría refrescante, perfecta para el verano.</p>
+</div>
+<div class="col-span-1 md:col-span-2 grid grid-cols-subgrid border-t border-t-accent/20 dark:border-t-accent/30 py-5">
+<p class="text-accent dark:text-secondary text-base font-bold font-sans">Jamón Ibérico de Bellota</p>
+<p class="text-[#333333] dark:text-gray-300 text-sm font-normal leading-normal font-sans">25€ - El mejor jamón ibérico de bellota curado, una delicia española.</p>
+</div>
+<div class="col-span-1 md:col-span-2 grid grid-cols-subgrid border-t border-t-accent/20 dark:border-t-accent/30 py-5">
+<p class="text-accent dark:text-secondary text-base font-bold font-sans">Croquetas de Pollo</p>
+<p class="text-[#333333] dark:text-gray-300 text-sm font-normal leading-normal font-sans">12€ - Cremosas croquetas de pollo, una de las favoritas de la casa.</p>
+</div>
+<div class="col-span-1 md:col-span-2 grid grid-cols-subgrid border-t border-t-accent/20 dark:border-t-accent/30 py-5">
+<p class="text-accent dark:text-secondary text-base font-bold font-sans">Gambas al Ajillo</p>
+<p class="text-[#333333] dark:text-gray-300 text-sm font-normal leading-normal font-sans">15€ - Gambas al ajillo chisporroteantes, una tapa clásica.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24 bg-secondary/50 dark:bg-background-dark/50" id="gallery">
+<div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-bold font-display text-primary dark:text-primary">Galería</h2>
+<p class="mt-2 text-lg text-gray-600 dark:text-gray-400 font-sans">Momentos y sabores de La Aldeana.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid gap-4">
+<div><img class="h-auto max-w-full rounded-lg" data-alt="Interior of the restaurant with tables set." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu6_D3kZk5hQ-JlJF6Six-BjxqO03Fr5r8zFO5fNWz75aebRB5_n2rWx4LKJQU3B4xikwn1m_Ue_eCGah73bHiQ6ax9wY-yTiOL-ePMFQWQ8mSRtQmAMRXkC74Vd0PYiNiHqIfBQHGOrqc0Z0smzwrpu-cRoNk4ghva3JVcv28pcJVR84j3hgZ70LOSFqfrsmrA9dLaQBoOorOKE0wvbi3et4cPHOCu7Fzhw6JA5S2OTWbgwy7w6sQPjjoo77A19v7V8ZSMH34ztk"/></div>
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A close-up of a delicious paella." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgI_-LG3tEtG9ohsv-rwdfhkUrEa2brqmjPPRbJJ9HD-5q7M8borVQ1ln_XZeJKuA0zTU_6WCp5M2ewXIsOMk1TtfTzMR4rSqyTPL4Ti2jJSoyQGO6Z_GUc5V4jyEeu01u_sxx9gyqUBDAe9fLG_AwnLXXVkU20n_uN2omK6AftNlRS6k2JxcOkB0oLpgrwGnOV63g-Ab3DYUgsXfQhv35zBSuBIvlo84HSAGuOnILGnO6-X5w2LHjomQCR195oN7AIpG1dRWrpPQ"/></div>
+</div>
+<div class="grid gap-4">
+<div><img class="h-auto max-w-full rounded-lg" data-alt="Exterior view of the restaurant entrance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP3D7srbWcFWTtmoh75GeZYymLjfQi1Cbxj7B4cBVb8k0n55OIOiyU6ci69vhZGUawHXra_cwnps_YGLPH-lJAfLgZ5fbUiMGIQjPV9DmjAfcDD91nbHDxSmSqDx9QRJ8gixCSs8bRoCQOt3G1Xo_NQhAYXgn0PB1TESZGUdutt9Xrb5PJl8LO_5jX-YFBwjcdpCbQUJl6HRJt-1Wd8DsttoFDKRc4shxYmRwKz-LWdM9zIFIStxGLRmU2Cw4ZNX089MBBPYl5VAI"/></div>
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A chef plating a dish in the kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-5BEFJqhRy6kDLBuIpMG8NLWCLB0lWfrYFIzC7q-2ub0gb5eVd6RRpWJWs6zxr67jgMfhatBVxfQXirZyvJWSScW5Mhi8UM0bDGvWO-vzq5v4pxKnbEM-8L4IiiInd7Zti0q-vWjQFuxW5L0HdO0Eq4b8nxvTCqa7W8UNQgvW9U1JXp1FMAiUCiUfMrkU6Kr8C6pFQj3ouDePFpSM7siPBMQ0ejLbaB2ONxPDmzbpPZTA_ambpcm9F5gn8ARbfzloh_OysNFdZuQ"/></div>
+</div>
+<div class="grid gap-4">
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A bustling dining room with happy customers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp9rHlciij6GkIfQd1rPgA9NIlsXReaG93SNl-SH54dXdQxIpFzWC88ur1CyDEWTB7-CkIaEs-SUNXB6FGFYtyX7RkLwDXkOJLp-t6f69dV-PvWxZg1ymHgcHxLoe4iva1y9HTKV0qbuZ9GUlaQfNMQf9sjpiDcz4HNgtZGaPrREcCmSDHxXKJuq_EXsXqy8X51GMLFnQWzkKVasl28bdM0SbKckoesp2WPNWUPAd7QedESMbPFkBRKbBDPRPZMFyJ-15jcztiSw4"/></div>
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A beautifully presented dessert, churros with chocolate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLnKEA5xh0bIr5J7EdMamBzFwb4RSAIvtSlPBlObfLJIvM2jRLh5bgRhc9q69MWOzRwOOJj2Ev5Yhd9fHKfSsyCIkds6H7buJIBnYHVOLtAcYHQ0xfq9cE9Rm0_7S0QIJo3QbyK8deOQaZFK5TWAwR8U7okC3fnJmrehD9TuitEO9zq_ttIAAbwoZljv-_zHCtumlidxbqlNYis82gipB2UMtZEfhtcYh63rHBdEPGP3Y_5C-ejRa86inOkN3k4ilSxa3YHsbbzr4"/></div>
+</div>
+<div class="grid gap-4">
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A variety of colorful tapas on a wooden board." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGUMy2McH1lDSkAtNE6FHrAGnanFsNMs-n5UuPrCl2kuZ-CPAVm0dhUjYayljcvgc8ZestB7hmFGCogNnksepY1jCXue5BrH2RQrMDVgiywi5oE6OPGZB2fXvDsDNNKYHFZa4hoIW8NlU3xNCauVucIaSSj6GrPvXAa_Hvgurf0zf13ModlzyoGe3TpQCoW1U1Pc3eXKRR9XUqZ97uSDuIW0a0l0UiKpTFAkhbLgXb7ZLEoOEzGqRi9tJUr316sQleY7nJ2CeqSyY"/></div>
+<div><img class="h-auto max-w-full rounded-lg" data-alt="A glass of red wine next to a plate of cheese." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkNglQJlnjKThXd-ZjQCR9uEQAhINp6Mrzxna0Lb5CQ8_uzIrezH95pnPDXyBsdkwyP58tICrznKaYgx0vsUlo4-qdKGAgMBr2xUIt6QX7JxwYMgP3mJ5qQsLppIEz_d0ZV8eiHdbzATX3RlL7qsPDcGhkW6ON8AIYl70m-hDP5jm8GZ1oQJxtnNrdPF0AlLhv5z8IIaOPENQTT6p1yyodvkQWXzK54UDXV5Rrd1qOuRg49nAFYiALgE8GQNADD56a1tOCBnvZXsg"/></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24 px-4 md:px-10 lg:px-20 bg-background-light dark:bg-background-dark" id="contact">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-12">
+<h2 class="text-4xl font-bold font-display text-primary dark:text-primary">Contáctanos</h2>
+<p class="mt-2 text-lg text-gray-600 dark:text-gray-400 font-sans">Nos encantaría saber de ti.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="font-sans">
+<h3 class="text-2xl font-bold font-display text-accent dark:text-secondary mb-4">La Aldeana</h3>
+<div class="space-y-4 text-[#333333] dark:text-gray-300">
+<p class="flex items-start"><span class="material-symbols-outlined mr-3 text-primary mt-1">location_on</span>R. de Rosalía de Castro, 6, Santiago de Vigo, 36201 Vigo, Pontevedra, Spain.</p>
+<p class="flex items-center"><span class="material-symbols-outlined mr-3 text-primary">phone</span><a href="tel: 986 43 91 61">+34 986 43 91 61</a></p>
+<div>
+<h4 class="text-xl font-bold font-display text-accent dark:text-secondary mt-6 mb-2">Horario</h4>
+<p>Sábado: 13:30–15:30, 20:00–23:30</p>
+<p>Domingo: 13:30–16:00</p>
+<p>Lunes: Cerrado</p>
+<p>Martes: 13:30–15:30, 20:00–23:30</p>
+<p>Miércoles: 13:30–15:30, 20:00–23:30</p>
+<p>Jueves: 13:30–15:30, 20:00–23:30</p>
+<p>Viernes: 13:30–15:30, 20:00–23:30</p>
+</div>
+</div>
+</div>
+<div>
+<div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+<iframe allowfullscreen="" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2953.891599125488!2d-8.719394699999999!3d42.238128800000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f6269e655f883%3A0xdefaab4cfe6dace6!2sLa%20Aldeana!5e0!3m2!1ses!2ses!4v1761378677174!5m2!1ses!2ses" style="border:0;" width="600"></iframe>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-secondary/30 dark:bg-background-dark/70 py-6">
+<div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 text-center text-gray-600 dark:text-gray-400 font-sans">
+<div class="flex justify-center space-x-6 mb-4">
+<a class="hover:text-primary dark:hover:text-primary transition-colors" href="https://www.instagram.com/la_aldeana_vigo/">Instagram</a>
+</div>
+<p class="text-sm">© 2024 La Aldeana. Todos los derechos reservados.</p>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>
