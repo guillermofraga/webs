@@ -91,18 +91,6 @@ def logout():
 def configuracion():
     return render_template('configuracion.html')
 
-@app.route('/reservas')
-@login_required
-def reservas():
-    try:
-        reservas = Reserva.query.filter_by(usuario_id=current_user.id, estado='confirmada').all()
-        habitaciones = Habitacion.query.all()
-        return render_template('formulario_reserva.html', reservas=reservas, habitaciones=habitaciones)
-    except Exception as e:
-        app.logger.exception("Error cargando reservas")
-        flash("Error al cargar las reservas.", "error")
-        return render_template('formulario_reserva.html', reservas=[], habitaciones=[])
-
 @app.route('/agregar_reserva', methods=['POST'])
 @login_required
 def agregar_reserva():
@@ -176,7 +164,7 @@ def detalle_habitacion(habitacion_id):
         flash("Error al cargar la habitación.", "error")
         return redirect(url_for('index'))
 
-@app.route('/mis_reservas')
+@app.route('/reservas')
 @login_required
 def mis_reservas():
     try:
@@ -184,11 +172,11 @@ def mis_reservas():
             Reserva.usuario_id == current_user.id,
             Reserva.estado != 'cancelada'
         ).order_by(Reserva.fecha_entrada.desc()).all()
-        return render_template('mis_reservas.html', reservas=reservas)
+        return render_template('reservas.html', reservas=reservas)
     except Exception as e:
         app.logger.exception("Error cargando mis reservas")
         flash("Error al cargar tus reservas.", "error")
-        return render_template('mis_reservas.html', reservas=[])
+        return render_template('reservas.html', reservas=[])
 
 @app.route('/cancelar_reserva/<int:reserva_id>')
 @login_required

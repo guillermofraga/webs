@@ -31,8 +31,8 @@
 
     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Reservar esta habitación</h3>
 
-    <form id="form-reserva" action="{{ url_for('agregar_reserva', habitacion_id=habitacion.id) }}" method="POST"
-      class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+    <form id="form-reserva" action="{{ url_for('agregar_reserva', habitacion_id=habitacion.id) }}" method="POST" class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
+      <input type="hidden" name="habitacion_id" value="{{ habitacion.id }}">
       <div>
         <label for="rango_fechas" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Selecciona tu
           estancia</label>
