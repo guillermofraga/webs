@@ -166,7 +166,7 @@ def detalle_habitacion(habitacion_id):
 
 @app.route('/reservas')
 @login_required
-def mis_reservas():
+def reservas():
     try:
         reservas = Reserva.query.filter(
             Reserva.usuario_id == current_user.id,
@@ -185,7 +185,7 @@ def cancelar_reserva(reserva_id):
         reserva = Reserva.query.get_or_404(reserva_id)
         if reserva.usuario_id != current_user.id:
             flash("No tienes permiso para cancelar esta reserva.", "error")
-            return redirect(url_for('mis_reservas'))
+            return redirect(url_for('reservas'))
 
         reserva.estado = 'cancelada'
         db.session.commit()
@@ -194,7 +194,7 @@ def cancelar_reserva(reserva_id):
         db.session.rollback()
         app.logger.exception("Error cancelando reserva")
         flash("Error al cancelar la reserva.", "error")
-    return redirect(url_for('mis_reservas'))
+    return redirect(url_for('reservas'))
 
 @app.route('/fechas_ocupadas/<int:habitacion_id>')
 def fechas_ocupadas(habitacion_id):
