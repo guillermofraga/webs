@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import pymysql
 from sqlalchemy import and_, or_
 from datetime import datetime, timedelta
+import requests
 
 pymysql.install_as_MySQLdb()
 
@@ -14,6 +15,8 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
+
+N8N_WEBHOOK_URL = "https://automatizaciones-n8n.sctfuk.easypanel.host/webhook-test/emailConfirmacion"  # Reemplaza con tu URL real
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -122,11 +125,30 @@ def agregar_reserva():
         )
         db.session.add(nueva_reserva)
         db.session.commit()
+
+        # Notificar a n8n
+        payload = {
+            "usuario": current_user.nombre,
+            "email": current_user.email,
+            "habitacion_nombre": Habitacion.query.get(habitacion_id).nombre,
+            "habitacion_id": habitacion_id,
+            "fecha_entrada": fecha_entrada.isoformat(),
+            "fecha_salida": fecha_salida.isoformat()
+        }
+
+        try:
+            response = requests.post(N8N_WEBHOOK_URL, json=payload)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            app.logger.warning(f"No se pudo notificar a n8n: {e}")
+
         flash("Reserva confirmada con éxito.", "success")
+
     except Exception as e:
         db.session.rollback()
         app.logger.exception("Error al agregar reserva")
         flash("Error al confirmar la reserva.", "error")
+
     return redirect(url_for('reservas'))
 
 @app.route('/habitaciones_disponibles', methods=['POST'])
