@@ -1,362 +1,116 @@
-<!DOCTYPE html>
-<html lang="es" style="scroll-behavior: smooth;">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Apartamentos Duna Mar</title>
-  <link rel="icon" href="../static/img/favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#13a4ec",
-            "background-light": "#f6f7f8",
-            "background-dark": "#101c22",
-          },
-          fontFamily: {
-            "display": ["Plus Jakarta Sans", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-</head>
+{% block title %}Inicio - Apartamentos Duna Mar{% endblock %}
 
-<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-  <div class="flex flex-col min-h-screen">
-    <header
-      class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-      <nav class="relative container mx-auto px-6 py-4 flex items-center justify-center">
-        <!-- Logo a la izquierda -->
-        <div class="absolute left-0 pl-6 flex items-center gap-2">
-          <a href="#">
-            <img src="../static/img/favicon.png" alt="Duna Mar Logo" class="w-8 h-8" />
-          </a>
-        </div>
-
-        <!-- Menú centrado -->
-        <div class="hidden md:flex items-center gap-8">
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
-        </div>
-
-        <!-- Botones a la derecha -->
-        <div class="absolute right-0 pr-6 flex items-center gap-4">
-          {% if current_user.is_authenticated %}
-          <div class="relative">
-            <button id="userMenuButton"
-              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
-              {{ current_user.nombre }}
-              <span class="material-symbols-outlined">expand_more</span>
-            </button>
-            <div id="userMenu"
-              class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
-              <a href="{{ url_for('configuracion') }}"
-                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                Configuración
-              </a>
-              <a href="{{ url_for('reservas') }}"
-                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                Mis Reservas
-              </a>
-              <a href="{{ url_for('logout') }}"
-                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                Cerrar sesión
-              </a>
-            </div>
-          </div>
-          {% else %}
-          <a href="{{ url_for('login') }}"
-            class="text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">
-            Iniciar sesión
-          </a>
-          <a href="{{ url_for('registro') }}"
-            class="text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">
-            Registrarse
-          </a>
-          {% endif %}
-        </div>
-      </nav>
-      <div id="mobile-menu"
-        class="md:hidden hidden flex flex-col gap-4 px-6 py-6 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg transition-all duration-300">
-        <a class="hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
-        <a class="hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
-        <a class="hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
-        <a class="hover:text-primary transition-colors" href="#contacto">Contacto</a>
-        {% if current_user.is_authenticated %}
-        {% else %}
-
-        <a href="{{ url_for('login') }}"
-          class="px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md hover:bg-blue-600 transition-colors">
-          Iniciar sesión
-        </a>
-        <a href="{{ url_for('registro') }}"
-          class="px-4 py-2 rounded-lg border-2 border-primary text-primary font-semibold shadow-md hover:bg-primary hover:text-white transition-colors">
-          Registrarse
-        </a>
-        {% endif %}
-      </div>
-    </header>
-    <main class="flex-grow">
-      <section class="relative h-[500px] flex items-center justify-center text-white">
-        <div class="absolute inset-0 bg-cover bg-center" style='background-image: url("../static/img/piscina.jpg");'>
-        </div>
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div class="relative z-10 text-center px-6 flex flex-col items-center">
-          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Tu Hogar Junto al Mar</h1>
-          <p class="text-lg md:text-xl max-w-3xl mb-8">Descubre apartamentos con impresionantes vistas al mar para una
-            estancia inolvidable.</p>
-        </div>
-      </section>
-      <section id="apartamentos" class="py-16 sm:py-24">
-        <div class="container mx-auto px-6 pb-16">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos</h2>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y
-              reservadas.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {% for habitacion in habitaciones %}
-            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
-              <div class="relative">
-                <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
-                  src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ habitacion.nombre }}</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{{ habitacion.tipo }}</p>
-                <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">{{
-                    habitacion.precio }}€</span>/noche</p>
-                <a href="{{ url_for('detalle_habitacion', habitacion_id=habitacion.id) }}"
-                  class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
-                  Ver detalles
-                </a>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-      <section id="nosotros" class="bg-white dark:bg-gray-900 py-16 sm:py-24">
-        <div class="container mx-auto px-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4">Sobre
-                Nosotros</h2>
-              <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
-                En <strong>Apartamentos Duna Mar</strong> no solo alquilamos espacios, <em>creamos recuerdos</em>.
-              </p>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Todo comenzó con una idea sencilla: ofrecer un refugio junto al mar donde las personas pudieran
-                <strong>desconectar del ruido</strong>, reconectar con lo esencial y sentirse como en casa.
-              </p>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Cada rincón de nuestros apartamentos ha sido pensado con cariño. Desde las <em>sábanas suaves</em> que
-                invitan al descanso, hasta las <em>terrazas que miran al horizonte</em>, donde los atardeceres parecen
-                detener el tiempo.
-              </p>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Hemos recibido familias que celebran su primer verano juntos, parejas que brindan por nuevos
-                comienzos, y viajeros solitarios que encuentran paz en la brisa marina.
-              </p>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                Nuestro equipo no solo atiende, <strong>escucha</strong>. Porque sabemos que una sonrisa, un gesto
-                amable o una solución rápida pueden marcar la diferencia.
-              </p>
-              <p class="text-gray-600 dark:text-gray-400 mb-4">
-                En Duna Mar, creemos que el <strong>lujo está en los detalles</strong>, y que la verdadera
-                hospitalidad nace del corazón.
-              </p>
-              <p class="text-lg font-semibold text-primary dark:text-white">
-                Bienvenido a tu hogar junto al mar.
-              </p>
-            </div>
-            <div class="flex justify-center">
-              <img alt="Vista del resort Duna Mar" class="rounded-xl shadow-lg w-full max-w-md h-auto object-cover"
-                src="../static/img/edificio.jpg" />
-            </div>
-          </div>
-        </div>
-        <section id="testimonios" class="py-16 sm:py-24">
-          <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Testimonios de
-                Clientes</h2>
-              <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Descubre lo que nuestros huéspedes dicen de su
-                estancia.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos estupendos, muy luminosos,
-                  tranquilos, zonas comunes maravillosas. Hacen una estancia muy agradable. Todo reformado. Por poner
-                  una pega quizá el baño se nota algo más antiguo pero funciona perfectamente. La dueña agradable,
-                  comprensiva...tuvimos un problema familiar y ella actuó de manera muy humana. De agradecer el trato.
-                  Volveremos el año que viene seguro."</p>
-                <div class="flex items-center">
-                  <div>
-                    <p class="font-bold text-gray-900 dark:text-white">Sara Garcia</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos en buen estado. Personal amable
-                  y eficaz. Cerca de la playa de la lanzada. Cuenta con piscina con jacuzzi. Sitio muy limpio."</p>
-                <div class="flex items-center">
-                  <div>
-                    <p class="font-bold text-gray-900 dark:text-white">Miguel Angel Alonso Manchado</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecho</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-                <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Buen lugar, limpio, adecuados y buena
-                  piscina. Atención fenomenal y apartamentos bien equipados."</p>
-                <div class="flex items-center">
-                  <div>
-                    <p class="font-bold text-gray-900 dark:text-white">Agustín Monteagudo Hernández</p>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-    </main>
-    <footer id="contacto" class="bg-gray-100 dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
-      <div class="container mx-auto px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-
-          <!-- Contacto -->
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Contacto</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary">location_on</span>
-                <span>Noalla, Sanxenxo, 36990<br />Fonte de Ons, 47A<br />PO-550, 47A</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <a href="tel:629851531" class="flex items-center gap-3 hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined text-primary">phone</span>
-                  <span>+34 629 85 15 31</span>
-                </a>
-              </li>
-              <li class="flex items-center gap-3">
-                <a href="mailto: apartamentosdunamar47a@gmail.com"
-                  class="flex items-center gap-3 hover:text-primary transition-colors">
-                  <span class="material-symbols-outlined text-primary">email</span>
-                  <span>apartamentosdunamar47a@gmail.com</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Horario -->
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Horario</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary">login</span>
-                <span>Entrada: 16:00 a 22:00</span>
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary">logout</span>
-                <span>Salida: 8:30 a 10:00</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Mapa -->
-          <div>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Ubicación</h3>
-            <div class="rounded-xl overflow-hidden shadow-lg h-64">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.22425218050125!2d-8.865516700764177!3d42.44685999751286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f418930ddeed3%3A0xbb4e57292bf5a4ac!2sApartamentos%20Duna%20Mar!5e0!3m2!1ses!2ses!4v1759736260250!5m2!1ses!2ses"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-              </iframe>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Footer base -->
-        <div
-          class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400 text-sm">
-          <p>© 2024 Apartamentos Duna Mar. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </footer>
+{% block content %}
+<section class="relative h-[500px] flex items-center justify-center text-white">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/static/img/piscina.jpg')"></div>
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="relative z-10 text-center px-6 flex flex-col items-center">
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Tu Hogar Junto al Mar</h1>
+    <p class="text-lg md:text-xl max-w-3xl mb-8">Descubre apartamentos con impresionantes vistas al mar para una estancia inolvidable.</p>
   </div>
+</section>
 
+<section id="apartamentos" class="py-16 sm:py-24">
+  <div class="container mx-auto px-6 pb-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Apartamentos</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Explora nuestras propiedades más populares y reservadas.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for habitacion in habitaciones %}
+      <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
+        <div class="relative">
+          <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
+            src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ habitacion.nombre }}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{{ habitacion.tipo }}</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">Desde <span class="font-bold text-primary">{{ habitacion.precio }}€</span>/noche</p>
+          <a href="{{ url_for('detalle_habitacion', habitacion_id=habitacion.id) }}"
+            class="inline-block px-5 py-2.5 text-sm font-bold bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+            Ver detalles
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-  <!-- Zona de Scripts -->
+<section id="nosotros" class="bg-white dark:bg-gray-900 py-16 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl mb-4">Sobre Nosotros</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+          En <strong>Apartamentos Duna Mar</strong> no solo alquilamos espacios, <em>creamos recuerdos</em>.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Todo comenzó con una idea sencilla: ofrecer un refugio junto al mar donde las personas pudieran <strong>desconectar del ruido</strong>, reconectar con lo esencial y sentirse como en casa.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Cada rincón de nuestros apartamentos ha sido pensado con cariño. Desde las <em>sábanas suaves</em> que invitan al descanso, hasta las <em>terrazas que miran al horizonte</em>, donde los atardeceres parecen detener el tiempo.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Hemos recibido familias que celebran su primer verano juntos, parejas que brindan por nuevos comienzos, y viajeros solitarios que encuentran paz en la brisa marina.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Nuestro equipo no solo atiende, <strong>escucha</strong>. Porque sabemos que una sonrisa, un gesto amable o una solución rápida pueden marcar la diferencia.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          En Duna Mar, creemos que el <strong>lujo está en los detalles</strong>, y que la verdadera hospitalidad nace del corazón.
+        </p>
+        <p class="text-lg font-semibold text-primary dark:text-white">
+          Bienvenido a tu hogar junto al mar.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img alt="Vista del resort Duna Mar" class="rounded-xl shadow-lg w-full max-w-md h-auto object-cover"
+          src="{{ url_for('static', filename='img/edificio.jpg') }}" />
+      </div>
+    </div>
+  </div>
+</section>
 
-
-  <script>
-    const menuButton = document.querySelector('button.md\\:hidden');
-    const menuIcon = menuButton.querySelector('span.material-symbols-outlined');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuIcon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuIcon.textContent = 'menu';
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const userMenuButton = document.getElementById('userMenuButton');
-      const userMenu = document.getElementById('userMenu');
-
-      userMenuButton.addEventListener('click', function (e) {
-        e.stopPropagation(); // evita que el clic se propague
-        userMenu.classList.toggle('hidden');
-      });
-
-      // Cierra el menú si haces clic fuera
-      document.addEventListener('click', function (e) {
-        if (!userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
-          userMenu.classList.add('hidden');
-        }
-      });
-    });
-  </script>
-</body>
-
-</html>
+<section id="testimonios" class="py-16 sm:py-24">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Testimonios de Clientes</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Descubre lo que nuestros huéspedes dicen de su estancia.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+        <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos estupendos, muy luminosos, tranquilos, zonas comunes maravillosas..."</p>
+        <div class="flex items-center">
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white">Sara Garcia</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+        <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Apartamentos en buen estado. Personal amable y eficaz. Cerca de la playa..."</p>
+        <div class="flex items-center">
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white">Miguel Angel Alonso Manchado</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecho</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+        <p class="text-gray-600 dark:text-gray-400 italic mb-4">"Buen lugar, limpio, adecuados y buena piscina. Atención fenomenal..."</p>
+        <div class="flex items-center">
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white">Agustín Monteagudo Hernández</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">Huésped Satisfecha</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

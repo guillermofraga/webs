@@ -43,20 +43,30 @@
   <div class="flex flex-col min-h-screen">
     <!-- Encabezado -->
     <header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-      <nav class="relative container mx-auto px-6 py-4 flex items-center justify-center">
-        <div class="absolute left-0 pl-6 flex items-center gap-2">
-          <a href="{{ url_for('index') }}">
+  <nav class="relative container mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Left: mobile menu button + logo -->
+        <div class="flex items-center gap-3">
+          <!-- Mobile hamburger (visible on small, hidden on xl and above) -->
+          <button id="mobileMenuButton" aria-label="Abrir menú" class="xl:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+
+          <a href="{{ url_for('index') }}" class="flex items-center">
             <img src="{{ url_for('static', filename='img/favicon.png') }}" alt="Duna Mar Logo" class="w-8 h-8" />
           </a>
         </div>
-        <div class="hidden md:flex items-center gap-8">
+
+        <!-- Center: main navigation (centered on md+; hidden on mobile) -->
+  <div class="hidden xl:flex items-center gap-6 xl:gap-8 xl:mx-auto xl:max-w-3xl xl:absolute xl:left-1/2 xl:transform xl:-translate-x-1/2">
           <a class="text-sm font-medium hover:text-primary transition-colors" href="{{ url_for('index') }}">Inicio</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
           <a class="text-sm font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
         </div>
-        <div class="absolute right-0 pr-6 flex items-center gap-4">
+
+        <!-- Right: auth / user menu -->
+        <div class="flex items-center gap-4">
           {% if current_user.is_authenticated %}
           <div class="relative">
             <button id="userMenuButton" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
@@ -70,9 +80,30 @@
             </div>
           </div>
           {% else %}
-          <a href="{{ url_for('login') }}" class="text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">Iniciar sesión</a>
-          <a href="{{ url_for('registro') }}" class="text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">Registrarse</a>
+          <!-- On small screens these are moved into the mobile menu; visible on wide screens (>=1280px) -->
+          <a href="{{ url_for('login') }}" class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">Iniciar sesión</a>
+          <a href="{{ url_for('registro') }}" class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">Registrarse</a>
           {% endif %}
+        </div>
+
+        <!-- Mobile menu: hidden by default, shown when hamburger clicked -->
+  <div id="mobileMenu" class="xl:hidden absolute left-0 right-0 top-full mt-2 px-6 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-md hidden z-40">
+          <div class="flex flex-col gap-3">
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('index') }}">Inicio</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
+            <div class="border-t border-gray-100 dark:border-gray-800 my-2"></div>
+            {% if current_user.is_authenticated %}
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('configuracion') }}">Configuración</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('reservas') }}">Mis Reservas</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+            <a class="text-base font-medium px-4 py-2 rounded-lg bg-primary text-white text-center" href="{{ url_for('login') }}">Iniciar sesión</a>
+            <a class="text-base font-medium px-4 py-2 rounded-lg border border-primary text-primary text-center" href="{{ url_for('registro') }}">Registrarse</a>
+            {% endif %}
+          </div>
         </div>
       </nav>
     </header>
@@ -139,15 +170,35 @@
   document.addEventListener('DOMContentLoaded', function () {
     const userMenuButton = document.getElementById('userMenuButton');
     const userMenu = document.getElementById('userMenu');
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
 
+    // Toggle user menu
     userMenuButton?.addEventListener('click', function (e) {
       e.stopPropagation();
       userMenu.classList.toggle('hidden');
     });
 
+    // Toggle mobile menu
+    mobileMenuButton?.addEventListener('click', function (e) {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close menus when clicking outside
     document.addEventListener('click', function (e) {
-      if (!userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
+      if (userMenu && userMenuButton && !userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
         userMenu.classList.add('hidden');
+      }
+      if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // Ensure mobile menu is hidden when resizing to desktop (>=1280px)
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1280) {
+        mobileMenu?.classList.add('hidden');
       }
     });
   });
