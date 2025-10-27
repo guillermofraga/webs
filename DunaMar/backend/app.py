@@ -138,10 +138,12 @@ def agregar_reserva():
         ).all()
 
         if reservas_existentes:
-            flash("La habitación ya está reservada en esas fechas.", "error")
+            mensaje = "La habitación ya está reservada en esas fechas."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({"error": mensaje}), 409
+            flash(mensaje, "error")
             return redirect(url_for('reservas'))
 
-        # Crear reserva pero no confirmar aún
         nueva_reserva = Reserva(
             fecha_entrada=fecha_entrada,
             fecha_salida=fecha_salida,
@@ -150,9 +152,8 @@ def agregar_reserva():
             usuario_id=current_user.id
         )
         db.session.add(nueva_reserva)
-        db.session.flush()  # Genera el ID sin hacer commit
+        db.session.flush()
 
-        # Notificar a n8n
         payload = {
             "usuario": current_user.nombre,
             "email": current_user.email,
@@ -167,19 +168,27 @@ def agregar_reserva():
             response.raise_for_status()
         except requests.exceptions.RequestException as e:
             db.session.rollback()
-            app.logger.warning(f"No se pudo notificar a n8n: {e}")
-            flash("No se pudo confirmar la reserva porque falló la notificación.", "error")
+            mensaje = "No se pudo confirmar la reserva porque falló la notificación."
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return jsonify({"error": mensaje}), 500
+            flash(mensaje, "error")
             return redirect(url_for('reservas'))
 
-        # Confirmar reserva solo si el correo fue enviado
         nueva_reserva.estado = 'confirmada'
         db.session.commit()
-        flash("Reserva confirmada con éxito.", "success")
+
+        mensaje = "Reserva confirmada con éxito."
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return jsonify({"message": mensaje}), 200
+        flash(mensaje, "success")
 
     except Exception as e:
         db.session.rollback()
         app.logger.exception("Error al agregar reserva")
-        flash("Error al confirmar la reserva.", "error")
+        mensaje = "Error al confirmar la reserva."
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return jsonify({"error": mensaje}), 500
+        flash(mensaje, "error")
 
     return redirect(url_for('reservas'))
 
