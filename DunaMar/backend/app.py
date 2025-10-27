@@ -16,8 +16,6 @@ app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
 
-N8N_WEBHOOK_URL = "https://automatizaciones-n8n.sctfuk.easypanel.host/webhook-test/emailConfirmacion"  # Reemplaza con tu URL real
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -116,15 +114,16 @@ def agregar_reserva():
             flash("La habitación ya está reservada en esas fechas.", "error")
             return redirect(url_for('reservas'))
 
+        # Crear reserva pero no confirmar aún
         nueva_reserva = Reserva(
             fecha_entrada=fecha_entrada,
             fecha_salida=fecha_salida,
-            estado='confirmada',
+            estado='pendiente',
             habitacion_id=habitacion_id,
             usuario_id=current_user.id
         )
         db.session.add(nueva_reserva)
-        db.session.commit()
+        db.session.flush()  # Genera el ID sin hacer commit
 
         # Notificar a n8n
         payload = {
@@ -137,11 +136,17 @@ def agregar_reserva():
         }
 
         try:
-            response = requests.post(N8N_WEBHOOK_URL, json=payload)
+            response = requests.post(Config.N8N_WEBHOOK_URL, json=payload)
             response.raise_for_status()
         except requests.exceptions.RequestException as e:
+            db.session.rollback()
             app.logger.warning(f"No se pudo notificar a n8n: {e}")
+            flash("No se pudo confirmar la reserva porque falló la notificación.", "error")
+            return redirect(url_for('reservas'))
 
+        # Confirmar reserva solo si el correo fue enviado
+        nueva_reserva.estado = 'confirmada'
+        db.session.commit()
         flash("Reserva confirmada con éxito.", "success")
 
     except Exception as e:
@@ -205,17 +210,44 @@ def reservas():
 def cancelar_reserva(reserva_id):
     try:
         reserva = Reserva.query.get_or_404(reserva_id)
+
         if reserva.usuario_id != current_user.id:
             flash("No tienes permiso para cancelar esta reserva.", "error")
             return redirect(url_for('reservas'))
 
+        # Actualizar estado
         reserva.estado = 'cancelada'
         db.session.commit()
+
+        # Notificar a n8n
+        payload = {
+            "accion": "cancelar",
+            "usuario": current_user.nombre,
+            "email": current_user.email,
+            "habitacion_nombre": reserva.habitacion.nombre,
+            "habitacion_id": reserva.habitacion_id,
+            "fecha_entrada": reserva.fecha_entrada.isoformat(),
+            "fecha_salida": reserva.fecha_salida.isoformat(),
+            "reserva_id": reserva.id
+        }
+
+        try:
+            response = requests.post(Config.N8N_WEBHOOK_URL, json=payload, timeout=10)
+            response.raise_for_status()
+            data = response.json()
+
+            if data.get("status") != "success":
+                app.logger.warning(f"n8n no confirmó el envío del correo de cancelación: {data}")
+        except Exception as e:
+            app.logger.warning(f"No se pudo notificar a n8n sobre la cancelación: {e}")
+
         flash("Reserva cancelada correctamente.", "success")
+
     except Exception as e:
         db.session.rollback()
         app.logger.exception("Error cancelando reserva")
         flash("Error al cancelar la reserva.", "error")
+
     return redirect(url_for('reservas'))
 
 @app.route('/fechas_ocupadas/<int:habitacion_id>')
@@ -237,5 +269,20 @@ def fechas_ocupadas(habitacion_id):
         app.logger.exception("Error obteniendo fechas ocupadas")
         return jsonify({'error': 'Error interno al obtener fechas'}), 500
 
+# Manejador de errores
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('500.html'), 500
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template('403.html'), 403
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

@@ -58,11 +58,11 @@
 
         <!-- Center: main navigation (centered on md+; hidden on mobile) -->
   <div class="hidden xl:flex items-center gap-6 xl:gap-8 xl:mx-auto xl:max-w-3xl xl:absolute xl:left-1/2 xl:transform xl:-translate-x-1/2">
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="{{ url_for('index') }}">Inicio</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
-          <a class="text-sm font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
+          <a href="{{ url_for('index') }}" class="text-base font-medium hover:text-primary transition-colors">Inicio</a>
+          <a href="{{ url_for('index', _anchor='apartamentos') }}" class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
+          <a href="{{ url_for('index', _anchor='nosotros') }}" class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
+          <a href="{{ url_for('index', _anchor='testimonios') }}" class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
+          <a href="#contacto" class="text-base font-medium hover:text-primary transition-colors">Contacto</a>
         </div>
 
         <!-- Right: auth / user menu -->
@@ -89,11 +89,11 @@
         <!-- Mobile menu: hidden by default, shown when hamburger clicked -->
   <div id="mobileMenu" class="xl:hidden absolute left-0 right-0 top-full mt-2 px-6 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-md hidden z-40">
           <div class="flex flex-col gap-3">
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('index') }}">Inicio</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="#apartamentos">Apartamentos</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="#nosotros">Sobre Nosotros</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="#testimonios">Testimonios</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="#contacto">Contacto</a>
+            <a href="{{ url_for('index') }}" class="text-base font-medium hover:text-primary transition-colors">Inicio</a>
+            <a href="{{ url_for('index', _anchor='apartamentos') }}" class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
+            <a href="{{ url_for('index', _anchor='nosotros') }}" class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
+            <a href="{{ url_for('index', _anchor='testimonios') }}" class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
+            <a href="#contacto" class="text-base font-medium hover:text-primary transition-colors">Contacto</a>
             <div class="border-t border-gray-100 dark:border-gray-800 my-2"></div>
             {% if current_user.is_authenticated %}
             <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('configuracion') }}">Configuración</a>

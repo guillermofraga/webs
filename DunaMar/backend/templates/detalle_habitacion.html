@@ -77,16 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
       diasOcupados = data.ocupadas || [];
       diasEntrada = data.entradas || [];
 
-      flatpickr(rangoInput, {
-        mode: "range",
-        inline: true,
-        locale: "es",
-        disable: diasOcupados,     // solo noches que realmente bloquean
-        minDate: "today",
-        dateFormat: "Y-m-d",
-        showMonths: 2,
+      // Initialize flatpickr responsively: inline 2-months on wide screens, popup 1-month on smaller
+      let fpInstance = null;
 
-        onChange: function (selectedDates, dateStr, instance) {
+      function initFlatpickr() {
+        // destroy previous instance if exists
+        if (fpInstance && fpInstance.destroy) fpInstance.destroy();
+
+        const wide = window.innerWidth >= 1280; // threshold: >=1280 -> desktop-like
+
+        fpInstance = flatpickr(rangoInput, {
+          mode: "range",
+          inline: wide, // inline calendar on wide screens, popup on smaller
+          locale: "es",
+          disable: diasOcupados,     // solo noches que realmente bloquean
+          minDate: "today",
+          dateFormat: "Y-m-d",
+          showMonths: wide ? 2 : 1,
+          // on mobile, allow typing? keep readonly to use picker
+          allowInput: false,
+
+          onChange: function (selectedDates, dateStr, instance) {
           botonReserva.disabled = true;
           botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
           mensaje.textContent = "";
@@ -166,6 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
             dayElem.style.color = "#000";
             dayElem.style.borderRadius = "50%";
           }
+        }
+      });
+      }
+
+      // initialize first time
+      initFlatpickr();
+
+      // Re-init when crossing the width threshold to adapt inline vs popup
+      let lastWide = window.innerWidth >= 1280;
+      window.addEventListener('resize', function () {
+        const nowWide = window.innerWidth >= 1280;
+        if (nowWide !== lastWide) {
+          lastWide = nowWide;
+          initFlatpickr();
         }
       });
     })
