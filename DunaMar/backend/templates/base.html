@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth;">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,8 @@
   <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png">
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
@@ -39,15 +41,18 @@
     }
   </style>
 </head>
+
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
   <div class="flex flex-col min-h-screen">
     <!-- Encabezado -->
-    <header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-  <nav class="relative container mx-auto px-6 py-4 flex items-center justify-between">
+    <header
+      class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
+      <nav class="relative container mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Left: mobile menu button + logo -->
         <div class="flex items-center gap-3">
           <!-- Mobile hamburger (visible on small, hidden on xl and above) -->
-          <button id="mobileMenuButton" aria-label="Abrir menú" class="xl:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
+          <button id="mobileMenuButton" aria-label="Abrir menú"
+            class="xl:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
             <span class="material-symbols-outlined">menu</span>
           </button>
 
@@ -57,11 +62,15 @@
         </div>
 
         <!-- Center: main navigation (centered on md+; hidden on mobile) -->
-  <div class="hidden xl:flex items-center gap-6 xl:gap-8 xl:mx-auto xl:max-w-3xl xl:absolute xl:left-1/2 xl:transform xl:-translate-x-1/2">
+        <div
+          class="hidden xl:flex items-center gap-6 xl:gap-8 xl:mx-auto xl:max-w-3xl xl:absolute xl:left-1/2 xl:transform xl:-translate-x-1/2">
           <a href="{{ url_for('index') }}" class="text-base font-medium hover:text-primary transition-colors">Inicio</a>
-          <a href="{{ url_for('index', _anchor='apartamentos') }}" class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
-          <a href="{{ url_for('index', _anchor='nosotros') }}" class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
-          <a href="{{ url_for('index', _anchor='testimonios') }}" class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
+          <a href="{{ url_for('index', _anchor='apartamentos') }}"
+            class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
+          <a href="{{ url_for('index', _anchor='nosotros') }}"
+            class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
+          <a href="{{ url_for('index', _anchor='testimonios') }}"
+            class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
           <a href="#contacto" class="text-base font-medium hover:text-primary transition-colors">Contacto</a>
         </div>
 
@@ -69,44 +78,82 @@
         <div class="flex items-center gap-4">
           {% if current_user.is_authenticated %}
           <div class="relative">
-            <button id="userMenuButton" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
+            <button id="userMenuButton"
+              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-semibold shadow-md focus:outline-none">
               {{ current_user.nombre }}
               <span class="material-symbols-outlined">expand_more</span>
             </button>
-            <div id="userMenu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
-              <a href="{{ url_for('configuracion') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Configuración</a>
-              <a href="{{ url_for('reservas') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Mis Reservas</a>
-              <a href="{{ url_for('logout') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Cerrar sesión</a>
+            <div id="userMenu"
+              class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
+              <a href="{{ url_for('configuracion') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Configuración</a>
+              <a href="{{ url_for('reservas') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Mis
+                Reservas</a>
+              <a href="{{ url_for('logout') }}"
+                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Cerrar
+                sesión</a>
             </div>
           </div>
           {% else %}
           <!-- On small screens these are moved into the mobile menu; visible on wide screens (>=1280px) -->
-          <a href="{{ url_for('login') }}" class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">Iniciar sesión</a>
-          <a href="{{ url_for('registro') }}" class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">Registrarse</a>
+          <a href="{{ url_for('login') }}"
+            class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-colors">Iniciar
+            sesión</a>
+          <a href="{{ url_for('registro') }}"
+            class="hidden xl:inline-block text-sm font-medium px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition-colors">Registrarse</a>
           {% endif %}
         </div>
 
         <!-- Mobile menu: hidden by default, shown when hamburger clicked -->
-  <div id="mobileMenu" class="xl:hidden absolute left-0 right-0 top-full mt-2 px-6 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-md hidden z-40">
+        <div id="mobileMenu"
+          class="xl:hidden absolute left-0 right-0 top-full mt-2 px-6 py-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-md hidden z-40">
           <div class="flex flex-col gap-3">
-            <a href="{{ url_for('index') }}" class="text-base font-medium hover:text-primary transition-colors">Inicio</a>
-            <a href="{{ url_for('index', _anchor='apartamentos') }}" class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
-            <a href="{{ url_for('index', _anchor='nosotros') }}" class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
-            <a href="{{ url_for('index', _anchor='testimonios') }}" class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
+            <a href="{{ url_for('index') }}"
+              class="text-base font-medium hover:text-primary transition-colors">Inicio</a>
+            <a href="{{ url_for('index', _anchor='apartamentos') }}"
+              class="text-base font-medium hover:text-primary transition-colors">Apartamentos</a>
+            <a href="{{ url_for('index', _anchor='nosotros') }}"
+              class="text-base font-medium hover:text-primary transition-colors">Sobre Nosotros</a>
+            <a href="{{ url_for('index', _anchor='testimonios') }}"
+              class="text-base font-medium hover:text-primary transition-colors">Testimonios</a>
             <a href="#contacto" class="text-base font-medium hover:text-primary transition-colors">Contacto</a>
             <div class="border-t border-gray-100 dark:border-gray-800 my-2"></div>
             {% if current_user.is_authenticated %}
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('configuracion') }}">Configuración</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('reservas') }}">Mis Reservas</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('logout') }}">Cerrar sesión</a>
+            <a class="text-base font-medium hover:text-primary transition-colors"
+              href="{{ url_for('configuracion') }}">Configuración</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('reservas') }}">Mis
+              Reservas</a>
+            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('logout') }}">Cerrar
+              sesión</a>
             {% else %}
-            <a class="text-base font-medium px-4 py-2 rounded-lg bg-primary text-white text-center" href="{{ url_for('login') }}">Iniciar sesión</a>
-            <a class="text-base font-medium px-4 py-2 rounded-lg border border-primary text-primary text-center" href="{{ url_for('registro') }}">Registrarse</a>
+            <a class="text-base font-medium px-4 py-2 rounded-lg bg-primary text-white text-center"
+              href="{{ url_for('login') }}">Iniciar sesión</a>
+            <a class="text-base font-medium px-4 py-2 rounded-lg border border-primary text-primary text-center"
+              href="{{ url_for('registro') }}">Registrarse</a>
             {% endif %}
           </div>
         </div>
       </nav>
     </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mx-auto mt-4 max-w-2xl space-y-2">
+      {% for category, message in messages %}
+      {% if category in ['error', 'success', 'info'] %}
+      <div class="px-4 py-2 rounded text-sm font-medium
+                      {% if category == 'success' %}bg-green-100 text-green-800
+                      {% elif category == 'error' %}bg-red-100 text-red-800
+                      {% elif category == 'info' %}bg-blue-100 text-blue-800{% endif %}">
+        {{ message }}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
 
     <!-- Contenido principal -->
     <main class="flex-grow">
@@ -131,7 +178,8 @@
                 </a>
               </li>
               <li class="flex items-center gap-3">
-                <a href="mailto:apartamentosdunamar47a@gmail.com" class="flex items-center gap-3 hover:text-primary transition-colors">
+                <a href="mailto:apartamentosdunamar47a@gmail.com"
+                  class="flex items-center gap-3 hover:text-primary transition-colors">
                   <span class="material-symbols-outlined text-primary">email</span>
                   <span>apartamentosdunamar47a@gmail.com</span>
                 </a>
@@ -154,11 +202,14 @@
           <div>
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Ubicación</h3>
             <div class="rounded-xl overflow-hidden shadow-lg h-64">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.22425218050125!2d-8.865516700764177!3d42.44685999751286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f418930ddeed3%3A0xbb4e57292bf5a4ac!2sApartamentos%20Duna%20Mar!5e0!3m2!1ses!2ses!4v1759736260250!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d260.22425218050125!2d-8.865516700764177!3d42.44685999751286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f418930ddeed3%3A0xbb4e57292bf5a4ac!2sApartamentos%20Duna%20Mar!5e0!3m2!1ses!2ses!4v1759736260250!5m2!1ses!2ses"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
           </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400 text-sm">
+        <div
+          class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-gray-500 dark:text-gray-400 text-sm">
           <p>© 2024 Apartamentos Duna Mar. Todos los derechos reservados.</p>
         </div>
       </div>
@@ -166,42 +217,43 @@
   </div>
 
   <!-- Scripts -->
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const userMenuButton = document.getElementById('userMenuButton');
-    const userMenu = document.getElementById('userMenu');
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const userMenuButton = document.getElementById('userMenuButton');
+      const userMenu = document.getElementById('userMenu');
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
 
-    // Toggle user menu
-    userMenuButton?.addEventListener('click', function (e) {
-      e.stopPropagation();
-      userMenu.classList.toggle('hidden');
-    });
+      // Toggle user menu
+      userMenuButton?.addEventListener('click', function (e) {
+        e.stopPropagation();
+        userMenu.classList.toggle('hidden');
+      });
 
-    // Toggle mobile menu
-    mobileMenuButton?.addEventListener('click', function (e) {
-      e.stopPropagation();
-      mobileMenu.classList.toggle('hidden');
-    });
+      // Toggle mobile menu
+      mobileMenuButton?.addEventListener('click', function (e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+      });
 
-    // Close menus when clicking outside
-    document.addEventListener('click', function (e) {
-      if (userMenu && userMenuButton && !userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
-        userMenu.classList.add('hidden');
-      }
-      if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-        mobileMenu.classList.add('hidden');
-      }
-    });
+      // Close menus when clicking outside
+      document.addEventListener('click', function (e) {
+        if (userMenu && userMenuButton && !userMenu.contains(e.target) && !userMenuButton.contains(e.target)) {
+          userMenu.classList.add('hidden');
+        }
+        if (mobileMenu && mobileMenuButton && !mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
 
-    // Ensure mobile menu is hidden when resizing to desktop (>=1280px)
-    window.addEventListener('resize', function () {
-      if (window.innerWidth >= 1280) {
-        mobileMenu?.classList.add('hidden');
-      }
+      // Ensure mobile menu is hidden when resizing to desktop (>=1280px)
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 1280) {
+          mobileMenu?.classList.add('hidden');
+        }
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>

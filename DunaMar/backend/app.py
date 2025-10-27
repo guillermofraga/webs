@@ -8,6 +8,7 @@ import pymysql
 from sqlalchemy import and_, or_
 from datetime import datetime, timedelta
 import requests
+import re
 
 pymysql.install_as_MySQLdb()
 
@@ -19,6 +20,20 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+
+# Funcion para validar la contraseña fuerte:
+
+def validar_contraseña_fuerte(contraseña):
+    """
+    Verifica si la contraseña cumple con los requisitos mínimos:
+    - Al menos 8 caracteres
+    - Una letra mayúscula
+    - Una letra minúscula
+    - Un número
+    - Un símbolo especial (@$!%*?&)
+    """
+    patron = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
+    return re.match(patron, contraseña) is not None
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -42,23 +57,35 @@ def index():
 def registro():
     if request.method == 'POST':
         try:
-            nombre = request.form['nombre']
-            email = request.form['email']
-            contraseña = generate_password_hash(request.form['contraseña'])
+            nombre = request.form['nombre'].strip()
+            email = request.form['email'].strip().lower()
+            contraseña_raw = request.form['contraseña']
 
-            if Usuario.query.filter_by(email=email).first():
-                flash("El usuario ya existe.", "error")
+            # Verificar si el correo ya existe
+            usuario_existente = Usuario.query.filter_by(email=email).first()
+            if usuario_existente:
+                flash("Ya existe una cuenta con ese correo electrónico.", "error")
                 return redirect(url_for('registro'))
+
+            # Validar contraseña fuerte (opcional)
+            if not validar_contraseña_fuerte(contraseña_raw):
+                flash("La contraseña no cumple con los requisitos mínimos.", "error")
+                return redirect(url_for('registro'))
+
+            contraseña = generate_password_hash(contraseña_raw)
 
             nuevo_usuario = Usuario(nombre=nombre, email=email, contraseña=contraseña)
             db.session.add(nuevo_usuario)
             db.session.commit()
+            flash("Registro exitoso. Ahora puedes iniciar sesión.", "success")
             return redirect(url_for('login'))
+
         except Exception as e:
             db.session.rollback()
             app.logger.exception("Error en el registro")
             flash("Error al registrar el usuario.", "error")
             return redirect(url_for('registro'))
+
     return render_template('registro.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -285,4 +312,4 @@ def forbidden(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
