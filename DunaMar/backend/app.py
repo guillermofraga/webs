@@ -319,6 +319,5 @@ def internal_error(e):
 def forbidden(e):
     return render_template('403.html'), 403
 
-
 if __name__ == '__main__':
     app.run(debug=True)
