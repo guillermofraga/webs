@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Error del servidor{% endblock %}
+
+{% block content %}
+<section class="flex flex-col items-center justify-center py-24 text-center">
+  <h1 class="text-6xl font-bold text-red-600 mb-4">500</h1>
+  <p class="text-xl text-gray-700 dark:text-gray-300 mb-6">
+    ¡Ups! Algo salió mal en el servidor.
+  </p>
+  <p class="text-md text-gray-500 dark:text-gray-400 mb-8">
+    Estamos trabajando para solucionarlo. Intenta de nuevo más tarde.
+  </p>
+  <a href="{{ url_for('index') }}" class="px-6 py-2 bg-primary text-white rounded hover:bg-blue-700 transition">
+    Volver al inicio
+  </a>
+</section>
+{% endblock %}
