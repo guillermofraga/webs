@@ -127,38 +127,12 @@ def agregar_reserva():
         fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
         fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
 
-        reservas_existentes = Reserva.query.filter(
-            Reserva.habitacion_id == habitacion_id,
-            Reserva.estado == 'confirmada',
-            or_(
-                and_(Reserva.fecha_entrada <= fecha_entrada, Reserva.fecha_salida > fecha_entrada),
-                and_(Reserva.fecha_entrada < fecha_salida, Reserva.fecha_salida >= fecha_salida),
-                and_(Reserva.fecha_entrada >= fecha_entrada, Reserva.fecha_salida <= fecha_salida)
-            )
-        ).all()
-
-        if reservas_existentes:
-            mensaje = "La habitación ya está reservada en esas fechas."
-            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                return jsonify({"error": mensaje}), 409
-            flash(mensaje, "error")
-            return redirect(url_for('reservas'))
-
-        nueva_reserva = Reserva(
-            fecha_entrada=fecha_entrada,
-            fecha_salida=fecha_salida,
-            estado='pendiente',
-            habitacion_id=habitacion_id,
-            usuario_id=current_user.id
-        )
-        db.session.add(nueva_reserva)
-        db.session.flush()
-
+        # Preparar payload para n8n
         payload = {
             "usuario": current_user.nombre,
             "email": current_user.email,
-            "habitacion_nombre": Habitacion.query.get(habitacion_id).nombre,
             "habitacion_id": habitacion_id,
+            "habitacion_nombre": Habitacion.query.get(habitacion_id).nombre,
             "fecha_entrada": fecha_entrada.isoformat(),
             "fecha_salida": fecha_salida.isoformat()
         }
@@ -167,30 +141,31 @@ def agregar_reserva():
             response = requests.post(Config.N8N_WEBHOOK_URL, json=payload)
             response.raise_for_status()
         except requests.exceptions.RequestException as e:
-            db.session.rollback()
-            mensaje = "No se pudo confirmar la reserva porque falló la notificación."
+            app.logger.warning(f"No se pudo enviar la solicitud a n8n: {e}")
+            mensaje = "No se pudo enviar la solicitud. Inténtalo más tarde."
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return jsonify({"error": mensaje}), 500
             flash(mensaje, "error")
             return redirect(url_for('reservas'))
 
-        nueva_reserva.estado = 'confirmada'
-        db.session.commit()
-
-        mensaje = "Reserva confirmada con éxito."
+        # No se guarda en la base de datos
+        mensaje = "Tu solicitud ha sido enviada. El administrador se pondrá en contacto contigo."
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return jsonify({"message": mensaje}), 200
         flash(mensaje, "success")
 
     except Exception as e:
-        db.session.rollback()
-        app.logger.exception("Error al agregar reserva")
-        mensaje = "Error al confirmar la reserva."
+        app.logger.exception("Error al procesar la solicitud")
+        mensaje = "Hubo un error al enviar tu solicitud."
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return jsonify({"error": mensaje}), 500
+            return jsonify({
+                "message": mensaje,
+                "redirect": url_for('detalle_habitacion', habitacion_id=habitacion_id)
+                }), 200
         flash(mensaje, "error")
 
-    return redirect(url_for('reservas'))
+    return redirect(url_for('detalle_habitacion',habitacion_id=habitacion_id))
+
 
 @app.route('/habitaciones_disponibles', methods=['POST'])
 def habitaciones_disponibles():
