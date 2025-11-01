@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, session
 from config import Config
 from models import db, Usuario, Habitacion
 from flask_migrate import Migrate
@@ -84,11 +84,16 @@ def login():
         try:
             email = request.form['email']
             contraseña = request.form['contraseña']
-            with db.session() as session:
-                usuario = session.scalars(select(Usuario).filter_by(email=email)).first()
+            recordarme = 'recordarme' in request.form  # True si se marcó la casilla
+
+            with db.session() as session_db:
+                usuario = session_db.scalars(select(Usuario).filter_by(email=email)).first()
+
             if usuario and check_password_hash(usuario.contraseña, contraseña):
                 login_user(usuario)
+                session.permanent = recordarme  # activa sesión permanente si se marcó la casilla de recordarme
                 return redirect(url_for('index'))
+
             flash("Credenciales incorrectas.", "error")
         except Exception as e:
             app.logger.exception("Error en el login")
@@ -145,7 +150,7 @@ def solicitar_reserva():
                 return jsonify({"error": mensaje}), 500
             flash(mensaje, "error")
             return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
-
+        
         mensaje = "Tu solicitud ha sido enviada. El administrador se pondrá en contacto contigo."
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return jsonify({"message": mensaje}), 200

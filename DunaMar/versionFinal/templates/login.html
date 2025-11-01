@@ -8,20 +8,34 @@
 
     <form method="POST" action="{{ url_for('login') }}" class="space-y-4">
         <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo electrónico</label>
-            <input type="email" class="w-full mt-1 px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" id="email" name="email" required>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo
+                electrónico</label>
+            <input type="email" class="w-full mt-1 px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" id="email"
+                name="email" required>
         </div>
 
         <div>
-            <label for="contraseña" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
-            <input type="password" class="w-full mt-1 px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800" id="contraseña" name="contraseña" required>
+            <label for="contraseña"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
+            <input type="password" class="w-full mt-1 px-4 py-2 rounded-lg border bg-gray-50 dark:bg-gray-800"
+                id="contraseña" name="contraseña" required>
         </div>
 
+        <div class="mb-4">
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="recordarme" class="form-checkbox">
+                <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Recordarme</span>
+            </label>
+        </div>
+
+
         <div class="flex items-center justify-between gap-4">
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">Entrar</button>
+            <button type="submit"
+                class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">Entrar</button>
         </div>
     </form>
 
-    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">¿No tienes cuenta? <a href="{{ url_for('registro') }}" class="text-primary font-medium">Crea una aquí</a></p>
+    <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">¿No tienes cuenta? <a href="{{ url_for('registro') }}"
+            class="text-primary font-medium">Crea una aquí</a></p>
 </div>
 {% endblock %}
