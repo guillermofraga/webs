@@ -31,7 +31,7 @@
 
     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Reservar esta habitación</h3>
 
-    <form id="form-reserva" action="{{ url_for('agregar_reserva', habitacion_id=habitacion.id) }}" method="POST"
+    <form id="form-reserva" action="{{ url_for('solicitar_reserva', habitacion_id=habitacion.id) }}" method="POST"
       class="space-y-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
       <input type="hidden" name="habitacion_id" value="{{ habitacion.id }}">
       <div>
@@ -58,69 +58,92 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const isAuthenticated = "{{ 'yes' if current_user.is_authenticated else 'no' }}" === "yes";
-  const botonReserva = document.getElementById('btn-confirmar');
-  const rangoInput = document.getElementById('rango_fechas');
-  const inputEntrada = document.getElementById('fecha_entrada');
-  const inputSalida = document.getElementById('fecha_salida');
+  document.addEventListener('DOMContentLoaded', () => {
+    const isAuthenticated = "{{ 'yes' if current_user.is_authenticated else 'no' }}" === "yes";
+    const botonReserva = document.getElementById('btn-confirmar');
+    const rangoInput = document.getElementById('rango_fechas');
+    const inputEntrada = document.getElementById('fecha_entrada');
+    const inputSalida = document.getElementById('fecha_salida');
 
-  function formatLocalDate(d) {
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
-  }
+    // Desactivar el botón al cargar
+    botonReserva.disabled = true;
+    botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
 
-  let fpInstance = null;
+    function formatLocalDate(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
 
-  function initFlatpickr() {
-    if (fpInstance && fpInstance.destroy) fpInstance.destroy();
+    let fpInstance = null;
 
-    const wide = window.innerWidth >= 1280;
+    function initFlatpickr() {
+      if (fpInstance && fpInstance.destroy) fpInstance.destroy();
 
-    fpInstance = flatpickr(rangoInput, {
-      mode: "range",
-      inline: wide,
-      locale: "es",
-      minDate: "today",
-      dateFormat: "Y-m-d",
-      showMonths: wide ? 2 : 1,
-      allowInput: false,
+      const wide = window.innerWidth >= 1280;
 
-      onChange: function (selectedDates) {
-        if (selectedDates.length === 2) {
-          inputEntrada.value = formatLocalDate(selectedDates[0]);
-          inputSalida.value = formatLocalDate(selectedDates[1]);
+      fpInstance = flatpickr(rangoInput, {
+        mode: "range",
+        inline: wide,
+        locale: "es",
+        minDate: "today",
+        dateFormat: "Y-m-d",
+        showMonths: wide ? 2 : 1,
+        allowInput: false,
 
-          if (isAuthenticated) {
-            botonReserva.disabled = false;
-            botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
+        onChange: function (selectedDates) {
+          if (selectedDates.length === 2) {
+            const entrada = selectedDates[0];
+            const salida = selectedDates[1];
+
+            // Validar que la salida sea posterior a la entrada
+            if (salida.getTime() === entrada.getTime()) {
+              inputEntrada.value = "";
+              inputSalida.value = "";
+              botonReserva.disabled = true;
+              botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+              return;
+            }
+            inputEntrada.value = formatLocalDate(entrada);
+            inputSalida.value = formatLocalDate(salida);
+
+            if (isAuthenticated) {
+              botonReserva.disabled = false;
+              botonReserva.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+              botonReserva.disabled = true;
+              botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
+            }
           } else {
+            inputEntrada.value = "";
+            inputSalida.value = "";
             botonReserva.disabled = true;
             botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
           }
-        } else {
-          inputEntrada.value = "";
-          inputSalida.value = "";
-          botonReserva.disabled = true;
-          botonReserva.classList.add('opacity-50', 'cursor-not-allowed');
         }
+      });
+    }
+
+    initFlatpickr();
+
+    let lastWide = window.innerWidth >= 1280;
+    window.addEventListener('resize', function () {
+      const nowWide = window.innerWidth >= 1280;
+      if (nowWide !== lastWide) {
+        lastWide = nowWide;
+        initFlatpickr();
       }
     });
-  }
 
-  initFlatpickr();
-
-  let lastWide = window.innerWidth >= 1280;
-  window.addEventListener('resize', function () {
-    const nowWide = window.innerWidth >= 1280;
-    if (nowWide !== lastWide) {
-      lastWide = nowWide;
-      initFlatpickr();
-    }
+    // Validación extra al enviar el formulario
+    document.getElementById('form-reserva').addEventListener('submit', function (e) {
+      if (!inputEntrada.value || !inputSalida.value) {
+        e.preventDefault();
+        alert("Por favor, selecciona una fecha de entrada y salida antes de enviar la solicitud.");
+      }
+    });
   });
-});
 </script>
 
 {% endblock %}

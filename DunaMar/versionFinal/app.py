@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from config import Config
-from models import db, Usuario, Habitacion, Reserva
+from models import db, Usuario, Habitacion
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import pymysql
-from sqlalchemy import and_, or_
-from datetime import datetime, timedelta
+from datetime import datetime
 import requests
 import re
+from sqlalchemy import select
 
 pymysql.install_as_MySQLdb()
 
@@ -21,24 +21,15 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-# Funcion para validar la contraseña fuerte:
-
 def validar_contraseña_fuerte(contraseña):
-    """
-    Verifica si la contraseña cumple con los requisitos mínimos:
-    - Al menos 8 caracteres
-    - Una letra mayúscula
-    - Una letra minúscula
-    - Un número
-    - Un símbolo especial (@$!%*?&)
-    """
     patron = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
     return re.match(patron, contraseña) is not None
 
 @login_manager.user_loader
 def load_user(user_id):
     try:
-        return Usuario.query.get(int(user_id))
+        with db.session() as session:
+            return session.get(Usuario, int(user_id))
     except Exception as e:
         app.logger.exception("Error cargando usuario")
         return None
@@ -46,7 +37,8 @@ def load_user(user_id):
 @app.route('/')
 def index():
     try:
-        habitaciones = Habitacion.query.all()
+        with db.session() as session:
+            habitaciones = session.scalars(select(Habitacion)).all()
         return render_template('index.html', habitaciones=habitaciones)
     except Exception as e:
         app.logger.exception("Error cargando habitaciones")
@@ -61,19 +53,17 @@ def registro():
             email = request.form['email'].strip().lower()
             contraseña_raw = request.form['contraseña']
 
-            # Verificar si el correo ya existe
-            usuario_existente = Usuario.query.filter_by(email=email).first()
+            with db.session() as session:
+                usuario_existente = session.scalars(select(Usuario).filter_by(email=email)).first()
             if usuario_existente:
                 flash("Ya existe una cuenta con ese correo electrónico.", "error")
                 return redirect(url_for('registro'))
 
-            # Validar contraseña fuerte (opcional)
             if not validar_contraseña_fuerte(contraseña_raw):
                 flash("La contraseña no cumple con los requisitos mínimos.", "error")
                 return redirect(url_for('registro'))
 
             contraseña = generate_password_hash(contraseña_raw)
-
             nuevo_usuario = Usuario(nombre=nombre, email=email, contraseña=contraseña)
             db.session.add(nuevo_usuario)
             db.session.commit()
@@ -94,7 +84,8 @@ def login():
         try:
             email = request.form['email']
             contraseña = request.form['contraseña']
-            usuario = Usuario.query.filter_by(email=email).first()
+            with db.session() as session:
+                usuario = session.scalars(select(Usuario).filter_by(email=email)).first()
             if usuario and check_password_hash(usuario.contraseña, contraseña):
                 login_user(usuario)
                 return redirect(url_for('index'))
@@ -119,20 +110,27 @@ def logout():
 def configuracion():
     return render_template('configuracion.html')
 
-@app.route('/agregar_reserva', methods=['POST'])
+@app.route('/solicitar_reserva', methods=['POST'])
 @login_required
-def agregar_reserva():
+def solicitar_reserva():
     try:
         habitacion_id = int(request.form['habitacion_id'])
         fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
         fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
 
-        # Preparar payload para n8n
+        with db.session() as session:
+            habitacion = session.get(Habitacion, habitacion_id)
+
+        if not habitacion:
+            flash("La habitación no existe.", "error")
+            return redirect(url_for('index'))
+
         payload = {
             "usuario": current_user.nombre,
             "email": current_user.email,
             "habitacion_id": habitacion_id,
-            "habitacion_nombre": Habitacion.query.get(habitacion_id).nombre,
+            "habitacion_nombre": habitacion.nombre,
+            "habitacion_numero": habitacion.numero,
             "fecha_entrada": fecha_entrada.isoformat(),
             "fecha_salida": fecha_salida.isoformat()
         }
@@ -146,9 +144,8 @@ def agregar_reserva():
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return jsonify({"error": mensaje}), 500
             flash(mensaje, "error")
-            return redirect(url_for('reservas'))
+            return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
-        # No se guarda en la base de datos
         mensaje = "Tu solicitud ha sido enviada. El administrador se pondrá en contacto contigo."
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             return jsonify({"message": mensaje}), 200
@@ -161,126 +158,61 @@ def agregar_reserva():
             return jsonify({
                 "message": mensaje,
                 "redirect": url_for('detalle_habitacion', habitacion_id=habitacion_id)
-                }), 200
+            }), 200
         flash(mensaje, "error")
 
-    return redirect(url_for('detalle_habitacion',habitacion_id=habitacion_id))
-
-
-@app.route('/habitaciones_disponibles', methods=['POST'])
-def habitaciones_disponibles():
-    try:
-        fecha_entrada = datetime.strptime(request.form['fecha_entrada'], '%Y-%m-%d').date()
-        fecha_salida = datetime.strptime(request.form['fecha_salida'], '%Y-%m-%d').date()
-
-        subquery = Reserva.query.filter(
-            Reserva.estado == 'confirmada',
-            or_(
-                and_(Reserva.fecha_entrada <= fecha_entrada, Reserva.fecha_salida > fecha_entrada),
-                and_(Reserva.fecha_entrada < fecha_salida, Reserva.fecha_salida >= fecha_salida),
-                and_(Reserva.fecha_entrada >= fecha_entrada, Reserva.fecha_salida <= fecha_salida)
-            )
-        ).with_entities(Reserva.habitacion_id)
-
-        disponibles = Habitacion.query.filter(~Habitacion.id.in_(subquery)).all()
-
-        return jsonify([
-            {'id': h.id, 'numero': h.numero, 'nombre': h.nombre, 'tipo': h.tipo, 'precio': h.precio}
-            for h in disponibles
-        ])
-    except Exception as e:
-        app.logger.exception("Error buscando habitaciones disponibles")
-        return jsonify({'error': 'Error interno al buscar habitaciones'}), 500
+    return redirect(url_for('detalle_habitacion', habitacion_id=habitacion_id))
 
 @app.route('/habitacion/<int:habitacion_id>')
 def detalle_habitacion(habitacion_id):
     try:
-        habitacion = Habitacion.query.get_or_404(habitacion_id)
+        with db.session() as session:
+            habitacion = session.get(Habitacion, habitacion_id)
+
+        if not habitacion:
+            flash("La habitación no existe.", "error")
+            return redirect(url_for('index'))
+
         return render_template('detalle_habitacion.html', habitacion=habitacion)
     except Exception as e:
         app.logger.exception("Error cargando detalle de habitación")
         flash("Error al cargar la habitación.", "error")
         return redirect(url_for('index'))
 
-@app.route('/reservas')
-@login_required
-def reservas():
+@app.route('/robots.txt')
+def robots_txt():
+    lines = [
+        "User-agent: *",
+        "Disallow: /configuracion",
+        "Disallow: /logout",
+        "Disallow: /solicitar_reserva",
+        "Sitemap: https://apartamentosdunamar.com/sitemap.xml"
+    ]
+    return "\n".join(lines), 200, {'Content-Type': 'text/plain'}
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
     try:
-        reservas = Reserva.query.filter(
-            Reserva.usuario_id == current_user.id,
-            Reserva.estado != 'cancelada'
-        ).order_by(Reserva.fecha_entrada.desc()).all()
-        return render_template('reservas.html', reservas=reservas)
-    except Exception as e:
-        app.logger.exception("Error cargando mis reservas")
-        flash("Error al cargar tus reservas.", "error")
-        return render_template('reservas.html', reservas=[])
+        with db.session() as session:
+            habitaciones = session.scalars(select(Habitacion)).all()
 
-@app.route('/cancelar_reserva/<int:reserva_id>')
-@login_required
-def cancelar_reserva(reserva_id):
-    try:
-        reserva = Reserva.query.get_or_404(reserva_id)
+        urls = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            '  <url><loc>https://apartamentosdunamar.com/</loc></url>',
+            '  <url><loc>https://apartamentosdunamar.com/registro</loc></url>',
+            '  <url><loc>https://apartamentosdunamar.com/login</loc></url>',
+        ]
 
-        if reserva.usuario_id != current_user.id:
-            flash("No tienes permiso para cancelar esta reserva.", "error")
-            return redirect(url_for('reservas'))
+        for h in habitaciones:
+            urls.append(f'  <url><loc>https://apartamentosdunamar.com/habitacion/{h.id}</loc></url>')
 
-        # Actualizar estado
-        reserva.estado = 'cancelada'
-        db.session.commit()
-
-        # Notificar a n8n
-        payload = {
-            "accion": "cancelar",
-            "usuario": current_user.nombre,
-            "email": current_user.email,
-            "habitacion_nombre": reserva.habitacion.nombre,
-            "habitacion_id": reserva.habitacion_id,
-            "fecha_entrada": reserva.fecha_entrada.isoformat(),
-            "fecha_salida": reserva.fecha_salida.isoformat(),
-            "reserva_id": reserva.id
-        }
-
-        try:
-            response = requests.post(Config.N8N_WEBHOOK_URL, json=payload, timeout=10)
-            response.raise_for_status()
-            data = response.json()
-
-            if data.get("status") != "success":
-                app.logger.warning(f"n8n no confirmó el envío del correo de cancelación: {data}")
-        except Exception as e:
-            app.logger.warning(f"No se pudo notificar a n8n sobre la cancelación: {e}")
-
-        flash("Reserva cancelada correctamente.", "success")
+        urls.append('</urlset>')
+        return "\n".join(urls), 200, {'Content-Type': 'application/xml'}
 
     except Exception as e:
-        db.session.rollback()
-        app.logger.exception("Error cancelando reserva")
-        flash("Error al cancelar la reserva.", "error")
-
-    return redirect(url_for('reservas'))
-
-@app.route('/fechas_ocupadas/<int:habitacion_id>')
-def fechas_ocupadas(habitacion_id):
-    try:
-        reservas = Reserva.query.filter_by(habitacion_id=habitacion_id, estado='confirmada').all()
-        fechas_ocupadas = set()
-        fechas_entrada = set()
-
-        for reserva in reservas:
-            fechas_entrada.add(reserva.fecha_entrada.isoformat())
-            fecha = reserva.fecha_entrada
-            while fecha < reserva.fecha_salida:
-                fechas_ocupadas.add(fecha.isoformat())
-                fecha += timedelta(days=1)
-
-        return jsonify({"ocupadas": sorted(fechas_ocupadas), "entradas": sorted(fechas_entrada)})
-    except Exception as e:
-        app.logger.exception("Error obteniendo fechas ocupadas")
-        return jsonify({'error': 'Error interno al obtener fechas'}), 500
-
-# Manejador de errores
+        app.logger.exception("Error generando sitemap")
+        return "Error generando sitemap", 500
 
 @app.errorhandler(404)
 def page_not_found(e):

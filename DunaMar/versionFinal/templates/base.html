@@ -87,9 +87,6 @@
               class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg hidden z-50">
               <a href="{{ url_for('configuracion') }}"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Configuración</a>
-              <a href="{{ url_for('reservas') }}"
-                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Mis
-                Reservas</a>
               <a href="{{ url_for('logout') }}"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Cerrar
                 sesión</a>
@@ -120,12 +117,7 @@
             <a href="#contacto" class="text-base font-medium hover:text-primary transition-colors">Contacto</a>
             <div class="border-t border-gray-100 dark:border-gray-800 my-2"></div>
             {% if current_user.is_authenticated %}
-            <a class="text-base font-medium hover:text-primary transition-colors"
-              href="{{ url_for('configuracion') }}">Configuración</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('reservas') }}">Mis
-              Reservas</a>
-            <a class="text-base font-medium hover:text-primary transition-colors" href="{{ url_for('logout') }}">Cerrar
-              sesión</a>
+            <!-- No muestra nada -->
             {% else %}
             <a class="text-base font-medium px-4 py-2 rounded-lg bg-primary text-white text-center"
               href="{{ url_for('login') }}">Iniciar sesión</a>
