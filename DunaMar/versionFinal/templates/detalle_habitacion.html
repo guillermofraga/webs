@@ -2,6 +2,17 @@
 {% block title %}{{ habitacion.nombre }}{% endblock %}
 {% block content %}
 
+<!-- Carrusel -->
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+<!-- Selector de fechas -->
+
 <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -10,9 +21,21 @@
 
 <section class="py-16 sm:py-24">
   <div class="container mx-auto px-6 max-w-4xl">
-    <div class="mb-8">
-      <img src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}"
-        alt="{{ habitacion.nombre }}" class="w-full h-96 object-cover rounded-xl shadow-lg">
+    <div class="swiper mb-8 rounded-xl shadow-lg">
+      <div class="swiper-wrapper">
+        {% for imagen in imagenes %}
+        <div class="swiper-slide">
+          <img src="{{ url_for('static', filename=imagen) }}" alt="{{ habitacion.nombre }} imagen {{ loop.index }}"
+            class="w-full h-96 object-cover rounded-xl">
+        </div>
+        {% endfor %}
+
+      </div>
+
+      <!-- Controles -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
 
     <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">{{ habitacion.nombre }}</h2>
@@ -56,6 +79,8 @@
     </form>
   </div>
 </section>
+
+<!-- Selector de fechas -->
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -145,5 +170,21 @@
     });
   });
 </script>
+
+<!-- Carrusel -->
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
 
 {% endblock %}

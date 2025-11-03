@@ -9,6 +9,7 @@ from datetime import datetime
 import requests
 import re
 from sqlalchemy import select
+import os
 
 pymysql.install_as_MySQLdb()
 
@@ -173,16 +174,26 @@ def detalle_habitacion(habitacion_id):
     try:
         with db.session() as session:
             habitacion = session.get(Habitacion, habitacion_id)
+            carpeta = habitacion.tipo.lower().replace(' ', '')
+            ruta = os.path.join(app.static_folder, 'img', carpeta)
 
         if not habitacion:
             flash("La habitación no existe.", "error")
             return redirect(url_for('index'))
 
-        return render_template('detalle_habitacion.html', habitacion=habitacion)
+        imagenes = []
+        if os.path.exists(ruta):
+            for archivo in sorted(os.listdir(ruta)):
+             if archivo.endswith('.jpg') or archivo.endswith('.png'):
+                imagenes.append(f'img/{carpeta}/{archivo}')
+
+        return render_template('detalle_habitacion.html', habitacion=habitacion, imagenes=imagenes)
     except Exception as e:
         app.logger.exception("Error cargando detalle de habitación")
         flash("Error al cargar la habitación.", "error")
         return redirect(url_for('index'))
+
+# endpoints para el SEO
 
 @app.route('/robots.txt')
 def robots_txt():
@@ -219,6 +230,8 @@ def sitemap_xml():
         app.logger.exception("Error generando sitemap")
         return "Error generando sitemap", 500
 
+# endpoints de errores
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
@@ -232,4 +245,4 @@ def forbidden(e):
     return render_template('403.html'), 403
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

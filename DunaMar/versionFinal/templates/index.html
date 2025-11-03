@@ -23,7 +23,7 @@
       <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden group">
         <div class="relative">
           <img alt="{{ habitacion.nombre }}" class="w-full h-56 object-cover"
-            src="{{ url_for('static', filename='img/' + habitacion.nombre|lower|replace(' ', '') + '.jpg') }}" />
+            src="{{ url_for('static', filename='img/' ~ habitacion.tipo|lower|replace(' ', '') ~ '/' ~ habitacion.tipo|lower|replace(' ', '') ~ '-' ~ 1|string ~ '.jpg') }}" />
           <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
         </div>
         <div class="p-6">
