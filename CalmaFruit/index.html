@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>C'alma Fruit - Frutas Frescas y Cestas de Regalo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#66BDBB", secondary: "#4D7C0F", "background-light": "#f6f7f7", "background-dark": "#151d1d", "surface-light": "#FFFFFF", "surface-dark": "#292524"}, fontFamily: {display: "Plus Jakarta Sans", body: ["'Lato'", "sans-serif"]}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6D3D1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A8A29E; 
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #44403C;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #57534E;
+        }html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-200 font-body transition-colors duration-300">
+<nav class="fixed w-full z-50 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md shadow-sm border-b border-stone-200 dark:border-stone-700">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-2">
+<div class="h-10 w-10 overflow-hidden rounded-full border border-stone-200 dark:border-stone-600">
+<img alt="Logo Icon" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh3iszTfZ47JGbE2OcU5SrEVtnkOdio5MXQ6o2iU0JIg9s3dawk1fcdT9VvpSJ61YmnfVPJjMA3tklk7vKJv60hCnl_nLBrXLtdzzsigfumTUvDkf4Xk_KZQMLO_GdZ-xKXFHBM59dXYzVuOmWZstsdqox56j2j_cPwZ8wPJkhnLjcr3EbL86evu6oPxzFkkeCOI8NxJHJgn1c6HDhMu4-KmJk1P5UFSzAFn9NMFienqpGT0_Jo5ogXokFpPTbn_Qm4LB5t-dHFxw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-display font-bold text-2xl tracking-tight text-stone-900 dark:text-stone-100 leading-none">C'alma Fruit</span>
+<span class="text-[0.65rem] uppercase tracking-widest text-stone-500 dark:text-stone-400">Con alma y con calma</span>
+</div>
+</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#">Inicio</a>
+<a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#productos">Frutas Frescas</a>
+<a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#cestas">Cestas de Regalo</a>
+<a class="text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#nosotros">Nosotros</a>
+<button class="bg-primary hover:bg-amber-600 text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-bold flex items-center gap-2">
+<span class="material-icons text-sm">shopping_basket</span>
+                        Productos
+                    </button>
+<button class="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-stone-600 dark:text-stone-300 block dark:hidden">dark_mode</span>
+<span class="material-icons text-stone-600 dark:text-stone-300 hidden dark:block">light_mode</span>
+</button>
+</div>
+<div class="md:hidden flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-stone-600 dark:text-stone-300 block dark:hidden">dark_mode</span>
+<span class="material-icons text-stone-600 dark:text-stone-300 hidden dark:block">light_mode</span>
+</button>
+<button class="text-stone-600 dark:text-stone-300 hover:text-primary">
+<span class="material-icons text-3xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-10 dark:opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+<div class="mb-12 lg:mb-0 text-center lg:text-left">
+<span class="inline-block py-1 px-3 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-sm font-bold tracking-wider mb-4 border border-orange-200 dark:border-orange-800">
+                        100% FRESCO Y NATURAL
+                    </span>
+<h1 class="text-5xl lg:text-7xl font-display font-bold text-stone-900 dark:text-stone-50 leading-tight mb-6">
+                        Saborea la <span class="text-primary relative inline-block">
+                            Frescura
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-orange-300 opacity-60" preserveaspectratio="none" viewbox="0 0 100 10">
+<path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="3"></path>
+</svg>
+</span> de la Naturaleza
+                    </h1>
+<p class="text-xl text-stone-600 dark:text-stone-400 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Seleccionamos las frutas más dulces y jugosas para llevarlas directamente a tu mesa. Descubre nuestras cestas personalizadas hechas con alma.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<a class="px-8 py-4 bg-primary text-white rounded-full font-bold shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1 transition-all duration-300 text-center" href="#productos">
+                            Ver Productos
+                        </a>
+<a class="px-8 py-4 bg-surface-light dark:bg-surface-dark text-stone-700 dark:text-stone-200 border border-stone-300 dark:border-stone-600 rounded-full font-bold hover:bg-stone-50 dark:hover:bg-stone-700 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2" href="#cestas">
+<span class="material-icons text-primary">card_giftcard</span>
+                            Cestas Regalo
+                        </a>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-gradient-to-tr from-orange-200 to-green-100 dark:from-orange-900/40 dark:to-green-900/20 rounded-full blur-3xl opacity-70"></div>
+<div class="relative grid grid-cols-2 gap-4">
+<img alt="Cesta de frutas variadas" class="rounded-2xl shadow-xl transform translate-y-8 object-cover h-64 w-full border-4 border-white dark:border-stone-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_q1n9ySw7xYWskdR-5Adn4P85l6TxHge2hwLkkGj0Fq3mwWVQAKE90z9jltzVNb0hCVfxHtW3kMGyFZZeWrMHLfmSyTjP2D1StoNbmhx4BzmKJHbGMIeHs2tCw16aMPY6wVGeOA_JiLAfog-zrQb6Jq58fWPVNywLOvvfmFoHb2sY9pJebCQtLgbESQqloRO05it_hjFv8URaPdMHL64ke3TDSA1YssnY0GlPzNtesdfMBe-HhxBZl92BAplGybCglffb-Ix3GoQ"/>
+<img alt="Fresas frescas" class="rounded-2xl shadow-xl object-cover h-64 w-full border-4 border-white dark:border-stone-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGWYGlH-pyx5sZOECjlgg3cmk7s09MIP9XvD94-zbMJ6eIlYaAUWUctzZaHgRYbHVV0NJfU0AAl63eOKdscGbtD4IkPPF9l1628XIT-O_ZRHdJykBfrVHUavtMyrct4UJy8RQq8DU6ln7UOj8VUdqMoaVyVqCe9V4CI468cvDpmpwzuNqvKH-Us2e04CbeQTlQdQ_GfrMIwXV4jCNV7Q2JG69NXQOxkQkCfMVn-AC-4qLRRFBeCPAF8HXU_uEGEe9TGJ8IDSag2Mg"/>
+<img alt="Arándanos y bayas" class="rounded-2xl shadow-xl transform -translate-y-8 object-cover h-64 w-full border-4 border-white dark:border-stone-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbTIpFPamAzs0ZFXZcBfpyinanJ9R6Z5kChAS32CIOnoM_tOnLFVXnHpsGWH0SiXn2McnH_aL8vt5xICwsEX8tAXbCcOQlT99BHLDB00KeRzTPinagBRFDcgUxfFuGdfe1NXAZHCAy_xwe0lOvF8fMJ5MQ_UWpcEPNqRhOVJDELb0xjPSL0H3Te33e-RetJPv-ODXDCzSRrbt1sGsw91_sreBkCZjY0d6wBiRxYX0UDokNsbwahPumldLr7bBUrtiF5RTF9otxncE"/>
+<div class="bg-primary rounded-2xl shadow-xl flex items-center justify-center p-6 text-white text-center">
+<div>
+<span class="block text-5xl font-display font-bold mb-2">50+</span>
+<span class="text-sm font-medium opacity-90">Variedades de Fruta</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="py-16 bg-white dark:bg-stone-900 border-y border-stone-100 dark:border-stone-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-3 gap-8">
+<div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+<div class="bg-green-100 dark:bg-green-900/30 p-3 rounded-xl text-green-600 dark:text-green-400">
+<span class="material-icons text-3xl">local_shipping</span>
+</div>
+<div>
+<h3 class="font-display font-bold text-xl mb-2 text-stone-900 dark:text-stone-100">Envío Rápido</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm">Entrega en 24/48h para garantizar la máxima frescura de tus pedidos.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+<div class="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-xl text-orange-600 dark:text-orange-400">
+<span class="material-icons text-3xl">verified</span>
+</div>
+<div>
+<h3 class="font-display font-bold text-xl mb-2 text-stone-900 dark:text-stone-100">Calidad Premium</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm">Seleccionamos cada pieza manualmente. Solo lo mejor llega a tu cesta.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-stone-50 dark:hover:bg-stone-800 transition-colors">
+<div class="bg-rose-100 dark:bg-rose-900/30 p-3 rounded-xl text-rose-600 dark:text-rose-400">
+<span class="material-icons text-3xl">favorite</span>
+</div>
+<div>
+<h3 class="font-display font-bold text-xl mb-2 text-stone-900 dark:text-stone-100">Hecho con Amor</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm">Empaquetado con detalle y cariño, ideal para regalar salud y sabor.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 lg:py-28 bg-background-light dark:bg-background-dark" id="productos">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl lg:text-5xl font-display font-bold text-stone-900 dark:text-stone-50 mb-4">Nuestra Selección</h2>
+<div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+<p class="text-lg text-stone-600 dark:text-stone-400 max-w-2xl mx-auto">
+                    Desde frutas tropicales exóticas hasta las bayas locales más dulces. 
+                    Explora nuestra variedad de temporada.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-4 mb-12">
+<button class="px-6 py-2 rounded-full bg-primary text-white font-semibold shadow-md">Todo</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 font-medium hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors border border-stone-200 dark:border-stone-700">Frutas Tropicales</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 font-medium hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors border border-stone-200 dark:border-stone-700">Bayas</button>
+<button class="px-6 py-2 rounded-full bg-white dark:bg-stone-800 text-stone-600 dark:text-stone-300 font-medium hover:bg-stone-100 dark:hover:bg-stone-700 transition-colors border border-stone-200 dark:border-stone-700">Cítricos</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Mangos Maduros" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvVGtom5-4EEIoc9Qg8R5kMpzzM8_A3o83LPzu8O-6o42ao_Kh1ZRckQyNQs8xioD4J2GKgSPQL3BsAxrMBzWGOizdBC5de20M_ZF3mZT0Ryxc8zYlFDI2Zx-S4MOstcSIH5wl03pkLIrKJwmYva_gz3c_qKDLAz4Lc_yQS9oHwHc7HVEUIztg7EWh-79y5hz3nE3pTHN_rXudNeoO8_y1QPknHR-vHsNp5rqcC8ZBe1AL2XvRV7FXE_-iPdkn8Gzt1VW9CF0HTRY"/>
+
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold font-display text-stone-900 dark:text-stone-100 mb-2">Mangos Premium</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm mb-4 line-clamp-2">Dulces, jugosos y en su punto perfecto de maduración. Origen seleccionado.</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-primary">4.50€ / kg</span>
+<button class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Arándanos Frescos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://imgs.search.brave.com/psOaWDWllxdTUI8X-ljh2N8P983vDXbb2u2yYYPlmjQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNDMv/Mzc0LzA0My9zbWFs/bC9yaXBlLXN3ZWV0/LWJsdWViZXJyaWVz/LWZyZXNoLWJsdWVi/ZXJyaWVzLWJhY2tn/cm91bmQtdmVnYW4t/YW5kLXZlZ2V0YXJp/YW4tY29uY2VwdC1t/YWNyb3RleHR1cmUt/b2YtYmx1ZWJlcnJp/ZXMtdGV4dHVyZS1v/Zi1ibHVlYmVycmll/cy1jbG9zZS11cC1w/aG90by5qcGc"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold font-display text-stone-900 dark:text-stone-100 mb-2">Arándanos Bio</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm mb-4 line-clamp-2">Pequeñas explosiones de sabor y antioxidantes. Cultivo ecológico.</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-primary">3.20€ / bandeja</span>
+<button class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Cerezas Rojas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://imgs.search.brave.com/r3QsFrhuTLifdiZ_qXeCCiIq6E3SaSg5hgC6V6rBy_E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy85/LzlmL0NoZXJyaWVz/X2NlcmV6YXNfVmFs/bGVfZGVsX0plcnRl/XzAxLkpQRw"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold font-display text-stone-900 dark:text-stone-100 mb-2">Cerezas del Jerte</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm mb-4 line-clamp-2">Crujientes y llenas de sabor. Directas del árbol a tu casa.</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-primary">6.90€ / kg</span>
+<button class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 dark:border-stone-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Higos Frescos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://imgs.search.brave.com/xdjgItAT7N6rlRUnO7_DqoLnNyq_Aii-G3Fn0IBTLxU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y29uc3VtLmVzL3Np/dGVzL2RlZmF1bHQv/ZmlsZXMvaW1hZ2Vz/L2xvc2ZyZXNjb3Mv/MjAxODdoaWdvc3Zl/cmRlcy5qcGc"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold font-display text-stone-900 dark:text-stone-100 mb-2">Higos de Temporada</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm mb-4 line-clamp-2">Sabor dulce y textura inigualable. Ideal para postres o solos.</p>
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold text-primary">5.50€ / kg</span>
+<button class="w-10 h-10 rounded-full bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 flex items-center justify-center hover:bg-primary hover:text-white dark:hover:bg-primary transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mt-12">
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:text-amber-700 transition-colors" href="#">
+                    Ver catálogo completo <span class="material-icons text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<section class="py-20 bg-stone-100 dark:bg-stone-900 relative overflow-hidden" id="cestas">
+<div class="absolute -top-20 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-stone-200 dark:from-stone-950 to-transparent pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+<div class="order-2 lg:order-1">
+<div class="relative">
+<div class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-stone-800">
+<img alt="Cesta de regalo grande" class="w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ysUKwXF0Iknj1AQ-Yee7IidDm2LBXpp9H9J-Vj8sDQ1UivXDf5F4yJNdJ-PkEBGYAME7iHFNBca5aqghaR7QvcNvz61hm2Sh3iE7OaEUVLoOZkOxFAnE6QbxN2dVag5NAmJ6KAY2iCssBD_VOd0agMyXzbDd0WX2phJ0nwB0kxgOwRTGxvc8tfUy7TA8FYSC568CqN9r6Lbibya8a0dVawXolp-fQaBa30SMHk_D0eXAkXzOwgoU__6m9StmH8b33Kj506RdIYQ"/>
+</div>
+<div class="absolute -bottom-10 -right-10 w-2/3 rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-stone-800 hidden md:block">
+<img alt="Detalle cesta" class="w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwMhqTD6IRhPxp_B4d92zHXCTJJPpjvsczR3AJUG7WKIn45SoidlRA1juLdXjprI29_ACZOcEvEoM0OPbB__juMAIh6T1sbaNe1uxThV5W8GTPx41B8wADB0rdoHGJ4YfNclYsSyMxeSX0J076qLMWBVQC3YUpWuo3VsRhXvxBOnAPhbV3O20SSA1vOA4403cium_G6n_76-bmOz8ln6rbzLEZEnpW9ks1XA4xlr7GZGkz0aBLc77jJOZWFv7gLyKFvpe88oTnT9Y"/>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 mb-16 lg:mb-0">
+<h2 class="text-4xl lg:text-5xl font-display font-bold text-stone-900 dark:text-stone-50 mb-6">
+                        Regala Salud,<br/>Regala <span class="text-primary">C'alma</span>
+</h2>
+<p class="text-lg text-stone-600 dark:text-stone-400 mb-8 leading-relaxed">
+                        Nuestras cestas de regalo "Pitucas" son perfectas para cualquier ocasión. Combinamos las mejores frutas de temporada con una presentación rústica y elegante. 
+                    </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-center gap-3">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-icons text-sm">check</span>
+</span>
+<span class="text-stone-700 dark:text-stone-300">Personalizables al 100%</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-icons text-sm">check</span>
+</span>
+<span class="text-stone-700 dark:text-stone-300">Opciones para empresas y eventos</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-icons text-sm">check</span>
+</span>
+<span class="text-stone-700 dark:text-stone-300">Incluyen tarjeta dedicatoria</span>
+</li>
+</ul>
+<a class="inline-block px-8 py-4 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-full font-bold shadow-lg hover:bg-stone-800 dark:hover:bg-white hover:scale-105 transition-all duration-300" href="#">
+                        Configurar mi Cesta
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-surface-light dark:bg-surface-dark">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<span class="material-icons text-5xl text-primary/30 mb-6">format_quote</span>
+<h3 class="text-2xl md:text-3xl font-display italic text-stone-800 dark:text-stone-200 mb-8 leading-relaxed">
+                "La calidad de la fruta es excepcional, nada que ver con lo que encuentras en el supermercado. Las cestas de regalo fueron un éxito total en nuestra oficina."
+            </h3>
+<div class="flex items-center justify-center gap-4">
+<div class="h-12 w-12 rounded-full bg-stone-300 overflow-hidden">
+<img alt="Cliente" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9MKAAt5bI-J8h3OmdzeJIwV5gLFVA-kf6ybURrvROZ_zWmUnfrVVDjmqzJyORhjTinrMwSdYxdRFk3VdeJN52YXSzlmEdpsWUPehB4YQBWFBgiYrRX34XsqrnvTiVvbRRmBIh5rnZXPi6zLpfw4ZpMRYA8IkXt0ZFJaWeNdAZ5wcAkDURUhqT2x4a2JQ6tiL9VNCa4aoDh70dTUAZZrSPViR5bhdjtJgVbxatKfJdQpt-0RhZgEOTm_MuxjDupl-sV0Kahlt0ExQ"/>
+</div>
+<div class="text-left">
+<div class="font-bold text-stone-900 dark:text-stone-100">Elena Rodríguez</div>
+<div class="text-xs text-stone-500 dark:text-stone-400 uppercase tracking-wide">Cliente Verificado</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-primary relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/food.png')] opacity-10"></div>
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-white">
+<h2 class="text-3xl lg:text-4xl font-display font-bold mb-4">Únete a la familia C'alma</h2>
+<p class="text-amber-100 mb-8 text-lg">Recibe ofertas semanales y consejos sobre frutas de temporada.</p>
+<form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+<input class="flex-grow px-6 py-3 rounded-full text-stone-900 border-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary focus:ring-white" placeholder="Tu correo electrónico" type="email"/>
+<button class="px-8 py-3 bg-stone-900 text-white rounded-full font-bold hover:bg-stone-800 transition-colors shadow-lg" type="button">Suscribirse</button>
+</form>
+</div>
+</section>
+<footer class="bg-stone-900 text-stone-400 py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<div class="h-8 w-8 overflow-hidden rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-white font-bold text-xs">CF</div>
+<span class="font-display font-bold text-xl text-white">C'alma Fruit</span>
+</div>
+<p class="text-sm leading-relaxed mb-6">
+                        Frutería boutique especializada en productos frescos de alta calidad y cestas de regalo personalizadas con alma.
+                    </p>
+<div class="flex gap-4">
+<a class="h-10 w-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="text-sm font-bold">IG</span>
+</a>
+<a class="h-10 w-10 rounded-full bg-stone-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="text-sm font-bold">FB</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Explorar</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Inicio</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Frutas Frescas</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cestas Regalo</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sobre Nosotros</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Legal</h4>
+<ul class="space-y-3 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Aviso Legal</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Política de Cookies</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Términos de Compra</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Contacto</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-icons text-primary text-sm mt-1">location_on</span>
+<span>Calle del Sabor, 12<br/>28001 Madrid, España</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-icons text-primary text-sm">phone</span>
+<span>+34 912 345 678</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-icons text-primary text-sm">email</span>
+<span>hola@calmafruit.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+<p>© 2024 C'alma Fruit. Todos los derechos reservados.</p>
+<div class="flex gap-4">
+</div>
+</div>
+</div>
+</footer>
+</body></html>
