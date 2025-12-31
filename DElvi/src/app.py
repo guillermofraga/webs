@@ -2,13 +2,16 @@ from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 import re
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 app = Flask(__name__)
 
 # Cadena de conexión en una sola línea
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL_DELVI", "mysql://root@localhost/delvi")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+try:
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL_DELVI", "mysql://root@localhost/delvi")
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+except Exception as e:
+    print(f"Error al configurar la base de datos: {e}")
 
 db = SQLAlchemy(app)
 
@@ -51,6 +54,25 @@ def crear_reserva():
             fecha_obj = datetime.strptime(fecha, "%Y-%m-%d").date()
         except Exception:
             return jsonify({"error": "Formato de fecha inválido (YYYY-MM-DD)"}), 400
+        
+        # Validar que la fecha no sea previa a hoy 
+        if fecha_obj < date.today(): 
+            return jsonify({"error": "La fecha no puede ser anterior al día actual"}), 400
+
+        # Calcular rango de 1 hora
+        hora_obj = datetime.strptime(hora, "%H:%M").time()
+        hora_inicio = datetime.combine(fecha_obj, hora_obj)
+        hora_fin = hora_inicio + timedelta(hours=1)
+
+        # Contar reservas en esa franja
+        reservas_en_hora = Reserva.query.filter(
+            Reserva.fecha == fecha_obj,
+            Reserva.hora >= hora_inicio.time(),
+            Reserva.hora < hora_fin.time()
+        ).count()
+
+        if reservas_en_hora >= 10:
+            return jsonify({"error": "Todas las mesas en esa franja horaria ya estan reservadas"}), 400
 
         try:
             hora_obj = datetime.strptime(hora, "%H:%M").time()
@@ -87,7 +109,4 @@ def crear_reserva():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    # Crear tablas si no existen
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)

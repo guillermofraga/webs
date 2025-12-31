@@ -870,7 +870,7 @@
             <img
               alt="Bogavante con huevos y patatasa"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              src="img/bogavante.png"
+              src="/static/img/bogavante.png"
             />
             <div
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
@@ -887,7 +887,7 @@
               <img
                 alt="Carrilleras estofadas"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                src="img/carne.png"
+                src="/static/img/carne.png"
               />
             </div>
             <div
@@ -904,7 +904,7 @@
             <img
               alt="Terraza al Mar"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              src="img/terraza.png"
+              src="/static/img/terraza.png"
             />
             <div
               class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
@@ -965,12 +965,14 @@
             class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
           />
 
-          <input
-            type="time"
+          <!-- Selector de hora -->
+          <select
             id="hora"
             required
             class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
-          />
+          >
+            <option value="">Selecciona una hora</option>
+          </select>
 
           <input
             type="number"
@@ -981,6 +983,14 @@
             required
             class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
           />
+
+          <!-- Checkbox para guardar datos -->
+          <label
+            class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+          >
+            <input type="checkbox" id="save-data" class="accent-primary" />
+            Guardar mis datos para próximas reservas
+          </label>
 
           <button
             type="submit"
@@ -1133,195 +1143,12 @@
         </div>
       </div>
     </footer>
-    <script>
-      const themeToggle = document.getElementById("theme-toggle");
-      const htmlElement = document.documentElement;
-      // Check local storage or preference
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        htmlElement.classList.add("dark");
-      } else {
-        htmlElement.classList.remove("dark");
-      }
-      themeToggle.addEventListener("click", () => {
-        if (htmlElement.classList.contains("dark")) {
-          htmlElement.classList.remove("dark");
-          localStorage.theme = "light";
-        } else {
-          htmlElement.classList.add("dark");
-          localStorage.theme = "dark";
-        }
-      });
 
-      // Tema móvil
-      const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
-      const mobileThemeIcon = document.getElementById("mobile-theme-icon");
-
-      mobileThemeToggle.addEventListener("click", () => {
-        if (htmlElement.classList.contains("dark")) {
-          htmlElement.classList.remove("dark");
-          localStorage.theme = "light";
-          mobileThemeIcon.textContent = "dark_mode";
-        } else {
-          htmlElement.classList.add("dark");
-          localStorage.theme = "dark";
-          mobileThemeIcon.textContent = "light_mode";
-        }
-      });
-
-      // menu hamburguesa para móvil
-      const mobileBtn = document.getElementById("mobile-menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mobilePanel = document.getElementById("mobile-panel");
-      const mobileBackdrop = document.getElementById("mobile-backdrop");
-      const mobileLinks = document.querySelectorAll(".mobile-link");
-
-      function toggleMenu() {
-        const isOpen = !mobileMenu.classList.contains("hidden");
-
-        if (isOpen) {
-          // cerrar
-          mobilePanel.classList.add("translate-x-full");
-          setTimeout(() => mobileMenu.classList.add("hidden"), 300);
-          document.body.classList.remove("overflow-hidden");
-        } else {
-          // abrir
-          mobileMenu.classList.remove("hidden");
-          requestAnimationFrame(() =>
-            mobilePanel.classList.remove("translate-x-full")
-          );
-          document.body.classList.add("overflow-hidden");
-        }
-      }
-
-      mobileBtn.addEventListener("click", toggleMenu);
-      mobileBackdrop.addEventListener("click", toggleMenu);
-
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", toggleMenu);
-      });
-    </script>
-
-    <script>
-      // --- MODAL DE RESERVA ---
-      const openBtns = document.querySelectorAll(".open-reserve");
-      const closeBtn = document.getElementById("close-reserve");
-      const reserveModal = document.getElementById("reserve-modal");
-
-      openBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          reserveModal.classList.remove("hidden");
-        });
-      });
-
-      closeBtn.addEventListener("click", () => {
-        reserveModal.classList.add("hidden");
-      });
-
-      reserveModal.addEventListener("click", (e) => {
-        if (e.target === reserveModal) {
-          reserveModal.classList.add("hidden");
-        }
-      });
-
-      // --- MODAL DE CONFIRMACIÓN ---
-      const confirmModal = document.getElementById("confirm-modal");
-      const closeConfirm = document.getElementById("close-confirm");
-      const okConfirm = document.getElementById("ok-confirm");
-
-      closeConfirm.addEventListener("click", () => {
-        confirmModal.classList.add("hidden");
-      });
-      okConfirm.addEventListener("click", () => {
-        confirmModal.classList.add("hidden");
-      });
-
-      // --- MODAL DE ERROR ---
-      const errorModal = document.getElementById("error-modal");
-      const closeError = document.getElementById("close-error");
-      const okError = document.getElementById("ok-error");
-      const errorMessage = document.getElementById("error-message");
-
-      closeError.addEventListener("click", () => {
-        errorModal.classList.add("hidden");
-      });
-      okError.addEventListener("click", () => {
-        errorModal.classList.add("hidden");
-      });
-
-      // --- FORMULARIO DE RESERVA ---
-      const reserveForm = document.getElementById("reserve-form");
-
-      reserveForm.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        const data = {
-          nombre: document.getElementById("nombre").value,
-          telefono: document.getElementById("phone").value,
-          email: document.getElementById("email").value,
-          fecha: document.getElementById("fecha").value,
-          hora: document.getElementById("hora").value,
-          personas: document.getElementById("personas").value,
-        };
-
-        try {
-          const response = await fetch("/api/reservas", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-
-          const result = await response.json();
-
-          if (response.ok) {
-            reserveModal.classList.add("hidden");
-
-            document.getElementById(
-              "confirm-details"
-            ).innerText = `Nombre: ${data.nombre}\nFecha: ${data.fecha} ${data.hora}\nPersonas: ${data.personas}`;
-
-            confirmModal.classList.remove("hidden");
-
-            // 🔄 Reiniciar formulario
-            reserveForm.reset();
-          } else {
-            reserveModal.classList.add("hidden");
-
-            // Mensaje genérico de error
-            errorMessage.innerText =
-              "No se pudo hacer la reserva. Inténtalo de nuevo.";
-            errorModal.classList.remove("hidden");
-
-            // 🔄 Reiniciar formulario
-            reserveForm.reset();
-          }
-        } catch (err) {
-          reserveModal.classList.add("hidden");
-
-          // Mensaje genérico de error
-          errorMessage.innerText =
-            "No se pudo hacer la reserva. Inténtalo de nuevo.";
-          errorModal.classList.remove("hidden");
-
-          // 🔄 Reiniciar formulario
-          reserveForm.reset();
-        }
-      });
-    </script>
-
-    <!-- Prejifos telefónicos -->
-    <script>
-      const input = document.querySelector("#phone");
-      window.intlTelInput(input, {
-        initialCountry: "es", // España por defecto
-        preferredCountries: ["es", "pt", "fr", "it", "de", "gb"], // países destacados
-        utilsScript:
-          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
-      });
-    </script>
+    <!-- SCRIPTS -->
+    <script src="/static/js/Tema_Menu.js"></script>
+    <script src="/static/js/SaveData.js"></script>
+    <script src="/static/js/ModalReserva.js"></script>
+    <script src="/static/js/PrefijosTelefonicos.js"></script>
+    <script src="/static/js/Horario.js"></script>
   </body>
 </html>
