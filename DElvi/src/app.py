@@ -65,6 +65,7 @@ def crear_reserva():
         hora_fin = hora_inicio + timedelta(hours=1)
 
         # Contar reservas en esa franja
+        # Limita a máximo 10 reservas en una franja de 1 hora (ej. de 12:00 a 12:59).
         reservas_en_hora = Reserva.query.filter(
             Reserva.fecha == fecha_obj,
             Reserva.hora >= hora_inicio.time(),
@@ -72,7 +73,7 @@ def crear_reserva():
         ).count()
 
         if reservas_en_hora >= 10:
-            return jsonify({"error": "Todas las mesas en esa franja horaria ya estan reservadas"}), 400
+            return jsonify({"error": "Todas las mesas en esa franja horaria ya están reservadas"}), 400
 
         try:
             hora_obj = datetime.strptime(hora, "%H:%M").time()
@@ -82,11 +83,12 @@ def crear_reserva():
         try:
             personas = int(personas)
             if personas < 1 or personas > 20:
-                return jsonify({"error": "Número de personas inválido"}), 400
+                return jsonify({"error": "Número de personas inválido, min=1, max=20"}), 400
         except Exception:
             return jsonify({"error": "Número de personas inválido"}), 400
 
         # 🔎 Validar disponibilidad (máximo 10 reservas por fecha/hora)
+        # Limita a máximo 10 reservas en un slot exacto de hora/minuto.
         total = Reserva.query.filter_by(fecha=fecha_obj, hora=hora_obj).count()
         if total >= 10:
             return jsonify({"message": "No quedan mesas disponibles en ese horario."}), 400
@@ -106,7 +108,7 @@ def crear_reserva():
         return jsonify({"message": "Reserva confirmada ✅"}), 201
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
