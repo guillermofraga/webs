@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
 import os
 import re
 from datetime import datetime
@@ -8,19 +7,10 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Cadena de conexión en una sola línea
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "mysql://root:@localhost/delvi")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL_DELVI", "mysql://root@localhost/delvi")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-
-with app.app_context():
-    try:
-        # Ejecutar una consulta simple
-        result = db.session.execute(text("SELECT 1"))
-        print("✅ Conexión correcta:", result.scalar())
-    except Exception as e:
-        print("❌ Error de conexión:", e)
-
 
 # Modelo de la tabla reservas
 class Reserva(db.Model):
