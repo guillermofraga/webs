@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>D'Elvi - Restaurante frente al mar</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <!-- Librería Prefijos telefónicos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <style>
+      /* Prefijo seleccionado junto a la bandera */
+      .iti__selected-dial-code {
+        color: #000 !important; /* negro en modo claro */
+      }
+
+      /* En modo oscuro, color negro */
+      .dark .iti__selected-dial-code {
+        color: #000 !important; /* negro para que contraste sobre fondo oscuro */
+      }
+
+      /* Prefijos dentro del desplegable */
+      .iti__country-list .iti__dial-code {
+        color: #000 !important;
+      }
+
+      .dark .iti__country-list .iti__dial-code {
+        color: #000 !important; /* negro en modo oscuro */
+      }
+
+      /* Nombre del país en la lista */
+      .iti__country-list .iti__country-name {
+        color: #000 !important; /* negro en modo claro */
+      }
+
+      /* En modo oscuro también negro */
+      .dark .iti__country-list .iti__country-name {
+        color: #000 !important; /* negro en modo oscuro */
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2E7D32", // A rich green inspired by the logo text
+              secondary: "#1A4D2E", // Darker green for depth
+              accent: "#8B4513", // Brown for wood textures/text accents
+              "background-light": "#F9FAFB", // Very light gray/white
+              "background-dark": "#1F2937", // Dark gray
+              "paper-light": "#FFFBEB", // Warm paper color for menu sections
+              "paper-dark": "#374151", // Dark paper alternative
+              "wine-red": "#722F37", // Merlot color for wine accents
+            },
+            fontFamily: {
+              display: ["'Playfair Display'", "serif"],
+              body: ["'Lato'", "sans-serif"],
+              script: ["'Dancing Script'", "cursive"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              xl: "1rem",
+              "2xl": "1.5rem",
+            },
+            backgroundImage: {
+              "wood-pattern":
+                "url('https://www.transparenttextures.com/patterns/wood-pattern.png')",
+              "cork-pattern":
+                "url('https://www.transparenttextures.com/patterns/cork-1.png')",
+            },
+          },
+        },
+      };
+    </script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Lato:wght@300;400;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      .wood-texture {
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDI5OQsJbLxjFHnEt9YaSQQ_CHuoxbgnTD7S7ioKu1p7XF3gQv1KfV3HtGet-7OaMnVc_RJRJpp4vR7JywbZOJvqxykiTV7qsqWVzhZuebcnvxOyFN7jcmT7Rfe-RJMG7iiC_xv1g216BesOlE-TLEfTV_qI8nhdDPUYTrQ_t1Fq4hpd7MxTWqHAux8s5cMCkFqZkT11G4fLue99R2qczbwHqRhzpAyNgWxVJmElpieVDiDaw09-qMftgpNUMQGuX6RSZ5_yJ13TJw);
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: multiply;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-body transition-colors duration-300"
+  >
+    <nav
+      class="fixed w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex-shrink-0 flex items-center gap-2">
+            <span class="font-script text-4xl text-primary font-bold"
+              >D'Elvi</span
+            >
+          </div>
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+              href="#inicio"
+              >Inicio</a
+            >
+            <a
+              class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+              href="#diario"
+              >Menú del Día</a
+            >
+            <a
+              class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+              href="#menu"
+              >Nuestra Carta</a
+            >
+            <a
+              class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+              href="#vinos"
+              >Bodega</a
+            >
+            <a
+              class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors font-medium"
+              href="#galeria"
+              >Galería</a
+            >
+            <button
+              class="open-reserve px-5 py-2.5 bg-primary text-white rounded-full font-bold hover:bg-secondary transition-colors shadow-lg shadow-primary/30"
+            >
+              Reservar
+            </button>
+            <button
+              class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+              id="theme-toggle"
+            >
+              <span class="material-icons dark:hidden">dark_mode</span>
+              <span class="material-icons hidden dark:block">light_mode</span>
+            </button>
+          </div>
+          <div class="md:hidden flex items-center">
+            <button
+              class="text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none"
+              id="mobile-menu-btn"
+            >
+              <span class="material-icons text-3xl">menu</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- MENÚ MÓVIL -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 hidden md:hidden">
+      <!-- Fondo oscuro -->
+      <div
+        id="mobile-backdrop"
+        class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+      ></div>
+
+      <!-- Panel lateral -->
+      <div
+        id="mobile-panel"
+        class="absolute top-20 right-0 h-[calc(100%-5rem)] w-72 bg-white dark:bg-gray-900 shadow-xl p-6 transform translate-x-full transition-transform duration-300 flex flex-col gap-6"
+      >
+        <a href="#inicio" class="mobile-link text-lg font-medium">Inicio</a>
+        <a href="#diario" class="mobile-link text-lg font-medium"
+          >Menú del Día</a
+        >
+        <a href="#menu" class="mobile-link text-lg font-medium"
+          >Nuestra Carta</a
+        >
+        <a href="#vinos" class="mobile-link text-lg font-medium">Bodega</a>
+        <a href="#galeria" class="mobile-link text-lg font-medium">Galería</a>
+
+        <button
+          class="open-reserve px-4 py-3 bg-primary text-white rounded-full text-center font-bold"
+        >
+          Reservar
+        </button>
+
+        <!-- Botón para cambiar tema -->
+        <button
+          id="mobile-theme-toggle"
+          class="mt-auto flex items-center justify-center gap-2 px-4 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+        >
+          <span class="material-icons" id="mobile-theme-icon">dark_mode</span>
+          Cambiar tema
+        </button>
+      </div>
+    </div>
+    <header
+      class="relative pt-20 pb-16 md:pt-32 md:pb-24 flex items-center justify-center min-h-[80vh] overflow-hidden"
+      id="inicio"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          alt="Vista al mar restaurante"
+          class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPHwHgWdYyt0cbBsdiwDsI8r8xdfCXcRSVNArcmvrQjUz1nNb4hOCIHmmmltmIJ8A02sc0keHdyIqU7wN_PfDgx4kYHOY2ih4WeJnZhtpffH3vyiRNqWVM5F6LefbZ5nNkDn-Ad2aQkdheoyE61-u3PMvOH-uR9vsO7xnNm6CqQr0maAE7P-QGnApMfRHVvuTRp65t-KcXI4GBI0QFixKaSfg20RKDEq0W1GR1lRj9u_u0JhqArCARHOzaS6mGWwalzES6xVGrPlY"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30"
+        ></div>
+      </div>
+      <div
+        class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+      >
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-white text-sm font-semibold tracking-wider mb-6 uppercase"
+        >
+          Restaurante Frente al Mar
+        </span>
+        <h1
+          class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg leading-tight"
+        >
+          Sabores del mar <br />
+          <span class="text-primary italic font-script">y de la tierra</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-200 mb-10 font-light max-w-2xl mx-auto"
+        >
+          Disfruta de la mejor gastronomía gallega con productos frescos y una
+          vista inolvidable.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            class="open-reserve px-8 py-4 bg-primary text-white rounded-full font-bold text-lg hover:bg-secondary transition-transform transform hover:scale-105 shadow-xl"
+          >
+            Reservar Mesa
+          </button>
+          <a
+            class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white text-white rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all shadow-xl"
+            href="#menu"
+          >
+            Ver Carta
+          </a>
+        </div>
+      </div>
+    </header>
+    <section
+      class="py-20 bg-paper-light dark:bg-gray-800 wood-texture relative overflow-hidden"
+      id="diario"
+    >
+      <div class="max-w-4xl mx-auto px-4 relative z-10">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-display font-bold text-white mb-4 drop-shadow-md"
+          >
+            Menú del Día
+          </h2>
+          <div class="w-24 h-1 bg-white mx-auto mb-4"></div>
+          <p class="text-lg text-white font-medium drop-shadow-sm">
+            Disponible de Lunes a Viernes
+          </p>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700 p-8 md:p-12 relative"
+        >
+          <div
+            class="absolute top-4 left-4 right-4 bottom-4 border-2 border-primary/20 pointer-events-none rounded-xl"
+          ></div>
+          <div class="relative z-10 text-center space-y-8">
+            <div>
+              <h3 class="font-script text-3xl text-primary mb-4 font-bold">
+                Primeros
+              </h3>
+              <ul
+                class="space-y-2 text-lg text-gray-700 dark:text-gray-300 font-serif"
+              >
+                <li>Tortilla española</li>
+                <li>Callos</li>
+                <li>Tosta de Atún con Piquillo</li>
+              </ul>
+            </div>
+            <div
+              class="w-full h-px bg-gray-200 dark:bg-gray-700 max-w-xs mx-auto"
+            ></div>
+            <div>
+              <h3 class="font-script text-3xl text-primary mb-4 font-bold">
+                Segundos
+              </h3>
+              <ul
+                class="space-y-2 text-lg text-gray-700 dark:text-gray-300 font-serif"
+              >
+                <li>Mini Cachopines</li>
+                <li>Arroz Caldoso de Marisco</li>
+                <li>Macarrones con Boloñesa de Pollo</li>
+              </ul>
+            </div>
+            <div class="bg-primary/5 dark:bg-primary/10 py-6 rounded-xl mt-8">
+              <p
+                class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2"
+              >
+                CAFÉ O POSTRE
+              </p>
+              <div class="flex justify-center gap-8 items-end">
+                <div class="text-center">
+                  <span class="block text-sm text-gray-500 dark:text-gray-400"
+                    >Menú Completo</span
+                  >
+                  <span class="text-4xl font-display font-bold text-primary"
+                    >12€</span
+                  >
+                </div>
+                <div class="text-center">
+                  <span class="block text-sm text-gray-500 dark:text-gray-400"
+                    >Medio Menú</span
+                  >
+                  <span
+                    class="text-3xl font-display font-bold text-gray-600 dark:text-gray-400"
+                    >9€</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-20 bg-background-light dark:bg-background-dark"
+      id="menu"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="font-script text-3xl text-primary block mb-2"
+            >Nuestra selección</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white"
+          >
+            La Carta
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- COLUMNA IZQUIERDA -->
+          <div class="space-y-12">
+            <!-- ENTRANTES -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-primary"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <span class="material-icons text-primary text-3xl">tapas</span>
+                <h3 class="text-3xl font-script font-bold">Entrantes</h3>
+              </div>
+
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span>Bacalhao Brass</span
+                  ><span class="text-primary font-bold">18,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Paté de Peixiño</span
+                  ><span class="text-primary font-bold">10,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Empanada de millo</span
+                  ><span class="text-primary font-bold">9,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Empanada de cocido</span
+                  ><span class="text-primary font-bold">9,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Croquetiñas caseiras</span
+                  ><span class="text-primary font-bold">9,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <div>
+                    <span class="block">Crujiente de setas</span>
+                    <span class="text-sm text-gray-500 italic"
+                      >Con crema de cebreiro y parmentier de ibérico</span
+                    >
+                  </div>
+                  <span class="text-primary font-bold">16,00€</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- DE NUESTRO MAR -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-blue-500"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <span class="material-icons text-blue-500 text-3xl"
+                  >sailing</span
+                >
+                <h3 class="text-3xl font-script font-bold">De nuestro mar</h3>
+              </div>
+
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span>Pulpo ración</span
+                  ><span class="text-primary font-bold">25,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Pulpo tapa</span
+                  ><span class="text-primary font-bold">18,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Calamares</span
+                  ><span class="text-primary font-bold">12,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Luras encebolladas</span
+                  ><span class="text-primary font-bold">12,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Zamburiñas</span
+                  ><span class="text-primary font-bold">18,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Langostinos</span
+                  ><span class="text-primary font-bold">18,00€</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- VERDES Y VEGANOS -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-green-400"
+            >
+              <div class="flex items-center gap-3 mb-6">
+                <span class="material-icons text-green-400 text-3xl">spa</span>
+                <h3 class="text-3xl font-script font-bold">
+                  Nuestros verdes y veganos
+                </h3>
+              </div>
+
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span>Ensalada mixta pequeña</span
+                  ><span class="text-primary font-bold">6,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Lechuga, tomate y cebolla
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Ensalada mixta grande</span
+                  ><span class="text-primary font-bold">9,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Lechuga, tomate y cebolla
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Ensalada completa pequeña</span
+                  ><span class="text-primary font-bold">7,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Lechuga, tomate, cebolla, atún, espárragos y huevo
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Ensalada completa grande</span
+                  ><span class="text-primary font-bold">10,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Lechuga, tomate, cebolla, atún, espárragos y huevo
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Ensalada D'Elvi pequeña</span
+                  ><span class="text-primary font-bold">8,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Frutas de temporada, jamón serrano, piquillo, frutos secos y
+                  rulo de cabra
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Ensalada D'Elvi grande</span
+                  ><span class="text-primary font-bold">11,00€</span>
+                </li>
+                <li class="text-sm text-gray-500 italic">
+                  Frutas de temporada, jamón serrano, piquillo, frutos secos y
+                  rulo de cabra
+                </li>
+
+                <li class="flex justify-between">
+                  <span>Seitán</span
+                  ><span class="text-primary font-bold">14,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Shiitake a la gallega</span
+                  ><span class="text-primary font-bold">16,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Pimientos de Padrón (temporada)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA -->
+          <div class="space-y-12">
+            <!-- ÉCHALE HUEVOS -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-yellow-400"
+            >
+              <h3 class="text-3xl font-script font-bold mb-6">Échale huevos</h3>
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span>Tortilla española</span
+                  ><span class="text-primary font-bold">14,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <div>
+                    <span class="block">Tortilla Big Fran</span>
+                    <span class="text-sm text-gray-500 italic"
+                      >Patata, cebolla, pimientos, jalapeños y huevo</span
+                    >
+                  </div>
+                  <span class="text-primary font-bold">16,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Huevos rotos con chorizo a la brasa</span
+                  ><span class="text-primary font-bold">8,00€</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- BRASA Y LEÑA -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-red-500"
+            >
+              <h3 class="text-3xl font-script font-bold mb-6">
+                De brasa y leña
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex justify-between">
+                  <span>Churrasco de cerdo</span
+                  ><span class="text-primary font-bold">17,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Churrasco de ternera</span
+                  ><span class="text-primary font-bold">18,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Chorizo rojo</span
+                  ><span class="text-primary font-bold">4,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Chorizo criollo</span
+                  ><span class="text-primary font-bold">4,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Picantón</span
+                  ><span class="text-primary font-bold">12,00€</span>
+                </li>
+
+                <li class="mt-4 pt-4 border-t-2 border-dashed">
+                  <h4 class="font-bold text-red-500 mb-2">Brasa Premium</h4>
+                  <div class="flex justify-between">
+                    <span>Croca</span
+                    ><span class="text-primary font-bold">18,00€</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Picaña</span
+                    ><span class="text-primary font-bold">18,00€</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Secreto</span
+                    ><span class="text-primary font-bold">18,00€</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- POSTRES -->
+            <div
+              class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-pink-400"
+            >
+              <h3 class="text-3xl font-script font-bold mb-6">Postres</h3>
+              <ul class="space-y-3">
+                <li class="flex justify-between">
+                  <span>Tarta La Viña D'Elvi</span
+                  ><span class="text-primary font-bold">6,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Flan de orujo</span
+                  ><span class="text-primary font-bold">4,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Flan de huevo</span
+                  ><span class="text-primary font-bold">4,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Tarta Lotus</span
+                  ><span class="text-primary font-bold">5,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Banoffee</span
+                  ><span class="text-primary font-bold">6,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Sacher</span
+                  ><span class="text-primary font-bold">5,00€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Carrot Cake</span
+                  ><span class="text-primary font-bold">5,00€</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-24 bg-paper-light dark:bg-gray-800 relative overflow-hidden"
+      id="vinos"
+    >
+      <div
+        class="absolute inset-0 opacity-5 bg-cork-pattern pointer-events-none"
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+          <span class="font-script text-3xl text-wine-red block mb-3"
+            >Nuestra Bodega</span
+          >
+          <h2
+            class="text-4xl md:text-5xl font-display font-bold text-gray-900 dark:text-white mb-6"
+          >
+            Carta de Vinos
+          </h2>
+          <div class="w-24 h-1 bg-wine-red mx-auto mb-6"></div>
+          <p
+            class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto italic"
+          >
+            Una cuidada selección de vinos para maridar perfectamente con
+            nuestros platos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- TINTOS -->
+          <div
+            class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-300"
+          >
+            <div class="bg-wine-red py-4 px-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-display font-bold text-white">
+                  Tintos
+                </h3>
+                <span class="material-icons text-white/80 text-3xl"
+                  >wine_bar</span
+                >
+              </div>
+            </div>
+
+            <div class="p-8 space-y-6">
+              <div>
+                <h4 class="font-bold text-lg text-wine-red mb-3 border-b pb-1">
+                  Rioja
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Bordón Crianza</span
+                    ><span class="font-bold">2,50€ / 15€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Izadi Crianza</span><span class="font-bold">19€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Marqués de Vargas Reserva</span
+                    ><span class="font-bold">32€</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-lg text-wine-red mb-3 border-b pb-1">
+                  Ribera del Duero
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Valparaíso Roble</span
+                    ><span class="font-bold">2,50€ / 15€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Finca Resalso</span><span class="font-bold">18€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Pruno</span><span class="font-bold">20€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Conde de San Cristóbal Crianza</span
+                    ><span class="font-bold">28€</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-bold text-lg text-wine-red mb-3 border-b pb-1">
+                  Otras D.O.
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Vetus · D.O. Toro</span
+                    ><span class="font-bold">24€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Mencía Cosechero</span
+                    ><span class="font-bold">2,40€ / 12€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Vía Imperial · Ribeira Sacra</span
+                    ><span class="font-bold">2,50€ / 15€</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLANCOS -->
+          <div
+            class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 relative transform md:-translate-y-4"
+          >
+            <div
+              class="absolute top-0 right-0 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-20"
+            >
+              RECOMENDADO
+            </div>
+
+            <div class="bg-yellow-600 py-4 px-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-display font-bold text-white">
+                  Blancos
+                </h3>
+                <span class="material-icons text-white/80 text-3xl"
+                  >local_bar</span
+                >
+              </div>
+            </div>
+
+            <div class="p-8 space-y-6">
+              <div>
+                <h4
+                  class="font-bold text-lg text-yellow-600 mb-3 border-b pb-1"
+                >
+                  Rías Baixas
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Albariño Cosechero</span
+                    ><span class="font-bold">2,40€ / 12€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>San Ero</span><span class="font-bold">15€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Pazo de San Mauro</span
+                    ><span class="font-bold">25€</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4
+                  class="font-bold text-lg text-yellow-600 mb-3 border-b pb-1"
+                >
+                  Ribeiro
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Ribeiro Cosechero</span
+                    ><span class="font-bold">2,40€ / 12€</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Antonio González</span
+                    ><span class="font-bold">15€</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4
+                  class="font-bold text-lg text-yellow-600 mb-3 border-b pb-1"
+                >
+                  Godello
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Ramón Bigotes · Monterrei</span
+                    ><span class="font-bold">2,60€ / 15€</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4
+                  class="font-bold text-lg text-yellow-600 mb-3 border-b pb-1"
+                >
+                  Rosado
+                </h4>
+                <ul class="space-y-3">
+                  <li class="flex justify-between">
+                    <span>Izadi Larrosa Rosé</span
+                    ><span class="font-bold">17€</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- VINOS DULCES -->
+          <div
+            class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-shadow duration-300"
+          >
+            <div class="bg-pink-400 py-4 px-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-2xl font-display font-bold text-white">
+                  Vinos Dulces
+                </h3>
+                <span class="material-icons text-white/80 text-3xl"
+                  >celebration</span
+                >
+              </div>
+            </div>
+
+            <div class="p-8 space-y-4">
+              <ul class="space-y-3">
+                <li class="flex justify-between">
+                  <span>Oporto Graham’s Tawny</span
+                  ><span class="font-bold">2,20€ / 3,40€</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Oporto Graham’s 10 años</span
+                  ><span class="font-bold">4€ / 6€</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <p class="text-sm text-gray-500 dark:text-gray-400 italic">
+            * Precios por copa / botella. Pregunte a nuestro personal por las
+            recomendaciones del sumiller y vinos fuera de carta.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-100 dark:bg-gray-900" id="galeria">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-4xl font-display font-bold text-center text-gray-900 dark:text-white mb-12"
+        >
+          Galería
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="group relative h-80 rounded-2xl overflow-hidden shadow-xl"
+          >
+            <img
+              alt="Bogavante con huevos y patatasa"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="img/bogavante.png"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">Mariscos</span>
+            </div>
+          </div>
+          <div
+            class="group relative h-80 rounded-2xl overflow-hidden shadow-xl"
+          >
+            <div
+              class="w-full h-full bg-gray-200 flex items-center justify-center overflow-hidden"
+            >
+              <img
+                alt="Carrilleras estofadas"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                src="img/carne.png"
+              />
+            </div>
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl"
+                >Estofados Caseros</span
+              >
+            </div>
+          </div>
+          <div
+            class="group relative h-80 rounded-2xl overflow-hidden shadow-xl"
+          >
+            <img
+              alt="Terraza al Mar"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src="img/terraza.png"
+            />
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+            >
+              <span class="text-white font-bold text-xl">Terraza al Mar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL DE RESERVA -->
+    <div
+      id="reserve-modal"
+      class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md p-6 relative"
+      >
+        <!-- Botón cerrar -->
+        <button
+          id="close-reserve"
+          class="absolute top-3 right-3 text-gray-500 hover:text-primary"
+        >
+          ✖
+        </button>
+        <h2 class="text-2xl font-bold text-center mb-4">Reservar Mesa</h2>
+        <!-- FORMULARIO -->
+        <!-- FORMULARIO -->
+        <form id="reserve-form" class="flex flex-col gap-4">
+          <input
+            type="text"
+            id="nombre"
+            placeholder="Nombre"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            id="phone"
+            type="tel"
+            placeholder="Teléfono"
+            required
+            class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Correo electrónico"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="date"
+            id="fecha"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="time"
+            id="hora"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="number"
+            id="personas"
+            placeholder="Número de personas"
+            max="20"
+            min="1"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <button
+            type="submit"
+            class="bg-primary text-white font-bold py-2 rounded-lg hover:bg-secondary transition-colors"
+          >
+            Confirmar Reserva
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer
+      class="bg-gray-900 text-white pt-20 pb-10 border-t border-gray-800"
+      id="contacto"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <div class="text-center md:text-left">
+            <h3 class="font-script text-5xl text-primary mb-6">D'Elvi</h3>
+            <p class="text-gray-400 mb-6">
+              Cocina con amor, ingredientes frescos y el sabor auténtico de
+              nuestra tierra y nuestro mar.
+            </p>
+          </div>
+          <div class="text-center">
+            <h4 class="text-xl font-bold mb-6 font-display">Contacto</h4>
+            <p
+              class="mb-4 flex items-center justify-center gap-2 text-gray-300"
+            >
+              <span class="material-icons text-primary">phone</span>
+              <a class="hover:text-white transition-colors" href="tel:609078288"
+                >609 07 82 88</a
+              >
+            </p>
+            <p
+              class="mb-4 flex items-center justify-center gap-2 text-gray-300"
+            >
+              <span class="material-icons text-primary">location_on</span>
+              <span>Rúa Porto de Meira, 5, 36955 Moaña, Pontevedra</span>
+            </p>
+          </div>
+          <div class="text-center md:text-right">
+            <h4 class="text-xl font-bold mb-6 font-display">Horario</h4>
+            <div class="text-sm space-y-2">
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Lunes</span>
+                <span class="text-white font-bold">12:00–18:00</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Martes</span>
+                <span class="text-white font-bold text-red-400">Cerrado</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Miércoles</span>
+                <span class="text-white font-bold">12:00–18:00</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Jueves</span>
+                <span class="text-white font-bold">12:00–18:00</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Viernes</span>
+                <span class="text-white font-bold">12:00–23:30</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Sábado</span>
+                <span class="text-white font-bold">12:00–23:30</span>
+              </p>
+              <p class="flex justify-between md:justify-end gap-4">
+                <span class="text-gray-400">Domingo</span>
+                <span class="text-white font-bold">12:00–23:30</span>
+              </p>
+              <p class="text-xs text-yellow-500 italic text-right mt-2">
+                El horario podría cambiar en festivos
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm"
+        >
+          <p>© 2023 Restaurante D'Elvi. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const themeToggle = document.getElementById("theme-toggle");
+      const htmlElement = document.documentElement;
+      // Check local storage or preference
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        htmlElement.classList.add("dark");
+      } else {
+        htmlElement.classList.remove("dark");
+      }
+      themeToggle.addEventListener("click", () => {
+        if (htmlElement.classList.contains("dark")) {
+          htmlElement.classList.remove("dark");
+          localStorage.theme = "light";
+        } else {
+          htmlElement.classList.add("dark");
+          localStorage.theme = "dark";
+        }
+      });
+
+      // Tema móvil
+      const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
+      const mobileThemeIcon = document.getElementById("mobile-theme-icon");
+
+      mobileThemeToggle.addEventListener("click", () => {
+        if (htmlElement.classList.contains("dark")) {
+          htmlElement.classList.remove("dark");
+          localStorage.theme = "light";
+          mobileThemeIcon.textContent = "dark_mode";
+        } else {
+          htmlElement.classList.add("dark");
+          localStorage.theme = "dark";
+          mobileThemeIcon.textContent = "light_mode";
+        }
+      });
+
+      // menu hamburguesa para móvil
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobilePanel = document.getElementById("mobile-panel");
+      const mobileBackdrop = document.getElementById("mobile-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-link");
+
+      function toggleMenu() {
+        const isOpen = !mobileMenu.classList.contains("hidden");
+
+        if (isOpen) {
+          // cerrar
+          mobilePanel.classList.add("translate-x-full");
+          setTimeout(() => mobileMenu.classList.add("hidden"), 300);
+          document.body.classList.remove("overflow-hidden");
+        } else {
+          // abrir
+          mobileMenu.classList.remove("hidden");
+          requestAnimationFrame(() =>
+            mobilePanel.classList.remove("translate-x-full")
+          );
+          document.body.classList.add("overflow-hidden");
+        }
+      }
+
+      mobileBtn.addEventListener("click", toggleMenu);
+      mobileBackdrop.addEventListener("click", toggleMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", toggleMenu);
+      });
+    </script>
+
+    <script>
+      // Seleccionamos todos los botones que tengan la clase .open-reserve
+      const openBtns = document.querySelectorAll(".open-reserve");
+      const closeBtn = document.getElementById("close-reserve");
+      const modal = document.getElementById("reserve-modal");
+
+      // Añadimos evento a cada botón de abrir
+      openBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          modal.classList.remove("hidden");
+        });
+      });
+
+      // Evento para cerrar con el botón ✖
+      closeBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
+
+      // Cerrar al hacer clic fuera del modal
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+        }
+      });
+    </script>
+
+    <!-- Prejifos telefónicos -->
+    <script>
+      const input = document.querySelector("#phone");
+      window.intlTelInput(input, {
+        initialCountry: "es", // España por defecto
+        preferredCountries: ["es", "pt", "fr", "it", "de", "gb"], // países destacados
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+      });
+    </script>
+
+    <!-- Formulario de reserva -->
+
+    <script>
+      document
+        .getElementById("reserve-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault(); // evita que se recargue la página
+
+          const data = {
+            nombre: document.getElementById("nombre").value,
+            telefono: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            fecha: document.getElementById("fecha").value,
+            hora: document.getElementById("hora").value,
+            personas: document.getElementById("personas").value,
+          };
+
+          try {
+            console.log("Datos enviados:", data);
+            const response = await fetch("/api/reservas", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+            alert(result.message || result.error); // muestra confirmación o error
+          } catch (err) {
+            alert("Error al enviar la reserva: " + err);
+          }
+        });
+    </script>
+  </body>
+</html>
