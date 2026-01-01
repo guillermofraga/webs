@@ -59,22 +59,6 @@ def crear_reserva():
         if fecha_obj < date.today(): 
             return jsonify({"error": "La fecha no puede ser anterior al día actual"}), 400
 
-        # Calcular rango de 1 hora
-        hora_obj = datetime.strptime(hora, "%H:%M").time()
-        hora_inicio = datetime.combine(fecha_obj, hora_obj)
-        hora_fin = hora_inicio + timedelta(hours=1)
-
-        # Contar reservas en esa franja
-        # Limita a máximo 10 reservas en una franja de 1 hora (ej. de 12:00 a 12:59).
-        reservas_en_hora = Reserva.query.filter(
-            Reserva.fecha == fecha_obj,
-            Reserva.hora >= hora_inicio.time(),
-            Reserva.hora < hora_fin.time()
-        ).count()
-
-        if reservas_en_hora >= 10:
-            return jsonify({"error": "Todas las mesas en esa franja horaria ya están reservadas"}), 400
-
         try:
             hora_obj = datetime.strptime(hora, "%H:%M").time()
         except Exception:
@@ -87,11 +71,11 @@ def crear_reserva():
         except Exception:
             return jsonify({"error": "Número de personas inválido"}), 400
 
-        # 🔎 Validar disponibilidad (máximo 10 reservas por fecha/hora)
-        # Limita a máximo 10 reservas en un slot exacto de hora/minuto.
+        # 🔎 Validar disponibilidad (máximo 5 reservas por fecha/hora)
+        # Limita a máximo 5 reservas en un slot exacto de hora/minuto.
         total = Reserva.query.filter_by(fecha=fecha_obj, hora=hora_obj).count()
-        if total >= 10:
-            return jsonify({"message": "No quedan mesas disponibles en ese horario."}), 400
+        if total >= 5:
+            return jsonify({"error": "No quedan mesas disponibles en ese horario."}), 400
 
         # 🔎 Insertar reserva
         nueva_reserva = Reserva(

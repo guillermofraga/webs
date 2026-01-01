@@ -79,17 +79,18 @@ reserveForm.addEventListener("submit", async function (e) {
             confirmModal.classList.remove("hidden");
 
             // 🔄 Reiniciar formulario
-            reserveForm.reset();
+            ReiniciarFormulario();
+
         }
         else {
             reserveModal.classList.add("hidden");
 
             // Mostrar el mensaje devuelto por el backend 
-            errorMessage.innerText = result.error || "Error desconocido"; 
-            errorModal.classList.remove("hidden"); 
+            errorMessage.innerText = result.error || "Error desconocido";
+            errorModal.classList.remove("hidden");
 
             // 🔄 Reiniciar formulario
-            reserveForm.reset();
+            ReiniciarFormulario();
         }
     } catch (err) {
         reserveModal.classList.add("hidden");
@@ -99,12 +100,26 @@ reserveForm.addEventListener("submit", async function (e) {
         errorModal.classList.remove("hidden");
 
         // 🔄 Reiniciar formulario
-        reserveForm.reset();
+        ReiniciarFormulario();
     }
 });
 
 
 function formatearFecha(fechaISO) {
-  const [year, month, day] = fechaISO.split("-");
-  return `${day}-${month}-${year}`;
+    const [year, month, day] = fechaISO.split("-");
+    return `${day}-${month}-${year}`;
+}
+
+function ReiniciarFormulario() {
+    if (!document.getElementById("save-data").checked) {
+        ["nombre", "phone", "email", "fecha", "hora", "personas"].forEach(id => {
+        document.getElementById(id).value = "";
+        });
+    }
+    else {
+        // Mantener los datos guardados si el checkbox está marcado y borrar solo los no guardados
+        ["fecha", "hora", "personas"].forEach(id => {
+        document.getElementById(id).value = "";
+        });
+    }
 }
