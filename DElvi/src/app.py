@@ -6,6 +6,9 @@ from datetime import date, datetime, timedelta
 
 app = Flask(__name__)
 
+# Configuración de la aplicación
+debug = os.getenv("FLASK_DEBUG")
+
 # Cadena de conexión en una sola línea
 try:
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL_DELVI", "mysql://root@localhost/delvi")
@@ -95,4 +98,10 @@ def crear_reserva():
         return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    try:
+        if debug.lower() == "true":
+            app.run(debug=True)
+        else:
+            app.run(debug=False)
+    except Exception:
+        app.run(debug=False)
