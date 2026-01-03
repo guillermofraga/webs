@@ -98,19 +98,14 @@ def crear_reserva():
         return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
 
 
-@app.route("/cancelar", methods=["GET", "POST"])
-def cancelar():
+@app.route("/cancelar/<codigo>", methods=["GET", "POST"])
+def cancelar(codigo):
     if request.method == "GET":
         # Si viene con confirmacion=ok, mostramos solo el mensaje de éxito
         if request.args.get("confirmacion") == "ok":
             return render_template("cancelar.html", reserva=None, confirmacion=True)
 
         # Caso normal: mostrar la reserva para confirmar
-        codigo = request.args.get("codigo")
-
-        if not codigo:
-            return render_template("cancelar.html", reserva=None)
-
         reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
         if not reserva:
             return render_template("cancelar.html", reserva=None)
@@ -118,17 +113,15 @@ def cancelar():
         return render_template("cancelar.html", reserva=reserva)
 
     elif request.method == "POST":
-        codigo = request.form.get("codigo")
-
         reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
         if not reserva:
-            return redirect(url_for("cancelar"))
+            return redirect(url_for("cancelar", codigo=codigo))
 
         db.session.delete(reserva)
         db.session.commit()
 
         # Redirigimos con confirmacion=ok
-        return redirect(url_for("cancelar", confirmacion="ok"))
+        return redirect(url_for("cancelar", codigo=codigo, confirmacion="ok"))
     
 
 if __name__ == "__main__":

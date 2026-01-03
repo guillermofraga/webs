@@ -69,8 +69,7 @@
     {% if reserva %}
       <h1>Cancelar reserva</h1>
       <p class="message">¿Seguro que deseas cancelar tu reserva a nombre de: <b>{{ reserva.nombre }}</b> para el día <b>{{ reserva.fecha.strftime("%d/%m/%Y") }}</b> a las <b>{{ reserva.hora.strftime("%H:%M") }}</b>?</p>
-      <form method="POST">
-        <input type="hidden" name="codigo" value="{{ reserva.codigo_unico }}">
+      <form method="POST" action="{{ url_for('cancelar', codigo=reserva.codigo_unico) }}">
         <button type="submit" class="btn" style="background-color: rgb(221, 38, 38);">Sí, cancelar</button>
       </form>
     {% elif confirmacion %}

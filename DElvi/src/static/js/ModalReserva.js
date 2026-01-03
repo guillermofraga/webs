@@ -53,7 +53,7 @@ reserveForm.addEventListener("submit", async function (e) {
 
     const data = {
         nombre: document.getElementById("nombre").value,
-        telefono: document.getElementById("phone").value,
+        telefono: iti.getNumber(), // Obtener el número completo con prefijo
         email: document.getElementById("email").value,
         fecha: document.getElementById("fecha").value,
         hora: document.getElementById("hora").value,
