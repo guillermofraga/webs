@@ -1,32 +1,29 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-import os
 import re
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
+from flask_mail import Mail, Message
+from config import Config
+from models import Reserva, db
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
-# Configuración de la aplicación
-debug = os.getenv("FLASK_DEBUG")
+db.init_app(app)
+mail = Mail(app)
 
-# Cadena de conexión en una sola línea
-try:
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL_DELVI", "mysql://root@localhost/delvi")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-except Exception as e:
-    print(f"Error al configurar la base de datos: {e}")
+# Función para enviar correo de confirmación
+def enviar_confirmacion(email, codigo_unico):
+    msg = Message(
+        subject="Confirmación de reserva",
+        sender=app.config['MAIL_USERNAME'],
+        recipients=[email]
+    )
+    # Renderizamos la plantilla con Jinja2
+    msg.html = render_template("email_confirmacion.html",email=email, codigo_unico=codigo_unico)
+    mail.send(msg)
 
-db = SQLAlchemy(app)
 
-# Modelo de la tabla reservas
-class Reserva(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    telefono = db.Column(db.String(20), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
-    fecha = db.Column(db.Date, nullable=False)
-    hora = db.Column(db.Time, nullable=False)
-    personas = db.Column(db.Integer, nullable=False)
 
 @app.route("/")
 def index():
@@ -92,16 +89,47 @@ def crear_reserva():
         db.session.add(nueva_reserva)
         db.session.commit()
 
+        # 🔎 Enviar correo de confirmación
+        enviar_confirmacion(email, nueva_reserva.codigo_unico)
+
         return jsonify({"message": "Reserva confirmada ✅"}), 201
 
     except Exception as e:
         return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
 
+
+@app.route("/cancelar", methods=["GET", "POST"])
+def cancelar():
+    if request.method == "GET":
+        # Si viene con confirmacion=ok, mostramos solo el mensaje de éxito
+        if request.args.get("confirmacion") == "ok":
+            return render_template("cancelar.html", reserva=None, confirmacion=True)
+
+        # Caso normal: mostrar la reserva para confirmar
+        codigo = request.args.get("codigo")
+
+        if not codigo:
+            return render_template("cancelar.html", reserva=None)
+
+        reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+        if not reserva:
+            return render_template("cancelar.html", reserva=None)
+
+        return render_template("cancelar.html", reserva=reserva)
+
+    elif request.method == "POST":
+        codigo = request.form.get("codigo")
+
+        reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+        if not reserva:
+            return redirect(url_for("cancelar"))
+
+        db.session.delete(reserva)
+        db.session.commit()
+
+        # Redirigimos con confirmacion=ok
+        return redirect(url_for("cancelar", confirmacion="ok"))
+    
+
 if __name__ == "__main__":
-    try:
-        if debug.lower() == "true":
-            app.run(debug=True)
-        else:
-            app.run(debug=False)
-    except Exception:
-        app.run(debug=False)
+    app.run(debug=app.config['DEBUG'])

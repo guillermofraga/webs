@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Cancelar reserva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #F9FAFB;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #722F37;
+      font-size: 24px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .message {
+      margin: 15px 0;
+      font-size: 16px;
+      text-align: center;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #2E7D32;
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(46, 125, 50, 0.3);
+    }
+    .btn:hover {
+      background-color: #1A4D2E;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .message {
+        font-size: 14px;
+      }
+      .btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% if reserva %}
+      <h1>Cancelar reserva</h1>
+      <p class="message">¿Seguro que deseas cancelar tu reserva a nombre de: <b>{{ reserva.nombre }}</b> para el día <b>{{ reserva.fecha.strftime("%d/%m/%Y") }}</b> a las <b>{{ reserva.hora.strftime("%H:%M") }}</b>?</p>
+      <form method="POST">
+        <input type="hidden" name="codigo" value="{{ reserva.codigo_unico }}">
+        <button type="submit" class="btn" style="background-color: rgb(221, 38, 38);">Sí, cancelar</button>
+      </form>
+    {% elif confirmacion %}
+        <h1 style="color: rgb(47, 158, 47);">Reserva cancelada</h1>
+        <p class="message">Tu reserva ha sido cancelada exitosamente.</p>
+    {% else %}
+      <h1>Error</h1>
+      <p class="message">No se encontró la reserva o los datos son inválidos.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

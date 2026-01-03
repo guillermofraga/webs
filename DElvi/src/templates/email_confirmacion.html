@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #F9FAFB;
+      color: #333;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #2E7D32;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .codigo {
+      font-size: 18px;
+      font-weight: bold;
+      color: #722F37;
+      margin: 15px 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: #2E7D32;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 9999px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(46, 125, 50, 0.3);
+    }
+    .btn:hover {
+      background-color: #1A4D2E;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✅ Reserva confirmada</h1>
+    <p>Gracias por reservar con <span style="font-family:'Dancing Script',cursive; font-size:20px; color:#2E7D32;">D'Elvi</span>.</p>
+    <p>Si deseas cancelar tu reserva, haz clic en el siguiente botón:</p>
+    <a href="https://tusitio.com/cancelar?codigo={{ codigo_unico }}" class="btn">Cancelar reserva</a>
+    <div class="footer">
+      <p>Este correo ha sido generado automáticamente. No respondas directamente.</p>
+    </div>
+  </div>
+</body>
+</html>
