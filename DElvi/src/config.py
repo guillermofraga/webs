@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = os.getenv("SECRET_KEY_DELVI")  # Clave secreta para desarrollo
+    SECRET_KEY = os.getenv("SECRET_KEY_DELVI")  # Clave secreta para la aplicación Flask
 
     # Configuración de la base de datos
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL_DELVI")
