@@ -117,6 +117,13 @@ def cancelar(codigo):
         if not reserva:
             return redirect(url_for("cancelar", codigo=codigo))
 
+        # Combinar fecha y hora de la reserva 
+        fecha_reserva = datetime.combine(reserva.fecha, reserva.hora) 
+        # Si ya pasó la fecha/hora, no permitir cancelación 
+        if datetime.now() >= fecha_reserva: 
+            return render_template("cancelar.html", reserva=None, error="La reserva ya ha pasado de la hora de expiración y no puede cancelarse.") 
+        
+        # Si todavía no ha pasado, cancelar la reserva
         db.session.delete(reserva)
         db.session.commit()
 
