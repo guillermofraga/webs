@@ -11,36 +11,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-    <style>
-      /* Prefijo seleccionado junto a la bandera */
-      .iti__selected-dial-code {
-        color: #000 !important; /* negro en modo claro */
-      }
-
-      /* En modo oscuro, color negro */
-      .dark .iti__selected-dial-code {
-        color: #000 !important; /* negro para que contraste sobre fondo oscuro */
-      }
-
-      /* Prefijos dentro del desplegable */
-      .iti__country-list .iti__dial-code {
-        color: #000 !important;
-      }
-
-      .dark .iti__country-list .iti__dial-code {
-        color: #000 !important; /* negro en modo oscuro */
-      }
-
-      /* Nombre del país en la lista */
-      .iti__country-list .iti__country-name {
-        color: #000 !important; /* negro en modo claro */
-      }
-
-      /* En modo oscuro también negro */
-      .dark .iti__country-list .iti__country-name {
-        color: #000 !important; /* negro en modo oscuro */
-      }
-    </style>
+    <link rel="stylesheet" href="/static/style/style.css">
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -959,10 +930,12 @@
           />
 
           <input
-            type="date"
-            id="fecha"
+            type="text" 
+            id="fecha" 
             required
-            placeholder="dd/mm/yyyy"
+            placeholder="dd/mm/yyyy" 
+            onfocus="this.type='date'"
+            onblur="if(!this.value)this.type='text'"
             class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
           />
 
