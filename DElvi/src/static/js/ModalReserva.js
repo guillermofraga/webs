@@ -47,9 +47,17 @@ okError.addEventListener("click", () => {
 
 // --- FORMULARIO DE RESERVA ---
 const reserveForm = document.getElementById("reserve-form");
+const btn = document.getElementById("submitBtn");
+const text = document.getElementById("btnText");
+const spinner = document.getElementById("spinner");
 
 reserveForm.addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    // 🔄 Estado de carga 
+    btn.disabled = true;                 // desactiva el botón
+    text.textContent = "Procesando Reserva...";  // cambia el texto
+    spinner.classList.remove("hidden");  // muestra el spinner
 
     const data = {
         nombre: document.getElementById("nombre").value,
@@ -101,6 +109,12 @@ reserveForm.addEventListener("submit", async function (e) {
 
         // 🔄 Reiniciar formulario
         ReiniciarFormulario();
+    }
+    finally{
+        // ✅ Restaurar estado del botón
+        btn.disabled = false;
+        text.textContent = "Confirmar Reserva";
+        spinner.classList.add("hidden");
     }
 });
 
