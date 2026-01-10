@@ -1,72 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>{% block title %}D'Elvi - Restaurante frente al mar{% endblock %}</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <!-- Librería Prefijos telefónicos -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-    <link rel="stylesheet" href="/static/style/style.css">
-    <link rel="icon" type="img/png" href="/static/img/delvi.png">
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#2E7D32", // A rich green inspired by the logo text
-              secondary: "#1A4D2E", // Darker green for depth
-              accent: "#8B4513", // Brown for wood textures/text accents
-              "background-light": "#F9FAFB", // Very light gray/white
-              "background-dark": "#1F2937", // Dark gray
-              "paper-light": "#FFFBEB", // Warm paper color for menu sections
-              "paper-dark": "#374151", // Dark paper alternative
-              "wine-red": "#722F37", // Merlot color for wine accents
-            },
-            fontFamily: {
-              display: ["'Playfair Display'", "serif"],
-              body: ["'Lato'", "sans-serif"],
-              script: ["'Dancing Script'", "cursive"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              xl: "1rem",
-              "2xl": "1.5rem",
-            },
-            backgroundImage: {
-              "wood-pattern":
-                "url('https://www.transparenttextures.com/patterns/wood-pattern.png')",
-              "cork-pattern":
-                "url('https://www.transparenttextures.com/patterns/cork-1.png')",
-            },
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO básico -->
+  <title>{% block title %}D'Elvi - Restaurante frente al mar{% endblock %}</title>
+  <meta name="description" content="D'Elvi es una tapería y bocatería frente al mar en Moaña. Tapas caseras, bocadillos gourmet y ambiente acogedor. ¡Reserva online!">
+  <meta name="keywords" content="tapería, bocatería, restaurante, Moaña, tapas, bocadillos, frente al mar, D'Elvi">
+  <meta name="author" content="D'Elvi Tapería - Bocatería">
+  <meta http-equiv="Content-Language" content="es">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="D'Elvi - Restaurante frente al mar en Moaña">
+  <meta property="og:description" content="Tapas caseras y bocadillos gourmet a pie de playa en Moaña. Reserva tu mesa en D'Elvi.">
+  <meta property="og:image" content="https://restaurantetaperiadelvi.com/static/img/delvi-og.jpg">
+  <meta property="og:url" content="https://restaurantetaperiadelvi.com">
+  <meta property="og:type" content="restaurant">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="D'Elvi - Restaurante frente al mar en Moaña">
+  <meta name="twitter:description" content="Tapas caseras y bocadillos gourmet a pie de playa en Moaña. Reserva tu mesa en D'Elvi.">
+  <meta name="twitter:image" content="https://restaurantetaperiadelvi.com/static/img/delvi.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/static/img/delvi.png">
+
+  <!-- Tailwind + Config -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2E7D32",
+            secondary: "#1A4D2E",
+            accent: "#8B4513",
+            "background-light": "#F9FAFB",
+            "background-dark": "#1F2937",
+            "paper-light": "#FFFBEB",
+            "paper-dark": "#374151",
+            "wine-red": "#722F37",
+          },
+          fontFamily: {
+            display: ["'Playfair Display'", "serif"],
+            body: ["'Lato'", "sans-serif"],
+            script: ["'Dancing Script'", "cursive"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            xl: "1rem",
+            "2xl": "1.5rem",
+          },
+          backgroundImage: {
+            "wood-pattern": "url('https://www.transparenttextures.com/patterns/wood-pattern.png')",
+            "cork-pattern": "url('https://www.transparenttextures.com/patterns/cork-1.png')",
           },
         },
-      };
-    </script>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Lato:wght@300;400;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <style>
-      .wood-texture {
-        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDI5OQsJbLxjFHnEt9YaSQQ_CHuoxbgnTD7S7ioKu1p7XF3gQv1KfV3HtGet-7OaMnVc_RJRJpp4vR7JywbZOJvqxykiTV7qsqWVzhZuebcnvxOyFN7jcmT7Rfe-RJMG7iiC_xv1g216BesOlE-TLEfTV_qI8nhdDPUYTrQ_t1Fq4hpd7MxTWqHAux8s5cMCkFqZkT11G4fLue99R2qczbwHqRhzpAyNgWxVJmElpieVDiDaw09-qMftgpNUMQGuX6RSZ5_yJ13TJw);
-        background-size: cover;
-        background-position: center;
-        background-blend-mode: multiply;
-      }
-    </style>
-  </head>
+      },
+    };
+  </script>
+
+  <!-- Prefijos telefónicos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="/static/style/style.css">
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&amp;family=Lato:wght@300;400;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- Fondo decorativo -->
+  <style>
+    .wood-texture {
+      background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDI5OQsJbLxjFHnEt9YaSQQ_CHuoxbgnTD7S7ioKu1p7XF3gQv1KfV3HtGet-7OaMnVc_RJRJpp4vR7JywbZOJvqxykiTV7qsqWVzhZuebcnvxOyFN7jcmT7Rfe-RJMG7iiC_xv1g216BesOlE-TLEfTV_qI8nhdDPUYTrQ_t1Fq4hpd7MxTWqHAux8s5cMCkFqZkT11G4fLue99R2qczbwHqRhzpAyNgWxVJmElpieVDiDaw09-qMftgpNUMQGuX6RSZ5_yJ13TJw);
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: multiply;
+    }
+  </style>
+</head>
+
   <body
     class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-body transition-colors duration-300"
   >
