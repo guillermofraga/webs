@@ -24,7 +24,6 @@ def enviar_confirmacion(email, codigo_unico):
     mail.send(msg)
 
 
-
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -102,8 +101,15 @@ def crear_reserva():
 def cancelar(codigo):
     if request.method == "GET":
         reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+        
         if not reserva:
             return render_template("cancelar.html", reserva=None)
+
+        # Combinar fecha y hora de la reserva 
+        fecha_reserva = datetime.combine(reserva.fecha, reserva.hora) 
+        # Si ya pasó la fecha/hora, no permitir cancelación 
+        if datetime.now() >= fecha_reserva: 
+            return render_template("cancelar.html", reserva=None, error="La reserva ya ha pasado de la hora de expiración y no puede cancelarse.") 
 
         return render_template("cancelar.html", reserva=reserva)
 

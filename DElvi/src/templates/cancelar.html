@@ -7,7 +7,7 @@
       <form method="POST" action="{{ url_for('cancelar', codigo=reserva.codigo_unico) }}">
         <button type="submit" class="mt-12 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" style="background-color: rgb(221, 38, 38);">Sí, cancelar</button>
       </form>
-{% else %}
+    {% else %}
   {% with success_messages = get_flashed_messages(category_filter=['success']) %}
     {% if success_messages %}
       <h1 style="color: rgb(47, 158, 47);">Reserva cancelada</h1>
