@@ -101,11 +101,6 @@ def crear_reserva():
 @app.route("/cancelar/<codigo>", methods=["GET", "POST"])
 def cancelar(codigo):
     if request.method == "GET":
-        # Si viene con confirmacion=ok, mostramos solo el mensaje de éxito
-        if request.args.get("confirmacion") == "ok":
-            return render_template("cancelar.html", reserva=None, confirmacion=True)
-
-        # Caso normal: mostrar la reserva para confirmar
         reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
         if not reserva:
             return render_template("cancelar.html", reserva=None)
@@ -128,7 +123,8 @@ def cancelar(codigo):
         db.session.commit()
 
         # Redirigimos con confirmacion=ok
-        return redirect(url_for("cancelar", codigo=codigo, confirmacion="ok"))
+        flash("Reserva cancelada exitosamente.", "success")
+        return redirect(url_for("cancelar", codigo=codigo))
     
 
 if __name__ == "__main__":
