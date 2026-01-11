@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, flash, redirect, send_from_directory, url_for
 from flask_sqlalchemy import SQLAlchemy
 import re
-from datetime import date, datetime
+from datetime import date, datetime, time, timedelta
 from flask_mail import Mail, Message
 from config import Config
 from models import Reserva, db
@@ -95,6 +95,37 @@ def crear_reserva():
 
     except Exception as e:
         return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
+
+
+@app.route("/api/disponibilidad/<fecha>", methods=["GET"])
+def disponibilidad(fecha):
+    try:
+        fecha_obj = datetime.strptime(fecha, "%Y-%m-%d").date()
+    except Exception:
+        return jsonify({"error": "Formato de fecha inválido"}), 400
+
+    # Definir rango de horas según el día de la semana
+    dia_semana = fecha_obj.weekday()  # 0=lunes, 6=domingo
+    if dia_semana == 1:  # martes cerrado
+        return jsonify({"horarios": []})
+
+    if dia_semana in [4, 5, 6]:  # viernes, sábado, domingo
+        inicio, fin = (12, 0), (23, 30)
+    else:  # lunes, miércoles, jueves
+        inicio, fin = (12, 0), (18, 0)
+
+    current = datetime.combine(fecha_obj, time(*inicio))
+    end = datetime.combine(fecha_obj, time(*fin))
+
+    horarios = []
+    while current <= end:
+        hora_str = current.strftime("%H:%M")
+        total = Reserva.query.filter_by(fecha=fecha_obj, hora=current.time()).count()
+        disponible = total < 2  # máximo 2 reservas por slot
+        horarios.append({"hora": hora_str, "disponible": disponible})
+        current += timedelta(minutes=30)
+
+    return jsonify({"horarios": horarios})
 
 
 @app.route("/cancelar/<codigo>", methods=["GET", "POST"])
