@@ -2,7 +2,7 @@
 {% block content %}
   <div class="container p-32 mx-auto text-center">
     {% if reserva %}
-      <h1>Cancelar reserva.</h1>
+      <h1 class="text-5xl font-bold mb-6">Cancelar reserva.</h1>
       <p>¿Seguro que deseas cancelar tu reserva a nombre de: <b>{{ reserva.nombre }}</b> para el día <b>{{ reserva.fecha.strftime("%d/%m/%Y") }}</b> a las <b>{{ reserva.hora.strftime("%H:%M") }}</b>?</p>
       <form method="POST" action="{{ url_for('cancelar', codigo=reserva.codigo_unico) }}">
         <button type="submit" class="mt-12 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" style="background-color: rgb(221, 38, 38);">Sí, cancelar</button>
@@ -10,10 +10,10 @@
     {% else %}
   {% with success_messages = get_flashed_messages(category_filter=['success']) %}
     {% if success_messages %}
-      <h1 style="color: rgb(47, 158, 47);">Reserva cancelada</h1>
+      <h1 class="text-5xl font-bold mb-6" style="color: rgb(47, 158, 47);">Reserva cancelada</h1>
       <p class="message">{{ success_messages[0] }}</p>
     {% else %}
-      <h1 style="color: rgb(221, 38, 38);">Error.</h1>
+      <h1 class="text-5xl font-bold text-red-600 mb-6" style="color: rgb(221, 38, 38);">Error</h1>
       {% if error %}
         <p>{{ error }}</p>
       {% else %}

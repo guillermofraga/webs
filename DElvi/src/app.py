@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, flash, redirect, url_for
+from flask import Flask, request, jsonify, render_template, flash, redirect, send_from_directory, url_for
 from flask_sqlalchemy import SQLAlchemy
 import re
 from datetime import date, datetime
@@ -131,7 +131,26 @@ def cancelar(codigo):
         # Redirigimos con confirmacion=ok
         flash("Reserva cancelada exitosamente.", "success")
         return redirect(url_for("cancelar", codigo=codigo))
-    
+
+# Rutas para archivos estáticos especiales 
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory("static", "robots.txt")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory("static", "sitemap.xml")
+
+
+# Manejo de errores personalizados
+@app.errorhandler(404)
+@app.errorhandler(500)
+@app.errorhandler(403)
+def handle_errors(e):
+    # e.code devuelve el código (404, 500, 403)
+    # e.description devuelve el mensaje por defecto
+    return render_template("error.html", code=e.code, message=e.description), e.code
+
 
 if __name__ == "__main__":
     app.run(debug=app.config['DEBUG'])
