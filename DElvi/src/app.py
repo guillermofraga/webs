@@ -155,12 +155,14 @@ def cancelar(codigo):
         if datetime.now() >= fecha_reserva: 
             return render_template("cancelar.html", reserva=None, error="La reserva ya ha pasado de la hora de expiración y no puede cancelarse.") 
         
-        # Si todavía no ha pasado, cancelar la reserva
-        db.session.delete(reserva)
-        db.session.commit()
+        # Si todavía no ha pasado, cancelar la reserva        
+        try:
+            db.session.delete(reserva)
+            db.session.commit()
+            flash("Reserva cancelada exitosamente.", "success")
+        except Exception as e:
+            db.session.rollback()
 
-        # Redirigimos con confirmacion=ok
-        flash("Reserva cancelada exitosamente.", "success")
         return redirect(url_for("cancelar", codigo=codigo))
 
 # Rutas para archivos estáticos especiales 
