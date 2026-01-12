@@ -121,7 +121,7 @@ def disponibilidad(fecha):
     while current <= end:
         hora_str = current.strftime("%H:%M")
         total = Reserva.query.filter_by(fecha=fecha_obj, hora=current.time()).count()
-        disponible = total < 2  # máximo 2 reservas por slot
+        disponible = total < 4  # máximo 4 reservas por slot
         horarios.append({"hora": hora_str, "disponible": disponible})
         current += timedelta(minutes=30)
 
