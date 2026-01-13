@@ -87,6 +87,9 @@ def crear_reserva():
         )
         db.session.add(nueva_reserva)
         db.session.commit()
+        
+        # enviar una copia al administrador
+        enviar_confirmacion(app.config['ADMIN_EMAIL'], nueva_reserva.codigo_unico)
 
         # 🔎 Enviar correo de confirmación
         enviar_confirmacion(email, nueva_reserva.codigo_unico)
