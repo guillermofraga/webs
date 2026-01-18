@@ -240,7 +240,7 @@
             id="fecha" 
             required
             placeholder="dd/mm/yyyy" 
-            onfocus="this.type='date'"
+            onfocus="this.type='date'; this.min=new Date().toISOString().split('T')[0]"
             onblur="if(!this.value)this.type='text'"
             class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
           />

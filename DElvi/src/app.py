@@ -104,6 +104,8 @@ def crear_reserva():
 def disponibilidad(fecha):
     try:
         fecha_obj = datetime.strptime(fecha, "%Y-%m-%d").date()
+        if fecha_obj < date.today():
+            return jsonify({"error": "La fecha no puede ser anterior al día actual"}), 400
     except Exception:
         return jsonify({"error": "Formato de fecha inválido"}), 400
 
