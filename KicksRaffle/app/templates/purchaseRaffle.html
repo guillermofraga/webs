@@ -1,0 +1,449 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Purchase Raffle Entries Checkout - KicksRaffle</title>
+    <script
+      type="text/javascript"
+      nonce="Dfv1jZa/OirinFjVc8R9jg=="
+      src="https://contribution.usercontent.google.com/kXeUUO-WtQ8CwKH7EwWnhtpHlGStfr70sA2NiWC2qjyEPN4_mI0KX7C2FEei8BuVyBp2c-dXsAw__6EPOoQPMTKNJrEYzCai5cq93x74IQY6Ikn-oTy2OByAyQtmP89jN2WzohZhW0D2gibFZCdKBNull55XzXIJbBCmIRIcdgYoMTrkaHWwQwoYIQMhemhAiFaKt8ljJCX5Rq7nHIOR6PWBZqJ4rOtUoAtwvIHYA_JZT90OIzEDxeTY1AIPPGgoWzdrffKRKIvHf-EqvrbfDjRSeT0j8C7PecM_Jpdia1MGElQMGelHCBUUu2ReMHNgwkVhDXTNIY-HIhGNSVbDk-Slgu8YvZizHmxwsbr8azUokShqfkE7toqL6CAnKnK9F9ZRuEY-x_dYF70jK4HekDfrj2iXn9YUaC4O3ruB67oRM4x6SLUhEoOc-j1lKAdEZ9RMCuytPSJQ8EaL7T8pkI0VarYNtdymk_sb4kzyVh-XeeFcvPGMxqyLRZkni7XFTCyZfuRoi7lfiTdldDFcuRho83uyXzyCcVyfQuxQIxnINbgCU5vYrEkErTptsJtWncSxvIngzx7Cyd-xmonsEGx-wxAX3Dhhu99XlWEA4drMsAHTJQOKhJA57cLDvJRRl_K9qiyJJuFHbz2ShJSn4-eRGwNlP2wytYw1NQGq6EH_d_gqMiRlkJPT0a8NxkmJpeYhU5K-DsTkHvCgV1QxT2iR76QxwIm_5GAxooUlA7y1MxNYh1aC65_Ziutcma60wnIGFPdLv6RodUfB6jjUi5MsKD6FsPXqIh56"
+    ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00c4c7",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2323",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+    </style>
+
+    <!-- Additional styles for focus states -->
+    <style>
+    .StripeElement--focus {
+      border-color: transparent !important;
+      box-shadow: 0 0 0 2px #00c4c7;
+      outline: none;
+    }   
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#273a3a] px-6 md:px-10 py-3 bg-background-light dark:bg-background-dark"
+    >
+      <div class="flex items-center gap-4">
+        <div class="size-8 text-primary">
+          <svg
+            fill="none"
+            viewbox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+        <h1 class="text-xl font-bold leading-tight tracking-[-0.015em]">
+          KicksRaffle
+        </h1>
+      </div>
+      <div class="hidden md:flex flex-1 justify-center gap-8">
+        <a
+          class="text-sm font-medium hover:text-primary transition-colors"
+          href="#"
+          >Raffles</a
+        >
+        <a
+          class="text-sm font-medium hover:text-primary transition-colors"
+          href="#"
+          >Winners</a
+        >
+        <a
+          class="text-sm font-medium hover:text-primary transition-colors"
+          href="#"
+          >How it Works</a
+        >
+      </div>
+      <div class="flex gap-2">
+        <button
+          class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-[#273a3a] text-current"
+        >
+          <span class="material-symbols-outlined">shopping_cart</span>
+        </button>
+        <button
+          class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-200 dark:bg-[#273a3a] text-current"
+        >
+          <span class="material-symbols-outlined">person</span>
+        </button>
+      </div>
+    </header>
+    <main class="max-w-[1200px] mx-auto px-4 py-8">
+      <!-- Breadcrumbs -->
+      <div class="flex flex-wrap items-center gap-2 mb-6">
+        <a
+          class="text-slate-500 dark:text-[#9abbbc] text-sm font-medium hover:text-primary"
+          href="#"
+          >Raffles</a
+        >
+        <span class="text-slate-400 dark:text-[#9abbbc] text-sm font-medium"
+          >/</span
+        >
+        <a
+          class="text-slate-500 dark:text-[#9abbbc] text-sm font-medium hover:text-primary"
+          href="#"
+          >Jordan 1 Retro High</a
+        >
+        <span class="text-slate-400 dark:text-[#9abbbc] text-sm font-medium"
+          >/</span
+        >
+        <span class="text-slate-900 dark:text-white text-sm font-medium"
+          >Checkout</span
+        >
+      </div>
+      <!-- PageHeading -->
+      <div class="mb-10">
+        <h1
+          class="text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2"
+        >
+          Purchase Raffle Entries
+        </h1>
+        <p class="text-slate-500 dark:text-[#9abbbc] text-lg">
+          Secure your spot for the Jordan 1 Retro High OG raffle.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- LEFT COLUMN: Bundle Selection & Summary -->
+        <div class="lg:col-span-7 flex flex-col gap-8">
+          <!-- Section Header 1 -->
+          <div>
+            <h2 class="text-xl font-bold border-l-4 border-primary pl-4 mb-6">
+              1. Select Your Bundle
+            </h2>
+            <!-- ImageGrid for Bundles -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <!-- Bundle 1 -->
+              <div
+                class="group relative flex flex-col gap-3 p-4 border border-slate-200 dark:border-[#273a3a] rounded-xl hover:border-primary transition-all cursor-pointer bg-white dark:bg-[#1a2e2e]"
+              >
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-2"
+                  data-alt="One entry ticket illustration"
+                  style="
+                    background-image: url(&#34;https://lh3.googleusercontent.com/aida-public/AB6AXuBw1CSLQQRMZfc3tOhjckUU0A0Te4tgjlybJO8bK64wc6oQXme5NLZKIUnxkLEfR7SqNIZ-z-f-mK2tdTNIrYABSbEKQI8jF67hq3iNcgANUCb85ryLnMk-j1vgSazCTW4gxlPKBnRr8z5ST79KmHuu-uxFTfXm7fbltFM12qNSLs8HPmyiMmb0-NtWXUXePqS2SgMR7kGl39lwbHuekyAI0tUaslFFczvpqAHrhMBGzkVZeYP0C9n0l93HVNcb2wqc9g9TGgbmVA&#34;);
+                  "
+                ></div>
+                <div>
+                  <p class="text-white text-lg font-bold">1 Entry</p>
+                  <p class="text-primary text-xl font-black">$5.00</p>
+                  <p class="text-slate-400 text-xs mt-1">Single Entry Access</p>
+                </div>
+              </div>
+              <!-- Bundle 2 (Featured) -->
+              <div
+                class="group relative flex flex-col gap-3 p-4 border-2 border-primary rounded-xl transition-all cursor-pointer bg-white dark:bg-[#1a2e2e] ring-2 ring-primary/20"
+              >
+                <span
+                  class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-background-dark text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+                  >Most Popular</span
+                >
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-2"
+                  data-alt="Five entry tickets stack illustration"
+                  style="
+                    background-image: url(&#34;https://lh3.googleusercontent.com/aida-public/AB6AXuChiymyyNimsn3GHsx_CJg8A5V9ULB_Xsf9fgPci9C10yYmKyaaOWx_yxDnrrfLCEAGyU2JKuzk35vfriupwPkUShoi3YcRgfIVExqHmkNQBiGrwMVG19QXThce0l68e54WVG5e7IM1ktX_QCU_YQENC93byfDsYBmPIgzNRXQqpaRg-pXcpE695v6PtBnLLBjk---BA6mxNpL6c4TyQgfnF3MAy76V5Wi85hCwAOQ3_Zw3W3wnYggss-8ZyIadhynaRUYUw3eIyA&#34;);
+                  "
+                ></div>
+                <div>
+                  <p class="text-white text-lg font-bold">5 Entries</p>
+                  <p class="text-primary text-xl font-black">$20.00</p>
+                  <p class="text-slate-400 text-xs mt-1">
+                    Save 20% • Bonus Entry Included
+                  </p>
+                </div>
+              </div>
+              <!-- Bundle 3 -->
+              <div
+                class="group relative flex flex-col gap-3 p-4 border border-slate-200 dark:border-[#273a3a] rounded-xl hover:border-primary transition-all cursor-pointer bg-white dark:bg-[#1a2e2e]"
+              >
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-2"
+                  data-alt="Ten entry tickets fan illustration"
+                  style="
+                    background-image: url(&#34;https://lh3.googleusercontent.com/aida-public/AB6AXuByxAiq2BO9ks8E9qZ6lgizsxyDYn_eIw6sBeEYPUtweGj-xYqu6PE_Q2Og6DJIf57Z7s_vxN60E7VXOeXEjKXZyFc5BF9aW3F0Cby3XXbyrOnwZFIxe4v_bMxHXNd2KPd9zN2kU8tUrGYagBloHeExqMe4MHQKMk-7VwCqhp-m1bv6pIZ5HpdLxAnRtxObOaVFjBnUgsEpP9-0CPGzBTdOo2UCbLiqu5gJptNGo6atydbbJgqD3L2dlml8aBh4EyQhb1loUNj-dA&#34;);
+                  "
+                ></div>
+                <div>
+                  <p class="text-white text-lg font-bold">10 Entries</p>
+                  <p class="text-primary text-xl font-black">$35.00</p>
+                  <p class="text-slate-400 text-xs mt-1">
+                    Best Value • Maximize Odds
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Raffle Summary Card -->
+          <div
+            class="bg-slate-100 dark:bg-[#162929] rounded-xl p-6 border border-slate-200 dark:border-[#273a3a]"
+          >
+            <h3
+              class="text-sm font-bold uppercase tracking-widest text-slate-500 dark:text-[#9abbbc] mb-4"
+            >
+              Raffle Summary
+            </h3>
+            <div class="flex gap-6 items-center">
+              <div
+                class="size-24 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 flex-shrink-0 border border-slate-300 dark:border-slate-700"
+              >
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Jordan 1 Retro High OG sneaker product shot"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaUBMOHmfCuVrsXr75jaNRlX1WMffiHlxHDDNGVx77PD5lWB7BOxGePqtF1iIHosvrL9_IE1smB3OKHr0DMgd4P6p-u6rvS9l3_szfmBJP-6N96jXT5eHEL9Kr7ukDRFAsHAw8w2QgZ44JfBAkTyF6H5NOVspHO8hJ5_VUAP_T-I-MT8wpIiEXOBJKCKzTzFxpZV16Uho8OGQi8hqEkfCjh9OQfdONQSzNrI3ns7bTZnN1WeQkG4-PP7DmYjgnOyBr11j0GAemrg"
+                />
+              </div>
+              <div class="flex-1">
+                <h4 class="text-xl font-bold mb-1">Jordan 1 Retro High OG</h4>
+                <p class="text-slate-500 dark:text-[#9abbbc] text-sm mb-2">
+                  Colorway: University Blue
+                </p>
+                <div
+                  class="flex items-center gap-2 text-xs font-medium bg-primary/10 text-primary w-fit px-2 py-1 rounded"
+                >
+                  <span class="material-symbols-outlined !text-[14px]"
+                    >schedule</span
+                  >
+                  Ends in 2 days, 14 hours
+                </div>
+              </div>
+              <div class="text-right">
+                <p
+                  class="text-xs text-slate-500 dark:text-[#9abbbc] uppercase font-bold"
+                >
+                  Selected
+                </p>
+                <p class="text-2xl font-black text-primary">5 Entries</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT COLUMN: Payment -->
+        <div class="lg:col-span-5">
+          <div
+            class="bg-white dark:bg-[#1a2e2e] rounded-2xl border border-slate-200 dark:border-[#273a3a] p-8 sticky top-8 shadow-2xl shadow-black/20"
+          >
+            <h2 class="text-xl font-bold border-l-4 border-primary pl-4 mb-8">
+              2. Secure Checkout
+            </h2>
+            <!-- Express Checkout -->
+            <div class="grid grid-cols-2 gap-3 mb-8">
+              <button
+                class="flex items-center justify-center gap-2 bg-black text-white rounded-lg py-3 font-bold hover:bg-slate-900 transition-colors"
+              >
+                <span class="font-display">Apple Pay</span>
+              </button>
+              <button
+                class="flex items-center justify-center gap-2 bg-white text-slate-900 border border-slate-300 rounded-lg py-3 font-bold hover:bg-slate-50 transition-colors"
+              >
+                <span class="font-display">Google Pay</span>
+              </button>
+            </div>
+            <div class="relative flex py-4 items-center mb-6">
+              <div
+                class="flex-grow border-t border-slate-200 dark:border-[#273a3a]"
+              ></div>
+              <span
+                class="flex-shrink mx-4 text-xs font-bold text-slate-400 uppercase tracking-widest"
+                >Or pay with card</span
+              >
+              <div
+                class="flex-grow border-t border-slate-200 dark:border-[#273a3a]"
+              ></div>
+            </div>
+            <!-- Payment Form -->
+            <form class="space-y-4" action="/raffle/purchaseRaffle" method="POST">
+              <div>
+                <input
+                  class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-[#273a3a] rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+                  placeholder="JohnDoe@example.com"
+                  type="email"
+                  id="email"
+                  name="email"
+                />
+              </div>
+             <div id="card-number" class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-[#273a3a] rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"></div>
+             <div id="expiry" class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-[#273a3a] rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"></div>
+             <div id="cvc" class="w-full bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-[#273a3a] rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"></div>
+              <!-- Price Breakdown -->
+              <div
+                class="pt-6 mt-8 border-t border-slate-200 dark:border-[#273a3a] space-y-2"
+              >
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-[#9abbbc]"
+                    >Subtotal (5 Entries)</span
+                  >
+                  <span class="font-bold">$25.00</span>
+                </div>
+                <div
+                  class="flex justify-between text-xl font-black pt-4 border-t border-dashed border-slate-200 dark:border-[#273a3a]"
+                >
+                  <span>Total Price</span>
+                  <span class="text-primary">€{{precio}}</span>
+                </div>
+              </div>
+              <!-- Submit Button -->
+              <button
+                id="submit"
+                class="w-full bg-primary hover:bg-[#00e0e3] text-background-dark font-black py-4 rounded-xl mt-6 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+              >
+                <span class="material-symbols-outlined">lock</span>
+                COMPLETE PURCHASE
+              </button>
+
+              <div id="error-message" class="text-red-500 mt-2"></div>
+
+              <div class="flex items-center justify-center gap-4 mt-6">
+                <div
+                  class="flex items-center gap-1 text-[10px] text-slate-400 font-bold uppercase tracking-widest"
+                >
+                  <span
+                    class="material-symbols-outlined !text-[16px] text-primary"
+                    >verified_user</span
+                  >
+                  Secure Checkout
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer
+      class="mt-20 border-t border-slate-200 dark:border-[#273a3a] py-10 bg-white dark:bg-[#0a1616]"
+    >
+      <div
+        class="max-w-[1200px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-2">
+          <div class="size-6 text-primary/60">
+            <svg
+              fill="none"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-slate-500 text-sm"
+            >© 2024 KicksRaffle. All rights reserved.</span
+          >
+        </div>
+        <div class="flex gap-6 text-sm font-medium text-slate-500">
+          <a class="hover:text-primary transition-colors" href="#"
+            >Privacy Policy</a
+          >
+          <a class="hover:text-primary transition-colors" href="#"
+            >Terms of Service</a
+          >
+          <a class="hover:text-primary transition-colors" href="#">Support</a>
+        </div>
+      </div>
+    </footer>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const stripe = Stripe("{{ stripe_public_key }}");
+  const elements = stripe.elements();
+
+  // Estilos personalizados para coincidir con tu diseño
+  const style = {
+    base: {
+      color: '#ffffff',
+      fontFamily: '"Inter", sans-serif',
+      fontSize: '16px',
+      '::placeholder': { color: '#8f9eb2' }
+    },
+    invalid: {
+      color: '#ef5350',
+      '::placeholder': { color: '#ef5350' }
+    }
+  };   
+
+  // Crear cada elemento por separado
+  const cardNumber = elements.create('cardNumber', { style });
+  const cardExpiry = elements.create('cardExpiry', { style });
+  const cardCvc = elements.create('cardCvc', { style });
+
+  // Montar en los contenedores (deben existir en tu HTML)
+  cardNumber.mount('#card-number');
+  cardExpiry.mount('#expiry');
+  cardCvc.mount('#cvc');
+
+  // Manejar el pago
+  document.getElementById("submit").addEventListener("click", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+
+    const { error, paymentIntent } = await stripe.confirmCardPayment("{{ client_secret }}", {
+      payment_method: {
+        card: cardNumber,
+        billing_details: { email: email }
+      }
+    });
+
+    if (error) {
+      document.getElementById("error-message").textContent = error.message;
+    } else if (paymentIntent.status === "succeeded") {
+      window.location.href = "{{ url_for('raffle.success') }}";
+    }
+  });
+</script>
+  </body>
+</html>
