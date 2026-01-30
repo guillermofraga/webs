@@ -37,8 +37,9 @@ function crearModalRifa() {
             <h3 style="margin: 0 0 1.5rem; text-align: center; font-weight: bold;">
                 Participa en la Rifa
             </h3>
-            <form id="formRaffle" style="display: flex; flex-direction: column; gap: 1rem;">
-                <input 
+            <form id="formRaffle" method="post" action="/raffle/vote" style="display: flex; flex-direction: column; gap: 1rem;">
+                <input
+                    name="email" 
                     type="email" 
                     placeholder="Tu correo electrónico" 
                     required 
@@ -52,6 +53,7 @@ function crearModalRifa() {
                     "
                 />
                 <select 
+                    name="precio_rifa"
                     required 
                     style="
                         padding: 0.75rem;
@@ -143,12 +145,43 @@ function crearModalRifa() {
         setTimeout(() => modal.remove(), 300);
     }
 
-    // Manejar envío (puedes personalizar)
     document.getElementById('formRaffle').onsubmit = (e) => {
-        e.preventDefault();
-        alert('Gracias por participar!');
-        cerrarModal();
-    };
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then((data) => {  // ✅ Correcto
+    if (data.success) {
+        modal.innerHTML = `
+            <div style="text-align: center; color: white;">
+                <h3>✅ Éxito</h3>
+                <p>${data.message}</p>
+            </div>
+        `;
+    } else {
+        modal.innerHTML = `
+            <div style="text-align: center; color: white;">
+                <h3>❌ Error</h3>
+                <p>${data.message}</p>
+            </div>
+        `;
+    }
+})
+    .catch((err) => {  // ✅ Correcto
+        modal.innerHTML = `
+            <div style="text-align: center; color: white;">
+                <h3>❌ Error</h3>
+                <p>No se pudo conectar con el servidor.</p>
+            </div>
+        `;
+    });   
+};   
+
 }
 
 // Abrir modal al hacer clic en el botón de la rifa
