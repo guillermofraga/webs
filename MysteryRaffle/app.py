@@ -1,4 +1,4 @@
-from mysteryraffle import create_app
+from routes import create_app
 
 app = create_app()
 
