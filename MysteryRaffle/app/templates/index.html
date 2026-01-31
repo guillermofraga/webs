@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MysteryRaffle | Premium Sneaker Giveaways</title>
+    <script
+      type="text/javascript"
+      nonce="fjgNcK2Qe92bLEvwyTvkTA=="
+      src="https://contribution.usercontent.google.com/zUBZYv2w6aEFAoID1wQNZnl10Tyn7v3TN18UehUaNKlpD46bUkyIjIW5bvZX2Z-BjfgvBUUthO49WQKadfAEzj-rFtlCoj_Iael2dGc4CjjrOP_Wb7AYEJ3JtOn3EDk_Vgrz0-k4e_KgJ_obdVoAUQh-tzFz7Vup3VqQ8es39vQExJCsU8a_Y7p7U6XdYGcYE4EBbkeK-T52jIRHKloAsaD0KsrdkOINOlMfT0AxugXUmu8NmcILsaLGpAxAnp2IfhVLSWe9nY-MbaQWrqbMjlSFX4-amzvRhkcMD3ZXQiuVkB2TBr_degTxuu_kl6E0hJvcVl7T-tA8EuAuvFb7HdT7xDICO2u1Qo1ywEo4OG5jgE6_pGZGmjIxOqLUQOaMfG_WfYbaH6NPn22qFrnDjQ7q3Fc9DBCCmhENWJakwm1Ms6i9fhvzHtOUy9FRKD4fhif1Alv2rr_y-oHcS6dPIM5KHAecXKCxG0xNzjHfbCfo58sPR2bz4sCYDUU3pshoDa5lg8Y42rWqs4LVBzPrXZrjZqhDa3ehIkb9s0f_d5jQKg5RZLKFzielMtbdG5omDMZntYP4CI3ygnf4C--lOTRy8LZWiBo4FMwA3KialmwD-gku5BTVjXoMFqLR9BTgqjpsnz61Li3q8q8QbaSfzvcyZwl80bOA1IQCvrhOQXga6m-JEmmZxu6yfUIuSCUllLX0dMNOSTeUtjo0GAh5kVhvFrx8oSGtrdFm9FshkFCi2krtSDbpAsFdDgBbOv68dH-h22cyW-tDdNCH3TZgj-gRRs68hVKallCz"
+    ></script>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='img/logo.png') }}"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00c4c7",
+              "background-light": "#f5f8f8",
+              "background-dark": "#0f2323",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 1.5rem;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        background-color: rgba(15, 35, 35, 0.8);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300"
+  >
+    <!-- Top Navigation Bar -->
+    <header
+      class="sticky top-0 z-50 glass-nav border-b border-white/10 px-6 py-4 lg:px-20"
+    >
+      <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-10">
+          <div class="flex items-center gap-4">
+            <div class="size-16 text-primary">
+              <img src="/static/img/logo.png" alt="MysteryRaffle Logo" />
+            </div>
+            <h1
+              class="text-xl font-bold leading-tight tracking-[-0.015em] italic"
+            >
+              MysteryRaffle
+            </h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-[1440px] mx-auto px-6 lg:px-20 py-10">
+      <!-- Hero Section -->
+      <section class="relative w-full rounded-xl overflow-hidden mb-12 group">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-10"
+        ></div>
+        <div
+          class="relative h-[560px] w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+          data-alt="Close up of a premium red and white sneaker"
+          style="background-image: url(&quot;/static/img/logo.png&quot;)"
+        ></div>
+        <div
+          class="absolute inset-0 z-20 flex flex-col justify-end p-10 lg:p-16 max-w-3xl"
+        >
+          <div
+            class="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-primary/30 backdrop-blur-md"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-primary"
+              ></span>
+            </span>
+            Featured Drop
+          </div>
+          <h2
+            class="text-5xl lg:text-7xl font-black italic uppercase leading-none mb-4"
+          >
+            MysteryRaffle <br /><span class="text-primary italic"
+              >Mystery Drop</span
+            >
+          </h2>
+          <p class="text-lg text-white/70 mb-8 max-w-xl">
+            Un sorteo con un toque diferente. Tú votas y al final de la rifa, nosotros te lo revelamos.
+          </p>
+          <div class="flex flex-wrap items-center gap-6">
+            <button id="OpenModal" class="bg-primary text-background-dark px-10 py-4 rounded-lg font-black text-lg uppercase tracking-tight hover:scale-105 transition-transform">
+                Votar Ahora
+            </button>
+            <!-- Timer Component Integrated -->
+            <div class="flex gap-4">
+              <div class="flex flex-col items-center">
+                <div
+                  class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg w-16 h-14 flex items-center justify-center"
+                >
+                  <span id="Day" class="text-2xl font-bold">00</span>
+                </div>
+                <span class="text-[10px] uppercase font-bold text-white/50 mt-1"
+                  >D</span
+                >
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg w-16 h-14 flex items-center justify-center"
+                >
+                  <span id="Hour" class="text-2xl font-bold">00</span>
+                </div>
+                <span class="text-[10px] uppercase font-bold text-white/50 mt-1"
+                  >Hrs</span
+                >
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg w-16 h-14 flex items-center justify-center"
+                >
+                  <span id="Minute" class="text-2xl font-bold">00</span>
+                </div>
+                <span class="text-[10px] uppercase font-bold text-white/50 mt-1"
+                  >Min</span
+                >
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="bg-white/10 backdrop-blur-md border border-white/10 rounded-lg w-16 h-14 flex items-center justify-center"
+                >
+                  <span id="Second" class="text-2xl font-bold text-primary">00</span>
+                </div>
+                <span class="text-[10px] uppercase font-bold text-white/50 mt-1"
+                  >Sec</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="mt-20 border-t border-white/10 py-16 px-6 lg:px-20 bg-black/20"
+    >
+      <div
+        class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12"
+      >
+        <div class="col-span-1 md:col-span-2">
+          <div class="flex items-center gap-2 mb-6">
+            <div class="w-6 h-6 rounded flex items-center justify-center">
+              <img src="/static/img/logo.png" alt="MysteryRaffle Logo" />
+            </div>
+            <h1 class="text-lg font-bold tracking-tighter uppercase italic">
+              MysteryRaffle
+            </h1>
+          </div>
+          <p class="text-white/50 max-w-sm mb-8">
+            La plataforma de rifa menos transparente del mundo. Construido para entusiastas, por entusiastas. Únete a la comunidad y gana tus misterios.
+          </p>
+          <div class="flex gap-4">
+            <div
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer transition-colors"
+            >
+              <span class="material-symbols-outlined text-xl">share</span>
+            </div>
+            <div
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer transition-colors"
+            >
+              <span class="material-symbols-outlined text-xl">groups</span>
+            </div>
+            <div
+              class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer transition-colors"
+            >
+              <span class="material-symbols-outlined text-xl">camera</span>
+            </div>
+          </div>
+        </div>
+        <!--
+        <div>
+          <h5 class="font-bold uppercase tracking-widest text-xs mb-6">
+            Explore
+          </h5>
+          <ul class="flex flex-col gap-4 text-sm text-white/60">
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Upcoming Drops</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Live Auctions</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Market Stats</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Brand List</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold uppercase tracking-widest text-xs mb-6">
+            Support
+          </h5>
+          <ul class="flex flex-col gap-4 text-sm text-white/60">
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >FAQ & Guidesides</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Terms of Service</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-primary transition-colors" href="#"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </div>
+        -->
+      </div>
+      <div
+        class="max-w-[1440px] mx-auto mt-16 pt-8 border-t border-white/5 flex justify-between items-center text-[10px] uppercase font-bold text-white/30 tracking-widest"
+      >
+        <p>© 2025 MysteryRaffle Protocol. All rights reserved.</p>
+        <div class="flex gap-8">
+          <span>Verified Contract</span>
+          <span>Security Audit: Passed</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/static/js/findBack.js"></script>
+    <script src="/static/js/modalRifa.js"></script>
+
+  </body>
+</html>
