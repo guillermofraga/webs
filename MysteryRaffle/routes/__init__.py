@@ -4,7 +4,7 @@ from flask_migrate import Migrate
 from models import db
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder='../templates', static_folder='../static') # Configurar carpetas de plantillas y estáticos
     app.config.from_object(Config)
     #Inicializar la base de datos
     try:
