@@ -15,3 +15,10 @@ class Reserva(db.Model):
     hora = db.Column(db.Time, nullable=False)
     personas = db.Column(db.Integer, nullable=False)
     codigo_unico = db.Column(db.String(36), unique=True, nullable=False, default=lambda: str(uuid.uuid4()))
+
+class Usuario(db.Model):
+    __tablename__ = "usuario"
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    rol = db.Column(db.String(50), nullable=False)

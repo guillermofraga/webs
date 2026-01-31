@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cervecería Bavaria | Sabor Tradicional en Vigo</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <script
+      type="text/javascript"
+      nonce="ymVK/U7f3wTx3Oyddsq2pw=="
+      src="https://contribution.usercontent.google.com/g-jjPBZuH11LqbmIn2qUpMIe1z4gntKAzru4GKvV6JHcwIF411Tlp3I0UGx70PKWAugkNYy7X-cKpORsqOvtQR04M39V7hJrKkOsWgD36bUG03YXMrnzDi8rZ_KPZkzSyQwqah1NzfexeI_Y8UxJBjwyBBL5R91wy--1IeR3rcignt-v-SHo4_UuLTs5UAsY4Fgr8-sKybWxcUUJmqRnXNFZn4c0MRbMAO-JRu4ASFmGxpy-PscvDG-00yAMjRfg0jI2VoStIDjTrEn69VsUjUlsuDz4ulcmOdQc3mjKC1Vka9wvKKVZqTiiZio-uWezlLo77OLjzgdD2EEPJyesA-0R2DriH8vAhbKsbZYOlb2LVv-r19E6FaeHdsF41LpX6X8f9ODnbyTjB6lYr340YBicPa0ga5sL7wH-ureiuJKFgPy_6xg8hkpNvpmFTGMP_2WlalrJv0iTA-XgEzOetin5JrQqc45097cA-f4HRG4yyq-OGLRiTNqN6OLSpR4bCgQ5W1CDT_2-ZVkpxoQRmETg_99fSByJBQB4Xpy3AYWNmnrv2pg9Bbzl4fZgPRgRb53e87yh13lgRDiK_SxeIYmTXPr5Mq3mKBNtT-OaspchCCn7WFdGbTNWYKwrbUf5-MzEjkANg6jDO0O2f9tfoDiy96DYDO22xU7xk0UNQJvHCQmxKhQ8lwMOmpe3VlYtOyTNevV7xr39sCUWggTLZvdnqwo3v9pK4jAEGFhjOfNyt6YjKf0Cjr54qxvQaqenYWin8LC0Tmv2nvViz5-cjgcr7FsNKPNA_AZNAQ"
+    ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#eea62b",
+              "background-light": "#ede8de",
+              "background-dark": "#21242c",
+              "navy-deep": "#1a2a3a",
+            },
+            fontFamily: {
+              display: ["Newsreader", "serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Newsreader", serif;
+      }
+      .grain-overlay {
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCskAZjVS-nq2Qr-4ise2qCEJiVD3--ezB3ghFoNif_mxWX2nXn85kjTxLGZfQj41oLNKOOruvDJSmIpYuMw3r6imd8NaAnhVV8xZE7hToF0uVcWBKxZbMZbVvpXhDBQh7HnQxs71Yq6sLGQfjDQRcKJ6PwixNLCQ_JUw0hgBbQGKeOgfkyKY2Zy7FjEafh6QnDT0Qma8HDZClp7uqz9FtmlhNCPjps5NapN6TmfisW-sOnVDvJPiwtaHSVW1oXIUOPkGR6TNOmHTE);
+        opacity: 0.4;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-navy-deep dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/20 px-6 md:px-20 py-4"
+    >
+      <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="p-1.5 rounded-lg shadow-lg">
+            <img src="img/logo.png" alt="" class="w-20 h-10 object-contain" />
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a
+            class="text-sm font-semibold hover:text-primary transition-colors"
+            href="#menu"
+            >Especialidades</a
+          >
+          <a
+            class="text-sm font-semibold hover:text-primary transition-colors"
+            href="#horarios"
+            >Horarios</a
+          >
+          <a
+            class="text-sm font-semibold hover:text-primary transition-colors"
+            href="#ubicacion"
+            >Ubicación</a
+          >
+          <button
+            class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-md transition-all"
+          >
+            Reservar Mesa
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="relative">
+      <!-- Hero Section -->
+      <section class="relative px-4 md:px-10 py-10">
+        <div class="max-w-[1200px] mx-auto">
+          <div
+            class="relative overflow-hidden rounded-xl h-[600px] flex items-center justify-center text-center p-6 shadow-2xl"
+          >
+            <div
+              class="absolute inset-0 bg-cover bg-center"
+              data-alt="Traditional wooden bar with foaming beer mugs"
+              style="
+                background-image: linear-gradient(
+                    rgba(26, 42, 58, 0.6),
+                    rgba(26, 42, 58, 0.8)
+                  ),
+                  url(&#34;https://lh3.googleusercontent.com/aida-public/AB6AXuCcb1gzB69fevAAzoBZtRBHr7uHY8XkDHX9WIGzVUkFRPmoDvOT-ZucofCFX5VfbFTszvRrN6WtGGY6DHAfmF28SdPM_lDi9RdDEBATucuAVNK7pkI-dMXZ8Ga17sGWLNZaRFLGj7v5WXomsGjZZ9CZSuszJGk6MEGkcFuTpBvjksxzaLHSrfllJRakTfAdiSf-tf1TdgHvOfh8mHLSoNfr4NQEf7pHJY3egHr0Rpw92anOTf3w4DcKpNeX6NxA1obzGj_arXZu-dU&#34;);
+              "
+            ></div>
+            <div class="relative z-10 max-w-2xl">
+              <span
+                class="inline-block px-4 py-1 mb-6 border border-primary text-primary rounded-full text-sm font-bold tracking-widest uppercase"
+                >Desde 1998</span
+              >
+              <h1
+                class="text-white text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              >
+                Sabor Tradicional en Vigo
+              </h1>
+              <p
+                class="text-white/90 text-lg md:text-xl mb-10 leading-relaxed font-light"
+              >
+                Donde la tradición artesanal alemana se encuentra con la calidez
+                gallega. Ven a disfrutar de la mejor cerveza y gastronomía
+                bávara.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-xl flex items-center justify-center gap-2"
+                >
+                  <span class="material-symbols-outlined">restaurant_menu</span>
+                  Ver Nuestra Carta
+                </button>
+                <button
+                  class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-xl text-lg font-bold"
+                >
+                  Contacto Directo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Menu Highlights -->
+      <section
+        class="px-6 md:px-20 py-20 bg-background-light dark:bg-background-dark relative"
+        id="menu"
+      >
+        <div class="max-w-[1200px] mx-auto">
+          <div class="flex flex-col items-center mb-16">
+            <h2
+              class="text-4xl font-bold text-navy-deep dark:text-white mb-4 italic"
+            >
+              Nuestra Cocina
+            </h2>
+            <div class="h-1 w-20 bg-primary"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Item 1 -->
+            <div
+              class="group bg-[#f9f6ed] dark:bg-navy-deep/20 p-8 rounded-xl border border-primary/10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors"
+              ></div>
+              <span class="material-symbols-outlined text-primary text-4xl mb-6"
+                >kebab_dining</span
+              >
+              <h3
+                class="text-2xl font-bold mb-4 text-navy-deep dark:text-primary"
+              >
+                Especialidades Alemanas
+              </h3>
+              <p
+                class="text-navy-deep/70 dark:text-gray-300 leading-relaxed mb-6"
+              >
+                Auténtico Codillo asado al estilo bávaro, Bratwurst tradicional
+                y Pretzels recién horneados con sal gorda.
+              </p>
+              <ul class="space-y-2 mb-6 text-sm font-semibold italic">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Codillo con Chucrut
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Currywurst Original
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Tabla de Quesos
+                </li>
+              </ul>
+            </div>
+            <!-- Item 2 -->
+            <div
+              class="group bg-[#f9f6ed] dark:bg-navy-deep/20 p-8 rounded-xl border border-primary/10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors"
+              ></div>
+              <span class="material-symbols-outlined text-primary text-4xl mb-6"
+                >sports_bar</span
+              >
+              <h3
+                class="text-2xl font-bold mb-4 text-navy-deep dark:text-primary"
+              >
+                Cervezas de Importación
+              </h3>
+              <p
+                class="text-navy-deep/70 dark:text-gray-300 leading-relaxed mb-6"
+              >
+                Selección premium directamente desde Baviera. De barril y
+                botellas exclusivas de las mejores abadías.
+              </p>
+              <ul class="space-y-2 mb-6 text-sm font-semibold italic">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Weissbier de Trigo
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Dunkel Oscura
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Lager Dorada
+                </li>
+              </ul>
+            </div>
+            <!-- Item 3 -->
+            <div
+              class="group bg-[#f9f6ed] dark:bg-navy-deep/20 p-8 rounded-xl border border-primary/10 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors"
+              ></div>
+              <span class="material-symbols-outlined text-primary text-4xl mb-6"
+                >icecream</span
+              >
+              <h3
+                class="text-2xl font-bold mb-4 text-navy-deep dark:text-primary"
+              >
+                Postres Caseros
+              </h3>
+              <p
+                class="text-navy-deep/70 dark:text-gray-300 leading-relaxed mb-6"
+              >
+                El toque dulce final: Apfelstrudel caliente con vainilla y
+                nuestra tarta de selva negra artesanal.
+              </p>
+              <ul class="space-y-2 mb-6 text-sm font-semibold italic">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Strudel de Manzana
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Tarta de Queso
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Café
+                  Especial
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Schedule Section -->
+      <section
+        class="px-6 md:px-20 py-24 bg-navy-deep text-white relative overflow-hidden"
+        id="horarios"
+      >
+        <div class="absolute inset-0 opacity-10 grain-overlay"></div>
+        <div class="max-w-[1000px] mx-auto relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 class="text-4xl font-bold mb-6 italic text-primary">
+                Nuestros Horarios
+              </h2>
+              <p class="text-white/80 text-lg mb-8 leading-relaxed">
+                Te esperamos en la Florida para compartir los mejores momentos.
+                Disfruta de nuestras sesiones de almuerzo y cena en un ambiente
+                inigualable.
+              </p>
+              <div
+                class="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-lg"
+              >
+                <span class="material-symbols-outlined text-primary">info</span>
+                <p class="text-sm font-medium">
+                  Recomendamos reservar durante los fines de semana.
+                </p>
+              </div>
+            </div>
+            <div
+              class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-sm"
+            >
+              <div class="p-8 space-y-6">
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span class="text-xl font-bold">Lunes</span>
+                  <div class="text-right">
+                    <p class="text-primary font-bold">19:30 - 23:30</p>
+                    <p class="text-gray-400 italic">Cerrado al mediodia</p>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span class="text-xl font-bold">Martes a Sábado</span>
+                  <div class="text-right">
+                    <p class="text-primary font-bold">12:00 - 15:30</p>
+                    <p class="text-primary font-bold">19:30 - 23:30</p>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center pb-2 ">
+                  <span class="text-xl font-bold">Domingo</span>
+                  <div class="text-right">
+                    <p class="text-primary font-bold">12:00 - 15:30</p>
+                    <p class="text-gray-400 italic">Cerrado por la noche</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Location & Contact -->
+      <section
+        class="px-6 md:px-20 py-20 bg-background-light dark:bg-background-dark"
+        id="ubicacion"
+      >
+        <div class="max-w-[1200px] mx-auto">
+          <div class="flex flex-col lg:flex-row gap-12">
+            <div class="lg:w-1/2 flex flex-col justify-center">
+              <h2
+                class="text-4xl font-bold text-navy-deep dark:text-white mb-6 italic"
+              >
+                Encuéntranos en Vigo
+              </h2>
+              <div class="space-y-8">
+                <div class="flex items-start gap-4">
+                  <div class="bg-primary/20 p-3 rounded-lg">
+                    <span class="material-symbols-outlined text-primary"
+                      >location_on</span
+                    >
+                  </div>
+                  <div>
+                    <p class="text-lg font-bold">Dirección</p>
+                    <p class="text-navy-deep/70 dark:text-gray-400">
+                      Av. da Florida, 21, 36210 Vigo, Pontevedra
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="bg-primary/20 p-3 rounded-lg">
+                    <span class="material-symbols-outlined text-primary"
+                      >call</span
+                    >
+                  </div>
+                  <div>
+                    <p class="text-lg font-bold">Teléfono</p>
+                    <p class="text-navy-deep/70 dark:text-gray-400">
+                      986 23 85 34
+                    </p>
+                  </div>
+                </div>
+                <div class="pt-4">
+                    <a href="tel:+34986238534">
+                  <button
+                    class="w-full md:w-auto bg-navy-deep text-white hover:bg-navy-deep/90 px-10 py-5 rounded-xl text-xl font-bold shadow-xl flex items-center justify-center gap-3 transition-transform active:scale-95"
+                  >
+                    <span class="material-symbols-outlined">call</span>
+                    Llamar Ahora
+                  </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="lg:w-1/2 h-[450px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-navy-deep/30">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1477.3897876687852!2d-8.736205560327146!3d42.2191555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f6208363d1f63%3A0xedea439913f11b0f!2sBavaria!5e0!3m2!1ses!2ses!4v1768674472372!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#181511] text-white py-12 border-t border-primary/20">
+      <div class="max-w-[1200px] mx-auto px-6 text-center md:text-left">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start mb-12">
+          <div>
+            <h3 class="text-2xl font-bold text-primary mb-6">
+              Cervecería Bavaria
+            </h3>
+            <p class="text-gray-400 leading-relaxed italic">
+              Tu rincón alemán en el corazón de Vigo. Pasión por la cerveza y el
+              buen comer desde hace décadas.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-6">Enlaces</h4>
+            <ul class="space-y-4 text-gray-400">
+              <li>
+                <a class="hover:text-primary transition-colors" href="#"
+                  >Nuestra Historia</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#menu"
+                  >Carta Completa</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-primary transition-colors" href="#horarios"
+                  >Política de Reservas</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-6">Síguenos</h4>
+            <div class="flex justify-center md:justify-start gap-4">
+              <a
+                class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors"
+                href="#"
+              >
+                <svg class="size-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors"
+                href="#"
+              >
+                <svg class="size-5" fill="currentColor" viewbox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.058-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
+        >
+          <p>© 2024 Cervecería Bavaria. Todos los derechos reservados.</p>
+          <div class="flex gap-6 mt-4 md:mt-0">
+            <a class="hover:text-primary" href="#">Aviso Legal</a>
+            <a class="hover:text-primary" href="#">Privacidad</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
