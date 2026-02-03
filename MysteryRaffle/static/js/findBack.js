@@ -1,18 +1,10 @@
 async function startCountdown() {
     let targetDate;
 
-    try {
-        // Hacer petición a la API
-        const response = await fetch('/fecha-final');
-        const data = await response.json();
-        targetDate = new Date(data.fechaFinal); // Ajusta según la estructura de tu API
-    } catch (error) {
-        console.error('Error al obtener la fecha:', error);
-        // Fallback: usar fecha por defecto (ej. +1 mes)
-        targetDate = new Date();
-        targetDate.setMonth(targetDate.getMonth() + 1);
-        targetDate.setHours(0, 0, 0, 0);
-    }
+        targetDate = new Date("2026-03-06T23:59:59Z");
+        //targetDate.setMonth(targetDate.getMonth() + 1); // Example: set to one month from now
+        //targetDate.setHours(0, 0, 0, 0);
+    
 
     function updateCountdown() {
         const now = new Date();
