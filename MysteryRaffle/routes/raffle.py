@@ -17,7 +17,7 @@ def vote():
         if not email or not precio_rifa:
             return {'success': False, 'message': 'Por favor, completa todos los campos requeridos.'}, 400
         elif Votacion.query.filter_by(email=email).first():
-            return {'success': False, 'message': 'Ya has votado en la rifa con este correo electrónico.'}, 400
+            return {'success': False, 'message': 'Ya has accedido a la rifa con este correo electrónico.'}, 400
         elif precio_rifa not in [2.0, 3.0, 5.0]:
             return {'success': False, 'message': 'Precio no válido.'}, 400
 
@@ -27,11 +27,11 @@ def vote():
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            return {'success': False, 'message': 'Error al guardar el voto. Por favor, inténtalo de nuevo más tarde.'}, 500
+            return {'success': False, 'message': 'Error al guardar el acceso. Por favor, inténtalo de nuevo más tarde.'}, 500
 
-        return {'success': True, 'message': '¡Gracias por dejar tu voto en la rifa!'}, 200
+        return {'success': True, 'message': 'Tu acceso a la rifa ha sido registrado. Próximamente recibirás noticias.'}, 200
     except Exception as e:
-        return {'success': False, 'message': 'Error al procesar el voto.'}, 500
+        return {'success': False, 'message': 'Error al procesar el acceso.'}, 500
 
 '''
 @raffle_bp.route("/purchaseRaffle", methods=['GET', 'POST'])

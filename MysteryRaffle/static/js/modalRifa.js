@@ -151,7 +151,7 @@ function crearModalRifa() {
     const formData = new FormData(form);
 
     const boton = e.target.querySelector("button[type='submit']");
-    boton.textContent = "Procesando voto...";
+    boton.textContent = "Procesando acceso...";
     boton.disabled = true;
 
     fetch(form.action, {
