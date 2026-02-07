@@ -35,7 +35,7 @@ function crearModalRifa() {
             transition: transform 0.3s ease;
         ">
             <h3 style="margin: 0 0 1.5rem; text-align: center; font-weight: bold;">
-                Vota en la Rifa
+                Accede a la Rifa
             </h3>
             <form id="formRaffle" method="post" action="/raffle/vote" style="display: flex; flex-direction: column; gap: 1rem;">
                 <input
@@ -78,7 +78,7 @@ function crearModalRifa() {
                     font-weight: 500;
                     opacity: 0.9;
                 ">
-                    <span style="color: #FAD201; font-weight: bold">Aviso:</span> El precio de la rifa más votado será el seleccionado para la compra.
+                    <span style="color: #FAD201; font-weight: bold">Aviso:</span> El precio de la rifa más seleccionado será el precio para la compra.
                 </p>   
 
                 <button 
@@ -96,7 +96,7 @@ function crearModalRifa() {
                     onmouseover="this.style.transform='scale(1.02)'"
                     onmouseout="this.style.transform='scale(1)'"
                 >
-                    Confirmar Votación
+                    Confirmar Acceso Anticipado
                 </button>
             </form>
             <button 
