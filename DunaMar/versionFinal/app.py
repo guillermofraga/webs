@@ -6,10 +6,10 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from werkzeug.security import generate_password_hash, check_password_hash
 import pymysql
 from datetime import datetime
-import requests
 import re
 from sqlalchemy import select
 import os
+from flask_mail import Mail, Message
 
 pymysql.install_as_MySQLdb()
 
@@ -17,6 +17,18 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 migrate = Migrate(app, db)
+mail = Mail(app)
+
+# Función para enviar correo de consulta
+def enviar_consulta(email, json_data):
+    msg = Message(
+        subject="Consulta de habitación",
+        sender=app.config['MAIL_USERNAME'],
+        recipients=[email]
+    )
+    # Renderizamos la plantilla con Jinja2
+    msg.html = render_template("email_consulta.html", email=email, json_data=json_data)
+    mail.send(msg)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -131,9 +143,10 @@ def solicitar_reserva():
             flash("La habitación no existe.", "error")
             return redirect(url_for('index'))
 
-        payload = {
+        json_data = {
             "usuario": current_user.nombre,
             "email": current_user.email,
+            "habitacion_tipo": habitacion.tipo,
             "habitacion_id": habitacion_id,
             "habitacion_nombre": habitacion.nombre,
             "habitacion_numero": habitacion.numero,
@@ -142,10 +155,10 @@ def solicitar_reserva():
         }
 
         try:
-            response = requests.post(Config.N8N_WEBHOOK_URL, json=payload)
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            app.logger.warning(f"No se pudo enviar la solicitud a n8n: {e}")
+            enviar_consulta(Config.ADMIN_EMAIL, json_data)
+
+        except Exception as e:
+            app.logger.warning(f"No se pudo enviar la solicitud: {e}")
             mensaje = "No se pudo enviar la solicitud. Inténtalo más tarde."
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 return jsonify({"error": mensaje}), 500
