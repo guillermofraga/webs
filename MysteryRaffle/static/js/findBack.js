@@ -1,20 +1,25 @@
 async function startCountdown() {
-    let targetDate;
-
-        targetDate = new Date("2026-03-06T23:59:59Z");
-        //targetDate.setMonth(targetDate.getMonth() + 1); // Example: set to one month from now
-        //targetDate.setHours(0, 0, 0, 0);
-    
+    let targetDate = new Date("2026-03-06T23:59:59Z");
+    let intervalId;
 
     function updateCountdown() {
         const now = new Date();
         const diff = targetDate - now;
 
         if (diff <= 0) {
-            document.getElementById("Day").textContent = "0";
-            document.getElementById("Hour").textContent = "00";
-            document.getElementById("Minute").textContent = "00";
-            document.getElementById("Second").textContent = "00";
+            clearInterval(intervalId);
+
+            // Eliminar el botón de acceso anticipado
+            const button = document.getElementById("OpenModal");
+            if (button) {
+                button.style.backgroundColor = "#ccc";
+                button.style.color = "#666";
+                button.style.textDecoration = "line-through";
+                button.style.cursor = "not-allowed";
+                button.style.pointerEvents = "none";
+                button.id = "acceso-anticipado-inactivo";
+            }   
+
             return;
         }
 
@@ -30,7 +35,7 @@ async function startCountdown() {
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+    intervalId = setInterval(updateCountdown, 1000);
 }
 
 window.onload = startCountdown;   
