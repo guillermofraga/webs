@@ -20,3 +20,4 @@ class Habitacion(db.Model):
     disponible = db.Column(db.Boolean, default=True, nullable=False)
     descripcion = db.Column(db.Text)
     servicios = db.Column(db.Text)
+    capacidad = db.Column(db.Text)
