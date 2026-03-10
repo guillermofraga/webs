@@ -23,8 +23,6 @@ def index():
 
 @app.route("/contact", methods=["POST"])
 def contact():
-    # Aquí puedes procesar el formulario de contacto y enviar el correo de confirmación
-    # Por ejemplo, podrías obtener el email del formulario y un mensaje personalizado
     name = request.form.get("name")
     email = request.form.get("email")
     message = request.form.get("message")
