@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Nuevo lead - StopRend</title>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121825;
+      --text: #e6e9ef;
+      --muted: #9aa3b2;
+      --primary: #6ee7b7;
+      --secondary: #60a5fa;
+      --border: #1f2937;
+    }
+    body {
+      margin: 0; padding: 24px;
+      background: linear-gradient(180deg, var(--bg), #0f172a);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+    }
+    .container { max-width: 640px; margin: 0 auto; }
+    .card {
+      background: rgba(18, 24, 37, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .header {
+      padding: 20px 24px;
+      background: linear-gradient(90deg, rgba(110,231,183,0.15), rgba(96,165,250,0.15));
+      border-bottom: 1px solid var(--border);
+    }
+    .title { margin: 0; font-size: 20px; font-weight: 700; }
+    .subtitle { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .content { padding: 20px 24px; }
+    .field {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px; margin-bottom: 12px;
+    }
+    .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+    .value { font-size: 14px; color: var(--text); word-break: break-word; }
+    .footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h1 class="title">Nuevo lead de StopRend</h1>
+        <p class="subtitle">Automatización inteligente para tu negocio</p>
+      </div>
+
+      <div class="content">
+        <div class="field">
+          <div class="label">Nombre</div>
+          <div class="value">{{ name }}</div>
+        </div>
+        <div class="field">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:{{ email }}" style="color:#cfe3ff">{{ email }}</a></div>
+        </div>
+        <div class="field">
+          <div class="label">Mensaje</div>
+          <div class="value">{{ message }}</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        StopRend · Automatización inteligente · Respuesta en 24h
+      </div>
+    </div>
+  </div>
+</body>
+</html>

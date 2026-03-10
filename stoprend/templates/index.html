@@ -1,0 +1,353 @@
+<!doctype html>
+
+<html class="scroll-smooth" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>StopRend - Impulsa tu Negocio con Soluciones Web Inteligentes</title>
+    <meta
+      content="Especialistas en desarrollo web y automatización para transformar tu negocio."
+      name="description"
+    />
+    <!-- Tailwind CSS v3 CDN -->
+    <script
+      type="text/javascript"
+      nonce="CcohKX42NYYKgkTIB2ovMw=="
+      src="https://contribution.usercontent.google.com/fBF3YzNJ1f7zHCwSbjymNCdwoMzQ4BI97uvsQzH4En8258rIgSddrtpQnCSjDS01WvhQ4AL8WUjhUF7wQTvomQ-KniZ3MkaiX2mrTgTtdjK8JNF5SysR7dUj9JqmC5W65Sl5ippFsV1Zfl8k0tM_0gXQ1DnOv-_X5VttrzkOa-3a2x3giNH0S0lvbQJ03GjT6R-9-aUh-lyuUpa4TXoGygNVy7wftGlTEg2VpZ2a-SAwB2oDUvyk6eBJ4RBLNDaH0RM3lQB-utpwqWEKB2GJ0Ug2BY8UZzPDrp22M0C5SkXLQrKOxXJThsXAIhtfEAO63CBe_3dsanI0AKE0AMAEk04AfWiDvrGPqfJge5Q5is5iDASu9pw3TLNlsTAA1QwhRpkyeAqU6mlvorzDjH6At-efRqrxn2Arl1gkL9XPPpoLYHS3ZfKiAzbCAAmx7XuEpDgteTLJCLpEsolGVdkNOvJLKciT1cvlgAfXV6F0lrARbUi3Z0IhK0AzE9Ru3fxCP9-uFyFmHn0fzsArJyce89SlUOW9-UDpKzgNBizPC7j56bTsqpwS1Y4SHy0oV3bJaUb85kV1lZcm-tOuvfTKBtEzeecrW01VWjfEKWRczsGEYkTCx9vCNwC2m7xfbCFyH3cnTBPBh-3B-WOm14jE9yfzqFxt1QecgSBCJbwduz0X-6Iby85gdnf2BKnY4CqBOTm6sXAin_oiDxk8Bp81QzS2WdWFszVc_H40E4J8wH8vo2S9CAccJlckChjiHDoeRHNUQRqavx-Bdn3u50H2oo2-Vg7G8FFj0dyLdw"
+    ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="icon" type="image/png" href="/static/img/favicon.png" />
+    <link rel="stylesheet" href="/static/css/esferaDeCarga.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                dark: "#050505",
+                card: "#0d0d0d",
+                accent: "#6366f1",
+                purple: "#a855f7",
+                blue: "#3b82f6",
+              },
+            },
+            backgroundImage: {
+              "gradient-primary":
+                "linear-gradient(90deg, #6366f1 0%, #a855f7 100%)",
+            },
+          },
+        },
+      };
+    </script>
+    <style data-purpose="custom-animations">
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      .animate-float {
+        animation: float 5s ease-in-out infinite;
+      }
+      .text-gradient {
+        background: linear-gradient(to right, #60a5fa, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-brand-dark text-gray-200 font-sans antialiased">
+    <!-- BEGIN: Navigation -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/5"
+      data-purpose="main-navigation"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <div class="flex items-center">
+            <a class="text-2xl font-bold tracking-tight text-gradient" href="#"
+              >StopRend</a
+            >
+          </div>
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              class="text-sm font-medium hover:text-brand-blue transition-colors"
+              href="#beneficios"
+              >Beneficios</a
+            >
+            <a
+              class="text-sm font-medium hover:text-brand-blue transition-colors"
+              href="#contacto"
+              >Contacto</a
+            >
+            <a
+              class="px-5 py-2.5 rounded-full bg-gradient-primary text-white text-sm font-bold hover:opacity-90 transition-opacity"
+              href="#contacto"
+            >
+              Empezar Ahora
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- END: Navigation -->
+    <main> 
+      <!-- BEGIN: Hero Section -->
+      <section
+        class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden"
+        data-purpose="hero"
+      >
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-20"
+        >
+          <div
+            class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-blue rounded-full blur-[120px]"
+          ></div>
+          <div
+            class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-purple rounded-full blur-[120px]"
+          ></div>
+        </div>
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+        >
+          <h1
+            class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight"
+          >
+            Impulsa tu Negocio con<br />
+            <span class="text-gradient">Soluciones Web Inteligentes</span>
+          </h1>
+          <p
+            class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10 leading-relaxed"
+          >
+            Transforma tu presencia digital con una solución web inteligente.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <a
+              class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-primary text-white font-bold text-lg hover:scale-105 transition-transform"
+              href="#contacto"
+            >
+              Comenzar
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- END: Hero Section -->
+      <!-- BEGIN: Why Choose Us Section -->
+      <section class="py-24" data-purpose="why-choose-us" id="beneficios">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+              ¿Por qué elegir <span class="text-gradient">StopRend</span>?
+            </h2>
+            <p class="text-gray-400 text-lg">
+              Resultados comprobados que transforman negocios reales
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <div
+              class="glass-card p-10 rounded-3xl text-center border-l-4 border-l-brand-blue"
+            >
+              <div class="text-5xl font-extrabold text-white mb-2">100%</div>
+              <p
+                class="text-brand-blue font-semibold uppercase tracking-widest text-sm"
+              >
+                Responsive
+              </p>
+              <p class="mt-4 text-gray-400 text-sm">
+                Diseño perfecto para cualquier pantalla.
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 rounded-3xl text-center border-l-4 border-l-brand-purple"
+            >
+              <div class="text-5xl font-extrabold text-white mb-2">3x</div>
+              <p
+                class="text-brand-purple font-semibold uppercase tracking-widest text-sm"
+              >
+                Más Conversiones
+              </p>
+              <p class="mt-4 text-gray-400 text-sm">
+                Estrategias enfocadas en ventas reales.
+              </p>
+            </div>
+            <div
+              class="glass-card p-10 rounded-3xl text-center border-l-4 border-l-brand-blue"
+            >
+              <div class="text-5xl font-extrabold text-white mb-2">24/7</div>
+              <p
+                class="text-brand-blue font-semibold uppercase tracking-widest text-sm"
+              >
+                Soporte Técnico
+              </p>
+              <p class="mt-4 text-gray-400 text-sm">
+                Estamos contigo en cada paso del camino.
+              </p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Why Choose Us Section -->
+      <!-- BEGIN: Contact Section -->
+      <section
+        class="py-24 relative overflow-hidden"
+        data-purpose="contact-form"
+        id="contacto"
+      >
+        <!-- Glow effect -->
+        <div
+          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-brand-purple/5 blur-[120px] pointer-events-none"
+        ></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+              Comienza tu
+              <span class="text-gradient">transformación digital</span>
+            </h2>
+            <p class="text-gray-400 text-lg">
+              Estamos aquí para ayudarte a digitalizar tu negocio. Contáctanos y
+              recibe una consultoría gratuita.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Form Card -->
+            <div class="glass-card p-8 sm:p-10 rounded-3xl">
+              <h3 class="text-2xl font-bold text-white mb-8">
+                Envíanos un mensaje
+              </h3>
+              <form action="#" id="miForm" method="post" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-gray-400 mb-2"
+                      for="name"
+                      >Tu nombre</label
+                    >
+                    <input
+                      class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all outline-none"
+                      id="name"
+                      name="name"
+                      required
+                      placeholder="Juan Pérez"
+                      type="text"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-gray-400 mb-2"
+                      for="email"
+                      >Tu email</label
+                    >
+                    <input
+                      class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all outline-none"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="juan@empresa.com"
+                      type="email"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label
+                    class="block text-sm font-medium text-gray-400 mb-2"
+                    for="message"
+                    >¿Cómo podemos ayudarte?</label
+                  >
+                  <textarea
+                    class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all outline-none resize-none"
+                    id="message"
+                    name="message"
+                    placeholder="Cuéntanos sobre tu proyecto..."
+                    rows="4"
+                  ></textarea>
+                </div>
+                <button
+                  class="w-full py-4 rounded-xl bg-gradient-primary text-white font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                  type="submit"
+                  id="ContactButton"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewbox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    ></path>
+                  </svg>
+                  Enviar Mensaje
+                </button>
+              </form>
+            </div>
+            <!-- Contact Info / Stats -->
+            <div class="space-y-12">
+              <div
+                class="glass-card p-8 rounded-2xl border-l-4 border-l-brand-purple"
+              >
+                <h4 class="text-lg font-bold text-white mb-2">
+                  Resultados desde el día 1
+                </h4>
+                <p class="text-sm text-gray-400 mb-6">
+                  Implementación en menos de 24 horas. Sin necesidad de
+                  conocimientos técnicos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Contact Section -->
+    </main>
+    <!-- BEGIN: Footer -->
+    <footer class="py-12 border-t border-white/5" data-purpose="site-footer">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-8"
+        >
+          <div>
+            <a class="text-2xl font-bold text-white" href="#">StopRend</a>
+            <p class="mt-2 text-sm text-gray-500">
+              © 2025 StopRend. Todos los derechos reservados.
+            </p>
+          </div>
+          <div class="flex gap-8 text-sm text-gray-400">
+            <a class="hover:text-white transition-colors" href="#">Términos</a>
+            <a class="hover:text-white transition-colors" href="#"
+              >Privacidad</a
+            >
+            <a class="hover:text-white transition-colors" href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END: Footer -->
+     <script src="/static/js/contact.js"></script>
+  </body>
+</html>
