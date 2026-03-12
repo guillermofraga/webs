@@ -97,6 +97,11 @@
             >
             <a
               class="text-sm font-medium hover:text-brand-blue transition-colors"
+              href="#testimonios"
+              >Testimonios</a
+            >
+            <a
+              class="text-sm font-medium hover:text-brand-blue transition-colors"
               href="#contacto"
               >Contacto</a
             >
@@ -155,7 +160,7 @@
       </section>
       <!-- END: Hero Section -->
       <!-- BEGIN: Why Choose Us Section -->
-      <section class="py-24" data-purpose="why-choose-us" id="beneficios">
+      <section data-purpose="why-choose-us" id="beneficios">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="text-center mb-20">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -210,6 +215,39 @@
         </div>
       </section>
       <!-- END: Why Choose Us Section -->
+      <!-- BEGIN: Testimonials Section -->
+      <section data-purpose="testimonials" id="testimonios">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+              Nuestros <span class="text-gradient">Clientes</span> satisfechos.
+            </h2>
+          </div>
+        <div class="relative w-full overflow-hidden mx-auto max-w-4xl">
+          <div class="flex transition-transform duration-500 ease-in-out" id="carousel">
+            <div class="w-full flex-shrink-0">
+              <img src="/static/img/mocca.png" alt="mocca" class="w-full h-auto">
+            </div>
+            <div class="w-full flex-shrink-0">
+              <img src="/static/img/restauranteacapela.png" alt="restauranteacapela" class="w-full h-auto">
+            </div>
+            <div class="w-full flex-shrink-0">
+              <img src="/static/img/dunamar.png" alt="dunamar" class="w-full h-auto">
+            </div>
+          </div>
+
+          <!-- Botones de navegación -->
+          <button onclick="moveSlide(-1)" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">❮</button>
+          <button onclick="moveSlide(1)" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full">❯</button>
+
+          <!-- Indicadores -->
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <span class="h-2 w-2 bg-white rounded-full opacity-50" onclick="goToSlide(0)"></span>
+            <span class="h-2 w-2 bg-white rounded-full opacity-50" onclick="goToSlide(1)"></span>
+            <span class="h-2 w-2 bg-white rounded-full opacity-50" onclick="goToSlide(2)"></span>
+          </div>
+        </div>   
+      </section>
+      <!-- END: Testimonials Section -->
       <!-- BEGIN: Contact Section -->
       <section
         class="py-24 relative overflow-hidden"
@@ -349,5 +387,6 @@
     </footer>
     <!-- END: Footer -->
      <script src="/static/js/contact.js"></script>
+     <script src="/static/js/carrusel.js"></script>
   </body>
 </html>
