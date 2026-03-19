@@ -54,8 +54,17 @@
   <div class="container">
     <h1>✅ Reserva confirmada</h1>
     <p>Gracias por reservar con <span style="font-family:'Dancing Script',cursive; font-size:20px; color:#2E7D32;">D'Elvi</span>.</p>
+    <p>Los detalles de tu reserva son:</p>
+    <ul>
+      <li><strong>Nombre:</strong> {{ reserva.nombre }}</li>
+      <li><strong>Teléfono:</strong> {{ reserva.telefono }}</li>
+      <li><strong>Correo:</strong> {{ reserva.email }}</li>
+      <li><strong>Fecha:</strong> {{ reserva.fecha.strftime('%d/%m/%Y') }}</li>
+      <li><strong>Hora:</strong> {{ reserva.hora.strftime('%H:%M') }}</li>
+      <li><strong>Personas:</strong> {{ reserva.personas }}</li>
+    </ul>
     <p>Si deseas cancelar tu reserva, haz clic en el siguiente botón:</p>
-    <a href="https://restaurantetaperiadelvi.com/cancelar/{{ codigo_unico }}" class="btn">Cancelar reserva</a>
+    <a href="https://restaurantetaperiadelvi.com/cancelar/{{ reserva.codigo_unico }}" class="btn">Cancelar reserva</a>
     <div class="footer">
       <p>Este correo ha sido generado automáticamente. No respondas directamente.</p>
     </div>

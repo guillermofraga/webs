@@ -13,14 +13,14 @@ db.init_app(app)
 mail = Mail(app)
 
 # Función para enviar correo de confirmación
-def enviar_confirmacion(email, codigo_unico):
+def enviar_confirmacion(email, reserva):
     msg = Message(
         subject="Confirmación de reserva",
         sender=app.config['MAIL_USERNAME'],
         recipients=[email]
     )
     # Renderizamos la plantilla con Jinja2
-    msg.html = render_template("email_confirmacion.html",email=email, codigo_unico=codigo_unico)
+    msg.html = render_template("email_confirmacion.html",email=email, reserva=reserva)
     mail.send(msg)
 
 
@@ -89,10 +89,10 @@ def crear_reserva():
         db.session.commit()
         
         # enviar una copia al administrador
-        enviar_confirmacion(app.config['ADMIN_EMAIL'], nueva_reserva.codigo_unico)
+        enviar_confirmacion(app.config['ADMIN_EMAIL'], nueva_reserva)
 
         # 🔎 Enviar correo de confirmación
-        enviar_confirmacion(email, nueva_reserva.codigo_unico)
+        enviar_confirmacion(email, nueva_reserva)
 
         return jsonify({"message": "Reserva confirmada ✅"}), 201
 
@@ -162,7 +162,7 @@ def cancelar(codigo):
         
         # Si todavía no ha pasado, cancelar la reserva        
         try:
-            reserva.codigo_unico = None  # Borrar código único para cancelar la reserva
+            db.session.delete(reserva)
             db.session.commit()
             flash("Reserva cancelada exitosamente.", "success")
         except Exception as e:
