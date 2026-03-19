@@ -162,7 +162,7 @@ def cancelar(codigo):
         
         # Si todavía no ha pasado, cancelar la reserva        
         try:
-            db.session.delete(reserva)
+            reserva.codigo_unico = None  # Borrar código único para cancelar la reserva
             db.session.commit()
             flash("Reserva cancelada exitosamente.", "success")
         except Exception as e:
