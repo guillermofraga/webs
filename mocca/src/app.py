@@ -319,7 +319,15 @@ def propietario_aceptar(codigo):
         # Si falla el email, no cancelamos la reserva; devolvemos error.
         return render_template("error.html", code=500, message="No se pudo enviar el correo de confirmación."), 500
 
-    return "Reserva aceptada. Se envió la confirmación al usuario.", 200
+    return render_template(
+        "propietario_resultado.html",
+        title="Reserva aceptada",
+        message="La confirmación se ha enviado al cliente por correo.",
+        icon="check_circle",
+        icon_color="text-green-600",
+        title_color="text-green-700 dark:text-green-400",
+        reserva=reserva,
+    ), 200
 
 
 @app.route("/propietario/cancelar/<codigo>", methods=["GET"])
@@ -352,7 +360,15 @@ def propietario_cancelar(codigo):
         db.session.rollback()
         return render_template("error.html", code=500, message="No se pudo cancelar la reserva en el sistema."), 500
 
-    return "Reserva cancelada. Se informó al usuario.", 200
+    return render_template(
+        "propietario_resultado.html",
+        title="Reserva cancelada",
+        message="Se ha notificado al cliente por correo y la reserva se ha eliminado del sistema.",
+        icon="cancel",
+        icon_color="text-red-600",
+        title_color="text-red-700 dark:text-red-400",
+        reserva=reserva,
+    ), 200
 
 # Rutas para cancelar una reserva
 @app.route("/cancelar/<codigo>", methods=["GET", "POST"])

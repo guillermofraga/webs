@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} - Mocca Coffee & Brunch{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto px-6 py-24">
+    <div class="max-w-2xl mx-auto bg-accent-light dark:bg-accent-dark rounded-lg shadow-xl p-8">
+      <div class="flex items-start gap-4">
+        <div class="shrink-0">
+          <span class="material-icons text-4xl {{ icon_color }}">{{ icon }}</span>
+        </div>
+        <div class="flex-1">
+          <h1 class="text-3xl md:text-4xl font-display font-bold {{ title_color }} mb-2">
+            {{ title }}
+          </h1>
+          <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
+            {{ message }}
+          </p>
+        </div>
+      </div>
+
+      {% if reserva %}
+        <div class="mt-8 border-t border-gray-200/70 dark:border-gray-700/70 pt-6">
+          <h2 class="text-lg font-bold text-primary mb-4">Detalles de la reserva</h2>
+          <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div>
+              <dt class="text-gray-500 dark:text-gray-400">Nombre</dt>
+              <dd class="font-semibold">{{ reserva.nombre }}</dd>
+            </div>
+            <div>
+              <dt class="text-gray-500 dark:text-gray-400">Personas</dt>
+              <dd class="font-semibold">{{ reserva.personas }}</dd>
+            </div>
+            <div>
+              <dt class="text-gray-500 dark:text-gray-400">Fecha</dt>
+              <dd class="font-semibold">{{ reserva.fecha.strftime('%d/%m/%Y') }}</dd>
+            </div>
+            <div>
+              <dt class="text-gray-500 dark:text-gray-400">Hora</dt>
+              <dd class="font-semibold">{{ reserva.hora.strftime('%H:%M') }}</dd>
+            </div>
+            <div class="sm:col-span-2">
+              <dt class="text-gray-500 dark:text-gray-400">Contacto</dt>
+              <dd class="font-semibold">{{ reserva.email }} · {{ reserva.telefono }}</dd>
+            </div>
+          </dl>
+        </div>
+      {% endif %}
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="{{ url_for('index') }}"
+           class="bg-primary text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors inline-flex items-center justify-center gap-2">
+          <span class="material-icons text-base">home</span>
+          Volver al inicio
+        </a>
+        <a href="https://mocca.elur.es/"
+           class="bg-white dark:bg-background-dark border border-gray-200 dark:border-gray-700 text-text-light dark:text-text-dark font-bold py-3 px-6 rounded-full hover:border-primary transition-colors inline-flex items-center justify-center gap-2">
+          <span class="material-icons text-base">restaurant_menu</span>
+          Ver menú
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
