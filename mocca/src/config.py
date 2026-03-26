@@ -19,5 +19,8 @@ class Config:
     # Correo del propietario para recibir copias de confirmaciones
     OWNER_EMAIL = os.getenv("OWNER_EMAIL")
 
+    # Token opcional para proteger endpoints automáticos (ej: reportes por cron)
+    CRON_SECRET = os.getenv("CRON_SECRET")
+
     # Configuración de depuración
     DEBUG = os.getenv("FLASK_DEBUG", "False").lower() in ["true", "1"]

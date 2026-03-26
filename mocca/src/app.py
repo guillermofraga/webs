@@ -15,14 +15,156 @@ mail = Mail(app)
 
 # Función para enviar correo de confirmación
 def enviar_confirmacion(email, reserva):
+    cancel_url = url_for("cancelar", codigo=reserva.codigo_unico, _external=True)
     msg = Message(
         subject="Confirmación de reserva",
         sender=app.config['MAIL_USERNAME'],
-        recipients=[email]
+        recipients=[email],
     )
     # Renderizamos la plantilla con Jinja2
-    msg.html = render_template("email_confirmacion.html",email=email, reserva=reserva)
+    msg.html = render_template(
+        "email_confirmacion.html",
+        email=email,
+        reserva=reserva,
+        cancel_url=cancel_url,
+    )
     mail.send(msg)
+
+
+def enviar_solicitud_propietario(reserva):
+    """
+    Envía un correo al propietario con 2 botones para aceptar o cancelar.
+    """
+    owner_email = app.config.get("OWNER_EMAIL")
+    if not owner_email:
+        raise ValueError("OWNER_EMAIL no está configurado")
+
+    accept_url = url_for("propietario_aceptar", codigo=reserva.codigo_unico, _external=True)
+    cancel_url = url_for("propietario_cancelar", codigo=reserva.codigo_unico, _external=True)
+
+    msg = Message(
+        subject="Reserva pendiente de confirmación",
+        sender=app.config["MAIL_USERNAME"],
+        recipients=[owner_email],
+    )
+    msg.html = render_template(
+        "propietario_confirmar.html",
+        reserva=reserva,
+        accept_url=accept_url,
+        cancel_url=cancel_url,
+    )
+    mail.send(msg)
+
+
+def enviar_cancelacion_usuario(email, reserva):
+    """
+    Envía un correo al usuario cuando el propietario cancela la reserva.
+    """
+    msg = Message(
+        subject="Reserva cancelada",
+        sender=app.config["MAIL_USERNAME"],
+        recipients=[email],
+    )
+    msg.html = render_template("email_reserva_cancelada.html", reserva=reserva)
+    mail.send(msg)
+
+
+def enviar_cancelacion_propietario(reserva):
+    """
+    Envía un correo al propietario cuando el cliente cancela una reserva.
+    """
+    owner_email = app.config.get("OWNER_EMAIL")
+    if not owner_email:
+        raise ValueError("OWNER_EMAIL no está configurado")
+
+    msg = Message(
+        subject="Reserva cancelada por el cliente",
+        sender=app.config["MAIL_USERNAME"],
+        recipients=[owner_email],
+    )
+    msg.html = render_template("propietario_reserva_cancelada.html", reserva=reserva)
+    mail.send(msg)
+
+
+def get_last_week_range():
+    """
+    Devuelve (week_start, week_end) de la semana anterior en formato calendario,
+    usando lunes->domingo.
+    """
+    today = date.today()
+    week_start_this = today - timedelta(days=today.weekday())  # lunes de esta semana
+    week_start_last = week_start_this - timedelta(days=7)  # lunes semana anterior
+    week_end_last = week_start_last + timedelta(days=6)  # domingo semana anterior
+    return week_start_last, week_end_last
+
+
+def enviar_reporte_semanal_propietario():
+    """
+    Envía un correo semanal al propietario (OWNER_EMAIL) y también a MAIL_USERNAME,
+    con las reservas de la semana anterior (lunes-domingo).
+
+    Nota: como la BD no guarda 'asistió/no asistió', se contabilizan las reservas
+    que siguen en el sistema (no canceladas).
+    """
+    owner_email = app.config.get("OWNER_EMAIL")
+    mail_username = app.config.get("MAIL_USERNAME")
+    if not owner_email or not mail_username:
+        raise ValueError("Faltan OWNER_EMAIL o MAIL_USERNAME para enviar el reporte.")
+
+    week_start, week_end = get_last_week_range()
+
+    reservas = (
+        Reserva.query.filter(Reserva.fecha >= week_start, Reserva.fecha <= week_end)
+        .order_by(Reserva.fecha.asc(), Reserva.hora.asc())
+        .all()
+    )
+
+    mesas = len(reservas)
+    total_eur = mesas * 2
+
+    recipients = []
+    if owner_email:
+        recipients.append(owner_email)
+    if mail_username and mail_username not in recipients:
+        recipients.append(mail_username)
+
+    msg = Message(
+        subject=f"Reporte semanal Mocca ({week_start.strftime('%d/%m')} - {week_end.strftime('%d/%m')})",
+        sender=mail_username,
+        recipients=recipients,
+    )
+
+    msg.html = render_template(
+        "reporte_semanal_propietario.html",
+        reservas=reservas,
+        mesas=mesas,
+        total_eur=total_eur,
+        week_start=week_start,
+        week_end=week_end,
+    )
+    mail.send(msg)
+
+
+@app.route("/api/reportes/semanal", methods=["POST"])
+def api_reporte_semanal():
+    """
+    Endpoint para ejecutar el reporte semanal desde un cron/Task Scheduler.
+    """
+    cron_secret = app.config.get("CRON_SECRET")
+    provided = request.headers.get("X-CRON-SECRET") or request.args.get("secret")
+
+    if cron_secret and provided != cron_secret:
+        return jsonify({"error": "No autorizado"}), 403
+    if not cron_secret:
+        # Proteccion básica: si no hay token configurado, rechazamos.
+        return jsonify({"error": "CRON_SECRET no configurado"}), 403
+
+    try:
+        enviar_reporte_semanal_propietario()
+    except Exception:
+        return jsonify({"error": "No se pudo enviar el reporte semanal."}), 500
+
+    return jsonify({"message": "Reporte enviado ✅"}), 200
 
 @app.route("/")
 def index():
@@ -77,7 +219,7 @@ def crear_reserva():
         if total >= 5:
             return jsonify({"error": "No quedan mesas disponibles en ese horario."}), 400
 
-        # 🔎 Insertar reserva
+        # 🔎 Insertar reserva (pendiente hasta decisión del propietario)
         nueva_reserva = Reserva(
             nombre=nombre,
             telefono=telefono,
@@ -88,17 +230,18 @@ def crear_reserva():
         )
         db.session.add(nueva_reserva)
         db.session.commit()
-        
-        # enviar una copia al administrador
-        enviar_confirmacion(app.config['ADMIN_EMAIL'], nueva_reserva)
 
-        # enviar una copia al propietario
-        #enviar_confirmacion(app.config['OWNER_EMAIL'], nueva_reserva)
-
-        # 🔎 Enviar correo de confirmación
-        #enviar_confirmacion(email, nueva_reserva)
-
-        return jsonify({"message": "Reserva confirmada ✅"}), 201
+        # 🔎 Enviar solicitud al propietario para que decida
+        try:
+            enviar_solicitud_propietario(nueva_reserva)
+            return jsonify(
+                {"message": "Solicitud enviada ✅. El propietario la confirmará en breve."}
+            ), 201
+        except Exception:
+            # Si falla el envío (config o mail), no rompemos la reserva.
+            return jsonify(
+                {"message": "Reserva creada, pero no se pudo notificar al propietario (configuración incompleta)."}
+            ), 201
 
     except Exception as e:
         return jsonify({"error": "Error interno del servidor. Inténtalo más tarde."}), 500
@@ -118,16 +261,23 @@ def disponibilidad(fecha):
     if dia_semana == 1:  # martes cerrado
         return jsonify({"horarios": []})
 
-    if dia_semana in [4, 5, 6]:  # viernes, sábado, domingo
-        inicio, fin = (12, 0), (23, 30)
-    else:  # lunes, miércoles, jueves
-        inicio, fin = (12, 0), (18, 0)
+    if dia_semana in [0, 1, 2, 3, 4, 5]:  # lunes, martes, miércoles, jueves, viernes, sábado
+        inicio, fin = (12, 30), (22, 30)
+    else:  # domingo
+        inicio, fin = (12, 30), (15, 30)
 
     current = datetime.combine(fecha_obj, time(*inicio))
     end = datetime.combine(fecha_obj, time(*fin))
 
     horarios = []
+    ahora = datetime.now()
     while current <= end:
+        # Si el usuario consulta "hoy", no mostramos horas ya pasadas
+        # (ej: si son > 14:00, no aparecerán 12:30, 13:00, 13:30, 14:00)
+        if fecha_obj == ahora.date() and current.time() < ahora.time():
+            current += timedelta(minutes=30)
+            continue
+
         hora_str = current.strftime("%H:%M")
         total = Reserva.query.filter_by(fecha=fecha_obj, hora=current.time()).count()
         disponible = total < 4  # máximo 4 reservas por slot
@@ -135,6 +285,74 @@ def disponibilidad(fecha):
         current += timedelta(minutes=30)
 
     return jsonify({"horarios": horarios})
+
+
+# Endpoint para re-enviar la solicitud al propietario (útil para pruebas/reenviar)
+@app.route("/api/propietario/solicitar-confirmacion/<codigo>", methods=["POST"])
+def solicitar_confirmacion_propietario(codigo):
+    reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+    if not reserva:
+        return jsonify({"error": "Reserva no encontrada"}), 404
+
+    try:
+        enviar_solicitud_propietario(reserva)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 500
+
+    return jsonify({"message": "Solicitud enviada al propietario ✅"}), 200
+
+
+@app.route("/propietario/aceptar/<codigo>", methods=["GET"])
+def propietario_aceptar(codigo):
+    reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+    if not reserva:
+        return render_template("error.html", code=404, message="Reserva no encontrada."), 404
+
+    try:
+        enviar_confirmacion(reserva.email, reserva)
+        # Enviar una copia al administrador
+        try:
+            enviar_confirmacion(app.Config.get("ADMIN_EMAIL"), reserva)
+        except Exception:
+            print("No se pudo enviar la copia del email")
+    except Exception:
+        # Si falla el email, no cancelamos la reserva; devolvemos error.
+        return render_template("error.html", code=500, message="No se pudo enviar el correo de confirmación."), 500
+
+    return "Reserva aceptada. Se envió la confirmación al usuario.", 200
+
+
+@app.route("/propietario/cancelar/<codigo>", methods=["GET"])
+def propietario_cancelar(codigo):
+    reserva = Reserva.query.filter_by(codigo_unico=codigo).first()
+    if not reserva:
+        return render_template("error.html", code=404, message="Reserva no encontrada."), 404
+
+    # Combinar fecha y hora de la reserva
+    fecha_reserva = datetime.combine(reserva.fecha, reserva.hora)
+
+    # Si ya pasó la fecha/hora, no permitir cancelación
+    if datetime.now() >= fecha_reserva:
+        return render_template(
+            "error.html",
+            code=400,
+            message="La reserva ya ha pasado de la hora de expiración y no puede cancelarse.",
+        ), 400
+
+    try:
+        enviar_cancelacion_usuario(reserva.email, reserva)
+    except Exception:
+        # Si falla el email, tampoco borramos la reserva para evitar pérdidas silenciosas.
+        return render_template("error.html", code=500, message="No se pudo enviar el correo de cancelación."), 500
+
+    try:
+        db.session.delete(reserva)
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        return render_template("error.html", code=500, message="No se pudo cancelar la reserva en el sistema."), 500
+
+    return "Reserva cancelada. Se informó al usuario.", 200
 
 # Rutas para cancelar una reserva
 @app.route("/cancelar/<codigo>", methods=["GET", "POST"])
@@ -168,6 +386,14 @@ def cancelar(codigo):
         try:
             db.session.delete(reserva)
             db.session.commit()
+
+            # Notificar al propietario de la cancelación
+            try:
+                enviar_cancelacion_propietario(reserva)
+            except Exception:
+                # No bloqueamos la cancelación si falla el email
+                pass
+
             flash("Reserva cancelada exitosamente.", "success")
         except Exception as e:
             db.session.rollback()

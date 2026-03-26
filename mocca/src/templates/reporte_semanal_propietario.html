@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #F5F5F5;
+        color: #263238;
+        padding: 24px;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 0.5rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        padding: 24px;
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        color: #A1887F;
+        font-size: 26px;
+        margin: 0 0 10px 0;
+      }
+
+      p {
+        margin: 10px 0;
+        line-height: 1.5;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        background: rgba(161, 136, 127, 0.12);
+        color: #A1887F;
+        font-weight: 700;
+        margin: 6px 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 14px;
+      }
+
+      th, td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #E5E7EB;
+        text-align: left;
+        vertical-align: top;
+        font-size: 13px;
+      }
+
+      th {
+        color: #6b7280;
+        font-weight: 700;
+      }
+
+      .footer {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Reporte semanal Mocca</h1>
+      <p>Rango:</p>
+      <div class="pill">{{ week_start.strftime('%d/%m/%Y') }} - {{ week_end.strftime('%d/%m/%Y') }}</div>
+
+      <p>
+        Reservas contabilizadas: <strong>{{ mesas }}</strong><br>
+        Coste estimado: <strong>{{ total_eur }}€</strong> (2€ por mesa/reserva)
+      </p>
+
+      {% if reservas and reservas|length > 0 %}
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Cliente</th>
+              <th>Personas</th>
+              <th>Contacto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in reservas %}
+              <tr>
+                <td>{{ r.fecha.strftime('%d/%m/%Y') }}</td>
+                <td>{{ r.hora.strftime('%H:%M') }}</td>
+                <td>{{ r.nombre }}</td>
+                <td>{{ r.personas }}</td>
+                <td>{{ r.email }}<br>{{ r.telefono }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No hay reservas en este rango.</p>
+      {% endif %}
+
+      <div class="footer">
+        Este correo ha sido generado automáticamente. No respondas directamente.
+      </div>
+    </div>
+  </body>
+</html>
+

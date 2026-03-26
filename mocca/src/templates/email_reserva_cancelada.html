@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      /* Estilos inline para que se vean bien en clientes de correo */
+      /* Estilos inline para clientes de correo */
       body {
         font-family: "Poppins", sans-serif;
-        background-color: #F5F5F5; /* base.html: background-light */
-        color: #263238; /* base.html: text-light */
+        background-color: #F5F5F5;
+        color: #263238;
         padding: 24px;
         margin: 0;
       }
@@ -24,7 +24,7 @@
 
       h1 {
         font-family: "Playfair Display", serif;
-        color: #A1887F; /* base.html: primary */
+        color: #DC2626; /* rojo */
         font-size: 26px;
         margin: 0 0 10px 0;
       }
@@ -32,12 +32,6 @@
       p {
         margin: 10px 0;
         line-height: 1.5;
-      }
-
-      .brand {
-        font-family: "Playfair Display", serif;
-        font-weight: 700;
-        color: #A1887F;
       }
 
       .details {
@@ -53,17 +47,6 @@
         font-weight: 700;
       }
 
-      .btn {
-        display: inline-block;
-        padding: 12px 22px;
-        background-color: #A1887F; /* base.html: primary */
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 9999px;
-        font-weight: 700;
-        box-shadow: 0 6px 14px rgba(161, 136, 127, 0.35);
-      }
-
       .footer {
         margin-top: 18px;
         font-size: 12px;
@@ -74,13 +57,12 @@
   </head>
   <body>
     <div class="container">
-      <h1>✅ Reserva confirmada</h1>
+      <h1>Reserva cancelada</h1>
 
       <p>
-        Gracias por reservar con <span class="brand">Mocca Coffee &amp; Brunch</span>.
+        Lamentamos informarte que el propietario ha cancelado tu reserva.
+        Aquí están los detalles:
       </p>
-
-      <p>Los detalles de tu reserva son:</p>
 
       <ul class="details">
         <li><strong>Nombre:</strong> {{ reserva.nombre }}</li>
@@ -91,15 +73,10 @@
         <li><strong>Personas:</strong> {{ reserva.personas }}</li>
       </ul>
 
-      <p>Si deseas cancelar tu reserva, haz clic en el siguiente botón:</p>
-      <a
-        href="{{ cancel_url }}"
-        class="btn"
-      >Cancelar reserva</a>
-
       <div class="footer">
         <p>Este correo ha sido generado automáticamente. No respondas directamente.</p>
       </div>
     </div>
   </body>
 </html>
+

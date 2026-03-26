@@ -64,6 +64,24 @@
         box-shadow: 0 6px 14px rgba(161, 136, 127, 0.35);
       }
 
+      .btn-secondary {
+        display: inline-block;
+        padding: 12px 22px;
+        background-color: #DC2626; /* rojo */
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 9999px;
+        font-weight: 700;
+        box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
+      }
+
+      .actions {
+        margin-top: 14px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
       .footer {
         margin-top: 18px;
         font-size: 12px;
@@ -74,14 +92,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>✅ Reserva confirmada</h1>
+      <h1>Reserva pendiente</h1>
 
       <p>
-        Gracias por reservar con <span class="brand">Mocca Coffee &amp; Brunch</span>.
+        Tienes una solicitud nueva para <span class="brand">Mocca Coffee &amp; Brunch</span>.
+        Decide si aceptas o cancelas la reserva:
       </p>
 
-      <p>Los detalles de tu reserva son:</p>
-
+      <p>Datos de la reserva:</p>
       <ul class="details">
         <li><strong>Nombre:</strong> {{ reserva.nombre }}</li>
         <li><strong>Teléfono:</strong> {{ reserva.telefono }}</li>
@@ -91,11 +109,10 @@
         <li><strong>Personas:</strong> {{ reserva.personas }}</li>
       </ul>
 
-      <p>Si deseas cancelar tu reserva, haz clic en el siguiente botón:</p>
-      <a
-        href="{{ cancel_url }}"
-        class="btn"
-      >Cancelar reserva</a>
+      <div class="actions">
+        <a href="{{ accept_url }}" class="btn">Aceptar</a>
+        <a href="{{ cancel_url }}" class="btn-secondary">Cancelar</a>
+      </div>
 
       <div class="footer">
         <p>Este correo ha sido generado automáticamente. No respondas directamente.</p>
@@ -103,3 +120,4 @@
     </div>
   </body>
 </html>
+
