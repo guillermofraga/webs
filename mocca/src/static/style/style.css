@@ -1,0 +1,23 @@
+/* Prefijo seleccionado junto a la bandera */
+.iti__selected-dial-code {
+  color: #000 !important; /* negro en modo claro */
+}
+/* En modo oscuro, color negro */
+.dark .iti__selected-dial-code {
+  color: #000 !important; /* negro para que contraste sobre fondo oscuro */
+}
+/* Prefijos dentro del desplegable */
+.iti__country-list .iti__dial-code {
+  color: #000 !important;
+}
+.dark .iti__country-list .iti__dial-code {
+  color: #000 !important; /* negro en modo oscuro */
+}
+/* Nombre del país en la lista */
+.iti__country-list .iti__country-name {
+  color: #000 !important; /* negro en modo claro */
+}
+/* En modo oscuro también negro */
+.dark .iti__country-list .iti__country-name {
+  color: #000 !important; /* negro en modo oscuro */
+}

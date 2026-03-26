@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://moccavigo.com/sitemap.xml

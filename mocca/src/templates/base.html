@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{% block title %}Mocca Coffee & Brunch{% endblock %}</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Mocca Coffee & Brunch en Vigo: el lugar ideal para disfrutar de café de calidad, brunch delicioso y un ambiente acogedor. Ven a relajarte, trabajar o disfrutar de un buen momento en el corazón de la ciudad." />
+    <meta name="keywords"
+        content="Mocca Coffee & Brunch, Vigo, café, brunch, restaurante, bar, bebidas, comida, brunch en Vigo, café de calidad, brunch delicioso, cafetería en Vigo, ambiente acogedor, café artesanal" />
+    <meta name="author" content="Mocca Coffee & Brunch" />
+    <meta property="og:title" content="Mocca Coffee & Brunch - El mejor café y brunch en Vigo" />
+    <meta property="og:description"
+        content="Disfruta de una experiencia única en Mocca Coffee & Brunch: café de calidad, brunch delicioso y un ambiente único en el centro de Vigo." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://moccavigo.com/" />
+    <meta property="og:image" content="/static/img/local.png" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/png" href="/static/img/logo.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+    <!-- Prefijos telefónicos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="/static/style/style.css">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Poppins:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#A1887F", // A warm brown, like coffee
+                        "background-light": "#F5F5F5", // Light grey
+                        "background-dark": "#212121", // Dark grey
+                        "accent-light": "#FFFFFF",
+                        "accent-dark": "#37474F",
+                        "text-light": "#263238",
+                        "text-dark": "#ECEFF1",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hero-bg {
+            background-image: url('/static/img/local.png');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-body text-text-light dark:text-text-dark transition-colors duration-300">
+    <header class="bg-accent-light dark:bg-accent-dark shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="material-icons text-primary text-3xl">coffee</span>
+                <a class="text-2xl font-display font-bold text-primary inline-block" href="#">Mocca<span class="block text-xs">Coffee & Brunch Space</span></a>   
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="hover:text-primary transition-colors" href="https://mocca.elur.es/">Menú</a>
+                <a class="hover:text-primary transition-colors" href="#reviews">Reseñas</a>
+                <a class="hover:text-primary transition-colors" href="#about">Nosotros</a>
+                <a class="hover:text-primary transition-colors" href="#contact">Contacto</a>
+            </div>
+            <button class="md:hidden" id="mobile-menu-button">
+                <span class="material-icons">menu</span>
+            </button>
+        </nav>
+        <div class="hidden md:hidden px-6 pb-4" id="mobile-menu">
+            <a class="block py-2 hover:text-primary transition-colors" href="https://mocca.elur.es/">Menú</a>
+            <a class="hover:text-primary transition-colors" href="#reviews">Reseñas</a>
+            <a class="block py-2 hover:text-primary transition-colors" href="#about">Nosotros</a>
+            <a class="block py-2 hover:text-primary transition-colors" href="#contact">Contacto</a>
+        </div>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- MODAL DE RESERVA -->
+    <div
+      id="reserve-modal"
+      class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md p-6 relative"
+      >
+        <!-- Botón cerrar -->
+        <button
+          id="close-reserve"
+          class="absolute top-3 right-3 text-gray-500 hover:text-primary"
+        >
+          ✖
+        </button>
+        <h2 class="text-2xl font-bold text-center mb-4">Reservar Mesa</h2>
+        <!-- FORMULARIO -->
+        <form id="reserve-form" class="flex flex-col gap-4">
+          <input
+            type="text"
+            id="nombre"
+            placeholder="Nombre"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Teléfono"
+            required
+            class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Correo electrónico"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <input
+            type="text" 
+            id="fecha" 
+            required
+            placeholder="dd/mm/yyyy" 
+            onfocus="this.type='date'; this.min=new Date().toISOString().split('T')[0]"
+            onblur="if(!this.value)this.type='text'"
+            class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <!-- Selector de hora -->
+          <select
+            id="hora"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          >
+            <option value="">Selecciona una fecha primero</option>
+          </select>
+
+          <input
+            type="number"
+            id="personas"
+            placeholder="Número de personas"
+            max="20"
+            min="1"
+            required
+            class="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary text-gray-900 placeholder-gray-400"
+          />
+
+          <!-- Checkbox para guardar datos -->
+          <label
+            class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+          >
+            <input type="checkbox" id="save-data" class="accent-primary" />
+            Guardar mis datos para próximas reservas
+          </label>
+
+          <button
+            id="submitBtn"
+            type="submit"
+            class="bg-primary text-white font-bold py-2 rounded-lg hover:bg-secondary transition-colors flex items-center justify-center"
+          >
+            <span id="btnText">Confirmar Reserva</span>
+            <!-- Spinner oculto -->
+            <svg id="spinner" class="hidden animate-spin ml-2 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10"
+                      stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+            </svg>
+          </button>
+
+          <p><strong>Importante:</strong> Esta reserva no será válida hasta que nos pongamos en contacto con usted para realizar la confirmación.</p>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN -->
+    <div
+      id="confirm-modal"
+      class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md p-6 relative"
+      >
+        <!-- Botón cerrar -->
+        <button
+          id="close-confirm"
+          class="absolute top-3 right-3 text-gray-500 hover:text-primary"
+        >
+          ✖
+        </button>
+        <h2 class="text-2xl font-bold text-center mb-4 text-primary">
+          Reserva Confirmada ✅
+        </h2>
+        <div class="text-center text-gray-700 dark:text-gray-300">
+          <p class="mb-4">Tu reserva ha sido registrada correctamente. Se te ha enviado un correo con los datos de la reserva.</p>
+          <p id="confirm-details" class="font-semibold"></p>
+        </div>
+        <div class="mt-6 flex justify-center">
+          <button
+            id="ok-confirm"
+            class="bg-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-secondary transition-colors"
+          >
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE ERROR -->
+    <div
+      id="error-modal"
+      class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-md p-6 relative"
+      >
+        <!-- Botón cerrar -->
+        <button
+          id="close-error"
+          class="absolute top-3 right-3 text-gray-500 hover:text-red-500"
+        >
+          ✖
+        </button>
+        <h2 class="text-2xl font-bold text-center mb-4 text-red-600">
+          ❌ Error en la Reserva
+        </h2>
+        <div class="text-center text-gray-700 dark:text-gray-300">
+          <p id="error-message" class="mb-4">
+            Ha ocurrido un problema al procesar tu reserva.
+          </p>
+        </div>
+        <div class="mt-6 flex justify-center">
+          <button
+            id="ok-error"
+            class="bg-red-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-700 transition-colors"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-accent-light dark:bg-accent-dark py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>© 2025 Mocca Vigo. Todos los derechos reservados.</p>
+            <div class="mt-4 flex justify-center items-center gap-2">
+                <span class="font-semibold mr-2">Síguenos:</span>
+                <a href="https://www.instagram.com/moccavigo/" target="_blank" rel="noopener" aria-label="Instagram"
+                    class="inline-flex items-center">
+                    <!-- Instagram SVG icon -->
+                    <svg class="w-6 h-6 text-primary hover:text-pink-600 transition-colors" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.13.62a1.13 1.13 0 1 1-2.26 0 1.13 1.13 0 0 1 2.26 0z" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Línea de crédito -->
+            <div class="mt-6 text-sm font-semibold">
+                Design by:
+                <a href="https://stoprend.com" target="_blank" rel="noopener"
+                    class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+                    stoprend.com
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Scroll suave para navegadores antiguos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+        <!-- SCRIPTS -->
+        <script src="/static/js/SaveData.js"></script>
+        <script src="/static/js/PrefijosTelefonicos.js"></script>
+        <script src="/static/js/ModalReserva.js"></script>
+        <script src="/static/js/Horario.js"></script>
+
+</body>
+
+</html>

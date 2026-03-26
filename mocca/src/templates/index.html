@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero-bg text-white">
+    <div class="bg-black bg-opacity-50 min-h-[60vh] flex items-center">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-4">El arte de un buen café</h1>
+            <p class="text-lg md:text-xl mb-8 font-body">Tu pausa perfecta en el corazón de la ciudad.</p>
+            <button class="open-reserve bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors font-body text-lg">Reservar Mesa</button>
+        </div>
+    </div>
+</section>
+<section class="py-16 md:py-24" id="about">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="rounded-lg overflow-hidden shadow-xl">
+                <img alt="Interior of the Mocca cafeteria with tables and chairs."
+                    class="w-full h-full object-cover" src="/static/img/local.png" />
+            </div>
+            <div>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-primary mb-4">Bienvenidos a Mocca</h2>
+                <p class="mb-4">En Mocca, cada taza de café cuenta una historia. Desde nuestra fundación, nos hemos
+                    dedicado a seleccionar los mejores granos y a perfeccionar el arte de la preparación para
+                    ofrecerte una experiencia inolvidable.</p>
+                <p>Nuestro espacio está diseñado para ser tu refugio, un lugar donde puedes relajarte, trabajar o
+                    simplemente disfrutar de un buen momento. ¡Te esperamos!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-16 md:py-24 bg-accent-light dark:bg-accent-dark" id="reviews">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-4">Reseñas</h2>
+        <div class="text-center mb-8">
+            <a href="https://www.google.com/maps/place/mocca/@42.2312522,-8.7200286,17z/data=!4m8!3m7!1s0xd2f630040e1c6ab:0x34e1c1ce76509b96!8m2!3d42.2312522!4d-8.7200286!9m1!1b1!16s%2Fg%2F11wtyf8g_d?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-block bg-primary hover:bg-opacity-90 text-white font-bold py-2 px-6 rounded-full transition-colors">Dejanos tu reseña en Google</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <blockquote class="bg-accent-light dark:bg-accent-dark p-6 rounded-lg shadow-xl">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">A</div>
+                    <div class="ml-3">
+                        <p class="font-semibold">Belenbe</p>
+                        <p class="text-sm text-gray-500">enero 2025</p>
+                    </div>
+                </div>
+                <p class="mb-3">Conocimos este sitio porque trabajamos en la zona y la primera impresión fue espectacular!!! Una calidad en la comida, sabor y presentación espectaculares, ya nos hemos vuelto asiduos y el local es de lo más acogedor!! Fran siempre te atiende con mucha amabilidad y muy profesional. 100% recomendable.</p>
+                <div class="text-yellow-400">★★★★★</div>
+            </blockquote>
+
+            <blockquote class="bg-accent-light dark:bg-accent-dark p-6 rounded-lg shadow-xl">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">M</div>
+                    <div class="ml-3">
+                        <p class="font-semibold">Maite P.</p>
+                        <p class="text-sm text-gray-500">Abril 2025</p>
+                    </div>
+                </div>
+                <p class="mb-3">Llegamos dos personas un miércoles por la tarde cuando aún no tenían abierta la cocina y nos ofrecieron varias opciones para que pudiéramos tomar algo. Pedimos unas croquetas de cochinillo con manzana (caseras y deliciosas: todo un acierto), una empanadilla al estilo venezolano por persona y unas patatas fritas que venían con una mayonesa de ajo de la que no dejamos gota. Precio muy asequible y personal cercano y servicial. Tratan con mimo a los clientes y se nota. No tardaremos en volver.</p>
+                <div class="text-yellow-400">★★★★★</div>
+            </blockquote>
+
+            <blockquote class="bg-accent-light dark:bg-accent-dark p-6 rounded-lg shadow-xl">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">S</div>
+                    <div class="ml-3">
+                        <p class="font-semibold">Miguel Bravo</p>
+                        <p class="text-sm text-gray-500">Enero 2025</p>
+                    </div>
+                </div>
+                <p class="mb-3">Conocimos este sitio porque trabajamos en la zona y la primera impresión fue espectacular!!! Una calidad en la comida, sabor y presentación espectaculares, ya nos hemos vuelto asiduos y el local es de lo más acogedor!! Fran siempre te atiende con mucha amabilidad y muy profesional. 100% recomendable.</p>
+                <div class="text-yellow-400">★★★★★</div>
+            </blockquote>
+        </div>
+    </div>
+
+</section>
+
+<section class="py-16 md:py-24" id="contact">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-primary text-center mb-12">Visítanos</h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="font-display text-2xl font-bold text-primary mb-4">Horario</h3>
+                <ul class="mb-4">
+                    <li class="flex justify-between mb-1"><span class="font-semibold">lunes</span>
+                        <span>9:30–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">martes</span>
+                        <span>9:30–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">miércoles</span>
+                        <span>9:30–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">jueves</span>
+                        <span>9:30–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">viernes</span>
+                        <span>9:30–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">sábado</span>
+                        <span>10:00–23:00</span>
+                    </li>
+                    <li class="flex justify-between mb-1"><span class="font-semibold">domingo</span>
+                        <span>10:00–16:00</span>
+                    </li>
+                </ul>
+                <h3 class="font-display text-2xl font-bold text-primary mb-4">Contacto</h3>
+                <p class="mb-2 flex items-center"><span class="material-icons text-primary mr-2">place</span> R. de
+                    Nicaragua, 23, Santiago de Vigo, 36203 Vigo, Pontevedra</p>
+                <a href="tel:600391345" class="mb-4 flex items-center"><span class="material-icons text-primary mr-2">phone</span> (+34)
+                    600 391 345</a>
+                    <button class="open-reserve bg-primary hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition-colors font-body text-lg">Haz tu reserva</button>
+            </div>
+            <div class="rounded-lg overflow-hidden shadow-xl h-64 md:h-auto">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5908.435656394837!2d-8.7200965!3d42.2311591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f630040e1c6ab%3A0x34e1c1ce76509b96!2smocca!5e0!3m2!1ses!2ses!4v1758643828101!5m2!1ses!2ses"
+                    class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
