@@ -312,7 +312,7 @@ def propietario_aceptar(codigo):
         enviar_confirmacion(reserva.email, reserva)
         # Enviar una copia al administrador
         try:
-            enviar_confirmacion(app.Config.get("ADMIN_EMAIL"), reserva)
+            enviar_confirmacion(app.config.get("ADMIN_EMAIL"), reserva)
         except Exception:
             print("No se pudo enviar la copia del email")
     except Exception:
