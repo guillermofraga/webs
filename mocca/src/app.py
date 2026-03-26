@@ -3,6 +3,7 @@ from config import Config
 from models import Reserva, db
 from datetime import datetime, date, time, timedelta
 import re
+import uuid
 from flask import request, jsonify, redirect, url_for, flash
 from flask import send_from_directory
 from flask_mail import Mail, Message
@@ -309,13 +310,20 @@ def propietario_aceptar(codigo):
         return render_template("error.html", code=404, message="Reserva no encontrada."), 404
 
     try:
+        # Invalidar inmediatamente los enlaces del propietario para que
+        # aceptar/cancelar solo se pueda ejecutar una vez.
+        reserva.codigo_unico = str(uuid.uuid4())
+
         enviar_confirmacion(reserva.email, reserva)
         # Enviar una copia al administrador
         try:
             enviar_confirmacion(app.config.get("ADMIN_EMAIL"), reserva)
         except Exception:
             print("No se pudo enviar la copia del email")
+
+        db.session.commit()
     except Exception:
+        db.session.rollback()
         # Si falla el email, no cancelamos la reserva; devolvemos error.
         return render_template("error.html", code=500, message="No se pudo enviar el correo de confirmación."), 500
 
