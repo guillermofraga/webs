@@ -315,11 +315,6 @@ def propietario_aceptar(codigo):
         reserva.codigo_unico = str(uuid.uuid4())
 
         enviar_confirmacion(reserva.email, reserva)
-        # Enviar una copia al administrador
-        try:
-            enviar_confirmacion(app.config.get("ADMIN_EMAIL"), reserva)
-        except Exception:
-            print("No se pudo enviar la copia del email")
 
         db.session.commit()
     except Exception:
