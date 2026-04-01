@@ -11,7 +11,7 @@
     <meta name="keywords" content="Alberto García Chaparro, oratoria, debate, asesoría en comunicación, cursos de comunicación, entrenamiento en oratoria, habilidades de comunicación" />
 
     <!-- Icon -->
-    <link rel="icon" type="image/jfif" href="./static/img/albertogarciachaparro.jfif">
+    <link rel="icon" type="image/jfif" href="/static/img/albertogarciachaparro.jfif">
 
     <!-- Link section -->
     <link
@@ -263,6 +263,26 @@
         background-color: #1a2b3c;
         transform: translateY(-2px);
       }
+      .modal-submit:disabled {
+        background-color: #74777d;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 8px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
       .modal-cancel {
         background-color: #d2e4fb;
         color: #041627;
@@ -281,6 +301,47 @@
       @keyframes slideUp {
         from {
           transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      /* Alert Styles */
+      .modal-alert {
+        display: none;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        animation: slideDown 0.3s ease-in-out;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .modal-alert.active {
+        display: block;
+      }
+      .modal-alert.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .modal-alert.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .modal-alert.success::before {
+        content: '✓ ';
+        font-weight: bold;
+      }
+      .modal-alert.error::before {
+        content: '✕ ';
+        font-weight: bold;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-10px);
           opacity: 0;
         }
         to {
@@ -453,7 +514,7 @@
               <img
                 class="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-700"
                 data-alt="Sophisticated professional man in a navy suit standing in a modern library or law office setting, warm natural light hitting the scene"
-                src="./static/img/albertogarciachaparro.jfif"
+                src="/static/img/albertogarciachaparro.jfif"
               />
             </div>
             <div
@@ -834,7 +895,7 @@
               <img
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 data-alt="Close-up of elegant fountain pen resting on a handwritten legal document, soft morning light with deep shadows"
-                src="./static/img/Ledu.jfif"
+                src="/static/img/Ledu.jfif"
               />
               <div
                 class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"
@@ -850,7 +911,7 @@
               <img
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 data-alt="Interior of a classic library with tall wooden shelves and leather bound books, moody scholarly atmosphere"
-                src="./static/img/ModeloUniónEuropeaEspaña.jfif"
+                src="/static/img/ModeloUniónEuropeaEspaña.jfif"
               />
               <div
                 class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"
@@ -866,7 +927,7 @@
               <img
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 data-alt="Two professionals engaged in a serious debate across a wooden table, focus on expressive hand gestures"
-                src="./static/img/Ledu_Lure.jfif"
+                src="/static/img/Ledu_Lure.jfif"
               />
               <div
                 class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"
@@ -882,7 +943,7 @@
               <img
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 data-alt="Professional camera lens focusing on a podium in a blurred conference hall setting, cinematic lighting"
-                src="./static/img/Mundial.jfif"
+                src="/static/img/Mundial.jfif"
               />
               <div
                 class="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6"
@@ -980,6 +1041,7 @@
     <div id="contactModal" class="modal">
       <div class="modal-content">
         <h2 class="modal-header">Reserva tu Asesoría</h2>
+        <div id="modalAlert" class="modal-alert"></div>
         <form id="contactForm" onsubmit="handleSubmit(event)">
           <div class="form-group">
             <label for="asunto">Asunto:</label>
@@ -1026,115 +1088,13 @@
             <button type="button" class="modal-cancel">
               Cancelar
             </button>
-            <button type="submit" class="modal-submit">
-              Enviar
+            <button type="submit" id="submitBtn" class="modal-submit">
+              <span id="submitText">Enviar</span>
             </button>
           </div>
         </form>
       </div>
     </div>
-    <script>
-      // Mobile Menu Toggle
-      const hamburgerBtn = document.getElementById('hamburger-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const menuLinks = mobileMenu.querySelectorAll('.mobile-menu-link, button');
-
-      hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-      });
-
-      // Close menu when clicking on a link
-      menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          hamburgerBtn.classList.remove('active');
-          mobileMenu.classList.remove('active');
-        });
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('header')) {
-          hamburgerBtn.classList.remove('active');
-          mobileMenu.classList.remove('active');
-        }
-      });
-
-      // Modal Functions
-      const contactModal = document.getElementById('contactModal');
-      const contactForm = document.getElementById('contactForm');
-      const openModalBtns = document.querySelectorAll('.open-modal-btn');
-      const cancelBtn = document.querySelector('.modal-cancel');
-
-      function openModal() {
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        contactModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        contactForm.reset();
-      }
-
-      // Event listeners para los botones de abrir modal
-      openModalBtns.forEach(btn => {
-        btn.addEventListener('click', openModal);
-      });
-
-      // Event listener para el botón de cancelar
-      cancelBtn.addEventListener('click', closeModal);
-
-      function handleSubmit(event) {
-        event.preventDefault();
-        
-        // Obtener los valores del formulario
-        const asunto = document.getElementById('asunto').value;
-        const correo = document.getElementById('correo').value;
-        const necesidades = document.getElementById('necesidades').value;
-        const observaciones = document.getElementById('observaciones').value;
-        
-        // Enviar datos al servidor
-        fetch('/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            asunto: asunto,
-            correo: correo,
-            necesidades: necesidades,
-            observaciones: observaciones
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            alert('¡Correo enviado exitosamente! Te responderemos pronto.');
-            closeModal();
-          } else {
-            alert('Error al enviar el correo: ' + data.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Error al enviar el correo. Por favor, intenta de nuevo.');
-        });
-      }
-
-      // Cerrar modal al hacer click fuera del contenido
-      contactModal.addEventListener('click', (e) => {
-        if (e.target === contactModal) {
-          closeModal();
-        }
-      });
-
-      // Cerrar modal con tecla Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
-          closeModal();
-        }
-      });
-    </script>
+    <script src="/static/js/main.js"></script>
   </body>
 </html>
