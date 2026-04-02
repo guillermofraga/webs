@@ -38,6 +38,17 @@
         alertElement.classList.remove('active');
       }
 
+      function openModalWithCourse(button) {
+        const curso = button.getAttribute('data-curso');
+        const asuntoField = document.getElementById('asunto');
+        
+        if (curso && asuntoField) {
+          asuntoField.value = curso;
+        }
+        
+        openModal();
+      }
+
       function closeModal() {
         contactModal.classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -131,3 +142,32 @@
           closeModal();
         }
       });
+
+      // Accordion Functions
+      function toggleAccordion(button) {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.material-symbols-outlined:last-child');
+        
+        // Cerrar otros acordeones abiertos
+        const allAccordions = document.querySelectorAll('.accordion-btn');
+        allAccordions.forEach(btn => {
+          if (btn !== button) {
+            const otherContent = btn.nextElementSibling;
+            const otherIcon = btn.querySelector('.material-symbols-outlined:last-child');
+            otherContent.classList.add('hidden');
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        // Toggle el acordeón actual
+        content.classList.toggle('hidden');
+        if (icon) {
+          if (content.classList.contains('hidden')) {
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      }

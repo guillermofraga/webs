@@ -403,7 +403,7 @@
 
         <!-- Desktop Button -->
         <button
-          class="open-modal-btn hidden lg:block bg-primary text-on-primary px-6 py-2 rounded-lg font-label text-sm uppercase tracking-wider scale-95 transition-transform hover:scale-100 cursor-pointer"
+          class="open-modal-btn hidden lg:block bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-lg font-label text-sm uppercase tracking-wider scale-95 transition-transform hover:scale-100 cursor-pointer"
         >
           Reservar Asesoría
         </button>
@@ -459,7 +459,7 @@
               Proyectos
             </a>
             <button
-              class="open-modal-btn bg-primary text-on-primary px-4 py-2 rounded-lg font-label text-xs uppercase tracking-wider w-full mt-4 cursor-pointer"
+              class="open-modal-btn bg-primary-fixed text-on-primary-fixed px-4 py-2 rounded-lg font-label text-xs uppercase tracking-wider w-full mt-4 cursor-pointer"
             >
               Reservar Asesoría
             </button>
@@ -492,7 +492,7 @@
             </p>
             <div class="flex items-center gap-6">
               <button
-                class="open-modal-btn bg-primary text-on-primary px-8 py-4 rounded-lg font-label font-bold tracking-tight shadow-lg hover:translate-y-[-2px] transition-transform cursor-pointer border-none"
+                class="open-modal-btn bg-primary-fixed text-on-primary-fixed px-8 py-4 rounded-lg font-label font-bold tracking-tight shadow-lg hover:translate-y-[-2px] transition-transform cursor-pointer border-none"
               >
                 INICIAR FORMACIÓN
               </button>
@@ -613,7 +613,7 @@
                 Colaboraciones y Experiencia
               </h2>
               <p class="text-lg text-secondary mb-12">
-                He trabajado con instituciones académicas y corporaciones de
+                Colaboración con instituciones académicas y corporaciones de
                 primer nivel, diseñando estrategias de comunicación que impactan
                 en el resultado final.
               </p>
@@ -627,8 +627,7 @@
                   <div>
                     <h4 class="font-bold text-primary">Asesoría en comunicación</h4>
                     <p class="text-sm text-secondary">
-                      Asesoramiento en litigios estratégicos y preparación de
-                      vistas orales para bufetes boutique.
+                      Asesoramiento en oratoria de alto impacto.
                     </p>
                   </div>
                 </div>
@@ -674,7 +673,7 @@
                   <div
                     class="text-center font-headline text-lg md:text-2xl italic font-bold text-primary"
                   >
-                    Liga de Debate CICAE
+                    Liga de Debate CICAE-UCJC
                   </div>
                 </div>
                 <div
@@ -683,7 +682,7 @@
                   <div
                     class="text-center font-headline text-lg md:text-2xl italic font-bold text-primary"
                   >
-                    Train and Talk
+                    Liga Española de Debate Universitario
                   </div>
                 </div>
               </div>
@@ -799,80 +798,294 @@
               Eleva tu capacidad de convicción
             </h2>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Course 1 -->
-            <div
-              class="bg-primary-container p-1 text-on-primary group hover:bg-surface-container-lowest hover:text-primary transition-all duration-500 rounded-xl flex flex-col h-full"
-            >
-              <div class="p-8 flex flex-col h-full">
-                <span
-                  class="material-symbols-outlined text-tertiary-fixed-dim text-4xl mb-6"
-                  >balance</span
-                >
-                <h3 class="font-headline text-3xl font-bold mb-6">
-                  Curso completo en comunicación efectiva
-                </h3>
-                <p
-                  class="text-on-primary-container group-hover:text-secondary mb-10 flex-grow"
-                >
-                  Dirigido a jóvenes, profesionales y empresas que buscan comunicar con impacto.
-                </p>
-                <a
-                  class="inline-flex items-center gap-2 font-bold uppercase text-xs tracking-widest border-b border-tertiary-fixed-dim pb-2 w-fit"
-                  href="#"
-                >
-                  Más Información
-                </a>
+          <div class="space-y-4 max-w-4xl mx-auto">
+            <!-- Accordion Course 1: Comunicación Efectiva -->
+            <div class="bg-primary-container rounded-xl overflow-hidden">
+              <button
+                class="accordion-btn w-full text-left p-8 flex items-center justify-between hover:bg-primary-fixed transition-colors"
+                onclick="toggleAccordion(this)"
+              >
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl">
+                    balance
+                  </span>
+                  <h3 class="font-headline text-2xl font-bold text-on-primary">
+                    Curso completo en comunicación efectiva
+                  </h3>
+                </div>
+                <span class="material-symbols-outlined text-on-primary transition-transform">
+                  expand_more
+                </span>
+              </button>
+              
+              <div class="accordion-content hidden overflow-hidden">
+                <div class="p-8 bg-primary-container border-t border-primary">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                      <img
+                        src="/static/img/ComunicacionEfectiva.jfif"
+                        alt="Comunicación Efectiva"
+                        class="w-full h-auto rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div class="text-on-primary-container space-y-4">
+                      <p class="text-lg leading-relaxed">
+                        Dirigido a jóvenes, profesionales y empresas que buscan comunicar con impacto.
+                      </p>
+                      <p class="text-lg leading-relaxed">
+                        Siguiendo una metodología que mezcla teoría y práctica, el curso busca que lleves tus discursos al siguiente nivel.
+                      </p>
+                      
+                      <div class="mt-6">
+                        <h4 class="font-bold text-on-primary mb-3">Los 5 Módulos:</h4>
+                        <ul class="space-y-2 text-sm">
+                          <li><strong>I.</strong> La oratoria como herramienta de persuasión - los pilares de la retórica y estrategias de gestión de los nervios</li>
+                          <li><strong>II.</strong> La estructura del discurso - mensaje, inicios cautivadores y selección de ideas</li>
+                          <li><strong>III.</strong> La respuesta y la crítica - la agilidad del orador</li>
+                          <li><strong>IV.</strong> La comunicación no verbal - cuerpo, gestos y voz para impactar</li>
+                          <li><strong>V.</strong> Análisis de intervención y prácticum</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-primary p-6 rounded-lg text-on-primary">
+                      <h4 class="font-bold mb-3">Formato Básico</h4>
+                      <p class="text-2xl font-bold mb-3">5 horas</p>
+                      <p class="text-sm">
+                        Pensado para aquellos que se inician en el mundo de la oratoria.
+                      </p>
+                    </div>
+                    <div class="bg-primary p-6 rounded-lg text-on-primary">
+                      <h4 class="font-bold mb-3">Formato Extendido</h4>
+                      <p class="text-2xl font-bold mb-3">10 horas</p>
+                      <p class="text-sm">
+                        Para profundizar en la comunicación con enfoque profesional, político o empresarial.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="bg-primary p-6 rounded-lg text-on-primary mb-8 space-y-3">
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined">location_on</span>
+                      <span><strong>Disponibilidad:</strong> Presencial y Online</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined">group</span>
+                      <span><strong>Público:</strong> Particulares y grupos de máximo 20 personas</span>
+                    </div>
+                  </div>
+
+                  <p class="text-on-primary-container mb-6">
+                    Pide tu presupuesto según tus necesidades.
+                  </p>
+
+                  <button
+                    onclick="openModalWithCourse(this)"
+                    class="open-modal-btn inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-8 py-3 rounded-lg font-bold uppercase text-sm tracking-widest hover:bg-primary-fixed-dim transition-colors"
+                    data-curso="Comunicación Efectiva"
+                  >
+                    <span class="material-symbols-outlined">mail</span>
+                    Solicitar Presupuesto
+                  </button>
+                </div>
               </div>
             </div>
-            <!-- Course 2 -->
-            <div
-              class="bg-primary-container p-1 text-on-primary group hover:bg-surface-container-lowest hover:text-primary transition-all duration-500 rounded-xl flex flex-col h-full"
-            >
-              <div class="p-8 flex flex-col h-full">
-                <span
-                  class="material-symbols-outlined text-tertiary-fixed-dim text-4xl mb-6"
-                  >groups</span
-                >
-                <h3 class="font-headline text-3xl font-bold mb-6">
-                  Formación a empresas
-                </h3>
-                <p
-                  class="text-on-primary-container group-hover:text-secondary mb-10 flex-grow"
-                >
-                  Diseñado para formar a profesionales y directivos en habilidades comunicativas de alto nivel.
-                </p>
-                <a
-                  class="inline-flex items-center gap-2 font-bold uppercase text-xs tracking-widest border-b border-tertiary-fixed-dim pb-2 w-fit"
-                  href="#"
-                >
-                  Más Información
-                </a>
+
+            <!-- Accordion Course 2: Formación a empresas -->
+            <div class="bg-primary-container rounded-xl overflow-hidden">
+              <button
+                class="accordion-btn w-full text-left p-8 flex items-center justify-between hover:bg-primary-fixed transition-colors"
+                onclick="toggleAccordion(this)"
+              >
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl">
+                    groups
+                  </span>
+                  <h3 class="font-headline text-2xl font-bold text-on-primary">
+                    Formación a empresas
+                  </h3>
+                </div>
+                <span class="material-symbols-outlined text-on-primary transition-transform">
+                  expand_more
+                </span>
+              </button>
+              
+              <div class="accordion-content hidden overflow-hidden">
+                <div class="p-8 bg-primary-container border-t border-primary">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                      <img
+                        src="/static/img/FormacionEmpresas.jfif"
+                        alt="Formación a Empresas"
+                        class="w-full h-auto rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div class="space-y-6 text-on-primary-container">
+                      <p class="text-lg leading-relaxed font-bold">
+                        La adaptación al cliente es la clave.
+                      </p>
+
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2">Niveles de formación:</h4>
+                        <p class="text-lg leading-relaxed">
+                          Las formaciones a empresas se realizan desde el nivel más júnior hasta la dirección.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2">Duración y estructura:</h4>
+                        <p class="text-lg leading-relaxed">
+                          Se ofrece con una duración según las necesidades del cliente con división flexible en varias jornadas.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2">Metodología:</h4>
+                        <p class="text-lg leading-relaxed">
+                          Teórica y práctica con actividades preparadas para simular situaciones comunicativas reales de la empresa.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-primary p-8 rounded-lg text-on-primary mb-8">
+                    <h4 class="font-headline text-2xl italic font-bold mb-4">A quién está dirigida</h4>
+                    <ul class="space-y-3">
+                      <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-tertiary-fixed mt-1">check_circle</span>
+                        <span class="text-lg"><strong>Profesionales júnior:</strong> Desarrolla tus habilidades de comunicación desde el inicio de tu carrera</span>
+                      </li>
+                      <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-tertiary-fixed mt-1">check_circle</span>
+                        <span class="text-lg"><strong>Equipos de trabajo:</strong> Mejora la comunicación interna y la efectividad del equipo</span>
+                      </li>
+                      <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-tertiary-fixed mt-1">check_circle</span>
+                        <span class="text-lg"><strong>Directivos y C-level:</strong> Masterclass especializada para líderes que necesitan comunicar con impacto</span>
+                      </li>
+                      <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-tertiary-fixed mt-1">check_circle</span>
+                        <span class="text-lg"><strong>Áreas de recursos humanos:</strong> Formación estratégica para todas las áreas de la organización</span>
+                      </li>
+                      <li class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-tertiary-fixed mt-1">check_circle</span>
+                        <span class="text-lg"><strong>Departamentos específicos:</strong> Comunicación adaptada a las necesidades de ventas, atención al cliente, etc.</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-primary p-6 rounded-lg text-on-primary space-y-3 mb-8">
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined">location_on</span>
+                      <span><strong>Formatos:</strong> Online y Presencial</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined">group</span>
+                      <span><strong>Público:</strong> Grupos de trabajo y Masterclass para directivos</span>
+                    </div>
+                  </div>
+
+                  <p class="text-lg leading-relaxed text-on-primary-container mb-6">
+                    Pide tu presupuesto según tus necesidades.
+                  </p>
+
+                  <button
+                    onclick="openModalWithCourse(this)"
+                    class="open-modal-btn inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-8 py-3 rounded-lg font-bold uppercase text-sm tracking-widest hover:bg-primary-fixed-dim transition-colors"
+                    data-curso="Formación a Empresas"
+                  >
+                    <span class="material-symbols-outlined">mail</span>
+                    Solicitar Presupuesto
+                  </button>
+                </div>
               </div>
             </div>
-            <!-- Course 3 -->
-            <div
-              class="bg-primary-container p-1 text-on-primary group hover:bg-surface-container-lowest hover:text-primary transition-all duration-500 rounded-xl flex flex-col h-full"
-            >
-              <div class="p-8 flex flex-col h-full">
-                <span
-                  class="material-symbols-outlined text-tertiary-fixed-dim text-4xl mb-6"
-                  >business_center</span
-                >
-                <h3 class="font-headline text-3xl font-bold mb-6">
-                  Asesoría privada en oratoria
-                </h3>
-                <p
-                  class="text-on-primary-container group-hover:text-secondary mb-10 flex-grow"
-                >
-                  Aprende con un campeón del mundo los secretos de la oratoria en sesiones privadas.
-                </p>
-                <a
-                  class="inline-flex items-center gap-2 font-bold uppercase text-xs tracking-widest border-b border-tertiary-fixed-dim pb-2 w-fit"
-                  href="#"
-                >
-                  Más Información
-                </a>
+
+            <!-- Accordion Course 3: Asesoría privada -->
+            <div class="bg-primary-container rounded-xl overflow-hidden">
+              <button
+                class="accordion-btn w-full text-left p-8 flex items-center justify-between hover:bg-primary-fixed transition-colors"
+                onclick="toggleAccordion(this)"
+              >
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-tertiary-fixed-dim text-4xl">
+                    business_center
+                  </span>
+                  <h3 class="font-headline text-2xl font-bold text-on-primary">
+                    Asesoría privada en oratoria
+                  </h3>
+                </div>
+                <span class="material-symbols-outlined text-on-primary transition-transform">
+                  expand_more
+                </span>
+              </button>
+              
+              <div class="accordion-content hidden overflow-hidden">
+                <div class="p-8 bg-primary-container border-t border-primary">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                      <img
+                        src="/static/img/asesoriaPrivada.jfif"
+                        alt="Asesoría Privada en Oratoria"
+                        class="w-full h-auto rounded-lg shadow-lg"
+                      />
+                    </div>
+                    <div class="space-y-6 text-on-primary-container">
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2 text-lg">Dirigido a:</h4>
+                        <p class="text-lg leading-relaxed">
+                          Profesionales, políticos y directivos que requieran de asesoría especializada en oratoria.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2 text-lg">Qué incluye:</h4>
+                        <ul class="space-y-2">
+                          <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-tertiary-fixed text-sm mt-1">check</span>
+                            <span class="text-lg">Revisión experta de discursos</span>
+                          </li>
+                          <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-tertiary-fixed text-sm mt-1">check</span>
+                            <span class="text-lg">Análisis de comunicación no verbal</span>
+                          </li>
+                          <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-tertiary-fixed text-sm mt-1">check</span>
+                            <span class="text-lg">Prácticas individualizadas</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h4 class="font-bold text-on-primary mb-2 text-lg">Formato:</h4>
+                        <p class="text-lg leading-relaxed">
+                          Sesiones presenciales y virtuales de duración flexible según el cliente.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-primary p-6 rounded-lg text-on-primary mb-8">
+                    <p class="text-lg">
+                      Aprende con un campeón del mundo los secretos de la oratoria en sesiones privadas completamente personalizadas adaptadas a tus objetivos y necesidades.
+                    </p>
+                  </div>
+
+                  <p class="text-lg leading-relaxed text-on-primary-container mb-6">
+                    Pide tu presupuesto según tus necesidades.
+                  </p>
+
+                  <button
+                    onclick="openModalWithCourse(this)"
+                    class="open-modal-btn inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-8 py-3 rounded-lg font-bold uppercase text-sm tracking-widest hover:bg-primary-fixed-dim transition-colors"
+                    data-curso="Asesoría Privada en Oratoria"
+                  >
+                    <span class="material-symbols-outlined">mail</span>
+                    Solicitar Presupuesto
+                  </button>
+                </div>
               </div>
             </div>
           </div>
