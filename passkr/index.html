@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Secure Password Generator | Create Strong Online Passwords</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Generate secure and strong passwords instantly with our free tool. Create unique and hard-to-guess keys with one click.">
+    <meta name="keywords" content="password generator, secure passwords, strong passwords, free password tool, online password generator">
+
+    <!-- Google Adsense -->
+    <meta name="google-adsense-account" content="ca-pub-9527260424926475">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe); 
+            margin: 0; 
+            min-height: 100vh; 
+            padding: 20px 0;
+        }
+        .container { 
+            max-width: 500px; 
+            margin: 30px auto; 
+            padding: 30px; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        h1 { 
+            color: var(--primary); 
+            margin-bottom: 20px; 
+            font-weight: 600;
+        }
+        input[type="text"] { 
+            width: 100%; 
+            padding: 15px; 
+            margin: 15px 0; 
+            font-size: 18px; 
+            border: 2px solid #ddd; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            transition: border 0.3s ease;
+        }
+        input[type="text"]:focus { 
+            outline: none; 
+            border-color: var(--primary-light); 
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        button { 
+            flex: 1;
+            background-color: var(--primary); 
+            color: white; 
+            padding: 15px; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover { 
+            background-color: #5649c0; 
+            transform: translateY(-2px);
+        }
+        button#copyButton.success { 
+            background-color: var(--success); 
+            cursor: default;
+        }
+        .info-section { 
+            margin-top: 40px; 
+            padding-top: 20px; 
+            border-top: 1px solid #eee;
+            text-align: left;
+        }
+        .info-section h2 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        .info-section ul {
+            padding-left: 20px;
+        }
+        .info-section li {
+            margin-bottom: 10px;
+        }
+        .info-section strong {
+            color: var(--primary);
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9527260424926475"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-key"></i> Password Generator</h1>
+        <input type="text" id="password" readonly placeholder="Your secure password will appear here">
+        <div class="button-group">
+            <button onclick="generatePassword()"><i class="fas fa-sync-alt"></i> Generate Password</button>
+            <button onclick="copyPassword()" id="copyButton"><i class="fas fa-copy"></i> Copy Password</button>
+        </div>
+    </div>
+
+    <div class="container info-section">
+        <h2><i class="fas fa-shield-alt"></i> Why is a secure password important?</h2>
+        <p>A password is the first line of defense against unauthorized access to your accounts. It protects sensitive information such as personal, financial, and private communications. A weak password can be easily guessed by cybercriminals through automated attacks, putting your identity and security at risk.</p>
+
+        <h2><i class="fas fa-cogs"></i> How does our generator work?</h2>
+        <p>Our tool instantly creates secure passwords of your chosen length. It combines uppercase and lowercase letters, numbers, and special symbols in a completely random order, ensuring high complexity that makes it difficult to crack.</p>
+
+        <h2><i class="fas fa-lock"></i> Tips for better security</h2>
+        <ul>
+            <li><strong>Use unique passwords</strong> for each account. If one is compromised, the others will remain secure.</li>
+            <li><strong>Don't reuse passwords</strong> or use personal information (names, birth dates).</li>
+            <li><strong>Consider a password manager</strong> to store your keys securely and encrypted.</li>
+            <li><strong>Enable two-factor authentication (2FA)</strong> whenever possible.</li>
+        </ul>
+    </div>   
+
+    <script>
+        function generatePassword() {
+            const length = Math.random() * (24 - 12) + 12; // Random length between 12 and 24
+            const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numberChars = "0123456789";
+            const specialChars = "!@#$%^&*()_+";
+            const allChars = lowercaseChars + uppercaseChars + numberChars + specialChars;
+            let password = "";
+
+            // Add at least one character of each type
+            password += lowercaseChars[Math.floor(Math.random() * lowercaseChars.length)];
+            password += uppercaseChars[Math.floor(Math.random() * uppercaseChars.length)];
+            password += numberChars[Math.floor(Math.random() * numberChars.length)];
+            password += specialChars[Math.floor(Math.random() * specialChars.length)];
+
+            // Fill the rest of the length with random characters
+            for (let i = 4; i < length; i++) {
+                password += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+
+            // Shuffle the characters to avoid predictable patterns
+            password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
+            document.getElementById("password").value = password;
+        }   
+
+        async function copyPassword() {
+            const passwordInput = document.getElementById("password");
+            const copyButton = document.getElementById("copyButton");
+            
+            if (passwordInput.value) {
+                await navigator.clipboard.writeText(passwordInput.value);
+                copyButton.innerHTML = "<i class='fas fa-check'></i> Copied!";
+                copyButton.classList.add("success");
+                setTimeout(() => {
+                    copyButton.innerHTML = "<i class='fas fa-copy'></i> Copy Password";
+                    copyButton.classList.remove("success");
+                }, 2000);
+            }
+        }   
+    </script>
+</body>
+</html>   
