@@ -10,6 +10,18 @@ mail = Mail(app)
 def index():
     return render_template("index.html")
 
+@app.route("/privacidad")
+def privacidad():
+    return render_template("privacidad.html")
+
+@app.route("/cookies")
+def cookies():
+    return render_template("cookies.html")
+
+@app.route("/aviso-legal")
+def aviso_legal():
+    return render_template("aviso-legal.html")
+
 @app.route("/send-email", methods=['POST'])
 def send_email():
     try:

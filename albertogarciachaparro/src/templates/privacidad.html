@@ -1,0 +1,626 @@
+<!doctype html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Política de Privacidad - Alberto García Chaparro</title>
+    <meta name="description" content="Política de privacidad de Alberto García Chaparro. Información sobre cómo manejamos tus datos personales en nuestro sitio web.">
+    <meta name="keywords" content="política de privacidad, datos personales, protección de datos, Alberto García Chaparro, comunicación, debate, oratoria">
+
+    <!-- Icon -->
+    <link rel="icon" type="image/jfif" href="/static/img/albertogarciachaparro.jfif">
+
+    <!-- Link section -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   
+
+    <!-- Script section -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#44474c",
+              "tertiary-fixed": "#ffdea5",
+              "on-surface": "#0b1d2d",
+              "on-error": "#ffffff",
+              outline: "#74777d",
+              "primary-fixed-dim": "#b7c8de",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#b8c8da",
+              "on-tertiary-fixed": "#261900",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#0b1d2d",
+              tertiary: "#1f1300",
+              "secondary-container": "#d1e1f4",
+              secondary: "#50606f",
+              "on-secondary-fixed-variant": "#394857",
+              "surface-bright": "#f7f9ff",
+              "surface-container-high": "#d9eaff",
+              "surface-variant": "#d2e4fb",
+              "secondary-fixed": "#d4e4f6",
+              "on-primary-fixed-variant": "#38485a",
+              "on-secondary": "#ffffff",
+              "inverse-primary": "#b7c8de",
+              "surface-dim": "#cadcf2",
+              "primary-container": "#1a2b3c",
+              "on-primary": "#ffffff",
+              "on-tertiary-container": "#af8c47",
+              "outline-variant": "#c4c6cd",
+              "inverse-on-surface": "#e9f1ff",
+              "on-tertiary-fixed-variant": "#5d4201",
+              "on-background": "#0b1d2d",
+              "on-secondary-container": "#556474",
+              "surface-container": "#e4efff",
+              "surface-container-highest": "#d2e4fb",
+              "tertiary-fixed-dim": "#e9c176",
+              background: "#f7f9ff",
+              "inverse-surface": "#213243",
+              "surface-container-lowest": "#ffffff",
+              primary: "#041627",
+              "tertiary-container": "#392700",
+              "on-error-container": "#93000a",
+              "primary-fixed": "#d2e4fb",
+              "surface-tint": "#4f6073",
+              "on-secondary-fixed": "#0d1d2a",
+              "on-primary-container": "#8192a7",
+              surface: "#f7f9ff",
+              "surface-container-low": "#eef4ff",
+              error: "#ba1a1a",
+            },
+            fontFamily: {
+              headline: ["Newsreader"],
+              body: ["Manrope"],
+              label: ["Manrope"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .editorial-shadow {
+        box-shadow: 0 12px 40px rgba(11, 29, 45, 0.08);
+      }
+      .glass-nav {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .hamburger-toggle {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .hamburger-line {
+        width: 100%;
+        height: 2px;
+        background-color: currentColor;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+      .hamburger-toggle.active .line1 {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+      .hamburger-toggle.active .line2 {
+        opacity: 0;
+      }
+      .hamburger-toggle.active .line3 {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+      .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: inherit;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, background-color 0.3s ease;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .mobile-menu.active {
+        max-height: 400px;
+        background-color: #f7f9ff;
+      }
+      .mobile-menu-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px;
+      }
+      .mobile-menu-link {
+        padding: 12px 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+      .mobile-menu-link:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background-color: #f7f9ff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 12px 40px rgba(11, 29, 45, 0.15);
+        max-width: 500px;
+        width: 90%;
+        animation: slideUp 0.3s ease-in-out;
+      }
+      .modal-header {
+        font-size: 24px;
+        font-weight: bold;
+        color: #041627;
+        margin-bottom: 24px;
+        font-family: 'Newsreader';
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #1a2b3c;
+        font-size: 14px;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d2e4fb;
+        border-radius: 8px;
+        font-family: 'Manrope';
+        font-size: 14px;
+        color: #0b1d2d;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #e9c176;
+        box-shadow: 0 0 0 3px rgba(233, 193, 118, 0.1);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .modal-buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .modal-buttons button {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.2s ease;
+      }
+      .modal-submit {
+        background-color: #041627;
+        color: #ffffff;
+      }
+      .modal-submit:hover {
+        background-color: #1a2b3c;
+        transform: translateY(-2px);
+      }
+      .modal-submit:disabled {
+        background-color: #74777d;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-right: 8px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .modal-cancel {
+        background-color: #d2e4fb;
+        color: #041627;
+      }
+      .modal-cancel:hover {
+        background-color: #b8c8da;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      /* Alert Styles */
+      .modal-alert {
+        display: none;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        animation: slideDown 0.3s ease-in-out;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .modal-alert.active {
+        display: block;
+      }
+      .modal-alert.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .modal-alert.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .modal-alert.success::before {
+        content: '✓ ';
+        font-weight: bold;
+      }
+      .modal-alert.error::before {
+        content: '✕ ';
+        font-weight: bold;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface font-body selection:bg-tertiary-fixed-dim selection:text-tertiary"
+  >
+    <!-- TopAppBar Section -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#f7f9ff]/70 dark:bg-[#041627]/70 backdrop-blur-md"
+    >
+      <nav
+        class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto relative"
+      >
+        <div
+          class="text-2xl font-['Newsreader'] font-bold text-[#041627] dark:text-[#f7f9ff]"
+        >
+          Alberto García Chaparro
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/"
+            >Home</a
+          >
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/#curriculum"
+            >Curriculum</a
+          >
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/#experiencia"
+            >Experiencia</a
+          >
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/#trayectoria"
+            >Mi Trayectoria</a
+          >
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/#formacion"
+            >Formación</a
+          >
+          <a
+            class="text-[#1a2b3c] dark:text-[#d2e4fb] opacity-80 hover:opacity-100 hover:text-[#e9c176] transition-all duration-300 font-['Newsreader'] italic tracking-tight"
+            href="/#proyectos"
+            >Proyectos</a
+          >
+        </div>
+
+        <!-- Desktop Button -->
+        <button
+          class="open-modal-btn hidden lg:block bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-lg font-label text-sm uppercase tracking-wider scale-95 transition-transform hover:scale-100 cursor-pointer"
+        >
+          Reservar Asesoría
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          id="hamburger-btn"
+          class="lg:hidden text-[#041627] dark:text-[#f7f9ff] hamburger-toggle"
+          aria-label="Toggle menu"
+        >
+          <span class="hamburger-line line1"></span>
+          <span class="hamburger-line line2"></span>
+          <span class="hamburger-line line3"></span>
+        </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu lg:hidden">
+          <div class="mobile-menu-content">
+            <a
+              href="/"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Home
+            </a>
+            <a
+              href="/#curriculum"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Curriculum
+            </a>
+            <a
+              href="/#experiencia"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Experiencia
+            </a>
+            <a
+              href="/#trayectoria"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Mi Trayectoria
+            </a>
+            <a
+              href="/#formacion"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Formación
+            </a>
+            <a
+              href="/#proyectos"
+              class="mobile-menu-link text-[#1a2b3c] dark:text-[#d2e4fb] font-['Newsreader'] italic"
+            >
+              Proyectos
+            </a>
+            <button
+              class="open-modal-btn bg-primary-fixed text-on-primary-fixed px-4 py-2 rounded-lg font-label text-xs uppercase tracking-wider w-full mt-4 cursor-pointer"
+            >
+              Reservar Asesoría
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-20 pb-16 mt-20">
+      <div class="max-w-screen-2xl mx-auto px-8">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl font-headline font-bold text-primary mb-8">Política de Privacidad</h1>
+          <div class="prose prose-lg max-w-none">
+            <p><strong>Responsable:</strong> Comunícate debate y oratoria S.L</p>
+            <p><strong>Domicilio:</strong> C/ Nogal 29 29730 Rincón de la Victoria, Málaga.</p>
+            <p><strong>Email:</strong> hola@comunicatedebate.com</p>
+            <p>Recibimos tu email, asunto, necesidades y observaciones cuando usas nuestro formulario de contacto. La finalidad es responder a tu consulta sobre nuestros servicios. La base legal es tu consentimiento al enviar el formulario.</p>
+            <p>Toda la información proporcionada se envía directamente por correo electrónico al propietario y no se almacena en ningún servidor, base de datos ni herramienta externa después de gestionar tu solicitud.</p>
+            <p>No compartimos tus datos con terceros. Puedes ejercer tus derechos de acceso, rectificación o supresión enviando un email a hola@comunicatedebate.com.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full pt-16 pb-8 bg-[#041627] dark:bg-[#0b1d2d]">
+      <div
+        class="flex flex-col items-center gap-8 px-8 max-w-screen-2xl mx-auto"
+      >
+        <div class="text-lg font-['Newsreader'] text-[#e9c176]">
+          Alberto García Chaparro
+        </div>
+        <!-- Social Media Links -->
+        <div class="flex justify-center gap-6">
+          <a
+            href="https://www.instagram.com/agarciachaparro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#e9c176] hover:text-[#ffffff] transition-colors"
+            aria-label="Instagram"
+          >
+            <span class="text-2xl font-bold">
+              <i class="fab fa-instagram"></i>
+            </span>
+          </a>
+          <a
+            href="https://x.com/AGarciaChaparro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#e9c176] hover:text-[#ffffff] transition-colors"
+            aria-label="X"
+          >
+            <span class="text-2xl font-bold">𝕏</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/alberto-garcia-chaparro-asesoria-comunicacion-derecho"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#e9c176] hover:text-[#ffffff] transition-colors"
+            aria-label="LinkedIn"
+          >
+            <span class="text-2xl font-bold">
+              <i class="fab fa-linkedin"></i>
+            </span>
+          </a>
+                    <a
+            href="https://comunicatedebate.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#e9c176] hover:text-[#ffffff] transition-colors"
+            aria-label="Comunicate Debate"
+          >
+            <span class="text-2xl font-bold font-headline">
+              CD
+            </span>
+          </a>
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+          <a
+            class="text-[#d2e4fb] opacity-60 hover:text-[#ffffff] transition-colors font-['Manrope'] text-xs uppercase tracking-[0.1em]"
+            href="/cookies"
+            >Política de cookies</a
+          >
+          <a
+            class="text-[#d2e4fb] opacity-60 hover:text-[#ffffff] transition-colors font-['Manrope'] text-xs uppercase tracking-[0.1em]"
+            href="/privacidad"
+            >Política de Privacidad</a
+          >
+          <a
+            class="text-[#d2e4fb] opacity-60 hover:text-[#ffffff] transition-colors font-['Manrope'] text-xs uppercase tracking-[0.1em]"
+            href="/aviso-legal"
+            >Aviso Legal</a
+          >
+        </div>
+        <div class="mt-8 pt-8 border-t border-white/10 w-full text-center">
+          <p
+            class="text-[#f7f9ff] font-['Manrope'] text-xs uppercase tracking-[0.1em]"
+          >
+            © 2024 Alberto García Chaparro. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+<!-- Modal para formulario de contacto -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <h2 class="modal-header">Reserva tu Asesoría</h2>
+        <div id="modalAlert" class="modal-alert"></div>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="asunto">Asunto:</label>
+            <input 
+              type="text" 
+              id="asunto" 
+              name="asunto" 
+              required 
+              placeholder="¿Cuál es tu intención?"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input 
+              type="email" 
+              id="correo" 
+              name="correo" 
+              required 
+              placeholder="tu@email.com"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="necesidades">Necesidades:</label>
+            <textarea 
+              id="necesidades" 
+              name="necesidades" 
+              required 
+              placeholder="Describe tus necesidades específicas..."
+            ></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="observaciones">Observaciones:</label>
+            <textarea 
+              id="observaciones" 
+              name="observaciones" 
+              placeholder="Información adicional que consideres importante (opcional)"
+            ></textarea>
+          </div>
+          
+          <div class="modal-buttons">
+            <button type="button" class="modal-cancel">
+              Cancelar
+            </button>
+            <button type="submit" id="submitBtn" class="modal-submit">
+              <span id="submitText">Enviar</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
