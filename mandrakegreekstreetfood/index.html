@@ -1,0 +1,1564 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandrake Greek Street Food | Madrid</title>
+  <meta name="description" content="Mandrake Greek Street Food en Madrid. Gyros, souvlakis, pita y platos griegos con sabor callejero." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #010101;
+      --surface: #111111;
+      --text: #f5f5f5;
+      --muted: #d5d5d5;
+      --accent: #e63946;
+      --accent-soft: rgba(230, 57, 70, 0.12);
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 16px 45px rgba(0,0,0,0.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: radial-gradient(circle at top, #1f3a8a 0%, #090909 55%);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-in-left.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-in-right.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scale-in.animate {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Additional scroll animations */
+    .rotate-in {
+      opacity: 0;
+      transform: translateY(30px) rotate(-5deg);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .rotate-in.animate {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+
+    .pop-in {
+      opacity: 0;
+      transform: scale(0.5) translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pop-in.animate {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .slide-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-up.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-down {
+      opacity: 0;
+      transform: translateY(-60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .slide-down.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .flip-in {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(90deg) translateZ(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .flip-in.animate {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(0deg) translateZ(0);
+    }
+
+    .zoom-in {
+      opacity: 0;
+      transform: translateY(20px) scale(0.85);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .zoom-in.animate {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .stagger-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .stagger-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .stagger-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .stagger-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    .stagger-delay-5 {
+      transition-delay: 0.5s;
+    }
+
+    .bounce-in {
+      animation: bounceIn 1s ease-out;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(1, 1, 1, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(1, 1, 1, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .button-primary:hover {
+      color: #fff;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 20;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 86px;
+      left: 0;
+      right: 0;
+      background: rgba(1, 1, 1, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1.5rem 0;
+      flex-direction: column;
+      gap: 0;
+      max-height: calc(100vh - 86px);
+      overflow-y: auto;
+      z-index: 15;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 1rem 1.5rem;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.04);
+      padding-left: 2rem;
+    }
+
+    .mobile-menu .button-primary {
+      border-radius: 0;
+      border-bottom: none;
+      width: 100%;
+      padding: 1rem 1.5rem;
+      margin: 0;
+    }
+
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.95rem 1.6rem;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      box-shadow: 0 18px 30px rgba(230,57,70,0.28);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      background: #d63342;
+      box-shadow: 0 20px 35px rgba(230,57,70,0.4);
+    }
+
+    .hero {
+      min-height: calc(100vh - 86px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 0;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    .hero-copy span {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .hero h1 .letter {
+      display: inline-block;
+      animation: letterFloat 2s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 0.1s);
+    }
+
+    @keyframes letterFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .hero-actions .secondary {
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.16);
+      padding: 0.95rem 1.6rem;
+      border-radius: 999px;
+      transition: background 0.2s ease;
+    }
+
+    .hero-actions .secondary:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-visual > div {
+      border-radius: 32px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-visual .card-large {
+      grid-column: 1 / -1;
+      min-height: 420px;
+      position: relative;
+    }
+
+    .hero-visual .card-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-visual .card-small {
+      min-height: 220px;
+    }
+
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 2.5vw, 2.75rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .menu-grid,
+    .cards-grid,
+    .location-grid {
+      display: grid;
+      gap: 1.75rem;
+    }
+
+    .menu-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .menu-card,
+    .info-card,
+    .location-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideUpIn 0.6s ease forwards;
+    }
+
+    @keyframes slideUpIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu-card:nth-child(1),
+    .info-card:nth-child(1),
+    .location-card:nth-child(1),
+    .cards-grid > :nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .menu-card:nth-child(2),
+    .info-card:nth-child(2),
+    .location-card:nth-child(2),
+    .cards-grid > :nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .menu-card:nth-child(3),
+    .info-card:nth-child(3),
+    .location-card:nth-child(3),
+    .cards-grid > :nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .menu-card:hover,
+    .info-card:hover,
+    .location-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .menu-card h3,
+    .info-card h3,
+    .location-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .menu-card p,
+    .info-card p,
+    .location-card p {
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .menu-card .price {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .hero-highlight span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.85rem 1rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .info-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+      gap: 2rem;
+    }
+
+    .info-grid p {
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-panel {
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(230,57,70,0.12), transparent 70%);
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .contact-panel h3 {
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-panel a,
+    .contact-panel p {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .location-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .location-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .location-card .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-inner span {
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2.5rem 0;
+      }
+
+      .hero-visual {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid,
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual .card-large {
+        grid-column: 1 / -1;
+        min-height: 300px;
+      }
+
+      .hero-visual .card-small {
+        min-height: 200px;
+      }
+
+      .section {
+        padding: 2.5rem 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .hero-highlight {
+        flex-direction: column;
+      }
+
+      .hero-highlight span {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+
+      .hero-actions .secondary,
+      .button-primary {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-title h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+
+      .section-title p {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 1rem);
+      }
+
+      .brand {
+        font-size: 0.9rem;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-copy span {
+        font-size: 0.75rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        line-height: 1;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual .card-large {
+        min-height: 240px;
+      }
+
+      .hero-visual .card-small {
+        min-height: 200px;
+      }
+
+      .menu-card h3,
+      .info-card h3,
+      .location-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .contact-panel {
+        padding: 1.5rem;
+      }
+
+      .contact-panel h3 {
+        font-size: 1.15rem;
+      }
+
+      .carousel .gallery-item {
+        flex: 0 0 calc(50% - 0.5rem);
+        min-width: calc(50% - 0.5rem);
+      }
+    }
+
+    /* Gallery and Carousel styles */
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+      border: 2px solid #fff;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: #fff;
+      padding: 1.5rem 1rem 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-overlay p {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.9rem;
+    }
+
+    /* Carousel styles */
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .carousel-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .carousel-slide {
+      display: flex;
+      gap: 1rem;
+      width: max-content;
+    }
+
+    .carousel-slide.dragging {
+      cursor: grabbing;
+    }
+
+    .carousel .gallery-item {
+      flex: 0 0 calc(25% - 0.75rem);
+      min-width: calc(25% - 0.75rem);
+      aspect-ratio: 1;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .carousel-container::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+    }
+
+    .carousel-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.4);
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      z-index: 10;
+      transition: background 0.3s ease;
+      display: none;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 10px;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .indicator.active {
+      background: #fff;
+    }
+
+    /* Parallax Zoom Effect Section */
+    .parallax-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at top right, rgba(230, 57, 70, 0.08), transparent);
+    }
+
+    .parallax-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-image {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(0.3) translateZ(0);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes zoomParallax {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) translateZ(0);
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.5) translateZ(0);
+      }
+    }
+
+    @keyframes zoomParallaxLeft {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) translateX(200px) translateZ(0);
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.5) translateX(-200px) translateZ(0);
+      }
+    }
+
+    @keyframes zoomParallaxRight {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) translateX(-200px) translateZ(0);
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.5) translateX(200px) translateZ(0);
+      }
+    }
+
+    .parallax-image:nth-child(1) {
+      animation: zoomParallax 4.5s ease-in 0s infinite;
+    }
+
+    .parallax-image:nth-child(2) {
+      animation: zoomParallaxLeft 4.5s ease-in 1.5s infinite;
+    }
+
+    .parallax-image:nth-child(3) {
+      animation: zoomParallaxRight 4.5s ease-in 3s infinite;
+    }
+
+    .parallax-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(1, 1, 1, 0.3) 100%);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .parallax-text {
+      position: absolute;
+      z-index: 20;
+      text-align: center;
+      max-width: 600px;
+      animation: fadeInScale 1s ease-out forwards;
+    }
+
+    .parallax-text h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .parallax-text p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      margin-bottom: 2rem;
+      animation: fadeInScale 1s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .parallax-section {
+        height: 80vh;
+      }
+
+      .parallax-image {
+        width: 200px;
+        height: 200px;
+      }
+
+      .parallax-text h2 {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+      }
+
+      .parallax-text p {
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Mandrake Greek Street Food</a>
+      <nav class="nav-links">
+        <a href="#menu">Menú</a>
+        <a href="#about">Nosotros</a>
+        <a href="#gallery">Espacios</a>
+        <a href="#locations">Locales</a>
+        <a href="#contact">Contacto</a>
+        <a class="button-primary" href="#order">Pedir ahora</a>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav class="mobile-menu">
+      <a href="#menu">Menú</a>
+      <a href="#about">Nosotros</a>
+      <a href="#gallery">Espacios</a>
+      <a href="#locations">Locales</a>
+      <a href="#contact">Contacto</a>
+      <a class="button-primary" href="#order">Pedir ahora</a>
+    </nav>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero fade-in">
+      <div class="hero-copy slide-in-left">
+        <span>Street food griega en Madrid</span>
+        <h1>
+          <span class="letter" style="--i:0">M</span>
+          <span class="letter" style="--i:1">a</span>
+          <span class="letter" style="--i:2">n</span>
+          <span class="letter" style="--i:3">d</span>
+          <span class="letter" style="--i:4">r</span>
+          <span class="letter" style="--i:5">a</span>
+          <span class="letter" style="--i:6">k</span>
+          <span class="letter" style="--i:7">e</span>
+          <span>&nbsp;</span>
+          <span class="letter" style="--i:8">G</span>
+          <span class="letter" style="--i:9">r</span>
+          <span class="letter" style="--i:10">e</span>
+          <span class="letter" style="--i:11">e</span>
+          <span class="letter" style="--i:12">k</span>
+          <br>
+          <span class="letter" style="--i:13">S</span>
+          <span class="letter" style="--i:14">t</span>
+          <span class="letter" style="--i:15">r</span>
+          <span class="letter" style="--i:16">e</span>
+          <span class="letter" style="--i:17">e</span>
+          <span class="letter" style="--i:18">t</span>
+          <span>&nbsp;</span>
+          <span class="letter" style="--i:19">F</span>
+          <span class="letter" style="--i:20">o</span>
+          <span class="letter" style="--i:21">o</span>
+          <span class="letter" style="--i:22">d</span>
+        </h1>
+        <p>Mandrake trae a Madrid el sabor callejero de las tabernas griegas, con ingredientes frescos, salsas caseras y una energía urbana que se come.</p>
+        <div class="hero-actions">
+          <a class="button-primary bounce-in" href="#order">Ver menú</a>
+          <a class="secondary" href="#locations">Nuestro local</a>
+        </div>
+        <div class="hero-highlight">
+          <span>Envío rápido</span>
+          <span>Recogida en local</span>
+          <span>Opciones veganas</span>
+        </div>
+      </div>
+
+      <div class="hero-visual slide-in-right">
+        <div class="card-large scale-in">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Gyros griegos con verduras" />
+        </div>
+        <div class="card-small scale-in">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Pita griega" />
+        </div>
+        <div class="card-small scale-in">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Comida callejera mediterránea" />
+        </div>
+      </div>
+    </section>
+
+    <section class="parallax-section" id="parallax">
+      <div class="parallax-container">
+        <img class="parallax-image" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Gyro delicioso" />
+        <img class="parallax-image" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Comida fresca preparada" />
+        <img class="parallax-image" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Ambiente acogedor" />
+      </div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-text">
+        <h2>Experimenta el sabor</h2>
+        <p>Cada plato trae consigo la esencia de Grecia a Madrid</p>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="menu">
+      <div class="section-title">
+        <div>
+          <h2>Menú destacado</h2>
+          <p>Descubre nuestros platos más pedidos: wraps, bowls y clásicos griegos preparados para llevar o comer en el local.</p>
+        </div>
+      </div>
+      <div class="menu-grid">
+        <article class="menu-card scale-in">
+          <h3>Gyros Mandrake</h3>
+          <p>Carne marinada a la perfección, patatas crujientes, tzatziki casero y pan pita artesanal.</p>
+          <span class="price">12,90 €</span>
+        </article>
+        <article class="menu-card scale-in">
+          <h3>Souvlaki de pollo</h3>
+          <p>Brocheta de pollo al carbón, verduras grilladas, salsa de yogur y limón.</p>
+          <span class="price">11,50 €</span>
+        </article>
+        <article class="menu-card scale-in">
+          <h3>Pita veggie</h3>
+          <p>Hummus, berenjena asada, queso feta, pepino fresco y hojas verdes.</p>
+          <span class="price">10,20 €</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="about">
+      <div class="info-grid">
+        <div class="slide-in-left">
+          <div class="section-title">
+            <div>
+              <h2>El alma de Mandrake</h2>
+              <p>Una propuesta gastronómica que combina el estilo callejero de Grecia con el ritmo de Madrid. Sabores frescos, recetas auténticas y un ambiente vibrante.</p>
+            </div>
+          </div>
+          <p>En Mandrake Greek Street Food usamos ingredientes frescos y técnicas tradicionales para crear platos con un toque urbano. Nuestro equipo prepara cada receta con cariño, desde la salsa tzatziki hasta el pan pita recién hecho.</p>
+          <p>Ven a disfrutar de una experiencia rápida, moderna y muy sabrosa. Perfecto para comer con amigos, pedir a domicilio o recoger en el local.</p>
+        </div>
+        <aside class="contact-panel slide-in-right">
+          <h3>Haz tu pedido</h3>
+          <p>¿Lista para probarlo? Reserva tu mesa o pide para llevar ahora mismo.</p>
+          <a href="mailto:info@mandrakegreekstreetfood.es">info@mandrakegreekstreetfood.es</a>
+          <a href="tel:+34911222334">+34 911 22 23 34</a>
+          <p>Horario: L-D 12:00 - 23:00</p>
+          <a class="button-primary" href="#order">Pedir ahora</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="gallery">
+      <div class="section-title">
+        <div>
+          <h2>Nuestros espacios</h2>
+          <p>Descubre el ambiente vibrante de nuestros locales en Madrid, donde la comida griega cobra vida.</p>
+        </div>
+      </div>
+      <div class="carousel">
+        <div class="carousel-container">
+          <div class="carousel-slide">
+            <div class="gallery-item scale-in">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Interior del restaurante Mandrake Malasaña" />
+              <div class="gallery-overlay">
+                <h3>Mandrake Malasaña</h3>
+                <p>Terraza urbana con vistas al barrio</p>
+              </div>
+            </div>
+            <div class="gallery-item scale-in">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Comida preparada en Mandrake" />
+              <div class="gallery-overlay">
+                <h3>Nuestra cocina</h3>
+                <p>Ingredientes frescos, pasión por la comida</p>
+              </div>
+            </div>
+            <div class="gallery-item scale-in">
+              <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=800&q=80" alt="Clientes disfrutando en Mandrake Sol" />
+              <div class="gallery-overlay">
+                <h3>Mandrake Sol</h3>
+                <p>Comida rápida en el corazón de Madrid</p>
+              </div>
+            </div>
+            <div class="gallery-item scale-in">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Platos griegos en Mandrake" />
+              <div class="gallery-overlay">
+                <h3>Nuestros platos</h3>
+                <p>Sabores auténticos del Mediterráneo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" aria-label="Imagen anterior">‹</button>
+        <button class="carousel-btn next" aria-label="Imagen siguiente">›</button>
+        <div class="carousel-indicators">
+          <span class="indicator active" data-slide="0"></span>
+          <span class="indicator" data-slide="1"></span>
+          <span class="indicator" data-slide="2"></span>
+          <span class="indicator" data-slide="3"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="locations">
+      <div class="section-title">
+        <div>
+          <h2>Locales en Madrid</h2>
+          <p>Dos puntos en la ciudad para disfrutar de Mandrake: en el corazón de Malasaña y cerca de la Puerta del Sol.</p>
+        </div>
+      </div>
+      <div class="location-grid">
+        <article class="location-card scale-in">
+          <h3>Mandrake Malasaña</h3>
+          <p>Espíritu joven, terraza urbana y el mejor street food griego del barrio.</p>
+          <div class="meta"><span>Calle del Pez, 18</span><span>12:00 - 23:00</span></div>
+        </article>
+        <article class="location-card scale-in">
+          <h3>Mandrake Sol</h3>
+          <p>El lugar ideal para un almuerzo rápido tras pasear por el centro de Madrid.</p>
+          <div class="meta"><span>Plaza Mayor, 7</span><span>12:00 - 23:00</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section fade-in" id="order">
+      <div class="section-title">
+        <div>
+          <h2>Listo para comer</h2>
+          <p>Pide online y recibe tu orden en menos de 30 minutos o ven a recogerla en el restaurante.</p>
+        </div>
+      </div>
+      <div class="cards-grid">
+        <article class="info-card scale-in">
+          <h3>Para llevar</h3>
+          <p>Elige tu plato favorito y recoge en el local sin esperas. Ideal para un plan rápido y sabroso.</p>
+        </article>
+        <article class="info-card scale-in">
+          <h3>Delivery</h3>
+          <p>Envío directo a tu casa o la oficina con el mejor sabor griego en el corazón de Madrid.</p>
+        </article>
+        <article class="info-card scale-in">
+          <h3>Grupo y eventos</h3>
+          <p>Menús para grupos, pedidos especiales y catering para eventos con actitud callejera.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Mandrake Greek Street Food</span>
+      <span class="pill">Madrid · Street Food · Sabor Mediterráneo</span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburger?.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('header')) {
+        hamburger?.classList.remove('active');
+        mobileMenu?.classList.remove('active');
+      }
+    });
+
+    // Enhanced scroll animations with boomerang effect
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          // Remove animate class when scrolling away (boomerang effect)
+          entry.target.classList.remove('animate');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with animation classes
+    document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .pop-in, .slide-up, .slide-down, .flip-in, .zoom-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add section scroll observer for enhanced effects
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add animation class to section title
+          const sectionTitle = entry.target.querySelector('.section-title');
+          if (sectionTitle) {
+            sectionTitle.style.transition = 'all 0.8s ease';
+            sectionTitle.style.opacity = '1';
+            sectionTitle.style.transform = 'translateY(0)';
+          }
+        } else {
+          // Remove animation when scrolling away
+          const sectionTitle = entry.target.querySelector('.section-title');
+          if (sectionTitle) {
+            sectionTitle.style.opacity = '0';
+            sectionTitle.style.transform = 'translateY(20px)';
+          }
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      sectionObserver.observe(section);
+    });
+
+    // Add pulse animation to hero button periodically
+    setInterval(() => {
+      const button = document.querySelector('.hero .button-primary');
+      if (button) {
+        button.classList.add('pulse');
+        setTimeout(() => button.classList.remove('pulse'), 2000);
+      }
+    }, 10000); // Every 10 seconds
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Carousel functionality with drag/scroll
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+      const container = carousel.querySelector('.carousel-container');
+      const slide = carousel.querySelector('.carousel-slide');
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      // Drag to scroll
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        slide.classList.add('dragging');
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+        slide.classList.remove('dragging');
+      });
+
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+        slide.classList.remove('dragging');
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX);
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Enable smooth horizontal scrolling with mouse wheel
+      container.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          container.scrollLeft += e.deltaY;
+        }
+      }, { passive: false });
+    }
+  </script>
+</body>
+</html>
