@@ -24,7 +24,8 @@ def enviar_consulta(email, json_data):
     msg = Message(
         subject="Consulta de habitación",
         sender=app.config['MAIL_USERNAME'],
-        recipients=[email]
+        recipients=[email], # Destinatario principal
+        cc=[json_data["email"]]  # Añade al cliente en copia 
     )
     # Renderizamos la plantilla con Jinja2
     msg.html = render_template("email_consulta.html", email=email, json_data=json_data)
@@ -258,4 +259,4 @@ def forbidden(e):
     return render_template('403.html'), 403
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=Config.DEBUG)
