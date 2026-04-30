@@ -1,0 +1,886 @@
+<!doctype html>
+
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cafetería Caracas Vigo | Fútbol en directo, Futbolín y Billar</title>
+    <meta
+      content="Disfruta del mejor café, desayunos y el mejor ambiente deportivo en Cafetería Caracas Vigo. Fútbol en directo, futbolín y billar en un entorno único."
+      name="description"
+    />
+    <meta
+      content="Cafetería Caracas Vigo, Fútbol en directo Vigo, Futbolín y Billar Vigo, Café, Desayunos en Vigo, Roast &amp; Arena"
+      name="keywords"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .dotted-leader {
+        border-bottom: 2px dotted #d2c4bc;
+        flex-grow: 1;
+        margin: 0 8px;
+        margin-bottom: 5px;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        display: inline-block;
+        animation: marquee 30s linear infinite;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#66645e",
+              "surface-container-high": "#eee7e4",
+              "secondary-container": "#e6e2d9",
+              "primary-fixed-dim": "#dec1af",
+              "on-tertiary-fixed-variant": "#574500",
+              "on-secondary-fixed-variant": "#484741",
+              "surface-container": "#f3ecea",
+              "on-tertiary-fixed": "#241a00",
+              "tertiary-fixed-dim": "#e9c349",
+              "on-tertiary-container": "#4e3d00",
+              "primary-fixed": "#fbddca",
+              outline: "#81756e",
+              "on-error": "#ffffff",
+              primary: "#26170c",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed": "#1c1c17",
+              error: "#ba1a1a",
+              surface: "#fff8f5",
+              "inverse-primary": "#dec1af",
+              "inverse-surface": "#33302e",
+              "on-tertiary": "#ffffff",
+              "outline-variant": "#d2c4bc",
+              "inverse-on-surface": "#f6efed",
+              "surface-dim": "#dfd9d6",
+              "on-primary-fixed-variant": "#574335",
+              "surface-variant": "#e8e1df",
+              "surface-container-low": "#f9f2f0",
+              "secondary-fixed-dim": "#c9c6be",
+              "on-surface-variant": "#4f453f",
+              "surface-container-highest": "#e8e1df",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#ffe088",
+              tertiary: "#735c00",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#e6e2d9",
+              "primary-container": "#3d2b1f",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "tertiary-container": "#cca72f",
+              "on-surface": "#1d1b1a",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#fff8f5",
+              "on-primary-container": "#ac9181",
+              "on-primary-fixed": "#28180d",
+              "surface-tint": "#705a4c",
+              secondary: "#605e58",
+              "surface-container-lowest": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "margin-mobile": "16px",
+              "margin-desktop": "40px",
+              gutter: "24px",
+              "stack-lg": "32px",
+              unit: "8px",
+              "stack-md": "16px",
+              "container-max": "1280px",
+            },
+            fontFamily: {
+              "label-bold": ["Work Sans"],
+              "display-xl": ["Noto Serif"],
+              "headline-md": ["Noto Serif"],
+              "label-sm": ["Work Sans"],
+              "headline-lg": ["Noto Serif"],
+              "body-lg": ["Work Sans"],
+              "body-md": ["Work Sans"],
+            },
+            fontSize: {
+              "label-bold": [
+                "14px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-xl": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+              "label-sm": ["12px", { lineHeight: "1.2", fontWeight: "500" }],
+              "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "600" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-surface text-on-surface selection:bg-tertiary-container selection:text-primary"
+  >
+    <!-- TopNavBar -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 shadow-sm shadow-stone-900/5 h-20"
+    >
+      <div
+        class="flex justify-between items-center h-full px-8 max-w-7xl mx-auto"
+      >
+        <a
+          href="#"
+          class="text-2xl font-bold text-stone-900 dark:text-amber-500 font-serif"
+        >
+          Cafetería Caracas
+        </a>
+        <div
+          class="hidden md:flex gap-8 items-center font-serif text-base tracking-wide"
+        >
+          <a
+            class="text-stone-600 dark:text-stone-400 font-medium pb-1 hover:text-amber-800 dark:hover:text-amber-400 transition-colors duration-300"
+            href="#menu"
+            >Menú</a
+          >
+          <a
+            class="text-stone-600 dark:text-stone-400 font-medium pb-1 hover:text-amber-800 dark:hover:text-amber-400 transition-colors duration-300"
+            href="#services"
+            >Servicios</a
+          >
+          <a
+            class="text-stone-600 dark:text-stone-400 font-medium pb-1 hover:text-amber-800 dark:hover:text-amber-400 transition-colors duration-300"
+            href="#location"
+            >Contacto</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-btn"
+            class="text-primary hover:text-tertiary transition-colors p-2"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+          >
+            <span id="menu-icon" class="material-symbols-outlined text-3xl">menu</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed top-20 right-0 z-40 w-72 max-w-[85vw] h-[calc(100vh-5rem)] bg-surface shadow-2xl transform translate-x-full transition-transform duration-300 md:hidden rounded-bl-xl"
+      aria-hidden="true"
+    >
+      <div class="flex flex-col h-full pt-4 px-6">
+        <nav class="flex flex-col gap-2 text-lg font-serif mt-2">
+          <a
+            class="text-primary hover:text-tertiary transition-colors py-3 px-2 rounded hover:bg-surface-container"
+            href="#menu"
+            >Menú</a
+          >
+          <a
+            class="text-primary hover:text-tertiary transition-colors py-3 px-2 rounded hover:bg-surface-container"
+            href="#services"
+            >Servicios</a
+          >
+          <a
+            class="text-primary hover:text-tertiary transition-colors py-3 px-2 rounded hover:bg-surface-container"
+            href="#location"
+            >Contacto</a
+          >
+        </nav>
+      </div>
+    </div>
+    <!-- Sports Ticker -->
+    <div
+      class="mt-20 bg-primary-container text-tertiary-fixed py-2 overflow-hidden whitespace-nowrap border-y border-outline"
+    >
+      <div
+        class="inline-block animate-marquee uppercase tracking-widest text-label-sm px-4"
+      >
+        CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • VODAFONE TV • CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • LALIGA • COPA DEL REY • CHAMPIONS LEAGUE • PREMIER LEAGUE • VODAFONE TV • CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • VODAFONE TV • CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • VODAFONE TV • CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • VODAFONE TV • CHAMPIONS LEAGUE • LALIGA • COPA DEL REY • PREMIER LEAGUE • VODAFONE TV
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <header
+      class="relative h-[870px] flex items-center justify-center overflow-hidden"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          class="w-full h-full object-cover brightness-[0.4]"
+          data-alt="Warm interior of an artisanal Spanish cafeteria with dark wood furniture, vintage lighting, and a professional espresso machine in the background"
+          src="img/salon.jpg"
+        />
+      </div>
+      <div class="relative z-10 text-center px-6 max-w-4xl">
+        <h1 class="font-display-xl text-surface text-5xl md:text-7xl mb-6">
+          Cafetería Caracas
+        </h1>
+        <p class="font-body-lg text-surface-variant mb-8 max-w-2xl mx-auto">
+          Donde el aroma del café se encuentra con la emoción del
+          deporte en directo. Tu salón en el corazón de Vigo.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            class="bg-tertiary-container text-primary font-label-bold px-8 py-4 rounded shadow-lg hover:translate-y-[-2px] transition-transform flex items-center justify-center gap-2"
+            href="#menu"
+          >
+            VER CARTA
+            <span class="material-symbols-outlined">restaurant_menu</span>
+          </a>
+          <a
+            class="border border-tertiary-fixed text-tertiary-fixed font-label-bold px-8 py-4 rounded hover:bg-tertiary-fixed/10 transition-colors flex items-center justify-center gap-2"
+            href="#services"
+          >
+            NUESTROS SERVICIOS
+            <span class="material-symbols-outlined">sports_soccer</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- Servicios Section -->
+    <section class="py-20 px-6 bg-surface" id="services">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+          <span
+            class="text-tertiary font-label-bold tracking-widest uppercase block mb-2"
+            >Experiencia</span
+          >
+          <h2 class="font-headline-lg text-primary text-4xl">
+            Nuestros Servicios
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div
+            class="bg-surface-container-low p-1 border border-outline-variant rounded-xl overflow-hidden group"
+          >
+            <div class="relative h-64 overflow-hidden rounded-lg">
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="Atmospheric bar interior with football memorabilia, high-end TV screens showing football match, and warm ambient lighting"
+                src="img/futbol.jpg"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 text-surface">
+                <span class="material-symbols-outlined text-4xl mb-2"
+                  >tv_gen</span
+                >
+                <h3 class="font-headline-md">Fútbol en Directo</h3>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="font-body-md text-on-surface-variant mb-4">
+                No te pierdas ni un solo minuto. Contamos con Vodafone TV, La
+                Liga y Champions League en pantallas de alta definición.
+              </p>
+              <ul
+                class="space-y-2 text-label-sm text-secondary font-label-bold"
+              >
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-tertiary text-sm"
+                    >check_circle</span
+                  >
+                  Champions League
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-tertiary text-sm"
+                    >check_circle</span
+                  >
+                  La Liga EA Sports
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-tertiary text-sm"
+                    >check_circle</span
+                  >
+                  Premier League
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- Service 2 -->
+          <div
+            class="bg-surface-container-low p-1 border border-outline-variant rounded-xl overflow-hidden group"
+          >
+            <div class="relative h-64 overflow-hidden rounded-lg">
+              <img
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="High-end professional billiards table in a dimly lit, sophisticated pub environment with leather accents"
+                src="img/futbolinBillar.jpg"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 text-surface">
+                <h3 class="font-headline-md">Billar</h3>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="font-body-md text-on-surface-variant mb-4">
+                Disfruta de una partida en nuestra mesa de billar
+                mientras degustas uno de nuestros cafés.
+              </p>
+            </div>
+          </div>
+          <!-- Service 3 -->
+          <div
+            class="bg-surface-container-low p-1 border border-outline-variant rounded-xl overflow-hidden group"
+          >
+            <div
+              class="relative h-64 overflow-hidden rounded-lg flex items-center justify-center bg-primary-container"
+            >
+              <div class="absolute inset-0 opacity-40">
+                <img
+                  class="w-full h-full object-cover"
+                  data-alt="Close-up of a vintage table football player on a wooden pitch with natural lighting"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeUn6weVFtHX0ujQVWiLFuDhDrHt5fb3RyVCiBhFukHDq7HabX7qDJSBTJF8OsP_S3K6GNtY98w5ipfQnUGIExD3AFfseXars0FaY9z5hJ7HinkvEZPvXVxGJmW0GGyAUZIsXKIRJKGGJQVr2F1g_J9eXFi8Nz9jnVSlEMoy7fLqvkalf03PwUR3yvBR2607N1jFwKxRvarjfm-v7P2DTVdhJiXzdolxtwV5Jb8QXiGmoDpjeEBA_hmPu6q3AZE5df_PSvpCprvm8"
+                />
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+              ></div>
+              <div class="absolute bottom-4 left-4 text-surface">
+                <span class="material-symbols-outlined text-4xl mb-2"
+                  >sports_soccer</span
+                >
+                <h3 class="font-headline-md">Futbolín Clásico</h3>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="font-body-md text-on-surface-variant mb-4">
+                El rey del entretenimiento en grupo. Nuestro futbolín es el
+                punto de encuentro perfecto para retar a tus amigos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section -->
+    <section class="py-20 px-6 bg-surface-container-lowest" id="menu">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-16 text-center">
+          <span
+            class="text-tertiary font-label-bold tracking-widest uppercase block mb-2"
+            >Nuestra Selección</span
+          >
+          <h2 class="font-headline-lg text-primary text-4xl mb-4">
+            La Carta
+          </h2>
+          <p class="font-body-md text-on-surface-variant">
+            Calidad artesanal en cada bocado y sorbo.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
+          <!-- DESAYUNOS -->
+          <div>
+            <h3
+              class="font-headline-md text-primary mb-6 flex items-center gap-2 border-b-2 border-tertiary-container pb-2 uppercase tracking-wide"
+            >
+              <span class="material-symbols-outlined">bakery_dining</span>
+              Desayunos
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Bollería</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">1.60€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Churro</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">0.40€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Croissant</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">1.60€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Croissant planchá</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">2.00€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Desayuno clásico</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.10€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Desayuno completo</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4.20€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Donuts</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">1.50€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Zumo naranja pequeño</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">2.50€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Zumo naranja grande</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.00€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Tostada c/ tomate</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">2.10€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Tostada c/ mantequilla</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">1.60€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Tostada c/ jamón</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.50€</span>
+              </li>
+            </ul>
+          </div>
+          <!-- BOCADILLOS Y HAMBURGUESAS -->
+          <div>
+            <h3
+              class="font-headline-md text-primary mb-6 flex items-center gap-2 border-b-2 border-tertiary-container pb-2 uppercase tracking-wide"
+            >
+              <span class="material-symbols-outlined">lunch_dining</span>
+              Bocadillos y Hamburguesas
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Bacon completo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">5€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Bacon con queso</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Bacon simple</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.80€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Lomo completo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">5€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Lomo con queso</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Lomo simple</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.80€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Pollo completo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">5.20€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Pollo con queso</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">5€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Pollo simple</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4.70€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Hamburguesa completa</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4.50€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Hamburguesa con queso</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary"
+                  >Hamburguesa simple</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.80€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Chorizo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.90€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Jamon serrano</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4.00€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Salchichon</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">3.90€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Tortilla</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">4.00€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span
+                  class="font-label-bold text-primary italic text-secondary text-sm"
+                  >Ingrediente extra</span
+                >
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">0.80€</span>
+              </li>
+            </ul>
+          </div>
+          <!-- PLATOS COMBINADOS -->
+          <div>
+            <h3
+              class="font-headline-md text-primary mb-6 flex items-center gap-2 border-b-2 border-tertiary-container pb-2 uppercase tracking-wide"
+            >
+              <span class="material-symbols-outlined">restaurant</span> Platos
+              Combinados
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Bacon</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">8.50€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Hamburguesa</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">8.00€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Lomo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">8.50€</span>
+              </li>
+              <li class="flex items-end mb-1">
+                <span class="font-label-bold text-primary">Pollo</span>
+                <div class="dotted-leader"></div>
+                <span class="font-label-bold text-primary">9.50€</span>
+              </li>
+            </ul>
+          </div>
+          <!-- SÁNDWICHES Y RACIONES -->
+          <div>
+            <h3
+              class="font-headline-md text-primary mb-6 flex items-center gap-2 border-b-2 border-tertiary-container pb-2 uppercase tracking-wide"
+            >
+              <span class="material-symbols-outlined">tapas</span> Sándwiches y
+              Raciones
+            </h3>
+            <div class="space-y-8">
+              <ul class="space-y-4">
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary">Mixto</span>
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">3.20€</span>
+                </li>
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary">Vegetal</span>
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">4.60€</span>
+                </li>
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary"
+                    >Vegetal con huevo</span
+                  >
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">5.00€</span>
+                </li>
+              </ul>
+              <ul class="space-y-4">
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary">Croquetas</span>
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">6.00€</span>
+                </li>
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary">Empanadilla</span>
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">1.50€</span>
+                </li>
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary"
+                    >Ración patatas</span
+                  >
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">3.00€</span>
+                </li>
+                <li class="flex items-end mb-1">
+                  <span class="font-label-bold text-primary"
+                    >Ración tortilla</span
+                  >
+                  <div class="dotted-leader"></div>
+                  <span class="font-label-bold text-primary">3.30€</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Prices Note & Allergens -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="p-6 border border-outline-variant bg-surface-container-low rounded-lg flex items-center gap-4"
+          >
+            <span class="material-symbols-outlined text-tertiary text-4xl"
+              >deck</span
+            >
+            <div>
+              <h4
+                class="font-label-bold text-primary mb-1 uppercase tracking-wider"
+              >
+                Suplemento Terraza
+              </h4>
+              <p class="text-body-md text-on-surface-variant">
+                +0.10€ por consumición en el exterior.
+              </p>
+            </div>
+          </div>
+          <div
+            class="p-6 border border-outline-variant bg-surface-container rounded-lg"
+          >
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined text-tertiary"
+                >warning</span
+              >
+              <div>
+                <h4 class="font-label-bold text-primary mb-2">
+                  Información sobre Alérgenos
+                </h4>
+                <p class="text-label-sm text-on-surface-variant">
+                  Disponemos de información sobre alérgenos. Informe a nuestro
+                  personal si padece alguna intolerancia alimentaria.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-4">
+                  <span
+                    class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-secondary-container"
+                    ><span class="w-2 h-2 rounded-full bg-amber-600"></span>
+                    Gluten</span
+                  >
+                  <span
+                    class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-secondary-container"
+                    ><span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                    Lácteos</span
+                  >
+                  <span
+                    class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-secondary-container"
+                    ><span class="w-2 h-2 rounded-full bg-yellow-600"></span>
+                    Frutos Secos</span
+                  >
+                  <span
+                    class="flex items-center gap-1 text-[10px] uppercase font-bold text-on-secondary-container"
+                    ><span class="w-2 h-2 rounded-full bg-red-600"></span>
+                    Huevos</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Map Section -->
+    <section class="py-20 px-6 bg-surface-container" id="location">
+      <div
+        class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <h2 class="font-headline-lg text-primary mb-6">
+            Encuéntranos en Vigo
+          </h2>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-tertiary"
+                >location_on</span
+              >
+              <div>
+                <p class="font-label-bold text-primary">Dirección</p>
+                <p class="font-body-md text-on-surface-variant">
+                  Rúa Caracas, 6, Santiago de Vigo<br />36203 Vigo, Pontevedra
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-tertiary"
+                >schedule</span
+              >
+              <div>
+                <p class="font-label-bold text-primary">Horario de Apertura</p>
+                <p class="font-body-md text-on-surface-variant">
+                  Lunes - Sábados: 08:00 - 00:00<br />Domingos: 09:00
+                  - 00:00
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-symbols-outlined text-tertiary">call</span>
+              <div>
+                <p class="font-label-bold text-primary">Contacto</p>
+                <p class="font-body-md text-on-surface-variant">
+                  +34 692 84 40 49
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="h-[450px] w-full rounded-xl overflow-hidden shadow-2xl border-4 border-surface border-location"
+        >
+          <iframe
+            allowfullscreen=""
+            data-location="Vigo, Rúa Caracas 6"
+            height="100%"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2954.072213038676!2d-8.720894523395914!3d42.23432767120516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2f6269b9b00001%3A0x6b8f36c5890833a6!2zUsO6YSBDYXJhY2FzLCA2LCAzNjIwMyBWaWdvLCBQb250ZXZlZHJhLCBFc3Bhw7Fh!5e0!3m2!1ses!2ses!4v1710000000000!5m2!1ses!2ses"
+            style="border: 0"
+            width="100%"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer
+      class="bg-stone-900 dark:bg-black w-full py-12 px-8 border-t border-stone-800"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto"
+      >
+        <div class="flex flex-col items-center md:items-start gap-2">
+          <div class="text-lg font-bold text-amber-500">Cafetería Caracas</div>
+          <p
+            class="font-serif text-sm antialiased text-stone-100 dark:text-stone-300"
+          >
+            © <script>document.write(new Date().getFullYear())</script> Cafetería Caracas.
+          </p>
+        </div>
+        <div
+          class="flex flex-col md:flex-row gap-6 text-center md:text-left font-serif text-sm antialiased text-stone-400"
+        >
+          <span class="text-stone-400">Design by: <a href="https://stoprend.com" class="text-amber-500 hover:text-amber-400">stoprend.com</a></span>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Mobile menu functionality
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const menuIcon = document.getElementById('menu-icon');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+
+      function openMobileMenu() {
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        menuIcon.textContent = 'close';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        menuIcon.textContent = 'menu';
+      }
+
+      mobileMenuBtn.addEventListener('click', () => {
+        if (mobileMenu.getAttribute('aria-hidden') === 'false') {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+
+      // Close menu when clicking on a link
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.getAttribute('aria-hidden') === 'false') {
+          closeMobileMenu();
+        }
+      });
+    </script>
+  </body>
+</html>
