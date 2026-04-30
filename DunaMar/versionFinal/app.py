@@ -25,7 +25,7 @@ def enviar_consulta(email, json_data):
         subject="Consulta de habitación",
         sender=app.config['MAIL_USERNAME'],
         recipients=[email], # Destinatario principal
-        cc=[json_data["email"]]  # Añade al cliente en copia 
+        cc=[json_data["email"]]  # Añade al cliente en copia, Borrar solo esta linea si no quieres que el cliente reciba una copia de la consulta (no hace falta quitar la coma)
     )
     # Renderizamos la plantilla con Jinja2
     msg.html = render_template("email_consulta.html", email=email, json_data=json_data)
